@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janmashtami Wishes Generator Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a3d62 0%, #1e5799 30%, #3c8dbc 70%, #7ed6df 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(255, 218, 121, 0.5);
+        }
+        
+        .janmashtami-title {
+            color: #ffda79;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .janmashtami-title::before, .janmashtami-title::after {
+            content: '🎵';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+        }
+        
+        .janmashtami-title::before {
+            right: -50px;
+        }
+        
+        .janmashtami-title::after {
+            left: -50px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #d1d8e0;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: visible;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .janmashtami-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #3867d6 0%, #4b7bec 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: visible;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.2), 0 10px 25px rgba(0, 0, 0, 0.4);
+            border: 5px solid #ffda79;
+        }
+        
+        .krishna-icon {
+            position: absolute;
+            font-size: 2.8rem;
+            opacity: 0.9;
+            animation: floatKrishna 6s ease-in-out infinite;
+            z-index: 5;
+            filter: drop-shadow(0 0 10px rgba(255, 218, 121, 0.7));
+        }
+        
+        .krishna-icon1 { top: 20px; left: 20px; color: #ffda79; animation-delay: 0s; }
+        .krishna-icon2 { top: 20px; right: 20px; color: #26de81; animation-delay: 1.5s; }
+        .krishna-icon3 { bottom: 20px; left: 20px; color: #fc5c65; animation-delay: 3s; }
+        .krishna-icon4 { bottom: 20px; right: 20px; color: #a55eea; animation-delay: 4.5s; }
+        
+        @keyframes floatKrishna {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
+            50% { transform: translateY(0) rotate(0deg) scale(1); }
+            75% { transform: translateY(-10px) rotate(-5deg) scale(1.05); }
+        }
+        
+        .card-title {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(255, 218, 121, 0.5);
+            z-index: 20;
+            position: relative;
+            background: rgba(26, 37, 47, 0.8);
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 3px solid #ffda79;
+        }
+        
+        .card-message {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #e0e0e0;
+            z-index: 20;
+            position: relative;
+            background: rgba(26, 37, 47, 0.85);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 218, 121, 0.3);
+        }
+        
+        .card-sender {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-top: 20px;
+            font-style: italic;
+            font-weight: bold;
+            z-index: 20;
+            position: relative;
+            background: rgba(255, 218, 121, 0.8);
+            padding: 12px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 2px solid #26de81;
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 218, 121, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 218, 121, 0.15) 0%, transparent 20%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 15px,
+                    rgba(38, 222, 129, 0.1) 15px,
+                    rgba(38, 222, 129, 0.1) 30px
+                );
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* FLUTE NOTES */
+        .flute-note {
+            position: absolute;
+            font-size: 1.8rem;
+            pointer-events: none;
+            z-index: 15;
+            animation: noteFloat linear infinite;
+        }
+        
+        @keyframes noteFloat {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* BUTTER DROPS */
+        .butter-drop {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(45deg, #ffda79, #fed330);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            animation: dropFall linear infinite;
+            box-shadow: 0 0 10px #ffda79;
+        }
+        
+        @keyframes dropFall {
+            0% {
+                transform: translateY(-50px) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        /* PEACOCK FEATHERS */
+        .peacock-feather {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(45deg, #26de81, #20bf6b);
+            border-radius: 50% 50% 50% 0;
+            pointer-events: none;
+            z-index: 15;
+            animation: featherFloat linear infinite;
+            transform: rotate(45deg);
+        }
+        
+        @keyframes featherFloat {
+            0% {
+                transform: translateY(-50px) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px) rotate(135deg);
+                opacity: 0;
+            }
+        }
+        
+        /* DIVINE LIGHTS */
+        .divine-light {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            animation: lightGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes lightGlow {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+        
+        /* RADHA KRISHNA DANCE */
+        .dance-petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #fc5c65, #eb3b5a);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            animation: petalSpin 3s ease-in-out infinite;
+        }
+        
+        @keyframes petalSpin {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-15px) rotate(180deg) scale(1.2); opacity: 1; }
+        }
+        
+        /* SOUND WAVE */
+        .sound-wave {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #ffda79;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 8;
+            animation: waveExpand 2s ease-out infinite;
+            opacity: 0;
+        }
+        
+        @keyframes waveExpand {
+            0% { transform: scale(0.1); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(255, 218, 121, 0.2);
+            border: 1px solid rgba(255, 218, 121, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(255, 218, 121, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 218, 121, 0.3);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #ffda79;
+            box-shadow: 0 0 15px rgba(255, 218, 121, 0.7);
+        }
+        
+        .color1 { background: linear-gradient(45deg, #3867d6, #4b7bec); }
+        .color2 { background: linear-gradient(45deg, #ffda79, #fed330); }
+        .color3 { background: linear-gradient(45deg, #26de81, #20bf6b); }
+        .color4 { background: linear-gradient(45deg, #0a3d62, #1e5799); }
+        .color5 { background: linear-gradient(45deg, #a55eea, #8854d0); }
+        .color6 { background: linear-gradient(45deg, #fc5c65, #eb3b5a); }
+        .color7 { background: linear-gradient(45deg, #4b6584, #778ca3); }
+        .color8 { background: linear-gradient(45deg, #fa8231, #fd9644); }
+        .color9 { background: linear-gradient(45deg, #2d98da, #45aaf2); }
+        .color10 { background: linear-gradient(45deg, #2bcbba, #0fb9b1); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .theme-type {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .theme-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .theme-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 218, 121, 0.2);
+        }
+        
+        .theme-btn.active {
+            border-color: #ffda79;
+            background: rgba(255, 218, 121, 0.15);
+        }
+        
+        .krishna-btn.active {
+            border-color: #26de81;
+            background: rgba(38, 222, 129, 0.15);
+        }
+        
+        .flute-btn.active {
+            border-color: #4b7bec;
+            background: rgba(75, 123, 236, 0.15);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #4b7bec, #3867d6);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #26de81, #20bf6b);
+            color: #0a3d62;
+            font-weight: bold;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .instruction {
+            background: rgba(255, 218, 121, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #26de81;
+            font-size: 0.95rem;
+            color: #ffffff;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(255, 218, 121, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(255, 218, 121, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 218, 121, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(26, 37, 47, 0.95);
+            color: #ffda79;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+            border: 2px solid #26de81;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-title {
+                font-size: 1.8rem;
+            }
+            
+            .card-message {
+                font-size: 1.2rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+            
+            .theme-type {
+                flex-wrap: wrap;
+            }
+            
+            .theme-btn {
+                min-width: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .theme-type {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="janmashtami-title">Janmashtami Wishes Generator Pro</span></h1>
+            <p class="subtitle">Create beautiful Janmashtami cards with Lord Krishna's blessings</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Janmashtami Card</h2>
+                <div class="janmashtami-card" id="janmashtamiCard">
+                    <div class="card-pattern"></div>
+                    <div class="krishna-icon krishna-icon1">🕉️</div>
+                    <div class="krishna-icon krishna-icon2">🎵</div>
+                    <div class="krishna-icon krishna-icon3">🥛</div>
+                    <div class="krishna-icon krishna-icon4">🌸</div>
+                    
+                    <h3 class="card-title" id="cardTitle">Happy Janmashtami!</h3>
+                    <p class="card-message" id="cardMessage">May Lord Krishna bless you with love, wisdom, and happiness. Wishing you a joyful Janmashtami filled with devotion, music, and celebrations.</p>
+                    <p class="card-sender" id="cardSender">Radhe Radhe! 🎵</p>
+                </div>
+                
+                <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://janmashtamiwishes.com/card/2024
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your Janmashtami card is ready! Customize it with different themes, designs, and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Krishna Blessings</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <button class="wish-btn">Divine Love</button>
+                        <button class="wish-btn">Wisdom & Knowledge</button>
+                        <button class="wish-btn">Joy & Happiness</button>
+                        <button class="wish-btn">Protection & Care</button>
+                        <button class="wish-btn">Music & Arts</button>
+                        <button class="wish-btn">Playful Spirit</button>
+                        <button class="wish-btn">Inner Peace</button>
+                        <button class="wish-btn">Prosperity</button>
+                        <button class="wish-btn">Family Harmony</button>
+                        <button class="wish-btn">Spiritual Growth</button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <button class="design-btn color1 active" title="Divine Blue"></button>
+                        <button class="design-btn color2" title="Golden Butter"></button>
+                        <button class="design-btn color3" title="Emerald Green"></button>
+                        <button class="design-btn color4" title="Midnight Blue"></button>
+                        <button class="design-btn color5" title="Royal Purple"></button>
+                        <button class="design-btn color6" title="Rose Pink"></button>
+                        <button class="design-btn color7" title="Slate Gray"></button>
+                        <button class="design-btn color8" title="Sunset Orange"></button>
+                        <button class="design-btn color9" title="Sky Blue"></button>
+                        <button class="design-btn color10" title="Turquoise"></button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Festival Theme</h3>
+                    <div class="theme-type">
+                        <button class="theme-btn krishna-btn active" id="krishnaBtn">
+                            <i class="fas fa-baby"></i> Baby Krishna
+                        </button>
+                        <button class="theme-btn flute-btn" id="fluteBtn">
+                            <i class="fas fa-music"></i> Flute Melody
+                        </button>
+                        <button class="theme-btn" id="dahiHandiBtn">
+                            <i class="fas fa-utensils"></i> Dahi Handi
+                        </button>
+                        <button class="theme-btn" id="danceBtn">
+                            <i class="fas fa-child"></i> Raas Leela
+                        </button>
+                    </div>
+                    
+                    <input type="text" class="custom-input" id="recipientName" placeholder="Recipient's Name (e.g., Sharma Family)">
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom Janmashtami message here..."></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., With blessings, Priya)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send Krishna Blessings
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn copy-link" id="copyLinkBtn">
+                            <i class="fas fa-copy"></i> Copy Link
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#fc5c65;"></i> for Janmashtami | Radhe Radhe! 🎵</p>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification" style="display: none;"></div>
+
+    <script>
+        // Janmashtami messages
+        const autoWishes = [
+            "May Lord Krishna bless you with love, wisdom, and happiness. Wishing you a joyful Janmashtami filled with devotion, music, and celebrations.",
+            "On this auspicious day of Janmashtami, may Lord Krishna's divine blessings fill your life with love, peace, and prosperity. Radhe Radhe!",
+            "May the divine flute of Lord Krishna fill your life with sweet melodies of joy and happiness. Wishing you a very Happy Janmashtami!",
+            "As we celebrate the birth of Lord Krishna, may he bless you with strength, wisdom, and eternal happiness. Happy Janmashtami!",
+            "May the mischievous smile of Baby Krishna bring endless joy to your life. Wishing you and your family a blessed Janmashtami!",
+            "On this Janmashtami, may Lord Krishna destroy all your worries and fill your life with divine love and blessings.",
+            "May the teachings of Lord Krishna guide you towards the right path and bring peace to your soul. Happy Janmashtami!",
+            "Wishing you a Janmashtami filled with the sound of Krishna's flute, the taste of makhan-mishri, and the joy of divine love.",
+            "May Lord Krishna's blessings be with you always, protecting you and guiding you through life's journey. Happy Janmashtami!",
+            "As we swing the cradle of Baby Krishna, may he swing away all your troubles and bring happiness to your life. Radhe Radhe!"
+        ];
+
+        // Festival themes
+        const festivalThemes = {
+            krishna: {
+                title: "Happy Janmashtami!",
+                icons: ['🕉️', '🎵', '🥛', '🌸'],
+                color: '#ffda79',
+                greeting: "Radhe Radhe! 🎵"
+            },
+            flute: {
+                title: "Divine Flute Melodies!",
+                icons: ['🎶', '🎵', '🎼', '✨'],
+                color: '#4b7bec',
+                greeting: "Flute Blessings! 🎶"
+            },
+            dahiHandi: {
+                title: "Dahi Handi Celebrations!",
+                icons: ['🏺', '🥛', '🎉', '🏆'],
+                color: '#26de81',
+                greeting: "Govinda Ala Re! 🏺"
+            },
+            dance: {
+                title: "Raas Leela Joy!",
+                icons: ['💃', '🕺', '🎵', '🌟'],
+                color: '#fc5c65',
+                greeting: "Dance with Krishna! 💃"
+            }
+        };
+
+        // DOM elements
+        const janmashtamiCard = document.getElementById('janmashtamiCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+        const recipientName = document.getElementById('recipientName');
+        const krishnaBtn = document.getElementById('krishnaBtn');
+        const fluteBtn = document.getElementById('fluteBtn');
+        const dahiHandiBtn = document.getElementById('dahiHandiBtn');
+        const danceBtn = document.getElementById('danceBtn');
+        const notification = document.getElementById('notification');
+        
+        let selectedTheme = 'krishna';
+        
+        // Initialize wish buttons
+        document.querySelectorAll('.wish-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (index < autoWishes.length) {
+                    cardMessage.textContent = autoWishes[index];
+                    customMessage.value = '';
+                    showNotification(`Applied "${btn.textContent}" blessing!`);
+                }
+            });
+        });
+
+        // Initialize design buttons
+        document.querySelectorAll('.design-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all
+                document.querySelectorAll('.design-btn').forEach(b => b.classList.remove('active'));
+                // Add active to clicked
+                this.classList.add('active');
+                
+                // Apply design
+                const className = this.className.match(/color\d+/)[0];
+                const gradients = {
+                    'color1': ['#3867d6', '#4b7bec'],
+                    'color2': ['#ffda79', '#fed330'],
+                    'color3': ['#26de81', '#20bf6b'],
+                    'color4': ['#0a3d62', '#1e5799'],
+                    'color5': ['#a55eea', '#8854d0'],
+                    'color6': ['#fc5c65', '#eb3b5a'],
+                    'color7': ['#4b6584', '#778ca3'],
+                    'color8': ['#fa8231', '#fd9644'],
+                    'color9': ['#2d98da', '#45aaf2'],
+                    'color10': ['#2bcbba', '#0fb9b1']
+                };
+                
+                const colors = gradients[className];
+                janmashtamiCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+                
+                showNotification(`Applied ${this.title} design!`);
+            });
+        });
+
+        // Theme buttons
+        krishnaBtn.addEventListener('click', () => {
+            selectedTheme = 'krishna';
+            updateThemeButtons();
+            showNotification("Applied Baby Krishna theme! Radhe Radhe! 🎵");
+        });
+        
+        fluteBtn.addEventListener('click', () => {
+            selectedTheme = 'flute';
+            updateThemeButtons();
+            showNotification("Applied Flute Melody theme! Divine music! 🎶");
+        });
+        
+        dahiHandiBtn.addEventListener('click', () => {
+            selectedTheme = 'dahiHandi';
+            updateThemeButtons();
+            showNotification("Applied Dahi Handi theme! Govinda Ala Re! 🏺");
+        });
+        
+        danceBtn.addEventListener('click', () => {
+            selectedTheme = 'dance';
+            updateThemeButtons();
+            showNotification("Applied Raas Leela theme! Dance with joy! 💃");
+        });
+        
+        function updateThemeButtons() {
+            [krishnaBtn, fluteBtn, dahiHandiBtn, danceBtn].forEach(btn => btn.classList.remove('active'));
+            if (selectedTheme === 'krishna') krishnaBtn.classList.add('active');
+            else if (selectedTheme === 'flute') fluteBtn.classList.add('active');
+            else if (selectedTheme === 'dahiHandi') dahiHandiBtn.classList.add('active');
+            else danceBtn.classList.add('active');
+            
+            updateCardForTheme();
+        }
+        
+        function updateCardForTheme() {
+            const theme = festivalThemes[selectedTheme];
+            cardTitle.textContent = theme.title;
+            
+            // Update icons
+            const icons = document.querySelectorAll('.krishna-icon');
+            theme.icons.forEach((icon, index) => {
+                if (icons[index]) icons[index].textContent = icon;
+            });
+            
+            // Update sender if no custom name
+            if (!senderName.value.trim()) {
+                cardSender.textContent = theme.greeting;
+            }
+            
+            // Update border color
+            janmashtamiCard.style.borderColor = theme.color;
+        }
+
+        // Custom message input
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            } else {
+                cardMessage.textContent = autoWishes[0];
+            }
+        });
+
+        // Sender name input
+        senderName.addEventListener('input', () => {
+            if (senderName.value.trim() !== '') {
+                cardSender.textContent = `${festivalThemes[selectedTheme].greeting}\nFrom: ${senderName.value}`;
+            } else {
+                cardSender.textContent = festivalThemes[selectedTheme].greeting;
+            }
+        });
+
+        // Recipient name input
+        recipientName.addEventListener('input', () => {
+            if (recipientName.value.trim() !== '') {
+                cardTitle.textContent = `${festivalThemes[selectedTheme].title}, ${recipientName.value}!`;
+            } else {
+                cardTitle.textContent = festivalThemes[selectedTheme].title;
+            }
+        });
+
+        // Edit button
+        document.getElementById('editBtn').addEventListener('click', () => {
+            customMessage.focus();
+            showNotification('Start editing your Janmashtami card message!');
+        });
+
+        // Send button
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const recipient = prompt("Enter recipient's name:", recipientName.value || "Dear Devotee");
+            if (recipient) {
+                showNotification(`Janmashtami card customized for ${recipient}! Ready to share.`);
+                recipientName.value = recipient;
+                cardTitle.textContent = `${festivalThemes[selectedTheme].title}, ${recipient}!`;
+                
+                // Celebration effect
+                createCelebration();
+            }
+        });
+
+        // Share buttons
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `*${cardTitle.textContent}*\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nRadhe Radhe! 🎵`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const quote = encodeURIComponent(`${cardTitle.textContent} - Radhe Radhe! 🎵`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}... #Janmashtami #RadheRadhe #Krishna`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('📸 Take a screenshot and share on Instagram with #Janmashtami #RadheRadhe #LordKrishna');
+        });
+
+        document.getElementById('copyLinkBtn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => showNotification('Card link copied to clipboard! Share Krishna blessings!'))
+                .catch(() => showNotification('Failed to copy link. Please try again.'));
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            const subject = encodeURIComponent(`${cardTitle.textContent} - Janmashtami Greetings`);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Janmashtami Wishes Generator\n${window.location.href}\n\nRadhe Radhe! 🎵`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // ANIMATION FUNCTIONS
+        function createFluteNote() {
+            const cardRect = janmashtamiCard.getBoundingClientRect();
+            
+            const note = document.createElement('div');
+            note.className = 'flute-note';
+            note.innerHTML = '🎵';
+            
+            const x = Math.random() * (cardRect.width - 40) + 20;
+            note.style.left = `${x}px`;
+            note.style.top = `-50px`;
+            note.style.fontSize = `${Math.random() * 20 + 20}px`;
+            note.style.animationDuration = `${Math.random() * 4 + 3}s`;
+            note.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            janmashtamiCard.appendChild(note);
+            
+            setTimeout(() => {
+                if (note.parentNode) {
+                    note.remove();
+                }
+            }, 7000);
+        }
+
+        function createButterDrop() {
+            const cardRect = janmashtamiCard.getBoundingClientRect();
+            
+            const drop = document.createElement('div');
+            drop.className = 'butter-drop';
+            
+            const x = Math.random() * (cardRect.width - 20) + 10;
+            drop.style.left = `${x}px`;
+            drop.style.top = `-30px`;
+            drop.style.animationDuration = `${Math.random() * 5 + 3}s`;
+            drop.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            janmashtamiCard.appendChild(drop);
+            
+            setTimeout(() => {
+                if (drop.parentNode) {
+                    drop.remove();
+                }
+            }, 8000);
+        }
+
+        function createPeacockFeather() {
+            const cardRect = janmashtamiCard.getBoundingClientRect();
+            
+            const feather = document.createElement('div');
+            feather.className = 'peacock-feather';
+            
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            feather.style.left = `${x}px`;
+            feather.style.top = `-40px`;
+            feather.style.animationDuration = `${Math.random() * 6 + 4}s`;
+            feather.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            const colors = ['#26de81', '#20bf6b', '#2bcbba', '#0fb9b1'];
+            feather.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]}, #4b7bec)`;
+            
+            janmashtamiCard.appendChild(feather);
+            
+            setTimeout(() => {
+                if (feather.parentNode) {
+                    feather.remove();
+                }
+            }, 10000);
+        }
+
+        function createDivineLight() {
+            const cardRect = janmashtamiCard.getBoundingClientRect();
+            
+            const light = document.createElement('div');
+            light.className = 'divine-light';
+            
+            const x = Math.random() * (cardRect.width - 20) + 10;
+            const y = Math.random() * (cardRect.height - 20) + 10;
+            light.style.left = `${x}px`;
+            light.style.top = `${y}px`;
+            
+            const colors = ['#ffda79', '#26de81', '#4b7bec', '#fc5c65'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            light.style.backgroundColor = color;
+            light.style.boxShadow = `0 0 15px ${color}`;
+            light.style.animationDelay = `${Math.random() * 2}s`;
+            
+            janmashtamiCard.appendChild(light);
+            
+            setTimeout(() => {
+                if (light.parentNode) {
+                    light.remove();
+                }
+            }, 3000);
+        }
+
+        function createDancePetal() {
+            const cardRect = janmashtamiCard.getBoundingClientRect();
+            
+            const petal = document.createElement('div');
+            petal.className = 'dance-petal';
+            
+            const x = Math.random() * (cardRect.width - 25) + 12.5;
+            const y = Math.random() * (cardRect.height - 25) + 12.5;
+            petal.style.left = `${x}px`;
+            petal.style.top = `${y}px`;
+            petal.style.animationDelay = `${Math.random() * 2}s`;
+            
+            const colors = ['#fc5c65', '#eb3b5a', '#a55eea', '#ffda79'];
+            petal.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]}, #ffda79)`;
+            
+            janmashtamiCard.appendChild(petal);
+            
+            setTimeout(() => {
+                if (petal.parentNode) {
+                    petal.remove();
+                }
+            }, 4000);
+        }
+
+        function createSoundWave() {
+            const cardRect = janmashtamiCard.getBoundingClientRect();
+            
+            const wave = document.createElement('div');
+            wave.className = 'sound-wave';
+            
+            wave.style.left = `${cardRect.width / 2}px`;
+            wave.style.top = `${cardRect.height / 2}px`;
+            
+            janmashtamiCard.appendChild(wave);
+            
+            setTimeout(() => {
+                if (wave.parentNode) {
+                    wave.remove();
+                }
+            }, 2000);
+        }
+
+        function createCelebration() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createFluteNote();
+                    createButterDrop();
+                    createPeacockFeather();
+                    createDivineLight();
+                    createDancePetal();
+                    if (i % 5 === 0) createSoundWave();
+                }, i * 200);
+            }
+            
+            document.querySelectorAll('.krishna-icon').forEach(icon => {
+                const originalAnimation = icon.style.animation;
+                icon.style.animation = 'floatKrishna 1s ease-in-out infinite';
+                icon.style.filter = 'drop-shadow(0 0 20px rgba(255, 218, 121, 0.9)) brightness(1.4)';
+                
+                setTimeout(() => {
+                    icon.style.animation = originalAnimation || 'floatKrishna 6s ease-in-out infinite';
+                    icon.style.filter = 'drop-shadow(0 0 10px rgba(255, 218, 121, 0.7))';
+                }, 4000);
+            });
+            
+            janmashtamiCard.style.boxShadow = 'inset 0 0 60px rgba(255, 218, 121, 0.4), 0 0 50px rgba(38, 222, 129, 0.5)';
+            janmashtamiCard.style.transition = 'all 0.5s ease';
+            
+            setTimeout(() => {
+                janmashtamiCard.style.boxShadow = 'inset 0 0 30px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.4)';
+            }, 4000);
+        }
+
+        // Notification function
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.style.display = 'block';
+            notification.style.animation = 'slideIn 0.3s ease';
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 300);
+            }, 3000);
+        }
+
+        // Start animations after page loads
+        setTimeout(() => {
+            // Continuous animations
+            setInterval(createFluteNote, 3000);
+            setInterval(createButterDrop, 2500);
+            setInterval(createPeacockFeather, 3500);
+            setInterval(createDivineLight, 1500);
+            setInterval(createDancePetal, 4000);
+            setInterval(createSoundWave, 6000);
+            
+            // Initial burst
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createFluteNote();
+                    createButterDrop();
+                    createPeacockFeather();
+                    createDivineLight();
+                    createDancePetal();
+                }, i * 300);
+            }
+            
+            showNotification('🎵 Welcome to Janmashtami Wishes Generator! Radhe Radhe!');
+        }, 1000);
+    </script>
+</body>
+</html>
