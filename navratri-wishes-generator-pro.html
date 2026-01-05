@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navratri Wishes Generator Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #8b0000 0%, #b22222 30%, #dc143c 70%, #ff6347 100%);
+            color: #ffd700;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #ffd700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .navratri-title {
+            color: #ffd700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .navratri-title::before, .navratri-title::after {
+            content: '🪔';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+        }
+        
+        .navratri-title::before {
+            right: -50px;
+        }
+        
+        .navratri-title::after {
+            left: -50px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ffec8b;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(139, 0, 0, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(139, 0, 0, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .navratri-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #8b0000 0%, #b22222 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.4), 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 5px solid #ffd700;
+        }
+        
+        .durga-icon {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.8;
+            animation: durgaFloat 5s ease-in-out infinite;
+            z-index: 5;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+        
+        .durga-icon1 { top: 20px; left: 20px; color: #ffd700; animation-delay: 0s; }
+        .durga-icon2 { top: 20px; right: 20px; color: #ff6347; animation-delay: 1s; }
+        .durga-icon3 { bottom: 20px; left: 20px; color: #ff8c00; animation-delay: 2s; }
+        .durga-icon4 { bottom: 20px; right: 20px; color: #ff4500; animation-delay: 3s; }
+        
+        @keyframes durgaFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        .card-title {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+            z-index: 10;
+            position: relative;
+            background: rgba(139, 0, 0, 0.6);
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .card-message {
+            font-size: 1.6rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #fff;
+            z-index: 10;
+            position: relative;
+            background: rgba(178, 34, 34, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .card-sender {
+            font-size: 1.3rem;
+            color: #ffec8b;
+            margin-top: 20px;
+            font-style: italic;
+            z-index: 10;
+            position: relative;
+            background: rgba(139, 0, 0, 0.6);
+            padding: 12px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.15) 0%, transparent 20%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 215, 0, 0.05) 10px,
+                    rgba(255, 215, 0, 0.05) 20px
+                );
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* NAVRATRI FIREWORKS */
+        .navratri-firework {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .navratri-particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        /* DIYA FLAMES */
+        .diya-flame {
+            position: absolute;
+            width: 15px;
+            height: 25px;
+            background: linear-gradient(to top, #ff8c00, #ff4500, #ffd700);
+            border-radius: 50% 50% 20% 20%;
+            pointer-events: none;
+            z-index: 3;
+            animation: flameFlicker 0.8s ease-in-out infinite;
+            filter: blur(1px);
+            box-shadow: 0 0 20px #ff8c00;
+        }
+        
+        @keyframes flameFlicker {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            color: #ffd700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+        
+        .color1 { background: linear-gradient(45deg, #8b0000, #b22222); }
+        .color2 { background: linear-gradient(45deg, #b22222, #dc143c); }
+        .color3 { background: linear-gradient(45deg, #4b0082, #8a2be2); }
+        .color4 { background: linear-gradient(45deg, #006400, #228b22); }
+        .color5 { background: linear-gradient(45deg, #ff8c00, #ff4500); }
+        .color6 { background: linear-gradient(45deg, #8b4513, #a0522d); }
+        .color7 { background: linear-gradient(45deg, #191970, #000080); }
+        .color8 { background: linear-gradient(45deg, #2f4f4f, #008080); }
+        .color9 { background: linear-gradient(45deg, #800080, #9932cc); }
+        .color10 { background: linear-gradient(45deg, #b8860b, #daa520); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            color: #ffd700;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(255, 215, 0, 0.6);
+        }
+        
+        .day-selection {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .day-btn {
+            padding: 10px 5px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .day-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .day-btn.active {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.3);
+            font-weight: bold;
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #ff8c00, #ff4500);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #ffd700, #daa520);
+            color: #8b0000;
+            font-weight: bold;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* FALLING FLOWERS */
+        .marigold {
+            position: absolute;
+            color: #ff8c00;
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 100;
+            animation: flowerFall linear infinite;
+        }
+        
+        @keyframes flowerFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .instruction {
+            background: rgba(255, 215, 0, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #ffd700;
+            font-size: 0.95rem;
+            color: #ffec8b;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            color: #ffec8b;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 140, 0, 0.95);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-title {
+                font-size: 2rem;
+            }
+            
+            .card-message {
+                font-size: 1.4rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+            
+            .day-selection {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .day-selection {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="navratri-title">Navratri Wishes Generator Pro</span></h1>
+            <p class="subtitle">Create beautiful Navratri cards with Durga Mata blessings and festive greetings</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Navratri Card</h2>
+                <div class="navratri-card" id="navratriCard">
+                    <div class="durga-icon durga-icon1">🪔</div>
+                    <div class="durga-icon durga-icon2">🕉️</div>
+                    <div class="durga-icon durga-icon3">🔱</div>
+                    <div class="durga-icon durga-icon4">🌸</div>
+                    <div class="card-pattern"></div>
+                    <h3 class="card-title" id="cardTitle">Navratri Ki Hardik Shubhkamnayein!</h3>
+                    <p class="card-message" id="cardMessage">Maa Durga ke is pav parv par, aapko aur aapke parivar ko anant khushiyan, samriddhi, aur sukh-samriddhi prapt ho. Navratri ki dher saari shubhkamnayein!</p>
+                    <p class="card-sender" id="cardSender">Maa Durga ki kripa aap par bani rahe,</p>
+                </div>
+                
+                <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://navratriwishes.com/card/<?php echo rand(1000,9999); ?>
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your Navratri card is ready! Customize it with different designs, Navratri days, and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Navratri Blessings</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <!-- Auto wishes will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <!-- Card design buttons will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Navratri Day</h3>
+                    <div class="day-selection">
+                        <button class="day-btn" id="day1">Day 1<br>Shailaputri</button>
+                        <button class="day-btn" id="day2">Day 2<br>Brahmacharini</button>
+                        <button class="day-btn" id="day3">Day 3<br>Chandraghanta</button>
+                        <button class="day-btn" id="day4">Day 4<br>Kushmanda</button>
+                        <button class="day-btn" id="day5">Day 5<br>Skandamata</button>
+                        <button class="day-btn" id="day6">Day 6<br>Katyayani</button>
+                        <button class="day-btn" id="day7">Day 7<br>Kalaratri</button>
+                        <button class="day-btn" id="day8">Day 8<br>Mahagauri</button>
+                        <button class="day-btn" id="day9">Day 9<br>Siddhidatri</button>
+                        <button class="day-btn active" id="dayAll">All<br>Days</button>
+                    </div>
+                    
+                    <input type="text" class="custom-input" id="recipientName" placeholder="Recipient's Name (e.g., Priya & Family)">
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom Navratri message here..."></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., With blessings, Raj)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send Navratri Wishes
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn telegram" id="telegramBtn">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#ff4500;"></i> for Navratri | Jai Mata Di! 🙏</p>
+        </footer>
+    </div>
+
+    <script>
+        // Navratri messages in Hindi and English
+        const autoWishes = [
+            "Maa Durga ke is pav parv par, aapko aur aapke parivar ko anant khushiyan, samriddhi, aur sukh-samriddhi prapt ho. Navratri ki dher saari shubhkamnayein!",
+            "May Goddess Durga bless you with strength, prosperity, and happiness this Navratri. Wishing you and your family a very happy and blessed Navratri!",
+            "Navratri ke is pav avsar par, Maa Durga aapke jeevan ko nayi urja, nayi shakti, aur nayi umang se bhar den. Navratri ki hardik shubhkamnayein!",
+            "May the nine nights of Navratri bring joy, peace, and prosperity to your life. May Maa Durga remove all obstacles and bless you with success!",
+            "Maa ke nav roop aapke jeevan ko nav rangon se bhar den. Dhan, dhanya, sehat, aur samriddhi aapke ghar aaye. Shubh Navratri!",
+            "As we celebrate the victory of good over evil, may Maa Durga empower you to overcome all challenges. Happy Navratri to you and your loved ones!",
+            "Navratri ke is mahatvapurn tyohar par, Maa Durga aapke mann ki har ichha puri karein. Aapka ghar khushiyon se bhar jaye. Jai Mata Di!",
+            "May the divine blessings of Goddess Durga fill your home with peace, prosperity, and happiness. Wishing you a joyful and spiritual Navratri!",
+            "Maa Durga ki kripa aap par hamesha bani rahe. Aapke jeevan mein sukhad samriddhi, shanti, aur kushalta aaye. Navratri ki bahut bahut badhai!",
+            "On this auspicious occasion of Navratri, may you be blessed with good health, wealth, and prosperity. May the divine energy of Maa Durga guide you!"
+        ];
+
+        // Navratri day information
+        const navratriDays = {
+            day1: { name: "Shailaputri", color: "#FFD700", blessing: "May Maa Shailaputri bless you with purity and strength!" },
+            day2: { name: "Brahmacharini", color: "#FF8C00", blessing: "May Maa Brahmacharini grant you wisdom and devotion!" },
+            day3: { name: "Chandraghanta", color: "#DC143C", blessing: "May Maa Chandraghanta protect you from all evils!" },
+            day4: { name: "Kushmanda", color: "#4B0082", blessing: "May Maa Kushmanda bless you with good health and energy!" },
+            day5: { name: "Skandamata", color: "#006400", blessing: "May Maa Skandamata shower you with motherly love!" },
+            day6: { name: "Katyayani", color: "#8B0000", blessing: "May Maa Katyayani grant you courage and victory!" },
+            day7: { name: "Kalaratri", color: "#191970", blessing: "May Maa Kalaratri destroy all your fears and obstacles!" },
+            day8: { name: "Mahagauri", color: "#2F4F4F", blessing: "May Maa Mahagauri purify your soul and grant peace!" },
+            day9: { name: "Siddhidatri", color: "#800080", blessing: "May Maa Siddhidatri fulfill all your wishes!" }
+        };
+
+        // Card designs with Navratri colors
+        const cardDesigns = [
+            { name: "Navratri Red", className: "color1" },
+            { name: "Durga Crimson", className: "color2" },
+            { name: "Royal Purple", className: "color3" },
+            { name: "Festive Green", className: "color4" },
+            { name: "Flame Orange", className: "color5" },
+            { name: "Earth Brown", className: "color6" },
+            { name: "Midnight Blue", className: "color7" },
+            { name: "Teal Tradition", className: "color8" },
+            { name: "Violet Divine", className: "color9" },
+            { name: "Golden Blessing", className: "color10" }
+        ];
+
+        // DOM elements
+        const navratriCard = document.getElementById('navratriCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const autoWishesContainer = document.getElementById('autoWishes');
+        const cardDesignsContainer = document.getElementById('cardDesigns');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+        const recipientName = document.getElementById('recipientName');
+        const dayButtons = document.querySelectorAll('.day-btn');
+        const siteLink = document.getElementById('siteLink');
+        
+        let selectedDay = 'dayAll';
+        let durgaIcons = ['🪔', '🕉️', '🔱', '🌸'];
+        
+        // Initialize auto wishes buttons
+        autoWishes.forEach((wish, index) => {
+            const wishButton = document.createElement('button');
+            wishButton.className = 'wish-btn';
+            wishButton.textContent = `Blessing ${index + 1}`;
+            wishButton.addEventListener('click', () => {
+                cardMessage.textContent = wish;
+                // Reset custom message input
+                customMessage.value = '';
+            });
+            autoWishesContainer.appendChild(wishButton);
+        });
+
+        // Initialize card design buttons
+        cardDesigns.forEach((design, index) => {
+            const designButton = document.createElement('button');
+            designButton.className = `design-btn ${design.className}`;
+            designButton.title = design.name;
+            if (index === 0) designButton.classList.add('active');
+            
+            designButton.addEventListener('click', () => {
+                // Remove active class from all design buttons
+                document.querySelectorAll('.design-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                designButton.classList.add('active');
+                
+                // Change card background
+                applyCardDesign(design.className);
+            });
+            
+            cardDesignsContainer.appendChild(designButton);
+        });
+
+        // Function to apply card design
+        function applyCardDesign(designClass) {
+            // Map design classes to gradient colors
+            const gradients = {
+                'color1': ['#8b0000', '#b22222'],
+                'color2': ['#b22222', '#dc143c'],
+                'color3': ['#4b0082', '#8a2be2'],
+                'color4': ['#006400', '#228b22'],
+                'color5': ['#ff8c00', '#ff4500'],
+                'color6': ['#8b4513', '#a0522d'],
+                'color7': ['#191970', '#000080'],
+                'color8': ['#2f4f4f', '#008080'],
+                'color9': ['#800080', '#9932cc'],
+                'color10': ['#b8860b', '#daa520']
+            };
+            
+            const colors = gradients[designClass];
+            navratriCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+        }
+
+        // Day button functionality
+        dayButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all day buttons
+                dayButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                selectedDay = button.id;
+                
+                // Update card based on selected day
+                updateCardForDay();
+            });
+        });
+        
+        function updateCardForDay() {
+            if (selectedDay !== 'dayAll') {
+                const dayInfo = navratriDays[selectedDay];
+                cardTitle.textContent = `Jai Maa ${dayInfo.name}!`;
+                cardMessage.textContent = `${dayInfo.blessing}\n\nNavratri ki hardik shubhkamnayein!`;
+                
+                // Change border color based on day
+                navratriCard.style.borderColor = dayInfo.color;
+                
+                // Update Durga icons based on day
+                updateDurgaIcons();
+            } else {
+                cardTitle.textContent = 'Navratri Ki Hardik Shubhkamnayein!';
+                cardMessage.textContent = 'Maa Durga ke is pav parv par, aapko aur aapke parivar ko anant khushiyan, samriddhi, aur sukh-samriddhi prapt ho. Navratri ki dher saari shubhkamnayein!';
+                navratriCard.style.borderColor = '#ffd700';
+                resetDurgaIcons();
+            }
+        }
+        
+        function updateDurgaIcons() {
+            const icons = document.querySelectorAll('.durga-icon');
+            // Different icons for different days
+            if (selectedDay === 'day1') durgaIcons = ['🪔', '🏔️', '🌸', '🕉️'];
+            else if (selectedDay === 'day2') durgaIcons = ['📿', '🕉️', '🌸', '🪔'];
+            else if (selectedDay === 'day3') durgaIcons = ['🔔', '🌙', '🪔', '🌸'];
+            else if (selectedDay === 'day4') durgaIcons = ['🌞', '🪔', '🌸', '🕉️'];
+            else if (selectedDay === 'day5') durgaIcons = ['👶', '🪔', '🌸', '🕉️'];
+            else if (selectedDay === 'day6') durgaIcons = ['⚔️', '🛡️', '🪔', '🌸'];
+            else if (selectedDay === 'day7') durgaIcons = ['🌑', '🪔', '🌸', '🕉️'];
+            else if (selectedDay === 'day8') durgaIcons = ['🕊️', '🪔', '🌸', '🕉️'];
+            else if (selectedDay === 'day9') durgaIcons = ['🌟', '🪔', '🌸', '🕉️'];
+            
+            icons.forEach((icon, index) => {
+                icon.textContent = durgaIcons[index];
+            });
+        }
+        
+        function resetDurgaIcons() {
+            const icons = document.querySelectorAll('.durga-icon');
+            durgaIcons = ['🪔', '🕉️', '🔱', '🌸'];
+            icons.forEach((icon, index) => {
+                icon.textContent = durgaIcons[index];
+            });
+        }
+
+        // Custom message input event
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            }
+        });
+
+        // Sender name input event
+        senderName.addEventListener('input', () => {
+            if (senderName.value.trim() !== '') {
+                cardSender.textContent = `Maa Durga ki kripa aap par bani rahe,\n${senderName.value}`;
+            } else {
+                cardSender.textContent = 'Maa Durga ki kripa aap par bani rahe,';
+            }
+        });
+
+        // Recipient name input event
+        recipientName.addEventListener('input', updateCardTitle);
+
+        // Update card title based on recipient name
+        function updateCardTitle() {
+            if (recipientName.value.trim() !== '') {
+                const name = recipientName.value.trim();
+                if (selectedDay !== 'dayAll') {
+                    const dayInfo = navratriDays[selectedDay];
+                    cardTitle.textContent = `Jai Maa ${dayInfo.name}, ${name}!`;
+                } else {
+                    cardTitle.textContent = `Navratri Ki Shubhkamnayein, ${name}!`;
+                }
+            } else {
+                updateCardForDay(); // Reset to default
+            }
+        }
+
+        // NAVRATRI FIREWORKS INSIDE THE CARD
+        function createNavratriFirework() {
+            // Get card position and dimensions
+            const cardRect = navratriCard.getBoundingClientRect();
+            
+            // Random position inside the card
+            const x = Math.random() * (cardRect.width - 20) + 10;
+            const y = Math.random() * (cardRect.height - 20) + 10;
+            
+            // Create firework center
+            const firework = document.createElement('div');
+            firework.className = 'navratri-firework';
+            firework.style.left = `${x}px`;
+            firework.style.top = `${y}px`;
+            
+            // Random color for firework (Navratri colors)
+            const colors = ['#FFD700', '#FF8C00', '#DC143C', '#4B0082', '#006400', '#8B0000'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.backgroundColor = color;
+            firework.style.boxShadow = `0 0 15px ${color}`;
+            
+            navratriCard.appendChild(firework);
+            
+            // Create particles
+            const particleCount = 16 + Math.floor(Math.random() * 16);
+            for (let i = 0; i < particleCount; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'navratri-particle';
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+                    particle.style.backgroundColor = color;
+                    
+                    // Random direction
+                    const angle = (i * (360 / particleCount)) * (Math.PI / 180);
+                    const distance = 40 + Math.random() * 50;
+                    
+                    navratriCard.appendChild(particle);
+                    
+                    // Animate particle
+                    setTimeout(() => {
+                        particle.style.transition = 'all 1s ease-out';
+                        particle.style.left = `${x + Math.cos(angle) * distance}px`;
+                        particle.style.top = `${y + Math.sin(angle) * distance}px`;
+                        particle.style.opacity = '0';
+                        particle.style.transform = 'scale(0)';
+                    }, 10);
+                    
+                    // Remove particle
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.remove();
+                        }
+                    }, 1100);
+                }, i * 30);
+            }
+            
+            // Remove firework center
+            setTimeout(() => {
+                if (firework.parentNode) {
+                    firework.remove();
+                }
+            }, 600);
+        }
+
+        // DIYA FLAMES
+        function createDiyaFlame() {
+            const cardRect = navratriCard.getBoundingClientRect();
+            
+            const flame = document.createElement('div');
+            flame.className = 'diya-flame';
+            flame.style.left = `${Math.random() * (cardRect.width - 30) + 15}px`;
+            flame.style.top = `${Math.random() * (cardRect.height - 40) + 20}px`;
+            
+            navratriCard.appendChild(flame);
+            
+            // Remove flame after animation
+            setTimeout(() => {
+                if (flame.parentNode) {
+                    flame.remove();
+                }
+            }, 3000);
+        }
+
+        // FALLING MARIGOLD FLOWERS
+        function createMarigoldFlower() {
+            const flower = document.createElement('div');
+            flower.className = 'marigold';
+            flower.innerHTML = '🌸';
+            flower.style.left = `${Math.random() * 100}vw`;
+            flower.style.fontSize = `${Math.random() * 20 + 15}px`;
+            flower.style.animationDuration = `${Math.random() * 8 + 4}s`;
+            flower.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            document.body.appendChild(flower);
+            
+            // Remove flower after animation
+            setTimeout(() => {
+                flower.remove();
+            }, 12000);
+        }
+
+        // Edit button functionality
+        document.getElementById('editBtn').addEventListener('click', () => {
+            // Highlight the custom message field
+            customMessage.focus();
+            customMessage.style.border = '2px solid #ffd700';
+            customMessage.style.boxShadow = '0 0 15px rgba(255, 215, 0, 0.5)';
+            
+            // Remove highlight after 2 seconds
+            setTimeout(() => {
+                customMessage.style.border = '1px solid rgba(255, 215, 0, 0.3)';
+                customMessage.style.boxShadow = 'none';
+            }, 2000);
+            
+            // Show notification
+            showNotification('You can now edit all Navratri card details including day selection and messages');
+        });
+
+        // Send Navratri wishes button functionality
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const recipient = prompt("Enter recipient's name or family:");
+            const city = prompt("Enter your city (or leave blank):");
+            
+            if (recipient) {
+                const originalSender = cardSender.textContent.replace('Maa Durga ki kripa aap par bani rahe,\n', '').replace('Maa Durga ki kripa aap par bani rahe,', '');
+                const originalTitle = cardTitle.textContent;
+                const originalMessage = cardMessage.textContent;
+                
+                let personalizedMessage = `Pranam ${recipient},\n\n`;
+                
+                if (city) {
+                    personalizedMessage += `${city} se Navratri ke is pav avsar par, `;
+                }
+                
+                personalizedMessage += cardMessage.textContent + `\n\n${cardSender.textContent}`;
+                
+                // Update card for preview
+                cardMessage.textContent = personalizedMessage;
+                cardSender.textContent = `Maa Durga ki kripa aap par bani rahe,\n${originalSender === '' ? 'Shubhkamnayein' : originalSender}`;
+                recipientName.value = recipient;
+                
+                // Show success message
+                showNotification(`Navratri card customized for ${recipient}! Now you can share it.`);
+                
+                // Create special Navratri celebration
+                createNavratriCelebration();
+                
+                // Revert after 10 seconds for preview
+                setTimeout(() => {
+                    cardMessage.textContent = originalMessage;
+                    cardSender.textContent = `Maa Durga ki kripa aap par bani rahe,${originalSender === '' ? '' : '\n' + originalSender}`;
+                    cardTitle.textContent = originalTitle;
+                }, 10000);
+            }
+        });
+
+        // Share buttons functionality
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `🪔 *${cardTitle.textContent}* 🪔\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreate your own Navratri card: ${window.location.href}`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const quote = encodeURIComponent(`🪔 ${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}...`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`🪔 ${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}...`);
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('To share on Instagram: 1. Take a screenshot of your card 2. Open Instagram 3. Post it as a story or feed with #Navratri #JaiMataDi #DurgaPuja');
+        });
+
+        document.getElementById('telegramBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`🪔 ${cardTitle.textContent}\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\n${window.location.href}`);
+            window.open(`https://t.me/share/url?url=${text}`, '_blank');
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            const subject = encodeURIComponent(cardTitle.textContent);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Navratri Wishes Generator: ${window.location.href}`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // Copy link functionality
+        document.querySelector('.copy-link')?.addEventListener('click', () => {
+            const cardData = {
+                title: cardTitle.textContent,
+                message: cardMessage.textContent,
+                sender: cardSender.textContent,
+                design: document.querySelector('.design-btn.active').className.match(/color\d+/)[0],
+                day: selectedDay,
+                recipient: recipientName.value
+            };
+            
+            const encodedData = encodeURIComponent(JSON.stringify(cardData));
+            const shareableLink = `${window.location.origin}${window.location.pathname}?card=${encodedData}`;
+            
+            navigator.clipboard.writeText(shareableLink)
+                .then(() => showNotification('🪔 Card link copied to clipboard! Share it to send Navratri blessings.'))
+                .catch(err => {
+                    console.error('Could not copy text: ', err);
+                    showNotification('Failed to copy link. Please try again.');
+                });
+        });
+
+        // Create periodic Navratri effects
+        setInterval(createNavratriFirework, 1200);
+        setInterval(createDiyaFlame, 1800);
+        setInterval(createMarigoldFlower, 500);
+        
+        // Create initial effects
+        setTimeout(() => {
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    createMarigoldFlower();
+                    if (i % 4 === 0) createDiyaFlame();
+                    if (i % 6 === 0) createNavratriFirework();
+                }, i * 150);
+            }
+        }, 1000);
+
+        // Navratri celebration effect
+        function createNavratriCelebration() {
+            // Create lots of effects
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    createNavratriFirework();
+                    if (i % 3 === 0) createDiyaFlame();
+                    if (i % 2 === 0) createMarigoldFlower();
+                }, i * 80);
+            }
+            
+            // Make Durga icons float more dramatically
+            document.querySelectorAll('.durga-icon').forEach(icon => {
+                const originalAnimation = icon.style.animation;
+                icon.style.animation = 'durgaFloat 1s ease-in-out infinite';
+                icon.style.filter = 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)) brightness(1.3)';
+                
+                // Return to normal after 5 seconds
+                setTimeout(() => {
+                    icon.style.animation = originalAnimation || 'durgaFloat 5s ease-in-out infinite';
+                    icon.style.filter = 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.5))';
+                }, 5000);
+            });
+            
+            // Add golden glow to card
+            navratriCard.style.boxShadow = 'inset 0 0 60px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.4)';
+            navratriCard.style.transition = 'all 0.5s ease';
+            
+            // Return to normal after 5 seconds
+            setTimeout(() => {
+                navratriCard.style.boxShadow = 'inset 0 0 30px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.3)';
+            }, 5000);
+        }
+
+        // Notification function
+        function showNotification(message) {
+            // Remove existing notification
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create new notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Generate a unique link for the card
+        const cardId = Math.floor(Math.random() * 10000);
+        siteLink.textContent = `https://navratriwishes.com/card/${cardId}`;
+        siteLink.href = `https://navratriwishes.com/card/${cardId}`;
+        
+        // Check for card data in URL (for sharing)
+        function loadCardFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cardDataParam = urlParams.get('card');
+            
+            if (cardDataParam) {
+                try {
+                    const cardData = JSON.parse(decodeURIComponent(cardDataParam));
+                    
+                    // Apply card data
+                    cardTitle.textContent = cardData.title || cardTitle.textContent;
+                    cardMessage.textContent = cardData.message || cardMessage.textContent;
+                    cardSender.textContent = cardData.sender || cardSender.textContent;
+                    
+                    // Apply recipient if available
+                    if (cardData.recipient) recipientName.value = cardData.recipient;
+                    
+                    // Apply day if specified
+                    if (cardData.day) {
+                        selectedDay = cardData.day;
+                        const dayButton = document.getElementById(selectedDay);
+                        if (dayButton) {
+                            dayButton.click();
+                        }
+                    }
+                    
+                    // Apply design if specified
+                    if (cardData.design) {
+                        const designButton = document.querySelector(`.${cardData.design}`);
+                        if (designButton) {
+                            designButton.click();
+                        }
+                    }
+                    
+                    updateCardTitle();
+                    showNotification('🪔 Navratri card loaded successfully! Jai Mata Di!');
+                } catch (e) {
+                    console.error('Error loading card data:', e);
+                }
+            }
+        }
+        
+        // Load card data from URL if present
+        loadCardFromURL();
+        
+        // Initialize with a random wish
+        const randomWishIndex = Math.floor(Math.random() * autoWishes.length);
+        cardMessage.textContent = autoWishes[randomWishIndex];
+        
+        // Show welcome notification
+        setTimeout(() => {
+            showNotification('🪔 Welcome! Create beautiful Navratri cards with Durga Mata blessings! Jai Mata Di!');
+        }, 1500);
+    </script>
+</body>
+</html>
