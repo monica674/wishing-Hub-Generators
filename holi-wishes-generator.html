@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Holi Wishes Generator | Festival of Colors</title>
+    <meta name="description" content="Create beautiful Holi festival greeting cards with black & green theme. Generate personalized Holi wishes to share with friends and family.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #00FF11;
+            --primary-dark: #00CC0E;
+            --primary-light: rgba(0, 255, 17, 0.1);
+            --black: #000000;
+            --dark-gray: #111111;
+            --gray: #222222;
+            --light-gray: #333333;
+            --white: #FFFFFF;
+            --text: #F0F0F0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--black);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: rgba(0,0,0,0.9);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+        
+        .logo-icon {
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
+        
+        .logo-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--primary), #A0FFA8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            color: #AAAAAA;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .panel {
+            background: var(--dark-gray);
+            border-radius: 15px;
+            border: 1px solid var(--light-gray);
+            overflow: hidden;
+        }
+        
+        .panel-header {
+            background: var(--gray);
+            padding: 1.2rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .panel-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .panel-content {
+            padding: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--black);
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .wish-templates {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .wish-template {
+            background: var(--black);
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 0.8rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .wish-template.active {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .color-option {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+        
+        .color-option.active {
+            border-color: var(--white);
+            transform: scale(1.1);
+        }
+        
+        .card-preview {
+            background: var(--black);
+            border-radius: 15px;
+            border: 2px solid var(--primary);
+            padding: 2rem;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .holi-effects {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .holi-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .card-greeting {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .card-message {
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 1.6;
+            padding: 1.2rem;
+            background: rgba(0, 255, 17, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .card-sender, .card-recipient {
+            font-size: 1rem;
+            color: #AAAAAA;
+        }
+        
+        .card-hashtag {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            font-weight: 600;
+            flex: 1;
+            min-width: 150px;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: var(--black);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-light);
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #1da851;
+            transform: translateY(-2px);
+        }
+        
+        .filename-input {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--gray);
+            border-radius: 8px;
+        }
+        
+        .filename-preview {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 5px 10px;
+            background: var(--black);
+            border-radius: 5px;
+            color: var(--primary);
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .whatsapp-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .whatsapp-modal.active {
+            display: flex;
+        }
+        
+        .whatsapp-modal-content {
+            background: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            border: 2px solid #25D366;
+        }
+        
+        .whatsapp-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .whatsapp-modal-title {
+            color: #25D366;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .whatsapp-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .whatsapp-option {
+            background: var(--black);
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-option:hover {
+            border-color: #25D366;
+            transform: translateY(-2px);
+        }
+        
+        .whatsapp-option i {
+            color: #25D366;
+            font-size: 1.5rem;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--dark-gray);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(150%);
+            transition: transform 0.3s;
+            z-index: 1001;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast i {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-palette logo-icon"></i>
+            <h1 class="logo-text">Holi Wishes Generator</h1>
+        </div>
+        <p class="tagline">Create vibrant Holi greeting cards with black & green theme</p>
+    </header>
+    
+    <div class="container">
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title"><i class="fas fa-sliders-h"></i> Customize Card</h2>
+            </div>
+            <div class="panel-content">
+                <div class="form-group">
+                    <label class="form-label">Your Name</label>
+                    <input type="text" class="form-control" id="senderName" value="From: Happy Friends">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Recipient Name</label>
+                    <input type="text" class="form-control" id="recipientName" value="To: Colorful Friends">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Holi Wish Message</label>
+                    <textarea class="form-control" id="message">May your life be filled with vibrant colors, happiness, and joy this Holi! Wishing you a festival full of fun and memorable moments.</textarea>
+                    
+                    <div class="wish-templates">
+                        <div class="wish-template active" data-wish="May the vibrant colors of Holi fill your life with happiness, peace, and prosperity. Happy Holi!">Traditional</div>
+                        <div class="wish-template" data-wish="Let's paint the town red, blue, green, and every color of joy! Wishing you the happiest Holi filled with laughter and fun.">Colorful</div>
+                        <div class="wish-template" data-wish="May this Holi bring colors of health, wealth, and success into your life. Have a safe and wonderful Holi celebration!">Prosperity</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Accent Color</label>
+                    <div class="color-palette">
+                        <div class="color-option active" style="background-color: #00FF11;" data-color="#00FF11"></div>
+                        <div class="color-option" style="background-color: #FF6B6B;" data-color="#FF6B6B"></div>
+                        <div class="color-option" style="background-color: #4D96FF;" data-color="#4D96FF"></div>
+                        <div class="color-option" style="background-color: #FFD93D;" data-color="#FFD93D"></div>
+                    </div>
+                </div>
+                
+                <div class="filename-input">
+                    <label class="form-label">Download File Name</label>
+                    <input type="text" class="form-control" id="filename" value="Holi_Wishes_Card">
+                    <div class="filename-preview">File: <span id="filenamePreview">Holi_Wishes_Card.png</span></div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="generateBtn">
+                        <i class="fas fa-magic"></i> Generate
+                    </button>
+                    <button class="btn btn-secondary" id="resetBtn">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title"><i class="fas fa-eye"></i> Card Preview</h2>
+            </div>
+            <div class="panel-content">
+                <div class="card-preview" id="cardPreview">
+                    <div class="holi-effects" id="holiEffects"></div>
+                    
+                    <div>
+                        <h1 class="card-greeting" id="previewGreeting">Happy Holi!</h1>
+                        <div class="card-message" id="previewMessage">
+                            May your life be filled with vibrant colors, happiness, and joy this Holi! Wishing you a festival full of fun and memorable moments.
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer">
+                        <div class="card-sender" id="previewSender">From: Happy Friends</div>
+                        <div class="card-hashtag">#HappyHoli</div>
+                        <div class="card-recipient" id="previewRecipient">To: Colorful Friends</div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="downloadBtn">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                    <button class="btn btn-whatsapp" id="whatsappBtn">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </button>
+                    <button class="btn btn-secondary" id="copyBtn">
+                        <i class="fas fa-copy"></i> Copy Text
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- WhatsApp Modal -->
+    <div class="whatsapp-modal" id="whatsappModal">
+        <div class="whatsapp-modal-content">
+            <div class="whatsapp-modal-header">
+                <h3 class="whatsapp-modal-title">
+                    <i class="fab fa-whatsapp"></i> Share on WhatsApp
+                </h3>
+                <button class="close-modal" id="closeWhatsAppModal">&times;</button>
+            </div>
+            
+            <p style="margin-bottom: 1.5rem; color: #AAAAAA;">Choose how to share your Holi wishes:</p>
+            
+            <div class="whatsapp-options">
+                <div class="whatsapp-option" id="shareAsText">
+                    <i class="fas fa-comment-alt"></i>
+                    <div>
+                        <strong>Share as Text</strong>
+                        <p style="font-size: 0.9rem; color: #AAAAAA; margin-top: 5px;">Send wish as text message</p>
+                    </div>
+                </div>
+                
+                <div class="whatsapp-option" id="shareAsImage">
+                    <i class="fas fa-image"></i>
+                    <div>
+                        <strong>Share as Image</strong>
+                        <p style="font-size: 0.9rem; color: #AAAAAA; margin-top: 5px;">Download card first, then share</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--light-gray);">
+                <p style="font-size: 0.9rem; color: #25D366;">
+                    <i class="fas fa-info-circle"></i> Tip: For best results, download the card image first
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle" id="toastIcon"></i>
+        <div>
+            <strong id="toastTitle">Success</strong>
+            <p id="toastMessage">Operation completed successfully</p>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        © 2023 Holi Wishes Generator | Festival of Colors
+    </footer>
+    
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const senderNameInput = document.getElementById('senderName');
+            const recipientNameInput = document.getElementById('recipientName');
+            const messageInput = document.getElementById('message');
+            const filenameInput = document.getElementById('filename');
+            const generateBtn = document.getElementById('generateBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            
+            // Preview elements
+            const previewGreeting = document.getElementById('previewGreeting');
+            const previewMessage = document.getElementById('previewMessage');
+            const previewSender = document.getElementById('previewSender');
+            const previewRecipient = document.getElementById('previewRecipient');
+            const filenamePreview = document.getElementById('filenamePreview');
+            const cardPreview = document.getElementById('cardPreview');
+            const holiEffects = document.getElementById('holiEffects');
+            
+            // Modal elements
+            const whatsappModal = document.getElementById('whatsappModal');
+            const closeWhatsAppModal = document.getElementById('closeWhatsAppModal');
+            const shareAsText = document.getElementById('shareAsText');
+            const shareAsImage = document.getElementById('shareAsImage');
+            
+            // Toast elements
+            const toast = document.getElementById('toast');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+            
+            // Template elements
+            const wishTemplates = document.querySelectorAll('.wish-template');
+            const colorOptions = document.querySelectorAll('.color-option');
+            
+            // Current settings
+            let currentColor = '#00FF11';
+            
+            // Initialize
+            function init() {
+                updatePreview();
+                updateFilenamePreview();
+                createHoliEffects();
+                
+                // Event listeners
+                wishTemplates.forEach(template => {
+                    template.addEventListener('click', function() {
+                        wishTemplates.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        messageInput.value = this.getAttribute('data-wish');
+                        updatePreview();
+                    });
+                });
+                
+                colorOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        colorOptions.forEach(opt => opt.classList.remove('active'));
+                        this.classList.add('active');
+                        currentColor = this.getAttribute('data-color');
+                        updatePreview();
+                    });
+                });
+                
+                generateBtn.addEventListener('click', updatePreview);
+                
+                resetBtn.addEventListener('click', function() {
+                    senderNameInput.value = 'From: Happy Friends';
+                    recipientNameInput.value = 'To: Colorful Friends';
+                    messageInput.value = 'May your life be filled with vibrant colors, happiness, and joy this Holi! Wishing you a festival full of fun and memorable moments.';
+                    filenameInput.value = 'Holi_Wishes_Card';
+                    
+                    wishTemplates.forEach(t => t.classList.remove('active'));
+                    wishTemplates[0].classList.add('active');
+                    
+                    colorOptions.forEach(opt => opt.classList.remove('active'));
+                    colorOptions[0].classList.add('active');
+                    currentColor = '#00FF11';
+                    
+                    updatePreview();
+                    updateFilenamePreview();
+                    showToast('Reset Complete', 'All settings have been reset');
+                });
+                
+                downloadBtn.addEventListener('click', downloadCard);
+                
+                whatsappBtn.addEventListener('click', function() {
+                    whatsappModal.classList.add('active');
+                });
+                
+                closeWhatsAppModal.addEventListener('click', function() {
+                    whatsappModal.classList.remove('active');
+                });
+                
+                whatsappModal.addEventListener('click', function(e) {
+                    if (e.target === whatsappModal) {
+                        whatsappModal.classList.remove('active');
+                    }
+                });
+                
+                shareAsText.addEventListener('click', shareToWhatsAppAsText);
+                shareAsImage.addEventListener('click', shareToWhatsAppAsImage);
+                
+                copyBtn.addEventListener('click', copyWishText);
+                
+                filenameInput.addEventListener('input', updateFilenamePreview);
+                senderNameInput.addEventListener('input', updatePreview);
+                recipientNameInput.addEventListener('input', updatePreview);
+                messageInput.addEventListener('input', updatePreview);
+            }
+            
+            function updatePreview() {
+                previewSender.textContent = senderNameInput.value;
+                previewRecipient.textContent = recipientNameInput.value;
+                previewMessage.textContent = messageInput.value;
+                
+                // Update colors
+                previewGreeting.style.color = currentColor;
+                previewMessage.style.borderLeftColor = currentColor;
+                cardPreview.style.borderColor = currentColor;
+                
+                createHoliEffects();
+                showToast('Preview Updated', 'Card preview has been updated');
+            }
+            
+            function updateFilenamePreview() {
+                const filename = filenameInput.value.trim() || 'Holi_Wishes_Card';
+                filenamePreview.textContent = `${filename}.png`;
+            }
+            
+            function createHoliEffects() {
+                holiEffects.innerHTML = '';
+                const colors = [currentColor, '#FF6B6B', '#4D96FF', '#FFD93D'];
+                
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'holi-particle';
+                    
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const size = Math.random() * 5 + 3;
+                    const left = Math.random() * 100;
+                    const duration = Math.random() * 10 + 10;
+                    const delay = Math.random() * 5;
+                    
+                    particle.style.background = color;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${left}%`;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.animationDelay = `${delay}s`;
+                    
+                    holiEffects.appendChild(particle);
+                }
+            }
+            
+            function downloadCard() {
+                const filename = filenameInput.value.trim() || 'Holi_Wishes_Card';
+                
+                showToast('Generating...', 'Creating your Holi card image');
+                
+                html2canvas(cardPreview, {
+                    backgroundColor: '#000000',
+                    scale: 2,
+                    useCORS: true
+                }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+                    const link = document.createElement('a');
+                    link.href = imgData;
+                    link.download = `${filename}.png`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    showToast('Download Complete', `Saved as "${filename}.png"`);
+                }).catch(error => {
+                    console.error('Error:', error);
+                    showToast('Error', 'Failed to generate card', true);
+                });
+            }
+            
+            // WHATSAPP SHARING FUNCTIONS
+            function shareToWhatsAppAsText() {
+                const message = messageInput.value;
+                const sender = senderNameInput.value;
+                const recipient = recipientNameInput.value;
+                
+                const shareText = `🎨 *Holi Greetings for ${recipient}!* 🎨\n\n${message}\n\n${sender}\n\n_Created with Holi Wishes Generator_`;
+                
+                // WhatsApp sharing URL
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+                
+                // Open WhatsApp
+                window.open(whatsappUrl, '_blank');
+                
+                whatsappModal.classList.remove('active');
+                showToast('WhatsApp Ready', 'Your wish is ready to share!');
+            }
+            
+            function shareToWhatsAppAsImage() {
+                // First download the image, then prompt user to share it
+                const filename = filenameInput.value.trim() || 'Holi_Wishes_Card';
+                
+                showToast('Preparing Image...', 'Generating card for WhatsApp');
+                
+                html2canvas(cardPreview, {
+                    backgroundColor: '#000000',
+                    scale: 2,
+                    useCORS: true
+                }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+                    
+                    // Create temporary download
+                    const link = document.createElement('a');
+                    link.href = imgData;
+                    link.download = `${filename}_whatsapp.png`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    whatsappModal.classList.remove('active');
+                    
+                    // Show instructions
+                    setTimeout(() => {
+                        showToast('Image Ready', 'Card downloaded. Open WhatsApp and share the image!');
+                        alert('📱 How to share on WhatsApp:\n1. Open WhatsApp\n2. Select a contact or group\n3. Tap the + icon\n4. Choose "Gallery" or "Photos"\n5. Select the downloaded Holi card\n6. Send your colorful wishes!');
+                    }, 1000);
+                    
+                }).catch(error => {
+                    console.error('Error:', error);
+                    showToast('Error', 'Failed to generate image', true);
+                });
+            }
+            
+            function copyWishText() {
+                const message = messageInput.value;
+                const sender = senderNameInput.value;
+                const recipient = recipientNameInput.value;
+                
+                const fullText = `To: ${recipient}\n\n${message}\n\n${sender}`;
+                
+                navigator.clipboard.writeText(fullText).then(() => {
+                    showToast('Copied!', 'Holi wish copied to clipboard');
+                }).catch(err => {
+                    console.error('Copy failed:', err);
+                    showToast('Error', 'Failed to copy text', true);
+                });
+            }
+            
+            function showToast(title, message, isError = false) {
+                toastTitle.textContent = title;
+                toastMessage.textContent = message;
+                
+                if (isError) {
+                    toast.style.borderLeftColor = '#FF6B6B';
+                    toastIcon.className = 'fas fa-exclamation-circle';
+                } else {
+                    toast.style.borderLeftColor = currentColor;
+                    toastIcon.className = 'fas fa-check-circle';
+                }
+                
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Initialize the app
+            init();
+        });
+    </script>
+</body>
+</html>
