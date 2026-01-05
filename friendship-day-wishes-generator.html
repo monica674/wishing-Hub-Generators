@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friendship Day Wishes Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Comic+Neue:wght@700&family=Nunito:wght@400;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #ff6b8b 0%, #4ecdc4 25%, #45b7d1 50%, #96c93d 75%, #f9a825 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        header {
+            text-align: center;
+            padding: 50px 0 40px;
+            margin-bottom: 40px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 8px solid;
+            border-image: linear-gradient(45deg, #ff6b8b, #4ecdc4, #45b7d1, #96c93d, #f9a825) 1;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+            overflow: hidden;
+        }
+        
+        @keyframes borderGlow {
+            0% { border-image-source: linear-gradient(45deg, #ff6b8b, #4ecdc4, #45b7d1, #96c93d, #f9a825); }
+            100% { border-image-source: linear-gradient(45deg, #f9a825, #96c93d, #45b7d1, #4ecdc4, #ff6b8b); }
+        }
+        
+        .header-decoration {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3.5rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-15px); }
+        }
+        
+        .logo {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b8b, #4ecdc4, #45b7d1, #96c93d, #f9a825);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.5);
+        }
+        
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ff6b8b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 1.6rem;
+            opacity: 0.9;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .wish-customizer {
+            flex: 1;
+            min-width: 400px;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 6px solid;
+            border-image: linear-gradient(45deg, #ff6b8b, #4ecdc4) 1;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wish-customizer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, #ff6b8b, #4ecdc4, #45b7d1, #96c93d, #f9a825);
+        }
+        
+        .wish-preview {
+            flex: 1;
+            min-width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 6px solid;
+            border-image: linear-gradient(45deg, #45b7d1, #96c93d) 1;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wish-preview::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, #f9a825, #96c93d, #45b7d1, #4ecdc4, #ff6b8b);
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 35px;
+            color: #ff6b8b;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b8b, #4ecdc4);
+            border-radius: 3px;
+        }
+        
+        .section-title i {
+            font-size: 2.2rem;
+            background: linear-gradient(45deg, #ff6b8b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .customization-group {
+            margin-bottom: 35px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: #45b7d1;
+            font-family: 'Comic Neue', cursive;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 18px 22px;
+            border-radius: 20px;
+            border: 3px solid #e0e0e0;
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            color: #333;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.2), inset 0 3px 10px rgba(0, 0, 0, 0.05);
+            background: white;
+        }
+        
+        textarea {
+            height: 180px;
+            resize: vertical;
+        }
+        
+        .friend-names {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .friend-names input {
+            flex: 1;
+        }
+        
+        .wish-card {
+            background: white;
+            border-radius: 30px;
+            padding: 60px 50px;
+            width: 100%;
+            max-width: 650px;
+            color: #333;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            min-height: 580px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 15px solid;
+            border-image: linear-gradient(45deg, #ff6b8b, #4ecdc4, #45b7d1, #96c93d, #f9a825) 1;
+            transition: all 0.3s ease;
+            animation: cardPulse 3s infinite alternate;
+        }
+        
+        @keyframes cardPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.01); }
+        }
+        
+        .wish-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: linear-gradient(90deg, #ff6b8b, #4ecdc4, #45b7d1, #96c93d, #f9a825);
+        }
+        
+        .wish-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: linear-gradient(90deg, #ff6b8b, #4ecdc4, #45b7d1, #96c93d, #f9a825);
+        }
+        
+        .wish-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4rem;
+            color: #ff6b8b;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-shadow: 3px 3px 0 rgba(255, 107, 139, 0.2);
+            transition: color 0.3s ease;
+            animation: titleColorShift 5s infinite alternate;
+        }
+        
+        @keyframes titleColorShift {
+            0% { color: #ff6b8b; }
+            25% { color: #4ecdc4; }
+            50% { color: #45b7d1; }
+            75% { color: #96c93d; }
+            100% { color: #f9a825; }
+        }
+        
+        .friend-name-display {
+            font-family: 'Comic Neue', cursive;
+            font-size: 2.8rem;
+            color: #45b7d1;
+            margin-bottom: 25px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            position: relative;
+            display: inline-block;
+            padding: 0 25px;
+        }
+        
+        .friend-name-display::before, .friend-name-display::after {
+            content: "🤗";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.2rem;
+            animation: emojiWiggle 2s infinite;
+        }
+        
+        @keyframes emojiWiggle {
+            0%, 100% { transform: translateY(-50%) rotate(0deg); }
+            25% { transform: translateY(-50%) rotate(10deg); }
+            75% { transform: translateY(-50%) rotate(-10deg); }
+        }
+        
+        .friend-name-display::before {
+            left: -15px;
+        }
+        
+        .friend-name-display::after {
+            right: -15px;
+        }
+        
+        .friendship-decoration {
+            font-size: 3.5rem;
+            margin: 30px 0;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+            transition: color 0.3s ease;
+            animation: decorationSpin 10s linear infinite;
+        }
+        
+        @keyframes decorationSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .wish-message {
+            font-size: 1.6rem;
+            line-height: 1.9;
+            margin: 35px 0;
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-family: 'Nunito', sans-serif;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .wish-footer {
+            font-size: 1.5rem;
+            color: #f9a825;
+            font-weight: 800;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 4px dotted #96c93d;
+            transition: all 0.3s ease;
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 45px;
+        }
+        
+        .btn {
+            padding: 20px 40px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.3rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            min-width: 220px;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b8b, #f9a825);
+            color: white;
+            box-shadow: 0 10px 25px rgba(255, 107, 139, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            color: white;
+            box-shadow: 0 10px 25px rgba(78, 205, 196, 0.4);
+        }
+        
+        .btn-tertiary {
+            background: linear-gradient(45deg, #96c93d, #f9a825);
+            color: white;
+            box-shadow: 0 10px 25px rgba(150, 201, 61, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #f9a825, #ff6b8b);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(45deg, #45b7d1, #4ecdc4);
+        }
+        
+        .btn-tertiary:hover {
+            background: linear-gradient(45deg, #f9a825, #96c93d);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 50px 0;
+            margin-top: 60px;
+            border-top: 5px dotted rgba(255, 255, 255, 0.5);
+            font-size: 1.3rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #copyMessage {
+            background: linear-gradient(45deg, #ff6b8b, #4ecdc4);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 50px;
+            font-weight: 800;
+            margin-top: 25px;
+            animation: fadeOut 3s forwards;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        @media (max-width: 1200px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 3.2rem;
+            }
+            
+            .logo {
+                font-size: 4.2rem;
+            }
+            
+            .wish-card {
+                padding: 50px 40px;
+                min-height: 550px;
+            }
+            
+            .wish-title {
+                font-size: 3.5rem;
+            }
+            
+            .friend-name-display {
+                font-size: 2.4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.6rem;
+            }
+            
+            .logo {
+                font-size: 3.5rem;
+            }
+            
+            .wish-card {
+                padding: 40px 30px;
+                min-height: 520px;
+                border-width: 12px;
+            }
+            
+            .wish-title {
+                font-size: 3rem;
+            }
+            
+            .friend-name-display {
+                font-size: 2rem;
+            }
+            
+            .wish-message {
+                font-size: 1.4rem;
+            }
+            
+            .friend-names {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .btn {
+                min-width: 180px;
+                padding: 18px 32px;
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        .theme-section {
+            margin-top: 50px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 6px solid;
+            border-image: linear-gradient(45deg, #f9a825, #96c93d) 1;
+        }
+        
+        .theme-options {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .theme-option {
+            width: 80px;
+            height: 80px;
+            border-radius: 25px;
+            cursor: pointer;
+            border: 6px solid transparent;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .theme-option::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .theme-option:hover::after {
+            opacity: 1;
+            bottom: -45px;
+        }
+        
+        .theme-option.active {
+            border-color: white;
+            transform: scale(1.2);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.9), 0 10px 25px rgba(0,0,0,0.2);
+            animation: themePulse 2s infinite alternate;
+        }
+        
+        @keyframes themePulse {
+            0% { transform: scale(1.2); }
+            100% { transform: scale(1.25); }
+        }
+        
+        /* Theme Colors */
+        .theme-1 { background: linear-gradient(135deg, #ff6b8b, #4ecdc4, #45b7d1, #96c93d, #f9a825); color: white; }
+        .theme-2 { background: linear-gradient(135deg, #FF9A8B, #FF6A88, #FF99AC); color: white; }
+        .theme-3 { background: linear-gradient(135deg, #81FBB8, #28C76F, #00D2A0); color: white; }
+        .theme-4 { background: linear-gradient(135deg, #A9C9FF, #FFBBEC, #74EBD5); color: white; }
+        .theme-5 { background: linear-gradient(135deg, #FAD961, #F76B1C, #FF9A3D); color: white; }
+        .theme-6 { background: linear-gradient(135deg, #FFD26F, #FF6F6F, #FF9D6F); color: white; }
+        .theme-7 { background: linear-gradient(135deg, #92FFC0, #002661, #3A8FFF); color: white; }
+        
+        /* Card themes */
+        .card-theme-1 { 
+            background: white; 
+            border-image: linear-gradient(45deg, #ff6b8b, #4ecdc4, #45b7d1, #96c93d, #f9a825) 1;
+        }
+        
+        .card-theme-1 .wish-title {
+            animation: titleColorShift 5s infinite alternate;
+        }
+        
+        .card-theme-1 .friend-name-display {
+            color: #45b7d1;
+        }
+        
+        .card-theme-1 .wish-footer {
+            color: #f9a825;
+            border-top-color: #96c93d;
+        }
+        
+        .card-theme-2 { 
+            background: white; 
+            border-image: linear-gradient(45deg, #FF9A8B, #FF6A88, #FF99AC) 1;
+        }
+        
+        .card-theme-2 .wish-title {
+            color: #FF6A88;
+        }
+        
+        .card-theme-2 .friend-name-display {
+            color: #FF9A8B;
+        }
+        
+        .card-theme-2 .wish-footer {
+            color: #FF6A88;
+            border-top-color: #FF99AC;
+        }
+        
+        .card-theme-3 { 
+            background: white; 
+            border-image: linear-gradient(45deg, #81FBB8, #28C76F, #00D2A0) 1;
+        }
+        
+        .card-theme-3 .wish-title {
+            color: #28C76F;
+        }
+        
+        .card-theme-3 .friend-name-display {
+            color: #00D2A0;
+        }
+        
+        .card-theme-3 .wish-footer {
+            color: #28C76F;
+            border-top-color: #81FBB8;
+        }
+        
+        .card-theme-4 { 
+            background: white; 
+            border-image: linear-gradient(45deg, #A9C9FF, #FFBBEC, #74EBD5) 1;
+        }
+        
+        .card-theme-4 .wish-title {
+            color: #A9C9FF;
+        }
+        
+        .card-theme-4 .friend-name-display {
+            color: #FFBBEC;
+        }
+        
+        .card-theme-4 .wish-footer {
+            color: #74EBD5;
+            border-top-color: #A9C9FF;
+        }
+        
+        .card-theme-5 { 
+            background: white; 
+            border-image: linear-gradient(45deg, #FAD961, #F76B1C, #FF9D6F) 1;
+        }
+        
+        .card-theme-5 .wish-title {
+            color: #F76B1C;
+        }
+        
+        .card-theme-5 .friend-name-display {
+            color: #FAD961;
+        }
+        
+        .card-theme-5 .wish-footer {
+            color: #FF9D6F;
+            border-top-color: #F76B1C;
+        }
+        
+        .card-background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 0;
+            pointer-events: none;
+            font-size: 60px;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            padding: 50px;
+        }
+        
+        .wish-card-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .emoji-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        
+        .emoji {
+            font-size: 4rem;
+            animation: emojiBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+        }
+        
+        .emoji:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .emoji:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        
+        .emoji:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        .emoji:nth-child(4) {
+            animation-delay: 0.9s;
+        }
+        
+        @keyframes emojiBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+        
+        .friendship-symbols {
+            margin: 25px 0;
+            font-size: 3rem;
+            letter-spacing: 20px;
+            animation: symbolColorShift 4s infinite alternate;
+        }
+        
+        @keyframes symbolColorShift {
+            0% { color: #ff6b8b; }
+            25% { color: #4ecdc4; }
+            50% { color: #45b7d1; }
+            75% { color: #96c93d; }
+            100% { color: #f9a825; }
+        }
+        
+        .theme-label {
+            display: block;
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            font-weight: 800;
+            color: #45b7d1;
+            text-align: center;
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        .friendship-type {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .type-btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            border: 3px solid #e0e0e0;
+            background: rgba(255, 255, 255, 0.9);
+            color: #45b7d1;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 800;
+            font-family: 'Comic Neue', cursive;
+            font-size: 1.1rem;
+        }
+        
+        .type-btn.active {
+            background: linear-gradient(45deg, #ff6b8b, #4ecdc4);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+        }
+        
+        .type-btn:hover {
+            background: rgba(78, 205, 196, 0.1);
+            border-color: #4ecdc4;
+        }
+        
+        .wish-length {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .length-btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            border: 3px solid #e0e0e0;
+            background: rgba(255, 255, 255, 0.9);
+            color: #45b7d1;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 800;
+            font-family: 'Comic Neue', cursive;
+            font-size: 1.1rem;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .length-btn.active {
+            background: linear-gradient(45deg, #45b7d1, #96c93d);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(69, 183, 209, 0.3);
+        }
+        
+        .length-btn:hover {
+            background: rgba(150, 201, 61, 0.1);
+            border-color: #96c93d;
+        }
+        
+        .fun-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff6b8b, #f9a825);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 800;
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.4);
+            z-index: 10;
+            font-family: 'Poppins', sans-serif;
+            animation: badgePulse 2s infinite alternate;
+        }
+        
+        @keyframes badgePulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
+        .friend-count {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .count-btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            border: 3px solid #e0e0e0;
+            background: rgba(255, 255, 255, 0.9);
+            color: #45b7d1;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 800;
+            font-family: 'Comic Neue', cursive;
+            font-size: 1.1rem;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .count-btn.active {
+            background: linear-gradient(45deg, #f9a825, #ff6b8b);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(249, 168, 37, 0.3);
+        }
+        
+        .count-btn:hover {
+            background: rgba(249, 168, 37, 0.1);
+            border-color: #f9a825;
+        }
+        
+        .floating-emojis {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .floating-emoji {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+            animation: floatAround 15s linear infinite;
+        }
+        
+        @keyframes floatAround {
+            0% {
+                transform: translateY(100px) rotate(0deg) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        .friendship-quote {
+            font-style: italic;
+            margin-top: 15px;
+            color: #666;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Confetti Container -->
+    <div id="confettiContainer"></div>
+    
+    <div class="container">
+        <header>
+            <div class="header-decoration">🎉</div>
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h1>FRIENDSHIP DAY WISHES GENERATOR</h1>
+            <p class="subtitle">Create the most colorful, fun, and heartfelt Friendship Day wishes for your best buddies! Customize every detail and spread the friendship love with vibrant colors and animations!</p>
+        </header>
+        
+        <div class="content">
+            <div class="wish-customizer">
+                <div class="fun-badge">SUPER FUN MODE!</div>
+                <h2 class="section-title"><i class="fas fa-sliders-h"></i> CUSTOMIZE YOUR FRIENDSHIP WISH</h2>
+                
+                <div class="customization-group">
+                    <label><i class="fas fa-user-friends"></i> Friend's Name</label>
+                    <div class="friend-names">
+                        <input type="text" id="friendName" placeholder="Your Friend's Name" value="Bestie">
+                    </div>
+                    <div class="friend-count">
+                        <button class="count-btn active" data-count="single">Single Friend</button>
+                        <button class="count-btn" data-count="group">Friend Group</button>
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label><i class="fas fa-handshake"></i> Friendship Type</label>
+                    <div class="friendship-type">
+                        <button class="type-btn active" data-type="bestfriend">Best Friends</button>
+                        <button class="type-btn" data-type="close">Close Friends</button>
+                        <button class="type-btn" data-type="childhood">Childhood Friends</button>
+                        <button class="type-btn" data-type="college">College Friends</button>
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label for="wishType"><i class="fas fa-star"></i> Wish Style</label>
+                    <select id="wishType">
+                        <option value="funny">Funny & Hilarious</option>
+                        <option value="heartfelt">Heartfelt & Emotional</option>
+                        <option value="cool">Cool & Awesome</option>
+                        <option value="inspirational">Inspirational & Motivational</option>
+                        <option value="memories">Memory-Based</option>
+                        <option value="custom">Custom Message</option>
+                    </select>
+                    <div class="friendship-quote">"A real friend is one who walks in when the rest of the world walks out."</div>
+                </div>
+                
+                <div class="customization-group">
+                    <label><i class="fas fa-ruler"></i> Message Length</label>
+                    <div class="wish-length">
+                        <button class="length-btn active" data-length="short">Short & Sweet</button>
+                        <button class="length-btn" data-length="medium">Medium Fun</button>
+                        <button class="length-btn" data-length="long">Long & Meaningful</button>
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label for="customMessage"><i class="fas fa-edit"></i> Custom Message (if selected)</label>
+                    <textarea id="customMessage" placeholder="Type your own personal friendship wish here...">Happy Friendship Day! Thanks for being the most awesome friend anyone could ask for. Here's to more adventures, laughs, and unforgettable memories together!</textarea>
+                </div>
+                
+                <div class="customization-group">
+                    <label for="senderName"><i class="fas fa-signature"></i> Your Name</label>
+                    <input type="text" id="senderName" placeholder="Your Name" value="Your Buddy">
+                </div>
+            </div>
+            
+            <div class="wish-preview">
+                <h2 class="section-title"><i class="fas fa-eye"></i> FRIENDSHIP WISH PREVIEW</h2>
+                
+                <div class="wish-card card-theme-1" id="wishCard">
+                    <div class="floating-emojis" id="floatingEmojis"></div>
+                    <div class="card-background-pattern" id="cardPattern">
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-laugh-beam"></i>
+                        <i class="fas fa-hands-helping"></i>
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-laugh-beam"></i>
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="wish-card-content">
+                        <h2 class="wish-title" id="previewTitle">HAPPY FRIENDSHIP DAY!</h2>
+                        
+                        <div class="emoji-decoration">
+                            <div class="emoji">😎</div>
+                            <div class="emoji">🤗</div>
+                            <div class="emoji">😂</div>
+                            <div class="emoji">🎉</div>
+                        </div>
+                        
+                        <div class="friend-name-display" id="friendNameDisplay">To My Bestie</div>
+                        
+                        <div class="friendship-symbols">🤝 ❤️ ✨</div>
+                        
+                        <p class="wish-message" id="previewMessage">
+                            Happy Friendship Day! Thanks for being the most awesome friend anyone could ask for. Here's to more adventures, laughs, and unforgettable memories together! You're not just a friend, you're family.
+                        </p>
+                        
+                        <div class="friendship-decoration">
+                            <i class="fas fa-heart"></i> <i class="fas fa-star"></i> <i class="fas fa-heart"></i>
+                        </div>
+                        
+                        <p class="wish-footer" id="previewFooter">
+                            Forever your friend,<br>
+                            <span id="previewSender">Your Buddy</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="generateWish">
+                        <i class="fas fa-magic"></i> GENERATE NEW WISH
+                    </button>
+                    <button class="btn btn-secondary" id="copyWish">
+                        <i class="fas fa-copy"></i> COPY WISH TEXT
+                    </button>
+                    <button class="btn btn-tertiary" id="shareWish">
+                        <i class="fas fa-share-alt"></i> SHARE WITH FRIEND
+                    </button>
+                </div>
+                
+                <div id="copyMessage" class="hidden">Friendship wish copied to clipboard! 🎉</div>
+            </div>
+        </div>
+        
+        <!-- Theme Selection Section -->
+        <div class="theme-section">
+            <h2 class="section-title"><i class="fas fa-palette"></i> CHOOSE YOUR VIBRANT THEME</h2>
+            <p class="theme-label">Pick a colorful theme that matches your friendship vibe! Each theme is bursting with energy and fun!</p>
+            <div class="theme-options">
+                <div class="theme-option theme-1 active" data-theme="1" title="Rainbow Explosion">
+                    <i class="fas fa-rainbow"></i>
+                </div>
+                <div class="theme-option theme-2" data-theme="2" title="Pink Party">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="theme-option theme-3" data-theme="3" title="Green Energy">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="theme-option theme-4" data-theme="4" title="Dreamy Pastel">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <div class="theme-option theme-5" data-theme="5" title="Sunshine Burst">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="theme-option theme-6" data-theme="6" title="Fire Gradient">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="theme-option theme-7" data-theme="7" title="Ocean Wave">
+                    <i class="fas fa-water"></i>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 35px; opacity: 0.8; font-size: 1.1rem; font-weight: 600;">
+                <i class="fas fa-info-circle"></i> Each theme transforms the entire wish with vibrant colors and energy!
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>"Friendship is the only cement that will ever hold the world together." – Woodrow Wilson</p>
+            <p style="margin-top: 25px; font-size: 1.5rem; font-weight: 700;">Celebrate your friendships with joy, laughter, and colorful memories! Happy Friendship Day! 🎊</p>
+            <p style="margin-top: 20px;">© 2023 Friendship Day Wishes Generator | Created with ❤️, 😂, and endless fun for celebrating friendships!</p>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const friendInput = document.getElementById('friendName');
+        const wishTypeSelect = document.getElementById('wishType');
+        const customMessageTextarea = document.getElementById('customMessage');
+        const senderNameInput = document.getElementById('senderName');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const typeButtons = document.querySelectorAll('.type-btn');
+        const lengthButtons = document.querySelectorAll('.length-btn');
+        const countButtons = document.querySelectorAll('.count-btn');
+        const wishCard = document.getElementById('wishCard');
+        const cardPattern = document.getElementById('cardPattern');
+        const floatingEmojis = document.getElementById('floatingEmojis');
+        const confettiContainer = document.getElementById('confettiContainer');
+        const body = document.body;
+        
+        const previewTitle = document.getElementById('previewTitle');
+        const friendNameDisplay = document.getElementById('friendNameDisplay');
+        const previewMessage = document.getElementById('previewMessage');
+        const previewFooter = document.getElementById('previewFooter');
+        const previewSender = document.getElementById('previewSender');
+        
+        const generateWishBtn = document.getElementById('generateWish');
+        const copyWishBtn = document.getElementById('copyWish');
+        const shareWishBtn = document.getElementById('shareWish');
+        const copyMessage = document.getElementById('copyMessage');
+        
+        // Current settings
+        let currentType = 'bestfriend';
+        let currentLength = 'short';
+        let currentCount = 'single';
+        
+        // Friendship wish templates
+        const wishTemplates = {
+            bestfriend: {
+                short: {
+                    funny: [
+                        "Happy Friendship Day! Thanks for putting up with my nonsense. You're stuck with me forever! 😂",
+                        "To my partner in crime! Thanks for always having my back (and my snacks). Happy Friendship Day! 🍕",
+                        "Happy Friendship Day! Remember, you can't get rid of me - I know too much! 😎"
+                    ],
+                    heartfelt: [
+                        "Happy Friendship Day! You're not just a friend, you're family. Thanks for everything. ❤️",
+                        "To my ride-or-die! Thanks for being my constant in this chaotic world. Happy Friendship Day! 🌟",
+                        "Happy Friendship Day! My life is infinitely better with you in it. Forever grateful. ✨"
+                    ],
+                    cool: [
+                        "Happy Friendship Day! You're the coolest person I know. Stay awesome! 😎",
+                        "To the most legendary friend ever! Thanks for all the epic memories. Happy Friendship Day! 🎉",
+                        "Happy Friendship Day! You make friendship look easy and awesome. Rock on! 🤘"
+                    ],
+                    inspirational: [
+                        "Happy Friendship Day! Together we can conquer anything. Thanks for the strength you give me. 💪",
+                        "To my inspiration! You make me want to be a better person every day. Happy Friendship Day! 🌟",
+                        "Happy Friendship Day! Your friendship is my greatest motivation. Let's keep growing together! 🌱"
+                    ],
+                    memories: [
+                        "Happy Friendship Day! Remember that time we [insert memory]? Good times! More to come! 😂",
+                        "To my memory-maker! Thanks for all the unforgettable moments. Happy Friendship Day! 📸",
+                        "Happy Friendship Day! From our first laugh to this moment - what a journey! Here's to more! 🎊"
+                    ]
+                },
+                medium: {
+                    funny: [
+                        "Happy Friendship Day to my favorite human! Thanks for laughing at my bad jokes, putting up with my weird habits, and always being there to steal fries from. You're the best partner-in-crime anyone could ask for! Here's to more adventures and questionable decisions together! 😂🎉",
+                        "Congratulations on Friendship Day! You've successfully survived another year of my nonsense, weird texts at 3 AM, and endless memes. I promise to continue being equally annoying in the coming year. Thanks for being the Watson to my Sherlock (or the cheese to my pizza)! 🍕❤️",
+                        "Happy Friendship Day, you wonderful weirdo! Thanks for being the person I can be 100% myself with - no filters, no pretending, just pure chaotic energy. You make life infinitely more fun and much less boring. Let's keep this friendship train going! 🚂😂"
+                    ],
+                    heartfelt: [
+                        "Happy Friendship Day to my soul sibling! You've seen me at my best and my worst, and you've loved me through it all. Your friendship has been my safe harbor in life's storms and my celebration partner in life's joys. I'm eternally grateful for your presence in my life. Here's to many more years of growing together! ❤️🌟",
+                        "On this Friendship Day, I want you to know how much you mean to me. You're not just a friend - you're family I got to choose. Your support, understanding, and unconditional love have shaped who I am today. Thank you for being my constant in an ever-changing world. I cherish you more than words can express. 🌹✨",
+                        "Happy Friendship Day to the person who knows me better than I know myself! You've been my rock, my confidant, and my biggest cheerleader. Through every up and down, your friendship has been my greatest blessing. I'm so grateful our paths crossed and became intertwined forever. Here's to us! 🥂❤️"
+                    ]
+                },
+                long: {
+                    heartfelt: [
+                        "Happy Friendship Day, my dearest friend! As I reflect on our journey together, I'm overwhelmed with gratitude for every moment we've shared. From our first conversation to this present day, you've been a constant source of joy, strength, and inspiration in my life. You've celebrated my victories as if they were your own and comforted me during my struggles without judgment. Your friendship has taught me the true meaning of loyalty, trust, and unconditional love. Through seasons of change and chapters of growth, you've remained my anchor, my safe space, and my home away from home. I want you to know that your presence in my life has made me a better person - more compassionate, more resilient, and more willing to take risks knowing I have your support. As we celebrate Friendship Day, I promise to continue cherishing, respecting, and nurturing this beautiful bond we share. May our friendship continue to blossom with each passing year, growing deeper, stronger, and more meaningful. Thank you for choosing to walk this journey of life with me. Here's to countless more memories, inside jokes that only we understand, and a friendship that transcends time and distance. You are, and will always be, my forever friend. ❤️🌟🎉"
+                    ]
+                }
+            },
+            close: {
+                short: {
+                    funny: [
+                        "Happy Friendship Day! Thanks for being awesome and tolerating my weirdness. You rock! 😄",
+                        "To a fantastic friend! Thanks for all the good times. Happy Friendship Day! 🎊",
+                        "Happy Friendship Day! So glad our paths crossed. You're amazing! ✨"
+                    ]
+                }
+            },
+            childhood: {
+                short: {
+                    memories: [
+                        "Happy Friendship Day! From playground to adulthood - what a journey! Thanks for being there through it all. 🌳",
+                        "To my childhood buddy! Remember climbing trees and sharing secrets? Happy Friendship Day! 🍃",
+                        "Happy Friendship Day! We've come a long way from [memory]. So proud of our friendship! 📚"
+                    ]
+                }
+            },
+            college: {
+                short: {
+                    funny: [
+                        "Happy Friendship Day! Remember those all-nighters and cafeteria food? We survived! Thanks for the memories! 🎓",
+                        "To my college comrade! From lectures to parties, thanks for making it memorable. Happy Friendship Day! 📚",
+                        "Happy Friendship Day! Who knew [college memory] would lead to such an awesome friendship? Cheers! 🥂"
+                    ]
+                }
+            }
+        };
+        
+        // Theme color configurations
+        const themeConfigs = {
+            1: {
+                name: "Rainbow Explosion",
+                cardClass: "card-theme-1"
+            },
+            2: {
+                name: "Pink Party",
+                cardClass: "card-theme-2"
+            },
+            3: {
+                name: "Green Energy",
+                cardClass: "card-theme-3"
+            },
+            4: {
+                name: "Dreamy Pastel",
+                cardClass: "card-theme-4"
+            },
+            5: {
+                name: "Sunshine Burst",
+                cardClass: "card-theme-5"
+            },
+            6: {
+                name: "Fire Gradient",
+                cardClass: "card-theme-6"
+            },
+            7: {
+                name: "Ocean Wave",
+                cardClass: "card-theme-7"
+            }
+        };
+        
+        // Background patterns
+        const patterns = [
+            ['fas fa-heart', 'fas fa-laugh-beam', 'fas fa-hands-helping', 'fas fa-heart', 'fas fa-laugh-beam', 'fas fa-hands-helping'],
+            ['fas fa-star', 'fas fa-heart', 'fas fa-grin-squint-tears', 'fas fa-star', 'fas fa-heart', 'fas fa-grin-squint-tears'],
+            ['fas fa-hands-helping', 'fas fa-star', 'fas fa-heart', 'fas fa-hands-helping', 'fas fa-star', 'fas fa-heart'],
+            ['fas fa-grin-squint-tears', 'fas fa-hands-helping', 'fas fa-star', 'fas fa-grin-squint-tears', 'fas fa-hands-helping', 'fas fa-star']
+        ];
+        
+        // Friendship emojis
+        const friendshipEmojis = ["😎", "🤗", "😂", "🎉", "❤️", "✨", "🤝", "👍", "👏", "🎊", "🥳", "🤩", "😍", "🫂"];
+        
+        // Initialize with a random wish
+        generateRandomWish();
+        createFloatingEmojis();
+        createConfetti();
+        
+        // Event Listeners
+        friendInput.addEventListener('input', updateWishPreview);
+        wishTypeSelect.addEventListener('change', updateWishPreview);
+        customMessageTextarea.addEventListener('input', updateWishPreview);
+        senderNameInput.addEventListener('input', updateWishPreview);
+        
+        generateWishBtn.addEventListener('click', function() {
+            generateRandomWish();
+            createConfettiBurst();
+        });
+        
+        copyWishBtn.addEventListener('click', copyWishToClipboard);
+        shareWishBtn.addEventListener('click', shareWish);
+        
+        // Theme selection
+        themeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from all themes
+                themeOptions.forEach(opt => opt.classList.remove('active'));
+                // Add active class to clicked theme
+                this.classList.add('active');
+                
+                // Apply theme to card
+                const theme = this.getAttribute('data-theme');
+                applyTheme(theme);
+                
+                // Create confetti burst
+                createConfettiBurst();
+            });
+        });
+        
+        // Friendship type selection
+        typeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all type buttons
+                typeButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update current type
+                currentType = this.getAttribute('data-type');
+                
+                // Regenerate wish with new type
+                generateRandomWish();
+                
+                // Create confetti burst
+                createConfettiBurst();
+            });
+        });
+        
+        // Length selection
+        lengthButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all length buttons
+                lengthButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update current length
+                currentLength = this.getAttribute('data-length');
+                
+                // Regenerate wish with new length
+                generateRandomWish();
+            });
+        });
+        
+        // Count selection
+        countButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all count buttons
+                countButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update current count
+                currentCount = this.getAttribute('data-count');
+                
+                // Update friend input placeholder
+                const friendInput = document.getElementById('friendName');
+                if (currentCount === 'group') {
+                    friendInput.placeholder = "Your Friends' Names (e.g., The Squad)";
+                    friendInput.value = "The Squad";
+                } else {
+                    friendInput.placeholder = "Your Friend's Name";
+                    friendInput.value = "Bestie";
+                }
+                
+                // Update wish preview
+                updateWishPreview();
+            });
+        });
+        
+        // Functions
+        function updateWishPreview() {
+            const friend = friendInput.value || (currentCount === 'group' ? "The Squad" : "Bestie");
+            const wishType = wishTypeSelect.value;
+            const customMessage = customMessageTextarea.value;
+            const senderName = senderNameInput.value || "Your Buddy";
+            
+            // Update friend name display
+            if (currentCount === 'group') {
+                friendNameDisplay.textContent = `To ${friend}`;
+            } else {
+                friendNameDisplay.textContent = `To My ${getFriendshipTerm(currentType)} ${friend}`;
+            }
+            
+            // Update title
+            previewTitle.textContent = "HAPPY FRIENDSHIP DAY!";
+            
+            // Update message based on wish type
+            if (wishType === 'custom') {
+                previewMessage.textContent = customMessage || "Happy Friendship Day! Thanks for being the most awesome friend anyone could ask for.";
+            }
+            
+            // Update footer
+            previewFooter.innerHTML = `Forever your friend,<br><span id="previewSender">${senderName}</span>`;
+            previewSender.textContent = senderName;
+        }
+        
+        function generateRandomWish() {
+            const friend = friendInput.value || (currentCount === 'group' ? "The Squad" : "Bestie");
+            const wishType = wishTypeSelect.value;
+            const senderName = senderNameInput.value || "Your Buddy";
+            
+            // Update friend name display
+            if (currentCount === 'group') {
+                friendNameDisplay.textContent = `To ${friend}`;
+            } else {
+                friendNameDisplay.textContent = `To My ${getFriendshipTerm(currentType)} ${friend}`;
+            }
+            
+            // Update title
+            previewTitle.textContent = "HAPPY FRIENDSHIP DAY!";
+            
+            // Get random wish based on type, friendship type, and length
+            let wishText;
+            if (wishType === 'custom') {
+                wishText = customMessageTextarea.value || "Happy Friendship Day! Thanks for being the most awesome friend anyone could ask for.";
+            } else {
+                // Try to get templates for current friendship type and length
+                let templates = wishTemplates[currentType]?.[currentLength]?.[wishType];
+                
+                // If not found, try short length
+                if (!templates) {
+                    templates = wishTemplates[currentType]?.short?.[wishType];
+                }
+                
+                // If still not found, use bestfriend templates
+                if (!templates) {
+                    templates = wishTemplates.bestfriend?.[currentLength]?.[wishType] || wishTemplates.bestfriend?.short?.[wishType];
+                }
+                
+                if (templates && templates.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * templates.length);
+                    wishText = templates[randomIndex];
+                    
+                    // Replace [memory] placeholder with actual memory
+                    if (wishText.includes('[memory]')) {
+                        const memories = [
+                            "we got lost in the city",
+                            "we stayed up all night talking",
+                            "we tried to cook and failed miserably",
+                            "we laughed until we cried",
+                            "we took that spontaneous road trip",
+                            "we survived that crazy adventure"
+                        ];
+                        const randomMemory = memories[Math.floor(Math.random() * memories.length)];
+                        wishText = wishText.replace('[memory]', randomMemory);
+                    }
+                    
+                    // Replace [college memory] placeholder
+                    if (wishText.includes('[college memory]')) {
+                        const collegeMemories = [
+                            "that impossible exam we barely passed",
+                            "those midnight pizza runs",
+                            "our terrible dorm room",
+                            "that hilarious professor",
+                            "our first college party"
+                        ];
+                        const randomCollegeMemory = collegeMemories[Math.floor(Math.random() * collegeMemories.length)];
+                        wishText = wishText.replace('[college memory]', randomCollegeMemory);
+                    }
+                } else {
+                    // Fallback message
+                    wishText = "Happy Friendship Day! Thanks for being an amazing friend. Your friendship means the world to me. Here's to more laughs, adventures, and unforgettable memories together! 🎉❤️";
+                }
+            }
+            
+            // Update wish message
+            previewMessage.innerHTML = wishText;
+            
+            // Update footer with sender name
+            previewFooter.innerHTML = `Forever your friend,<br><span id="previewSender">${senderName}</span>`;
+            previewSender.textContent = senderName;
+            
+            // Update background pattern
+            updateBackgroundPattern();
+            
+            // Create confetti burst
+            createConfettiBurst();
+        }
+        
+        function getFriendshipTerm(type) {
+            const terms = {
+                'bestfriend': 'Bestie',
+                'close': 'Awesome',
+                'childhood': 'Childhood',
+                'college': 'College'
+            };
+            return terms[type] || 'Awesome';
+        }
+        
+        function applyTheme(themeNumber) {
+            const theme = themeConfigs[themeNumber];
+            
+            // Remove all theme classes from card
+            for (let i = 1; i <= 7; i++) {
+                wishCard.classList.remove(`card-theme-${i}`);
+            }
+            
+            // Add selected theme class to card
+            wishCard.classList.add(theme.cardClass);
+            
+            // Update background pattern
+            updateBackgroundPattern();
+        }
+        
+        function createFloatingEmojis() {
+            // Create 20 floating emojis
+            for (let i = 0; i < 20; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'floating-emoji';
+                emoji.innerHTML = friendshipEmojis[Math.floor(Math.random() * friendshipEmojis.length)];
+                emoji.style.left = `${Math.random() * 100}%`;
+                emoji.style.animationDelay = `${Math.random() * 10}s`;
+                emoji.style.fontSize = `${Math.random() * 1.5 + 1.5}rem`;
+                floatingEmojis.appendChild(emoji);
+            }
+        }
+        
+        function createConfetti() {
+            // Create initial confetti
+            for (let i = 0; i < 50; i++) {
+                createConfettiPiece();
+            }
+        }
+        
+        function createConfettiPiece() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            
+            // Random colors
+            const colors = ['#ff6b8b', '#4ecdc4', '#45b7d1', '#96c93d', '#f9a825', '#FF9A8B', '#81FBB8', '#A9C9FF', '#FAD961'];
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Random position
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.top = `${Math.random() * 100}vh`;
+            
+            // Random size
+            const size = Math.random() * 15 + 5;
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            
+            // Random shape
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            
+            // Random rotation
+            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+            
+            confettiContainer.appendChild(confetti);
+            
+            // Remove after animation
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
+        }
+        
+        function createConfettiBurst() {
+            // Create 100 confetti pieces for burst
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    createConfettiPiece();
+                }, i * 10);
+            }
+        }
+        
+        function updateBackgroundPattern() {
+            const patternIndex = Math.floor(Math.random() * patterns.length);
+            const patternIcons = patterns[patternIndex];
+            
+            let patternHTML = '';
+            patternIcons.forEach(icon => {
+                const size = Math.floor(Math.random() * 40) + 50;
+                const left = Math.floor(Math.random() * 85);
+                const top = Math.floor(Math.random() * 85);
+                const rotate = Math.floor(Math.random() * 360);
+                
+                patternHTML += `<i class="${icon}" style="position:absolute;left:${left}%;top:${top}%;font-size:${size}px;transform:rotate(${rotate}deg);"></i>`;
+            });
+            
+            cardPattern.innerHTML = patternHTML;
+        }
+        
+        function copyWishToClipboard() {
+            const friend = friendInput.value || (currentCount === 'group' ? "The Squad" : "Bestie");
+            const senderName = senderNameInput.value || "Your Buddy";
+            
+            const wishText = `🎉 HAPPY FRIENDSHIP DAY! 🎉
+
+${friendNameDisplay.textContent}
+
+${previewMessage.textContent}
+
+${previewFooter.textContent}
+
+Celebrate friendship with joy and laughter! 🥳`;
+
+            navigator.clipboard.writeText(wishText).then(() => {
+                // Show copy confirmation
+                copyMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    copyMessage.classList.add('hidden');
+                }, 3000);
+                
+                // Create confetti burst
+                createConfettiBurst();
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy wish to clipboard. Please select and copy the text manually.');
+            });
+        }
+        
+        function shareWish() {
+            const friend = friendInput.value || (currentCount === 'group' ? "The Squad" : "Bestie");
+            const senderName = senderNameInput.value || "Your Buddy";
+            
+            const wishText = `🎉 HAPPY FRIENDSHIP DAY! 🎉
+
+${friendNameDisplay.textContent}
+
+${previewMessage.textContent}
+
+${previewFooter.textContent}
+
+Created with the Friendship Day Wishes Generator - Spread the friendship love! 💖`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Friendship Day Wishes',
+                    text: wishText,
+                    url: window.location.href
+                })
+                .then(() => {
+                    console.log('Successful share');
+                    createConfettiBurst();
+                })
+                .catch((error) => console.log('Error sharing:', error));
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                copyWishToClipboard();
+                alert('Friendship wish copied to clipboard! You can now paste it and share with your friends!');
+            }
+        }
+        
+        // Initialize with theme 1 and pattern
+        applyTheme(1);
+        updateBackgroundPattern();
+        
+        // Continuous confetti
+        setInterval(createConfettiPiece, 300);
+    </script>
+</body>
+</html>
