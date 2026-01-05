@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Father's Day Wishes Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Roboto+Slab:wght@400;700&family=Oswald:wght@500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1c3b70 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .floating-stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-star {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0;
+            color: #ffd700;
+            animation: floatUp 20s linear infinite;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 0 50px;
+            margin-bottom: 50px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(30, 60, 114, 0.2);
+            overflow: hidden;
+        }
+        
+        .header-decoration {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            color: #1e3c72;
+            opacity: 0.8;
+            animation: gentleFloat 4s ease-in-out infinite;
+        }
+        
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+        
+        .logo {
+            font-size: 5rem;
+            color: #1e3c72;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo::after {
+            content: "";
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #1e3c72, transparent);
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #1e3c72;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 1.6rem;
+            opacity: 0.9;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: #444;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 400;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .wish-customizer {
+            flex: 1;
+            min-width: 400px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            padding: 45px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(30, 60, 114, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wish-customizer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #1e3c72, #2a5298, #1e3c72);
+        }
+        
+        .wish-preview {
+            flex: 1;
+            min-width: 400px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 25px;
+            padding: 45px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(30, 60, 114, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wish-preview::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #2a5298, #1e3c72, #2a5298);
+        }
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #1e3c72;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            border-radius: 2px;
+        }
+        
+        .section-title i {
+            font-size: 2.2rem;
+            color: #1e3c72;
+        }
+        
+        .customization-group {
+            margin-bottom: 35px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: #1e3c72;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 18px 24px;
+            border-radius: 15px;
+            border: 2px solid #d1d9e6;
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            color: #333;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1e3c72;
+            box-shadow: 0 0 0 4px rgba(30, 60, 114, 0.1);
+            background: white;
+        }
+        
+        textarea {
+            height: 180px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+        
+        .name-input {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .name-input input {
+            flex: 1;
+        }
+        
+        .wish-card {
+            background: white;
+            border-radius: 25px;
+            padding: 70px 60px;
+            width: 100%;
+            max-width: 700px;
+            color: #333;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            min-height: 620px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 12px solid #e8f0fe;
+            transition: all 0.3s ease;
+        }
+        
+        .wish-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #1e3c72, #2a5298, #1e3c72);
+        }
+        
+        .wish-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #1e3c72, #2a5298, #1e3c72);
+        }
+        
+        .wish-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            color: #1e3c72;
+            margin-bottom: 35px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            transition: color 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .wish-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #2a5298, transparent);
+        }
+        
+        .father-name-display {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.2rem;
+            color: #1e3c72;
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+            display: inline-block;
+            padding: 0 25px;
+            letter-spacing: 1px;
+        }
+        
+        .father-name-display::before, .father-name-display::after {
+            content: "👨‍👦";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.2rem;
+            animation: gentleBeat 2s infinite;
+        }
+        
+        @keyframes gentleBeat {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.2); }
+        }
+        
+        .father-name-display::before {
+            left: -20px;
+        }
+        
+        .father-name-display::after {
+            right: -20px;
+        }
+        
+        .fathers-day-decoration {
+            font-size: 3.5rem;
+            color: #2a5298;
+            margin: 35px 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            transition: color 0.3s ease;
+        }
+        
+        .wish-message {
+            font-size: 1.7rem;
+            line-height: 1.9;
+            margin: 40px 0;
+            color: #444;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            font-family: 'Roboto Slab', serif;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .wish-footer {
+            font-size: 1.6rem;
+            color: #1e3c72;
+            font-weight: 700;
+            margin-top: 45px;
+            padding-top: 35px;
+            border-top: 3px solid #2a5298;
+            transition: all 0.3s ease;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .btn {
+            padding: 20px 40px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            min-width: 220px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            box-shadow: 0 10px 25px rgba(30, 60, 114, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            color: white;
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+        }
+        
+        .btn-tertiary {
+            background: linear-gradient(45deg, #e8f0fe, #d1d9e6);
+            color: #1e3c72;
+            box-shadow: 0 10px 25px rgba(232, 240, 254, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #2a5298, #1e3c72);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(45deg, #ff8c42, #ff6b35);
+        }
+        
+        .btn-tertiary:hover {
+            background: linear-gradient(45deg, #d1d9e6, #e8f0fe);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 60px 0;
+            margin-top: 70px;
+            border-top: 2px solid rgba(42, 82, 152, 0.3);
+            font-size: 1.3rem;
+            color: white;
+            background: rgba(30, 60, 114, 0.9);
+            border-radius: 25px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #copyMessage {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-top: 25px;
+            animation: fadeOut 3s forwards;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        @media (max-width: 1200px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 3.2rem;
+            }
+            
+            .logo {
+                font-size: 4.2rem;
+            }
+            
+            .wish-card {
+                padding: 60px 50px;
+                min-height: 580px;
+            }
+            
+            .wish-title {
+                font-size: 3.5rem;
+            }
+            
+            .father-name-display {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.6rem;
+            }
+            
+            .logo {
+                font-size: 3.5rem;
+            }
+            
+            .wish-card {
+                padding: 50px 40px;
+                min-height: 550px;
+                border-width: 10px;
+            }
+            
+            .wish-title {
+                font-size: 3rem;
+            }
+            
+            .father-name-display {
+                font-size: 2.2rem;
+            }
+            
+            .wish-message {
+                font-size: 1.5rem;
+            }
+            
+            .name-input {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .btn {
+                min-width: 180px;
+                padding: 18px 32px;
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        .theme-section {
+            margin-top: 60px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(30, 60, 114, 0.2);
+        }
+        
+        .theme-options {
+            display: flex;
+            gap: 20px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .theme-option {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 5px solid transparent;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .theme-option::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s;
+            background: rgba(30, 60, 114, 0.9);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .theme-option:hover::after {
+            opacity: 1;
+            bottom: -45px;
+        }
+        
+        .theme-option.active {
+            border-color: white;
+            transform: scale(1.15);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 10px 25px rgba(0,0,0,0.15);
+            animation: gentlePulse 2s infinite alternate;
+        }
+        
+        @keyframes gentlePulse {
+            0% { transform: scale(1.15); }
+            100% { transform: scale(1.2); }
+        }
+        
+        /* Theme Colors */
+        .theme-1 { background: linear-gradient(135deg, #1e3c72, #2a5298, #e8f0fe); color: white; }
+        .theme-2 { background: linear-gradient(135deg, #8b4513, #a0522d, #f5e9d0); color: white; }
+        .theme-3 { background: linear-gradient(135deg, #006400, #228b22, #e6ffe6); color: white; }
+        .theme-4 { background: linear-gradient(135deg, #333333, #666666, #f0f0f0); color: white; }
+        .theme-5 { background: linear-gradient(135deg, #ff6b35, #ff8c42, #fff2e6); color: white; }
+        .theme-6 { background: linear-gradient(135deg, #0d47a1, #1565c0, #e3f2fd); color: white; }
+        .theme-7 { background: linear-gradient(135deg, #5d4037, #795548, #efebe9); color: white; }
+        
+        /* Card themes */
+        .card-theme-1 { 
+            background: white; 
+            border-color: #e8f0fe;
+        }
+        
+        .card-theme-1 .wish-title {
+            color: #1e3c72;
+        }
+        
+        .card-theme-1 .father-name-display {
+            color: #1e3c72;
+        }
+        
+        .card-theme-1 .wish-footer {
+            color: #1e3c72;
+            border-top-color: #2a5298;
+        }
+        
+        .card-theme-1 .fathers-day-decoration {
+            color: #2a5298;
+        }
+        
+        .card-theme-1::before, .card-theme-1::after {
+            background: linear-gradient(90deg, #1e3c72, #2a5298, #1e3c72);
+        }
+        
+        .card-theme-2 { 
+            background: white; 
+            border-color: #f5e9d0;
+        }
+        
+        .card-theme-2 .wish-title {
+            color: #8b4513;
+        }
+        
+        .card-theme-2 .father-name-display {
+            color: #8b4513;
+        }
+        
+        .card-theme-2 .wish-footer {
+            color: #8b4513;
+            border-top-color: #a0522d;
+        }
+        
+        .card-theme-2 .fathers-day-decoration {
+            color: #a0522d;
+        }
+        
+        .card-theme-2::before, .card-theme-2::after {
+            background: linear-gradient(90deg, #8b4513, #a0522d, #8b4513);
+        }
+        
+        .card-theme-3 { 
+            background: white; 
+            border-color: #e6ffe6;
+        }
+        
+        .card-theme-3 .wish-title {
+            color: #006400;
+        }
+        
+        .card-theme-3 .father-name-display {
+            color: #006400;
+        }
+        
+        .card-theme-3 .wish-footer {
+            color: #006400;
+            border-top-color: #228b22;
+        }
+        
+        .card-theme-3 .fathers-day-decoration {
+            color: #228b22;
+        }
+        
+        .card-theme-3::before, .card-theme-3::after {
+            background: linear-gradient(90deg, #006400, #228b22, #006400);
+        }
+        
+        .card-theme-4 { 
+            background: white; 
+            border-color: #f0f0f0;
+        }
+        
+        .card-theme-4 .wish-title {
+            color: #333333;
+        }
+        
+        .card-theme-4 .father-name-display {
+            color: #333333;
+        }
+        
+        .card-theme-4 .wish-footer {
+            color: #333333;
+            border-top-color: #666666;
+        }
+        
+        .card-theme-4 .fathers-day-decoration {
+            color: #666666;
+        }
+        
+        .card-theme-4::before, .card-theme-4::after {
+            background: linear-gradient(90deg, #333333, #666666, #333333);
+        }
+        
+        .card-theme-5 { 
+            background: white; 
+            border-color: #fff2e6;
+        }
+        
+        .card-theme-5 .wish-title {
+            color: #ff6b35;
+        }
+        
+        .card-theme-5 .father-name-display {
+            color: #ff6b35;
+        }
+        
+        .card-theme-5 .wish-footer {
+            color: #ff6b35;
+            border-top-color: #ff8c42;
+        }
+        
+        .card-theme-5 .fathers-day-decoration {
+            color: #ff8c42;
+        }
+        
+        .card-theme-5::before, .card-theme-5::after {
+            background: linear-gradient(90deg, #ff6b35, #ff8c42, #ff6b35);
+        }
+        
+        .card-theme-6 { 
+            background: white; 
+            border-color: #e3f2fd;
+        }
+        
+        .card-theme-6 .wish-title {
+            color: #0d47a1;
+        }
+        
+        .card-theme-6 .father-name-display {
+            color: #0d47a1;
+        }
+        
+        .card-theme-6 .wish-footer {
+            color: #0d47a1;
+            border-top-color: #1565c0;
+        }
+        
+        .card-theme-6 .fathers-day-decoration {
+            color: #1565c0;
+        }
+        
+        .card-theme-6::before, .card-theme-6::after {
+            background: linear-gradient(90deg, #0d47a1, #1565c0, #0d47a1);
+        }
+        
+        .card-theme-7 { 
+            background: white; 
+            border-color: #efebe9;
+        }
+        
+        .card-theme-7 .wish-title {
+            color: #5d4037;
+        }
+        
+        .card-theme-7 .father-name-display {
+            color: #5d4037;
+        }
+        
+        .card-theme-7 .wish-footer {
+            color: #5d4037;
+            border-top-color: #795548;
+        }
+        
+        .card-theme-7 .fathers-day-decoration {
+            color: #795548;
+        }
+        
+        .card-theme-7::before, .card-theme-7::after {
+            background: linear-gradient(90deg, #5d4037, #795548, #5d4037);
+        }
+        
+        .card-background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 0;
+            pointer-events: none;
+            font-size: 60px;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            padding: 50px;
+        }
+        
+        .wish-card-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tool-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 35px 0;
+        }
+        
+        .tool {
+            font-size: 4rem;
+            animation: gentleSway 3s ease-in-out infinite;
+            filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+        }
+        
+        .tool:nth-child(1) {
+            animation-delay: 0s;
+            color: #1e3c72;
+        }
+        
+        .tool:nth-child(2) {
+            animation-delay: 0.5s;
+            color: #2a5298;
+        }
+        
+        .tool:nth-child(3) {
+            animation-delay: 1s;
+            color: #1e3c72;
+        }
+        
+        @keyframes gentleSway {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            75% { transform: translateY(-5px) rotate(-3deg); }
+        }
+        
+        .father-symbols {
+            margin: 30px 0;
+            font-size: 3.2rem;
+            letter-spacing: 15px;
+            color: #2a5298;
+            opacity: 0.8;
+        }
+        
+        .theme-label {
+            display: block;
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            color: #1e3c72;
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        
+        .relationship-options {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .relationship-btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            border: 2px solid #d1d9e6;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1e3c72;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 700;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .relationship-btn.active {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.2);
+        }
+        
+        .relationship-btn:hover {
+            background: rgba(30, 60, 114, 0.1);
+            border-color: #1e3c72;
+        }
+        
+        .wish-length {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .length-btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            border: 2px solid #d1d9e6;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1e3c72;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 700;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            flex: 1;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        
+        .length-btn.active {
+            background: linear-gradient(45deg, #2a5298, #1e3c72);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.2);
+        }
+        
+        .length-btn:hover {
+            background: rgba(42, 82, 152, 0.1);
+            border-color: #2a5298;
+        }
+        
+        .strength-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(30, 60, 114, 0.3);
+            z-index: 10;
+            font-family: 'Montserrat', sans-serif;
+            animation: badgeFloat 3s ease-in-out infinite alternate;
+            letter-spacing: 0.5px;
+        }
+        
+        @keyframes badgeFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+        
+        .quote-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(232, 240, 254, 0.9);
+            border-radius: 15px;
+            border-left: 5px solid #1e3c72;
+            font-style: italic;
+            color: #444;
+            font-size: 1.1rem;
+            font-family: 'Roboto Slab', serif;
+        }
+        
+        .father-type {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .type-btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            border: 2px solid #d1d9e6;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1e3c72;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 700;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            flex: 1;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        
+        .type-btn.active {
+            background: linear-gradient(45deg, #2a5298, #1e3c72);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.2);
+        }
+        
+        .type-btn:hover {
+            background: rgba(42, 82, 152, 0.1);
+            border-color: #2a5298;
+        }
+        
+        .star-rise {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .rising-star {
+            position: absolute;
+            bottom: -50px;
+            font-size: 2rem;
+            opacity: 0;
+            color: #ffd700;
+            animation: riseUp 8s linear infinite;
+        }
+        
+        @keyframes riseUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .masculine-decoration {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 2rem;
+            color: #1e3c72;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating stars background -->
+    <div class="floating-stars" id="floatingStars"></div>
+    <div class="star-rise" id="starRise"></div>
+    
+    <div class="container">
+        <header>
+            <div class="header-decoration">👨‍👦</div>
+            <div class="logo">
+                <i class="fas fa-star"></i>
+            </div>
+            <h1>FATHER'S DAY WISHES GENERATOR</h1>
+            <p class="subtitle">Create powerful, heartfelt Father's Day wishes for the strong man in your life. Customize every detail to express your respect, love, and gratitude in a meaningful way.</p>
+        </header>
+        
+        <div class="content">
+            <div class="wish-customizer">
+                <div class="strength-badge">Built with Strength</div>
+                <h2 class="section-title"><i class="fas fa-sliders-h"></i> Customize Your Father's Day Wish</h2>
+                
+                <div class="customization-group">
+                    <label><i class="fas fa-user"></i> Names</label>
+                    <div class="name-input">
+                        <input type="text" id="fatherName" placeholder="Your Father's Name" value="Dad">
+                        <input type="text" id="childName" placeholder="Your Name" value="Your Child">
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label><i class="fas fa-handshake"></i> Your Relationship</label>
+                    <div class="relationship-options">
+                        <button class="relationship-btn active" data-relationship="child">Child</button>
+                        <button class="relationship-btn" data-relationship="son">Son</button>
+                        <button class="relationship-btn" data-relationship="daughter">Daughter</button>
+                        <button class="relationship-btn" data-relationship="wife">Wife</button>
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label><i class="fas fa-user-tie"></i> Father Type</label>
+                    <div class="father-type">
+                        <button class="type-btn active" data-type="father">Father</button>
+                        <button class="type-btn" data-type="grandfather">Grandfather</button>
+                        <button class="type-btn" data-type="stepfather">Stepfather</button>
+                        <button class="type-btn" data-type="fatherinlaw">Father-in-Law</button>
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label for="wishType"><i class="fas fa-star"></i> Wish Style</label>
+                    <select id="wishType">
+                        <option value="respectful">Respectful & Admiring</option>
+                        <option value="grateful">Grateful & Thankful</option>
+                        <option value="funny">Funny & Playful</option>
+                        <option value="inspirational">Inspirational & Motivational</option>
+                        <option value="heartfelt">Heartfelt & Emotional</option>
+                        <option value="custom">Custom Message</option>
+                    </select>
+                    <div class="quote-container">
+                        "A father is neither an anchor to hold us back nor a sail to take us there, but a guiding light whose love shows us the way." – Unknown
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label><i class="fas fa-ruler"></i> Message Length</label>
+                    <div class="wish-length">
+                        <button class="length-btn active" data-length="short">Short & Strong</button>
+                        <button class="length-btn" data-length="medium">Medium & Meaningful</button>
+                        <button class="length-btn" data-length="long">Long & Heartfelt</button>
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label for="customMessage"><i class="fas fa-edit"></i> Custom Message (if selected)</label>
+                    <textarea id="customMessage" placeholder="Type your own personal Father's Day wish here...">Happy Father's Day! Thank you for your strength, guidance, and unconditional love. You are my hero and my greatest role model.</textarea>
+                </div>
+                
+                <div class="customization-group">
+                    <label for="senderName"><i class="fas fa-signature"></i> Your Name</label>
+                    <input type="text" id="senderName" placeholder="Your Name" value="With Respect">
+                </div>
+            </div>
+            
+            <div class="wish-preview">
+                <h2 class="section-title"><i class="fas fa-eye"></i> Father's Day Wish Preview</h2>
+                
+                <div class="wish-card card-theme-1" id="wishCard">
+                    <div class="card-background-pattern" id="cardPattern">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-tools"></i>
+                        <i class="fas fa-car"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-tools"></i>
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="wish-card-content">
+                        <h2 class="wish-title" id="previewTitle">HAPPY FATHER'S DAY!</h2>
+                        
+                        <div class="tool-decoration">
+                            <div class="tool">🔧</div>
+                            <div class="tool">⚙️</div>
+                            <div class="tool">🏆</div>
+                        </div>
+                        
+                        <div class="father-name-display" id="fatherNameDisplay">TO MY HERO, DAD</div>
+                        
+                        <div class="father-symbols">💪 👑 ✨</div>
+                        
+                        <p class="wish-message" id="previewMessage">
+                            Happy Father's Day! Thank you for your strength, guidance, and unconditional love. You are my hero and my greatest role model. Your wisdom has shaped me, your support has strengthened me, and your love has guided me through life's journey.
+                        </p>
+                        
+                        <div class="fathers-day-decoration">
+                            <i class="fas fa-star"></i> <i class="fas fa-shield-alt"></i> <i class="fas fa-star"></i>
+                        </div>
+                        
+                        <p class="wish-footer" id="previewFooter">
+                            With deepest respect,<br>
+                            <span id="previewSender">Your Child</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="generateWish">
+                        <i class="fas fa-magic"></i> GENERATE NEW WISH
+                    </button>
+                    <button class="btn btn-secondary" id="copyWish">
+                        <i class="fas fa-copy"></i> COPY WISH TEXT
+                    </button>
+                    <button class="btn btn-tertiary" id="shareWish">
+                        <i class="fas fa-share-alt"></i> SHARE WITH DAD
+                    </button>
+                </div>
+                
+                <div id="copyMessage" class="hidden">Father's Day wish copied to clipboard! 🏆</div>
+            </div>
+        </div>
+        
+        <!-- Theme Selection Section -->
+        <div class="theme-section">
+            <h2 class="section-title"><i class="fas fa-palette"></i> Choose Your Strong Theme</h2>
+            <p class="theme-label">Select a powerful theme that reflects your father's personality and your special bond:</p>
+            <div class="theme-options">
+                <div class="theme-option theme-1 active" data-theme="1" title="Navy Blue">
+                    <i class="fas fa-anchor"></i>
+                </div>
+                <div class="theme-option theme-2" data-theme="2" title="Classic Brown">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="theme-option theme-3" data-theme="3" title="Forest Green">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <div class="theme-option theme-4" data-theme="4" title="Charcoal Gray">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <div class="theme-option theme-5" data-theme="5" title="Burnt Orange">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="theme-option theme-6" data-theme="6" title="Royal Blue">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="theme-option theme-7" data-theme="7" title="Mahogany">
+                    <i class="fas fa-chair"></i>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 35px; opacity: 0.8; font-size: 1.1rem; font-family: 'Roboto Slab', serif;">
+                <i class="fas fa-info-circle"></i> Each theme brings a different masculine tone to your Father's Day message
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>"The greatest mark of a father is how he treats his children when no one is looking." – Dan Pearce</p>
+            <p style="margin-top: 25px; font-size: 1.5rem; font-weight: 700; color: white;">Celebrate the incredible man who gave you strength, guidance, and endless support. Happy Father's Day! 💪</p>
+            <p style="margin-top: 20px;">© 2023 Father's Day Wishes Generator | Created with 💙 for celebrating the pillars of our lives</p>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const fatherInput = document.getElementById('fatherName');
+        const childInput = document.getElementById('childName');
+        const wishTypeSelect = document.getElementById('wishType');
+        const customMessageTextarea = document.getElementById('customMessage');
+        const senderNameInput = document.getElementById('senderName');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const relationshipButtons = document.querySelectorAll('.relationship-btn');
+        const lengthButtons = document.querySelectorAll('.length-btn');
+        const typeButtons = document.querySelectorAll('.type-btn');
+        const wishCard = document.getElementById('wishCard');
+        const cardPattern = document.getElementById('cardPattern');
+        const floatingStars = document.getElementById('floatingStars');
+        const starRise = document.getElementById('starRise');
+        const body = document.body;
+        
+        const previewTitle = document.getElementById('previewTitle');
+        const fatherNameDisplay = document.getElementById('fatherNameDisplay');
+        const previewMessage = document.getElementById('previewMessage');
+        const previewFooter = document.getElementById('previewFooter');
+        const previewSender = document.getElementById('previewSender');
+        
+        const generateWishBtn = document.getElementById('generateWish');
+        const copyWishBtn = document.getElementById('copyWish');
+        const shareWishBtn = document.getElementById('shareWish');
+        const copyMessage = document.getElementById('copyMessage');
+        
+        // Current settings
+        let currentRelationship = 'child';
+        let currentLength = 'short';
+        let currentType = 'father';
+        
+        // Father's Day wish templates
+        const wishTemplates = {
+            child: {
+                short: {
+                    respectful: [
+                        "Happy Father's Day! Your strength and wisdom inspire me every day. Thank you for being my hero. 💪",
+                        "To the best dad: Happy Father's Day! Your guidance has shaped who I am today. 👑",
+                        "Happy Father's Day! I admire your strength and character more than you know. 🏆"
+                    ],
+                    grateful: [
+                        "Happy Father's Day! Thank you for your sacrifices and unwavering support. I'm forever grateful. 🙏",
+                        "To my amazing dad: Thank you for everything you do. Happy Father's Day! ⚙️",
+                        "Happy Father's Day! I appreciate all the lessons you've taught me. You're my greatest teacher. 📚"
+                    ],
+                    funny: [
+                        "Happy Father's Day! Thanks for not selling me when I was a troublesome kid! Love you! 😂",
+                        "To the coolest dad ever: Happy Father's Day! Thanks for putting up with me! 🎉",
+                        "Happy Father's Day! You're not just my dad, you're my favorite grill master! 🍖"
+                    ],
+                    inspirational: [
+                        "Happy Father's Day! Your example teaches me what it means to be strong and kind. 🌟",
+                        "To my role model: Happy Father's Day! You inspire me to be my best self. 💫",
+                        "Happy Father's Day! Your strength gives me strength. Your courage gives me courage. 🛡️"
+                    ],
+                    heartfelt: [
+                        "Happy Father's Day! Your love is my foundation. Thank you for everything, Dad. ❤️",
+                        "To my hero: Happy Father's Day! Your love makes everything better. 💙",
+                        "Happy Father's Day! I'm so blessed to have you as my father. Love you always. ✨"
+                    ]
+                },
+                medium: {
+                    respectful: [
+                        "Happy Father's Day to the strongest man I know! Your integrity, wisdom, and strength have been my guiding light through life's challenges. You've shown me what it means to be a good person through your actions and character. I admire you more than words can express and strive to embody the values you've taught me. Thank you for being my role model and my hero. 💪👑",
+                        "On this special day, I want to express my deepest respect for the incredible father you are. Your steadfast presence, sound advice, and unwavering principles have shaped me into the person I am today. I've learned from your example what true strength looks like—not just physical strength, but the strength of character, patience, and perseverance. Happy Father's Day to my greatest inspiration. 🏆🌟",
+                        "Happy Father's Day, Dad! Your guidance has been the compass that's directed my life's journey. I respect your wisdom, admire your work ethic, and appreciate the sacrifices you've made for our family. You've taught me valuable lessons about responsibility, honor, and what it means to be a good man. Thank you for being the pillar of strength our family can always rely on. ⚖️💙"
+                    ],
+                    grateful: [
+                        "Happy Father's Day! Today and every day, I want to thank you for your countless sacrifices, your unwavering support, and your boundless love. You've given me the greatest gifts: your time, your wisdom, and your presence. I appreciate every lesson you've taught me, every adventure we've shared, and every moment you've been there for me. You are truly irreplaceable. 🙏❤️",
+                        "To my dearest dad on Father's Day: Thank you for being my first teacher, my forever protector, and my safe harbor. Your guidance has been my most valuable asset and your love my greatest comfort. I'm so grateful for all the little things you do that make such a big difference—from fixing things around the house to offering sage advice. You deserve all the appreciation in the world today and always. ⚙️💖",
+                        "Happy Father's Day! I want to take this opportunity to express my deepest gratitude for everything you've done for me. From teaching me how to ride a bike to guiding me through life's big decisions, you've been there through it all. Your selflessness and dedication amaze me every day. Thank you for being the incredible father that you are. I love you more than I can say. 🌟🔧"
+                    ]
+                },
+                long: {
+                    heartfelt: [
+                        "Happy Father's Day to the man who means everything to me! As I reflect on my life, I realize that every good thing I am, every strength I possess, and every value I hold dear comes from you. You've been my first teacher, teaching me not just practical skills, but how to face challenges with courage, how to treat others with respect, and how to live with integrity. Your love has been my sanctuary through life's storms—a constant, unwavering presence that has given me the confidence to face any obstacle. I remember the countless hours you spent teaching me, the endless patience you showed during my difficult phases, and the unwavering belief you've always had in me, even when I doubted myself. You've sacrificed your own comforts at times to ensure I had opportunities, and for that, I am eternally grateful. Your wisdom has guided me, your strength has inspired me, and your love has transformed me. On this Father's Day, I want you to know that you are my greatest blessing, my most cherished mentor, and my forever hero. May this day bring you as much joy as you've brought into my life. I love you now, always, and forever. ❤️💪👑"
+                    ]
+                }
+            },
+            son: {
+                short: {
+                    respectful: [
+                        "Happy Father's Day from your son! You taught me what it means to be a man. Thank you, Dad. 👨‍👦",
+                        "To the best dad: Happy Father's Day! Thanks for showing me the way. 💪",
+                        "Happy Father's Day, Dad! Your example guides me every day. 🛡️"
+                    ]
+                }
+            },
+            daughter: {
+                short: {
+                    heartfelt: [
+                        "Happy Father's Day from your daughter! You're my first hero and forever protector. Love you! 👨‍👧",
+                        "To my amazing dad: Happy Father's Day! You set the standard for how I should be treated. 👑",
+                        "Happy Father's Day, Dad! You've given me strength and confidence. Forever grateful. 💖"
+                    ]
+                }
+            },
+            wife: {
+                short: {
+                    heartfelt: [
+                        "Happy Father's Day to the father of my children! You're an incredible dad and husband. ❤️",
+                        "To my wonderful husband: Happy Father's Day! Our children are blessed to have you. 👨‍👩‍👧‍👦",
+                        "Happy Father's Day! Watching you as a father fills my heart with love and pride. 💑"
+                    ]
+                }
+            }
+        };
+        
+        // Father type display terms
+        const fatherTerms = {
+            'father': 'Dad',
+            'grandfather': 'Grandpa',
+            'stepfather': 'Stepdad',
+            'fatherinlaw': 'Father-in-Law'
+        };
+        
+        // Relationship display terms
+        const relationshipTerms = {
+            'child': 'Your Child',
+            'son': 'Your Son',
+            'daughter': 'Your Daughter',
+            'wife': 'Your Wife'
+        };
+        
+        // Theme color configurations
+        const themeConfigs = {
+            1: {
+                name: "Navy Blue",
+                cardClass: "card-theme-1"
+            },
+            2: {
+                name: "Classic Brown",
+                cardClass: "card-theme-2"
+            },
+            3: {
+                name: "Forest Green",
+                cardClass: "card-theme-3"
+            },
+            4: {
+                name: "Charcoal Gray",
+                cardClass: "card-theme-4"
+            },
+            5: {
+                name: "Burnt Orange",
+                cardClass: "card-theme-5"
+            },
+            6: {
+                name: "Royal Blue",
+                cardClass: "card-theme-6"
+            },
+            7: {
+                name: "Mahogany",
+                cardClass: "card-theme-7"
+            }
+        };
+        
+        // Background patterns
+        const patterns = [
+            ['fas fa-star', 'fas fa-tools', 'fas fa-car', 'fas fa-star', 'fas fa-tools', 'fas fa-car'],
+            ['fas fa-anchor', 'fas fa-star', 'fas fa-shield-alt', 'fas fa-anchor', 'fas fa-star', 'fas fa-shield-alt'],
+            ['fas fa-car', 'fas fa-shield-alt', 'fas fa-star', 'fas fa-car', 'fas fa-shield-alt', 'fas fa-star'],
+            ['fas fa-shield-alt', 'fas fa-car', 'fas fa-anchor', 'fas fa-shield-alt', 'fas fa-car', 'fas fa-anchor']
+        ];
+        
+        // Initialize with a random wish
+        generateRandomWish();
+        createFloatingStars();
+        createRisingStars();
+        
+        // Event Listeners
+        fatherInput.addEventListener('input', updateWishPreview);
+        childInput.addEventListener('input', updateWishPreview);
+        wishTypeSelect.addEventListener('change', updateWishPreview);
+        customMessageTextarea.addEventListener('input', updateWishPreview);
+        senderNameInput.addEventListener('input', updateWishPreview);
+        
+        generateWishBtn.addEventListener('click', function() {
+            generateRandomWish();
+            createStarBurst();
+        });
+        
+        copyWishBtn.addEventListener('click', copyWishToClipboard);
+        shareWishBtn.addEventListener('click', shareWish);
+        
+        // Theme selection
+        themeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from all themes
+                themeOptions.forEach(opt => opt.classList.remove('active'));
+                // Add active class to clicked theme
+                this.classList.add('active');
+                
+                // Apply theme to card
+                const theme = this.getAttribute('data-theme');
+                applyTheme(theme);
+                
+                // Create star burst
+                createStarBurst();
+            });
+        });
+        
+        // Relationship selection
+        relationshipButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all relationship buttons
+                relationshipButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update current relationship
+                currentRelationship = this.getAttribute('data-relationship');
+                
+                // Update sender name if not customized
+                if (senderNameInput.value === "With Respect" || senderNameInput.value === "Your Child" || 
+                    senderNameInput.value === "Your Son" || senderNameInput.value === "Your Daughter" || 
+                    senderNameInput.value === "Your Wife") {
+                    senderNameInput.value = relationshipTerms[currentRelationship];
+                }
+                
+                // Regenerate wish with new relationship
+                generateRandomWish();
+                
+                // Create star burst
+                createStarBurst();
+            });
+        });
+        
+        // Father type selection
+        typeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all type buttons
+                typeButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update current type
+                currentType = this.getAttribute('data-type');
+                
+                // Update father input placeholder
+                const fatherInput = document.getElementById('fatherName');
+                fatherInput.placeholder = `Your ${fatherTerms[currentType]}'s Name`;
+                
+                // Regenerate wish with new type
+                generateRandomWish();
+            });
+        });
+        
+        // Length selection
+        lengthButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all length buttons
+                lengthButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update current length
+                currentLength = this.getAttribute('data-length');
+                
+                // Regenerate wish with new length
+                generateRandomWish();
+            });
+        });
+        
+        // Functions
+        function updateWishPreview() {
+            const father = fatherInput.value || fatherTerms[currentType];
+            const child = childInput.value || "Your Child";
+            const wishType = wishTypeSelect.value;
+            const customMessage = customMessageTextarea.value;
+            const senderName = senderNameInput.value || relationshipTerms[currentRelationship];
+            
+            // Update father name display
+            fatherNameDisplay.textContent = `TO MY HERO, ${father.toUpperCase()}`;
+            
+            // Update title
+            previewTitle.textContent = "HAPPY FATHER'S DAY!";
+            
+            // Update message based on wish type
+            if (wishType === 'custom') {
+                previewMessage.textContent = customMessage || "Happy Father's Day! Thank you for your strength, guidance, and unconditional love.";
+            }
+            
+            // Update footer
+            previewFooter.innerHTML = `With deepest respect,<br><span id="previewSender">${senderName}</span>`;
+            previewSender.textContent = senderName;
+        }
+        
+        function generateRandomWish() {
+            const father = fatherInput.value || fatherTerms[currentType];
+            const child = childInput.value || "Your Child";
+            const wishType = wishTypeSelect.value;
+            const senderName = senderNameInput.value || relationshipTerms[currentRelationship];
+            
+            // Update father name display
+            fatherNameDisplay.textContent = `TO MY HERO, ${father.toUpperCase()}`;
+            
+            // Update title
+            previewTitle.textContent = "HAPPY FATHER'S DAY!";
+            
+            // Get random wish based on type, relationship, and length
+            let wishText;
+            if (wishType === 'custom') {
+                wishText = customMessageTextarea.value || "Happy Father's Day! Thank you for your strength, guidance, and unconditional love.";
+            } else {
+                // Try to get templates for current relationship and length
+                let templates = wishTemplates[currentRelationship]?.[currentLength]?.[wishType];
+                
+                // If not found, try short length
+                if (!templates) {
+                    templates = wishTemplates[currentRelationship]?.short?.[wishType];
+                }
+                
+                // If still not found, use child templates
+                if (!templates) {
+                    templates = wishTemplates.child?.[currentLength]?.[wishType] || wishTemplates.child?.short?.[wishType];
+                }
+                
+                if (templates && templates.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * templates.length);
+                    wishText = templates[randomIndex];
+                } else {
+                    // Fallback message
+                    wishText = "Happy Father's Day! Thank you for your strength, guidance, and unconditional love. You are my hero and my greatest role model. Your wisdom has shaped me, your support has strengthened me, and your love has guided me through life's journey. 💪👑";
+                }
+            }
+            
+            // Update wish message
+            previewMessage.innerHTML = wishText;
+            
+            // Update footer with sender name
+            previewFooter.innerHTML = `With deepest respect,<br><span id="previewSender">${senderName}</span>`;
+            previewSender.textContent = senderName;
+            
+            // Update background pattern
+            updateBackgroundPattern();
+            
+            // Create star burst
+            createStarBurst();
+        }
+        
+        function applyTheme(themeNumber) {
+            const theme = themeConfigs[themeNumber];
+            
+            // Remove all theme classes from card
+            for (let i = 1; i <= 7; i++) {
+                wishCard.classList.remove(`card-theme-${i}`);
+            }
+            
+            // Add selected theme class to card
+            wishCard.classList.add(theme.cardClass);
+            
+            // Update background pattern
+            updateBackgroundPattern();
+        }
+        
+        function createFloatingStars() {
+            // Create 30 floating stars
+            for (let i = 0; i < 30; i++) {
+                const star = document.createElement('div');
+                star.className = 'floating-star';
+                star.innerHTML = '⭐';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 20}s`;
+                star.style.fontSize = `${Math.random() * 1 + 1}rem`;
+                star.style.opacity = `${Math.random() * 0.5 + 0.3}`;
+                floatingStars.appendChild(star);
+            }
+        }
+        
+        function createRisingStars() {
+            // Create rising stars continuously
+            setInterval(() => {
+                const star = document.createElement('div');
+                star.className = 'rising-star';
+                star.innerHTML = '⭐';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.fontSize = `${Math.random() * 1.5 + 1.5}rem`;
+                starRise.appendChild(star);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    star.remove();
+                }, 8000);
+            }, 500);
+        }
+        
+        function createStarBurst() {
+            // Create 20 stars for burst
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const star = document.createElement('div');
+                    star.className = 'rising-star';
+                    star.innerHTML = '⭐';
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.fontSize = `${Math.random() * 2 + 2}rem`;
+                    star.style.animationDuration = '4s';
+                    starRise.appendChild(star);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        star.remove();
+                    }, 4000);
+                }, i * 100);
+            }
+        }
+        
+        function updateBackgroundPattern() {
+            const patternIndex = Math.floor(Math.random() * patterns.length);
+            const patternIcons = patterns[patternIndex];
+            
+            let patternHTML = '';
+            patternIcons.forEach(icon => {
+                const size = Math.floor(Math.random() * 40) + 50;
+                const left = Math.floor(Math.random() * 85);
+                const top = Math.floor(Math.random() * 85);
+                const rotate = Math.floor(Math.random() * 360);
+                
+                patternHTML += `<i class="${icon}" style="position:absolute;left:${left}%;top:${top}%;font-size:${size}px;transform:rotate(${rotate}deg);"></i>`;
+            });
+            
+            cardPattern.innerHTML = patternHTML;
+        }
+        
+        function copyWishToClipboard() {
+            const father = fatherInput.value || fatherTerms[currentType];
+            const senderName = senderNameInput.value || relationshipTerms[currentRelationship];
+            
+            const wishText = `🏆 HAPPY FATHER'S DAY! 🏆
+
+TO MY HERO, ${father.toUpperCase()}
+
+${previewMessage.textContent}
+
+${previewFooter.textContent}
+
+Wishing you a powerful Father's Day filled with respect and love! 💪`;
+
+            navigator.clipboard.writeText(wishText).then(() => {
+                // Show copy confirmation
+                copyMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    copyMessage.classList.add('hidden');
+                }, 3000);
+                
+                // Create star burst
+                createStarBurst();
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy wish to clipboard. Please select and copy the text manually.');
+            });
+        }
+        
+        function shareWish() {
+            const father = fatherInput.value || fatherTerms[currentType];
+            const senderName = senderNameInput.value || relationshipTerms[currentRelationship];
+            
+            const wishText = `🏆 HAPPY FATHER'S DAY! 🏆
+
+TO MY HERO, ${father.toUpperCase()}
+
+${previewMessage.textContent}
+
+${previewFooter.textContent}
+
+Created with the Father's Day Wishes Generator - Share your respect! 💙`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Father\'s Day Wishes',
+                    text: wishText,
+                    url: window.location.href
+                })
+                .then(() => {
+                    console.log('Successful share');
+                    createStarBurst();
+                })
+                .catch((error) => console.log('Error sharing:', error));
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                copyWishToClipboard();
+                alert('Father\'s Day wish copied to clipboard! You can now paste it and share with your dad!');
+            }
+        }
+        
+        // Initialize with theme 1 and pattern
+        applyTheme(1);
+        updateBackgroundPattern();
+    </script>
+</body>
+</html>
