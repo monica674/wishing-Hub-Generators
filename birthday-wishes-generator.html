@@ -4,26 +4,97 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Wishes Generator 🎂 | Personalized Birthday Messages</title>
-<meta name="description" content="Generate personalized birthday wishes with name, music, fireworks, WhatsApp share, and downloadable birthday poster.">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
+/* Reset & base */
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:#000;color:#00ff7f;font-family:'Orbitron',sans-serif;text-align:center;overflow-x:hidden;}
-h1{font-family:'Pacifico',cursive;text-shadow:0 0 25px #00ff7f;margin-top:30px;}
-.container{max-width:820px;margin:40px auto;padding:30px;border:2px solid #00ff7f;border-radius:20px;box-shadow:0 0 40px #00ff7f66;}
-input,select{width:90%;padding:12px;margin:10px 0;border-radius:10px;border:none;font-size:16px;}
-button{padding:12px 25px;border:none;border-radius:25px;margin:8px;cursor:pointer;font-weight:700;transition:transform 0.2s;}
+h1{font-family:'Pacifico',cursive;text-shadow:0 0 25px #00ff7f;margin:30px 0;}
+.container{
+    max-width:820px;
+    width:95%;
+    margin:20px auto;
+    padding:20px;
+    border:2px solid #00ff7f;
+    border-radius:20px;
+    box-shadow:0 0 40px #00ff7f66;
+}
+input,select{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:10px;
+    border:none;
+    font-size:16px;
+}
+
+/* Buttons */
+button{
+    width:100%;
+    max-width:250px;
+    padding:12px 25px;
+    margin:10px auto;
+    display:block;
+    border:none;
+    border-radius:25px;
+    font-weight:700;
+    cursor:pointer;
+    transition:transform 0.2s;
+}
 button:hover{transform:scale(1.08);}
 .generate-btn{background:#00ff7f;color:#000;}
 .copy-btn{background:#ffcc00;color:#000;}
 .song-btn{background:#ff33cc;color:#fff;}
 .poster-btn{background:#00ccff;color:#000;}
-.whatsapp-btn{background:#25D366;color:#fff;font-weight:700;animation:pulse 1.8s infinite;box-shadow:0 0 20px #25D366;border:none;padding:12px 20px;border-radius:12px;cursor:pointer;position:fixed;bottom:20px;right:20px;z-index:9999;}
+.whatsapp-btn{
+    background:#25D366;
+    color:#fff;
+    font-weight:700;
+    animation:pulse 1.8s infinite;
+    box-shadow:0 0 20px #25D366;
+    border:none;
+    padding:12px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    position:fixed;
+    bottom:15px;
+    right:15px;
+    z-index:9999;
+    font-size:14px;
+}
 @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
-#wishBox{margin-top:20px;padding:20px;border:1px dashed #00ff7f;border-radius:10px;min-height:90px;font-size:1.2rem;}
-canvas#poster{margin-top:20px;border:2px solid #00ff7f;border-radius:12px;}
+
+/* Wish box */
+#wishBox{
+    margin-top:20px;
+    padding:20px;
+    border:1px dashed #00ff7f;
+    border-radius:10px;
+    min-height:90px;
+    font-size:1.2rem;
+    word-wrap:break-word;
+}
+
+/* Poster canvas */
+canvas#poster{
+    width:100% !important;
+    height:auto !important;
+    max-width:600px;
+    border:2px solid #00ff7f;
+    border-radius:12px;
+    margin-top:20px;
+}
+
+/* Fireworks */
 canvas#fireworks{position:fixed;inset:0;z-index:-1;}
 footer{margin:40px 0;font-size:.85rem;opacity:.7;}
+
+/* Mobile tweaks */
+@media screen and (max-width:500px){
+    h1{font-size:1.5rem;}
+    #wishBox{font-size:1rem;padding:15px;}
+    button{font-size:14px;padding:10px;}
+}
 </style>
 </head>
 <body>
@@ -34,31 +105,30 @@ footer{margin:40px 0;font-size:.85rem;opacity:.7;}
 <p>Create personalized birthday wishes with music, fireworks & posters</p>
 
 <div class="container">
-<input id="nameInput" placeholder="Enter Name">
-<select id="lang">
-<option value="en">English</option>
-<option value="ur">Urdu</option>
-<option value="hi">Hindi</option>
-</select>
+    <input id="nameInput" placeholder="Enter Name">
+    <select id="lang">
+        <option value="en">English</option>
+        <option value="ur">Urdu</option>
+        <option value="hi">Hindi</option>
+    </select>
 
-<button class="generate-btn" onclick="generateWish()">Generate Wish</button>
-<button class="copy-btn" onclick="copyWish()">Copy</button>
-<button class="song-btn" onclick="playSong()">🎵 Song</button>
+    <button class="generate-btn" onclick="generateWish()">Generate Wish</button>
+    <button class="copy-btn" onclick="copyWish()">Copy</button>
+    <button class="song-btn" onclick="playSong()">🎵 Song</button>
 
-<div id="wishBox"></div>
+    <div id="wishBox"></div>
 
-<h3>🎨 Birthday Poster</h3>
-<button class="poster-btn" onclick="generatePoster()">Generate Poster</button>
-<button class="poster-btn" onclick="downloadPoster()">Download Poster</button>
-<canvas id="poster" width="600" height="420"></canvas>
+    <h3>🎨 Birthday Poster</h3>
+    <button class="poster-btn" onclick="generatePoster()">Generate Poster</button>
+    <button class="poster-btn" onclick="downloadPoster()">Download Poster</button>
+    <canvas id="poster" width="600" height="420"></canvas>
 </div>
 
 <footer>© 2026 Birthday Wishes Generator</footer>
-
 <button class="whatsapp-btn" onclick="shareWhatsApp()">📱 Share on WhatsApp</button>
 
 <audio id="song" preload="auto">
-<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_8e8b5b71b7.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_8e8b5b71b7.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -114,10 +184,10 @@ function shareWhatsApp(){
     if(!wishText){alert("Generate a wish first!"); return;}
     const name = document.getElementById("nameInput").value || "Dear";
 
-    const fullMessage = `${wishText}\n\nFrom: ${name}\n\nShare your own Birthday card: https://monica674.github.io/wishing-Hub-Generators/birthday-wishes-generator.html`;
+    const fullMessage = `${wishText}\n\nFrom: ${name}\n\nShare your own Birthday card: https://monica674.github.io/wishing-Hub-Generators/birthday-wishes-generator.html`; 
+    // <-- Replace this URL with your actual GitHub Pages URL
 
-    const encodedText = encodeURIComponent(fullMessage);
-    window.open(`https://api.whatsapp.com/send?text=${encodedText}`,"_blank");
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(fullMessage)}`,"_blank");
 }
 
 // ===== POSTER =====
@@ -125,6 +195,7 @@ const p=document.getElementById("poster");
 const ctx=p.getContext("2d");
 
 function generatePoster(){
+    // Background gradient
     const gradient=ctx.createLinearGradient(0,0,p.width,p.height);
     gradient.addColorStop(0,"#ff6a00");
     gradient.addColorStop(0.5,"#ff2f92");
@@ -132,6 +203,7 @@ function generatePoster(){
     ctx.fillStyle=gradient;
     ctx.fillRect(0,0,p.width,p.height);
 
+    // Confetti
     for(let i=0;i<120;i++){
         ctx.fillStyle=`hsl(${Math.random()*360},100%,60%)`;
         ctx.beginPath();
@@ -139,6 +211,7 @@ function generatePoster(){
         ctx.fill();
     }
 
+    // Neon border
     ctx.strokeStyle="#ffffff";
     ctx.lineWidth=4;
     ctx.shadowColor="#ffffff";
@@ -146,6 +219,7 @@ function generatePoster(){
     ctx.strokeRect(12,12,p.width-24,p.height-24);
     ctx.shadowBlur=0;
 
+    // Title
     ctx.font="42px 'Great Vibes'";
     ctx.fillStyle="#fff700";
     ctx.textAlign="center";
@@ -154,17 +228,28 @@ function generatePoster(){
     ctx.fillText("🎉 HAPPY BIRTHDAY 🎂",p.width/2,70);
     ctx.shadowBlur=0;
 
-    const text=wishBox.innerText||"Make a Wish!";
-    drawWrappedText(ctx,text,p.width/2,150,p.width-100,32);
+    // Centered wish text
+    const text = wishBox.innerText || "Make a Wish!";
+    const lines = wrapTextToLines(ctx,text,p.width-100);
+    const totalHeight = lines.length * 32;
+    let startY = (p.height - totalHeight)/2 + 50;
 
+    ctx.font="24px 'Trebuchet MS'";
+    ctx.fillStyle="#00ff7f";
+    ctx.textAlign="center";
+    lines.forEach((line,i)=>{
+        ctx.fillText(line,p.width/2,startY + i*32);
+    });
+
+    // Footer
     ctx.font="14px Arial";
     ctx.fillStyle="#ffffffcc";
     ctx.textAlign="center";
     ctx.fillText("🎁 Birthday Wishes Generator",p.width/2,p.height-30);
 }
 
-// ===== CENTERED WRAP TEXT =====
-function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight){
+// Helper to wrap text
+function wrapTextToLines(ctx,text,maxWidth){
     const words=text.split(" ");
     let line="";
     let lines=[];
@@ -173,13 +258,10 @@ function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight){
         if(ctx.measureText(test).width>maxWidth){
             lines.push(line.trim());
             line=words[i]+" ";
-        }else line=test;
+        } else line=test;
     }
     lines.push(line.trim());
-    ctx.textAlign="center";
-    lines.forEach((ln,i)=>{
-        ctx.fillText(ln, x, y + i*lineHeight);
-    });
+    return lines;
 }
 
 // ===== DOWNLOAD POSTER =====
