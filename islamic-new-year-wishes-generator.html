@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Islamic New Year Wishes Generator | Muharram 1446</title>
+    <meta name="description" content="Create beautiful Islamic New Year (Hijri) greeting cards with black & green theme. Generate personalized Islamic wishes for Muharram.">
+    <meta name="keywords" content="Islamic New Year, Hijri, Muharram, Islamic wishes, Muslim festival, Islamic greeting cards">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #00FF11;
+            --primary-dark: #00CC0E;
+            --primary-light: rgba(0, 255, 17, 0.1);
+            --gold: #D4AF37;
+            --black: #000000;
+            --dark-gray: #111111;
+            --gray: #222222;
+            --light-gray: #333333;
+            --white: #FFFFFF;
+            --text: #F0F0F0;
+            --text-secondary: #AAAAAA;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--black);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 17, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 255, 17, 0.05) 0%, transparent 20%);
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.85));
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--primary), 
+                var(--primary), 
+                var(--primary), 
+                transparent);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo-icon {
+            color: var(--primary);
+            font-size: 2.8rem;
+            text-shadow: 0 0 20px var(--primary);
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .logo-text {
+            font-family: 'Amiri', serif;
+            font-size: 3.2rem;
+            background: linear-gradient(45deg, var(--primary), #D4FFD6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 25px rgba(0, 255, 17, 0.3);
+            line-height: 1.2;
+        }
+        
+        .logo-arabic {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-top: 5px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 1rem;
+        }
+        
+        .hijri-date {
+            background: rgba(0, 255, 17, 0.1);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-family: 'Amiri', serif;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2.5rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Panel Styling */
+        .panel {
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 20px;
+            border: 1px solid var(--light-gray);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .panel-header {
+            background: linear-gradient(90deg, var(--gray), var(--dark-gray));
+            padding: 1.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .panel-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .panel-title i {
+            font-size: 1.3rem;
+        }
+        
+        .panel-content {
+            padding: 2rem;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-label i {
+            color: var(--primary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: var(--black);
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 255, 17, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 130px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+        
+        /* Wish Templates */
+        .wish-templates {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+        
+        .wish-template {
+            background: var(--black);
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        
+        .wish-template:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 255, 17, 0.15);
+        }
+        
+        .wish-template.active {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Arabic Options */
+        .arabic-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .arabic-btn {
+            background: var(--black);
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Amiri', serif;
+            font-size: 1rem;
+        }
+        
+        .arabic-btn:hover {
+            border-color: var(--primary);
+        }
+        
+        .arabic-btn.active {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Color Palette */
+        .color-palette {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-option.active {
+            border-color: var(--white);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px currentColor;
+        }
+        
+        .color-option::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            opacity: 0;
+        }
+        
+        .color-option.active::after {
+            opacity: 1;
+        }
+        
+        /* Card Styles */
+        .card-styles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 12px;
+        }
+        
+        .card-style {
+            background: var(--black);
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .card-style:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .card-style.active {
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+        
+        .card-style-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+        
+        /* Preview Panel */
+        .preview-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-preview {
+            flex-grow: 1;
+            background: var(--black);
+            border-radius: 25px;
+            border: 2px solid var(--primary);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 20px 50px rgba(0, 255, 17, 0.1);
+            position: relative;
+            overflow: hidden;
+            min-height: 550px;
+            background-image: 
+                linear-gradient(135deg, transparent 65%, rgba(0, 255, 17, 0.03) 65%),
+                linear-gradient(225deg, transparent 65%, rgba(0, 255, 17, 0.03) 65%);
+        }
+        
+        /* Islamic Patterns */
+        .islamic-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-greeting {
+            font-family: 'Amiri', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-shadow: 0 0 15px rgba(0, 255, 17, 0.3);
+        }
+        
+        .card-greeting-arabic {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 1rem;
+            direction: rtl;
+        }
+        
+        .card-message {
+            font-size: 1.3rem;
+            text-align: center;
+            line-height: 1.8;
+            padding: 1.8rem;
+            background: rgba(0, 255, 17, 0.05);
+            border-radius: 15px;
+            border-right: 4px solid var(--primary);
+            margin-bottom: 2rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .card-message-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            direction: rtl;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-sender, .card-recipient {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        
+        .card-hijri {
+            color: var(--gold);
+            font-family: 'Amiri', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            min-width: 170px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: var(--black);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 255, 17, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+        }
+        
+        .btn-tertiary {
+            background: var(--gray);
+            color: var(--text);
+        }
+        
+        .btn-tertiary:hover {
+            background: var(--light-gray);
+            transform: translateY(-3px);
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #1da851;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* File Name Input */
+        .filename-input {
+            margin-top: 1.8rem;
+            padding: 1.5rem;
+            background: var(--gray);
+            border-radius: 15px;
+            border: 1px solid var(--light-gray);
+        }
+        
+        .filename-preview {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 18px;
+            background: var(--black);
+            border-radius: 10px;
+            color: var(--primary);
+            font-family: monospace;
+            font-size: 0.95rem;
+            border: 1px solid var(--light-gray);
+        }
+        
+        /* Features */
+        .features {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--light-gray);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+        
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding: 2.5rem 1.5rem;
+            background: rgba(20, 20, 20, 0.9);
+            border-top: 1px solid var(--light-gray);
+            text-align: center;
+        }
+        
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .arabic-blessing {
+            font-family: 'Amiri', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 1rem 0;
+            direction: rtl;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            
+            .panel-content {
+                padding: 1.5rem;
+            }
+            
+            .card-preview {
+                padding: 2rem;
+                min-height: 500px;
+            }
+            
+            .card-greeting {
+                font-size: 2.2rem;
+            }
+            
+            .card-message {
+                font-size: 1.1rem;
+                padding: 1.2rem;
+            }
+            
+            .btn {
+                min-width: 150px;
+                padding: 0.9rem 1.5rem;
+            }
+            
+            .action-buttons {
+                justify-content: center;
+            }
+            
+            .wish-templates {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-mosque logo-icon"></i>
+            <div>
+                <h1 class="logo-text">Islamic New Year Wishes Generator</h1>
+                <div class="logo-arabic">مُولد مُبارك</div>
+            </div>
+            <i class="fas fa-star-and-crescent logo-icon"></i>
+        </div>
+        <p class="tagline">Create beautiful Islamic New Year (Hijri 1446) greeting cards with spiritual blessings and prayers</p>
+        <div class="hijri-date">Muharram 1446 AH | Islamic New Year</div>
+    </header>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Customization Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title"><i class="fas fa-sliders-h"></i> Customize Your Islamic Card</h2>
+                <span style="color: var(--primary); font-weight: 500;" id="charCount">0/500</span>
+            </div>
+            <div class="panel-content">
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-user"></i> Your Name</label>
+                    <input type="text" class="form-control" id="senderName" placeholder="Enter your name" value="From: Abdullah">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-users"></i> Recipient Name</label>
+                    <input type="text" class="form-control" id="recipientName" placeholder="Enter recipient name" value="To: Family & Friends">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-pray"></i> Islamic New Year Wish</label>
+                    <textarea class="form-control" id="message" placeholder="Write your Islamic New Year wish...">May Allah bless you with happiness, peace, and prosperity in the new Hijri year. May this new beginning bring you closer to Allah and fill your life with barakah.</textarea>
+                    
+                    <div class="wish-templates">
+                        <div class="wish-template active" data-wish="May Allah bless you with happiness, peace, and prosperity in the new Hijri year. May this new beginning bring you closer to Allah and fill your life with barakah.">Traditional Blessing</div>
+                        <div class="wish-template" data-wish="As we welcome the new Hijri year, may Allah accept our good deeds, forgive our sins, and guide us to the straight path. Ameen.">Spiritual Guidance</div>
+                        <div class="wish-template" data-wish="May the new Islamic year bring you peace, happiness, and prosperity. May Allah shower His blessings upon you and your family.">Peace & Prosperity</div>
+                        <div class="wish-template" data-wish="On this blessed occasion of Islamic New Year, may Allah grant you success in this world and the hereafter. May your faith strengthen with each passing day.">Success & Faith</div>
+                        <div class="wish-template" data-wish="Wishing you and your family a blessed Islamic New Year. May Allah's mercy and blessings be with you throughout the coming year.">Family Blessings</div>
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <label class="form-label"><i class="fas fa-language"></i> Language Style</label>
+                        <div class="arabic-options">
+                            <button class="arabic-btn active" id="englishBtn">English</button>
+                            <button class="arabic-btn" id="arabicBtn">Arabic</button>
+                            <button class="arabic-btn" id="bilingualBtn">Bilingual</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-palette"></i> Accent Color</label>
+                    <div class="color-palette">
+                        <div class="color-option active" style="background-color: #00FF11;" data-color="#00FF11"></div>
+                        <div class="color-option" style="background-color: #D4AF37;" data-color="#D4AF37"></div>
+                        <div class="color-option" style="background-color: #2E8B57;" data-color="#2E8B57"></div>
+                        <div class="color-option" style="background-color: #4D96FF;" data-color="#4D96FF"></div>
+                        <div class="color-option" style="background-color: #9D4EDD;" data-color="#9D4EDD"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-layer-group"></i> Card Design</label>
+                    <div class="card-styles">
+                        <div class="card-style active" data-style="modern">
+                            <i class="fas fa-gem card-style-icon"></i>
+                            <div>Modern</div>
+                        </div>
+                        <div class="card-style" data-style="traditional">
+                            <i class="fas fa-mosque card-style-icon"></i>
+                            <div>Traditional</div>
+                        </div>
+                        <div class="card-style" data-style="minimal">
+                            <i class="fas fa-minimize card-style-icon"></i>
+                            <div>Minimal</div>
+                        </div>
+                        <div class="card-style" data-style="elegant">
+                            <i class="fas fa-crown card-style-icon"></i>
+                            <div>Elegant</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filename-input">
+                    <label class="form-label"><i class="fas fa-file-download"></i> Download File Name</label>
+                    <input type="text" class="form-control" id="filename" placeholder="Enter file name for download" value="Islamic_New_Year_Wishes">
+                    <div class="filename-preview">File will be saved as: <span id="filenamePreview">Islamic_New_Year_Wishes.png</span></div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="generateBtn">
+                        <i class="fas fa-magic"></i> Generate Card
+                    </button>
+                    <button class="btn btn-secondary" id="resetBtn">
+                        <i class="fas fa-redo"></i> Reset All
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Preview Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title"><i class="fas fa-eye"></i> Card Preview</h2>
+                <span style="color: var(--primary); font-weight: 500;" id="cardStyleBadge">Modern Design</span>
+            </div>
+            <div class="panel-content preview-container">
+                <div class="preview-header">
+                    <h3 style="color: var(--text);">Your Islamic New Year Card</h3>
+                    <span style="color: var(--gold); font-family: 'Amiri', serif;">مُبارك</span>
+                </div>
+                
+                <div class="card-preview" id="cardPreview">
+                    <!-- Islamic Pattern Background -->
+                    <div class="islamic-pattern"></div>
+                    
+                    <!-- Card Content -->
+                    <div class="card-content">
+                        <div class="card-greeting-arabic" id="previewGreetingArabic">سَنَة هِجْرِيَّة مُبارَكة</div>
+                        <h1 class="card-greeting" id="previewGreeting">Happy Islamic New Year</h1>
+                        
+                        <div class="card-message" id="previewMessage">
+                            May Allah bless you with happiness, peace, and prosperity in the new Hijri year. May this new beginning bring you closer to Allah and fill your life with barakah.
+                        </div>
+                        
+                        <div class="card-message card-message-arabic" id="previewMessageArabic" style="display: none;">
+                            بَارَكَ اللهُ لَكَ فِي السَّنَةِ الْهِجْرِيَّةِ الْجَدِيدَةِ، وَجَعَلَهَا سَنَةَ خَيْرٍ وَبَرَكَةٍ وَسَعَادَةٍ
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer">
+                        <div class="card-sender" id="previewSender">From: Abdullah</div>
+                        <div class="card-hijri" id="previewHijri">Muharram 1446 AH</div>
+                        <div class="card-recipient" id="previewRecipient">To: Family & Friends</div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="downloadBtn">
+                        <i class="fas fa-download"></i> Download Card
+                    </button>
+                    <button class="btn btn-whatsapp" id="whatsappBtn">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </button>
+                    <button class="btn btn-tertiary" id="copyBtn">
+                        <i class="fas fa-copy"></i> Copy Text
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <h2 style="text-align: center; color: var(--primary); margin-bottom: 1rem; font-size: 2rem;">Features of Our Islamic Generator</h2>
+        <p style="text-align: center; color: var(--text-secondary); max-width: 800px; margin: 0 auto 2.5rem;">
+            Create spiritually meaningful Islamic New Year cards with authentic blessings and prayers
+        </p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-quran feature-icon"></i>
+                <h3 class="feature-title">Authentic Islamic Wishes</h3>
+                <p class="feature-desc">Carefully curated Islamic blessings and duas for the Hijri New Year with authentic Arabic phrases.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-palette feature-icon"></i>
+                <h3 class="feature-title">Islamic Design Elements</h3>
+                <p class="feature-desc">Beautiful Islamic patterns, Arabic calligraphy, and traditional color schemes for authentic cards.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-language feature-icon"></i>
+                <h3 class="feature-title">Arabic & English Support</h3>
+                <p class="feature-desc">Create cards in English, Arabic, or bilingual format with proper Arabic script and formatting.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-share-alt feature-icon"></i>
+                <h3 class="feature-title">Easy Sharing</h3>
+                <p class="feature-desc">Share your Islamic wishes via WhatsApp, download as high-quality images, or copy text.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="arabic-blessing">تَقَبَّلَ اللهُ مِنَّا وَمِنكُمْ</div>
+        <p class="footer-text">© 2023 Islamic New Year Wishes Generator | Create, Customize, and Share Beautiful Islamic Greeting Cards</p>
+        <p class="footer-text">May Allah accept our good deeds and bless us in the new Hijri year. آمين</p>
+        <p class="footer-text" style="margin-top: 1rem; color: var(--primary);">
+            <i class="fas fa-info-circle"></i> This tool is designed to help Muslims share blessings during the Islamic New Year
+        </p>
+    </footer>
+    
+    <!-- Include html2canvas -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const senderNameInput = document.getElementById('senderName');
+            const recipientNameInput = document.getElementById('recipientName');
+            const messageInput = document.getElementById('message');
+            const filenameInput = document.getElementById('filename');
+            const generateBtn = document.getElementById('generateBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const charCount = document.getElementById('charCount');
+            
+            // Language buttons
+            const englishBtn = document.getElementById('englishBtn');
+            const arabicBtn = document.getElementById('arabicBtn');
+            const bilingualBtn = document.getElementById('bilingualBtn');
+            
+            // Preview elements
+            const previewGreeting = document.getElementById('previewGreeting');
+            const previewGreetingArabic = document.getElementById('previewGreetingArabic');
+            const previewMessage = document.getElementById('previewMessage');
+            const previewMessageArabic = document.getElementById('previewMessageArabic');
+            const previewSender = document.getElementById('previewSender');
+            const previewRecipient = document.getElementById('previewRecipient');
+            const previewHijri = document.getElementById('previewHijri');
+            const filenamePreview = document.getElementById('filenamePreview');
+            const cardPreview = document.getElementById('cardPreview');
+            const cardStyleBadge = document.getElementById('cardStyleBadge');
+            
+            // Template elements
+            const wishTemplates = document.querySelectorAll('.wish-template');
+            const colorOptions = document.querySelectorAll('.color-option');
+            const cardStyles = document.querySelectorAll('.card-style');
+            
+            // Current settings
+            let currentColor = '#00FF11';
+            let currentStyle = 'modern';
+            let currentLanguage = 'english';
+            
+            // Arabic wishes data
+            const arabicWishes = [
+                "بَارَكَ اللهُ لَكَ فِي السَّنَةِ الْهِجْرِيَّةِ الْجَدِيدَةِ، وَجَعَلَهَا سَنَةَ خَيْرٍ وَبَرَكَةٍ وَسَعَادَةٍ",
+                "تَقَبَّلَ اللهُ مِنَّا وَمِنكُمْ صَالِحَ الأَعْمَالِ، وَجَعَلَ السَّنَةَ الْجَدِيدَةَ سَنَةَ نَجَاحٍ وَفَلاحٍ",
+                "كُلَّ عَامٍ وَأَنْتُمْ بِخَيْرٍ، وَجَعَلَ اللهُ السَّنَةَ الْجَدِيدَةَ مَليئَةً بِالرَّحْمَةِ وَالْمَغْفِرَةِ",
+                "أَسْأَلُ اللهَ أَنْ يَجْعَلَ هَذِهِ السَّنَةَ سَنَةَ فَرَجٍ وَيُسْرٍ لِجَمِيعِ المُسْلِمِينَ",
+                "مُبارَكٌ عَلَيْكُمُ الْعَامُ الْجَدِيدُ، رَزَقَنَا اللهُ وَإِيَّاكُمْ الْإِيمَانَ وَالتَّقْوَى"
+            ];
+            
+            // Initialize
+            function init() {
+                updatePreview();
+                updateFilenamePreview();
+                updateCharCount();
+                
+                // Event listeners
+                wishTemplates.forEach((template, index) => {
+                    template.addEventListener('click', function() {
+                        wishTemplates.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        const wishText = this.getAttribute('data-wish');
+                        messageInput.value = wishText;
+                        
+                        // Set corresponding Arabic wish
+                        if (index < arabicWishes.length) {
+                            previewMessageArabic.textContent = arabicWishes[index];
+                        }
+                        
+                        updatePreview();
+                        updateCharCount();
+                    });
+                });
+                
+                colorOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        colorOptions.forEach(opt => opt.classList.remove('active'));
+                        this.classList.add('active');
+                        currentColor = this.getAttribute('data-color');
+                        updatePreview();
+                    });
+                });
+                
+                cardStyles.forEach(style => {
+                    style.addEventListener('click', function() {
+                        cardStyles.forEach(s => s.classList.remove('active'));
+                        this.classList.add('active');
+                        currentStyle = this.getAttribute('data-style');
+                        cardStyleBadge.textContent = this.textContent.trim() + ' Design';
+                        updatePreview();
+                    });
+                });
+                
+                // Language buttons
+                englishBtn.addEventListener('click', function() {
+                    setLanguage('english');
+                });
+                
+                arabicBtn.addEventListener('click', function() {
+                    setLanguage('arabic');
+                });
+                
+                bilingualBtn.addEventListener('click', function() {
+                    setLanguage('bilingual');
+                });
+                
+                generateBtn.addEventListener('click', updatePreview);
+                
+                resetBtn.addEventListener('click', function() {
+                    senderNameInput.value = 'From: Abdullah';
+                    recipientNameInput.value = 'To: Family & Friends';
+                    messageInput.value = 'May Allah bless you with happiness, peace, and prosperity in the new Hijri year. May this new beginning bring you closer to Allah and fill your life with barakah.';
+                    filenameInput.value = 'Islamic_New_Year_Wishes';
+                    
+                    // Reset templates
+                    wishTemplates.forEach(t => t.classList.remove('active'));
+                    wishTemplates[0].classList.add('active');
+                    previewMessageArabic.textContent = arabicWishes[0];
+                    
+                    // Reset colors
+                    colorOptions.forEach(opt => opt.classList.remove('active'));
+                    colorOptions[0].classList.add('active');
+                    currentColor = '#00FF11';
+                    
+                    // Reset styles
+                    cardStyles.forEach(s => s.classList.remove('active'));
+                    cardStyles[0].classList.add('active');
+                    currentStyle = 'modern';
+                    cardStyleBadge.textContent = 'Modern Design';
+                    
+                    // Reset language
+                    setLanguage('english');
+                    
+                    updatePreview();
+                    updateFilenamePreview();
+                    updateCharCount();
+                    
+                    showNotification('Reset Complete', 'All settings have been reset to default values.');
+                });
+                
+                downloadBtn.addEventListener('click', downloadCard);
+                whatsappBtn.addEventListener('click', shareToWhatsApp);
+                copyBtn.addEventListener('click', copyWishText);
+                
+                // Input events
+                filenameInput.addEventListener('input', updateFilenamePreview);
+                senderNameInput.addEventListener('input', updatePreview);
+                recipientNameInput.addEventListener('input', updatePreview);
+                messageInput.addEventListener('input', function() {
+                    updateCharCount();
+                    updatePreview();
+                });
+            }
+            
+            function setLanguage(lang) {
+                currentLanguage = lang;
+                
+                // Update button states
+                englishBtn.classList.remove('active');
+                arabicBtn.classList.remove('active');
+                bilingualBtn.classList.remove('active');
+                
+                if (lang === 'english') {
+                    englishBtn.classList.add('active');
+                    previewMessage.style.display = 'block';
+                    previewMessageArabic.style.display = 'none';
+                    previewGreetingArabic.style.display = 'none';
+                } else if (lang === 'arabic') {
+                    arabicBtn.classList.add('active');
+                    previewMessage.style.display = 'none';
+                    previewMessageArabic.style.display = 'block';
+                    previewGreetingArabic.style.display = 'block';
+                    previewGreeting.style.display = 'none';
+                } else {
+                    bilingualBtn.classList.add('active');
+                    previewMessage.style.display = 'block';
+                    previewMessageArabic.style.display = 'block';
+                    previewGreetingArabic.style.display = 'block';
+                    previewGreeting.style.display = 'block';
+                }
+                
+                updatePreview();
+            }
+            
+            function updateCharCount() {
+                const count = messageInput.value.length;
+                charCount.textContent = `${count}/500`;
+                charCount.style.color = count > 500 ? '#FF6B6B' : currentColor;
+            }
+            
+            function updateFilenamePreview() {
+                const filename = filenameInput.value.trim() || 'Islamic_New_Year_Wishes';
+                filenamePreview.textContent = `${filename}.png`;
+            }
+            
+            function updatePreview() {
+                // Update text content
+                previewSender.textContent = senderNameInput.value || 'From: Your Name';
+                previewRecipient.textContent = recipientNameInput.value || 'To: Recipient';
+                previewMessage.textContent = messageInput.value || 'Wishing you a blessed Islamic New Year';
+                
+                // Update colors
+                previewGreeting.style.color = currentColor;
+                previewMessage.style.borderRightColor = currentColor;
+                cardPreview.style.borderColor = currentColor;
+                cardPreview.style.boxShadow = `0 20px 50px ${hexToRgba(currentColor, 0.1)}`;
+                
+                // Update greeting based on style
+                if (currentStyle === 'traditional') {
+                    previewGreeting.textContent = 'Blessed Islamic New Year';
+                    previewGreeting.style.fontFamily = "'Amiri', serif";
+                    previewGreeting.style.fontSize = '2.8rem';
+                } else if (currentStyle === 'minimal') {
+                    previewGreeting.textContent = 'Happy Hijri New Year';
+                    previewGreeting.style.fontFamily = "'Poppins', sans-serif";
+                    previewGreeting.style.fontSize = '2.5rem';
+                } else if (currentStyle === 'elegant') {
+                    previewGreeting.textContent = 'Islamic New Year Mubarak';
+                    previewGreeting.style.fontFamily = "'Amiri', serif";
+                    previewGreeting.style.fontSize = '2.8rem';
+                    previewGreeting.style.color = '#D4AF37'; // Gold color for elegant
+                } else {
+                    previewGreeting.textContent = 'Happy Islamic New Year';
+                    previewGreeting.style.fontFamily = "'Amiri', serif";
+                    previewGreeting.style.fontSize = '3rem';
+                }
+                
+                // Update Hijri date display
+                if (currentStyle === 'traditional') {
+                    previewHijri.textContent = '١ مُحَرَّم ١٤٤٦ هـ';
+                } else {
+                    previewHijri.textContent = 'Muharram 1446 AH';
+                }
+            }
+            
+            function hexToRgba(hex, alpha) {
+                hex = hex.replace('#', '');
+                const r = parseInt(hex.substring(0, 2), 16);
+                const g = parseInt(hex.substring(2, 4), 16);
+                const b = parseInt(hex.substring(4, 6), 16);
+                return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+            }
+            
+            function downloadCard() {
+                const filename = filenameInput.value.trim() || 'Islamic_New_Year_Wishes';
+                
+                // Show loading
+                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+                downloadBtn.disabled = true;
+                
+                html2canvas(cardPreview, {
+                    backgroundColor: '#000000',
+                    scale: 2,
+                    useCORS: true,
+                    logging: false
+                }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+                    const link = document.createElement('a');
+                    link.href = imgData;
+                    link.download = `${filename}.png`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Reset button
+                    downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download Card';
+                    downloadBtn.disabled = false;
+                    
+                    showNotification('Download Complete', `Your Islamic New Year card has been saved as "${filename}.png"`);
+                }).catch(error => {
+                    console.error('Error:', error);
+                    downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download Card';
+                    downloadBtn.disabled = false;
+                    showNotification('Error', 'Failed to generate card. Please try again.', true);
+                });
+            }
+            
+            function shareToWhatsApp() {
+                const message = messageInput.value;
+                const sender = senderNameInput.value || 'Your Name';
+                const recipient = recipientNameInput.value || 'Recipient';
+                
+                let shareText;
+                
+                if (currentLanguage === 'arabic') {
+                    shareText = `📿 *تَهَانِينَا بِمناسبة السنة الهجرية الجديدة* 📿\n\n${previewMessageArabic.textContent}\n\n${sender}\n\nمُنشأ بِمُولِّد التهاني الإسلامية`;
+                } else if (currentLanguage === 'bilingual') {
+                    shareText = `📿 *Islamic New Year Greetings* 📿\n\n${message}\n\n${previewMessageArabic.textContent}\n\n${sender}\n\nCreated with Islamic New Year Wishes Generator`;
+                } else {
+                    shareText = `📿 *Islamic New Year Greetings* 📿\n\n${message}\n\n${sender}\n\nCreated with Islamic New Year Wishes Generator`;
+                }
+                
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+                window.open(whatsappUrl, '_blank');
+                
+                showNotification('WhatsApp Ready', 'Your Islamic wish is ready to share!');
+            }
+            
+            function copyWishText() {
+                const message = messageInput.value;
+                const sender = senderNameInput.value || 'Your Name';
+                const recipient = recipientNameInput.value || 'Recipient';
+                
+                let textToCopy;
+                
+                if (currentLanguage === 'arabic') {
+                    textToCopy = `إلى: ${recipient}\n\n${previewMessageArabic.textContent}\n\n${sender}`;
+                } else if (currentLanguage === 'bilingual') {
+                    textToCopy = `To: ${recipient}\n\n${message}\n\n${previewMessageArabic.textContent}\n\n${sender}`;
+                } else {
+                    textToCopy = `To: ${recipient}\n\n${message}\n\n${sender}`;
+                }
+                
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    showNotification('Copied!', 'Islamic wish copied to clipboard');
+                }).catch(err => {
+                    console.error('Copy failed:', err);
+                    showNotification('Error', 'Failed to copy text', true);
+                });
+            }
+            
+            function showNotification(title, message, isError = false) {
+                // Create toast notification
+                const toast = document.createElement('div');
+                toast.style.cssText = `
+                    position: fixed;
+                    bottom: 30px;
+                    right: 30px;
+                    background: ${isError ? '#2a1a1a' : '#1a2a1a'};
+                    border-left: 5px solid ${isError ? '#FF6B6B' : currentColor};
+                    padding: 1rem 1.5rem;
+                    border-radius: 10px;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    z-index: 1000;
+                    max-width: 350px;
+                    animation: slideIn 0.3s ease;
+                `;
+                
+                toast.innerHTML = `
+                    <i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-check-circle'}" 
+                       style="color: ${isError ? '#FF6B6B' : currentColor}; font-size: 1.3rem;"></i>
+                    <div>
+                        <strong>${title}</strong>
+                        <p style="margin-top: 5px; font-size: 0.9rem; opacity: 0.9;">${message}</p>
+                    </div>
+                `;
+                
+                document.body.appendChild(toast);
+                
+                // Remove after 4 seconds
+                setTimeout(() => {
+                    toast.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 300);
+                }, 4000);
+                
+                // Add CSS animations
+                if (!document.getElementById('toast-animations')) {
+                    const style = document.createElement('style');
+                    style.id = 'toast-animations';
+                    style.textContent = `
+                        @keyframes slideIn {
+                            from { transform: translateX(100%); opacity: 0; }
+                            to { transform: translateX(0); opacity: 1; }
+                        }
+                        @keyframes slideOut {
+                            from { transform: translateX(0); opacity: 1; }
+                            to { transform: translateX(100%); opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+            
+            // Initialize the app
+            init();
+        });
+    </script>
+</body>
+</html>
