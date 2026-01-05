@@ -482,315 +482,68 @@ body {
     </div>
 </footer>
 
-<!-- Tool Cards Section -->
-<div class="tools-grid">
-    <!-- Birthday -->
-    <div class="tool-card" data-category="birthday">
-        <a href="birthday-wishes-generator.html">
-            <div class="tool-icon">🎂</div>
-            <h3>Birthday Wishes Generator</h3>
-            <p>Create perfect birthday messages</p>
-            <span class="badge trending">🔥 Trending</span>
-        </a>
-    </div>
+// All Tools Data Array
+const allTools = [
+    {name: "Birthday Wishes Generator", file: "birthday-wishes-generator.html", cat: "birthday", badge: "🔥 Trending"},
+    {name: "Anniversary Wishes Generator Pro", file: "anniversary-wishes-generator-pro.html", cat: "event", badge: "❤️ Popular"},
+    {name: "Eid Mubarak Wishes Generator", file: "eid-wishes-generator-pro.html", cat: "festival", badge: "✨ New"},
+    {name: "Festival Wishes Generator Pro", file: "festival-wishes-generator-pro.html", cat: "festival"},
+    {name: "Christmas Wishes Generator Pro", file: "christmas-wishes-generator-pro.html", cat: "event", badge: "🎄 Festive"},
+    {name: "New Year Wishes Generator", file: "newyear-wishes-generator.html", cat: "event", badge: "🎆 Popular"},
+    {name: "Ramadan Wishes Generator Pro", file: "ramadan-wishing-card-generator.html", cat: "festival"},
+    {name: "Diwali Wishes Generator", file: "diwali-wishes-generator.html", cat: "festival", badge: "🪷 Diwali"},
+    {name: "Holi Wishes Generator", file: "holi-wishes-generator.html", cat: "festival", badge: "🎨 Colorful"},
+    {name: "Islamic New Year Wishes", file: "islamic-new-year-wishes-generator.html", cat: "festival"},
+    {name: "Valentine's Day Wishes Generator", file: "valentine-wishes-generator-pro.html", cat: "event", badge: "💖 Love"},
+    {name: "Thank You Wishes Generator", file: "thankyou-wishes-generator.html", cat: "event", badge: "🙏 Gratitude"},
+    {name: "Get Well Soon Wishes Generator", file: "getwell-wishes-generator.html", cat: "event"},
+    {name: "Congratulations Wishes Generator", file: "congratulations-wishes-generator.html", cat: "event"},
+    {name: "Wedding Wishes Generator Pro", file: "wedding-wishes-generator-pro.html", cat: "event", badge: "💒 Popular"},
+    {name: "Baby Shower Wishes Generator", file: "babyshower-wishes-generator.html", cat: "event"},
+    {name: "RIP Message Generator", file: "rip-message-generator.html", cat: "event"},
+    {name: "Marriage Wishes Generator", file: "marriage-wishes-generator.html", cat: "event"},
+    {name: "Engagement Wishes Generator", file: "engagement-wishes-generator.html", cat: "event"},
+    {name: "Newborn Arrival Wishes Generator", file: "newborn-arrival-wishes-generator.html", cat: "event"},
+    {name: "Father's Day Wishes Generator", file: "fathers-day-wishes-generator.html", cat: "event"},
+    {name: "Mother's Day Wishes Generator", file: "mothers-day-wishes-generator.html", cat: "event"},
+    {name: "Friendship Day Wishes Generator", file: "friendship-day-wishes-generator.html", cat: "event"},
+    {name: "Navratri Wishes Generator Pro", file: "navratri-wishes-generator-pro.html", cat: "festival"},
+    {name: "Dussehra Wishes Generator Pro", file: "dussehra_wishes_generator_pro.html", cat: "festival"},
+    {name: "Ganesh Chaturthi Wishes Generator", file: "ganesh_chaturthi_wishes_generator.html", cat: "festival"},
+    {name: "Janmashtami Wishes Generator", file: "janmashtami_wishes_generator.html", cat: "festival"},
+    {name: "Maha Shivratri Wishes Generator", file: "maha_shivratri_wishes_generator.html", cat: "festival"},
+    {name: "Raksha Bandhan Wishes Generator", file: "raksha_bandhan_wishes_generator.html", cat: "festival"},
+    {name: "Baisakhi Wishes Generator", file: "baisakhi_wishes_generator.html", cat: "festival"},
+    {name: "Lohri Wishes Generator", file: "lohri_wishes_generator.html", cat: "festival"},
+    {name: "Onam Wishes Generator", file: "onam-wishes-generator.html", cat: "festival"},
+    {name: "Pongal Wishes Generator", file: "pongal-wishes-generator-with-themes.html", cat: "festival"}
+];
 
-    <!-- Anniversary -->
-    <div class="tool-card" data-category="event">
-        <a href="anniversary-wishes-generator-pro.html">
-            <div class="tool-icon">💖</div>
-            <h3>Anniversary Wishes Generator Pro</h3>
-            <p>Romantic anniversary messages</p>
-            <span class="badge popular">❤️ Popular</span>
-        </a>
-    </div>
+// Categories Data
+const categories = [
+    {id: "all", name: "All Tools", count: 33},
+    {id: "festival", name: "Festival Wishes", count: 16},
+    {id: "event", name: "Special Events", count: 15},
+    {id: "birthday", name: "Birthday", count: 1}
+];
 
-    <!-- Eid -->
-    <div class="tool-card" data-category="festival">
-        <a href="eid-wishes-generator-pro.html">
-            <div class="tool-icon">🌙</div>
-            <h3>Eid Mubarak Wishes Generator</h3>
-            <p>Beautiful Eid greetings</p>
-            <span class="badge new">✨ New</span>
-        </a>
-    </div>
+// Recently Added Tools
+const recentTools = [
+    {name: "RIP Message Generator", file: "rip-message-generator.html", added: "1 hour ago"},
+    {name: "Engagement Wishes Generator", file: "engagement-wishes-generator.html", added: "1 hour ago"},
+    {name: "Father's Day Wishes Generator", file: "fathers-day-wishes-generator.html", added: "1 hour ago"},
+    {name: "Mother's Day Wishes Generator", file: "mothers-day-wishes-generator.html", added: "1 hour ago"},
+    {name: "Friendship Day Wishes Generator", file: "friendship-day-wishes-generator.html", added: "1 hour ago"}
+];
 
-    <!-- Festival Pro -->
-    <div class="tool-card" data-category="festival">
-        <a href="festival-wishes-generator-pro.html">
-            <div class="tool-icon">🎉</div>
-            <h3>Festival Wishes Generator Pro</h3>
-            <p>All festival wishes in one</p>
-        </a>
-    </div>
-
-    <!-- Christmas -->
-    <div class="tool-card" data-category="event">
-        <a href="christmas-wishes-generator-pro.html">
-            <div class="tool-icon">🎄</div>
-            <h3>Christmas Wishes Generator Pro</h3>
-            <p>Merry Christmas greetings</p>
-            <span class="badge festive">🎄 Festive</span>
-        </a>
-    </div>
-
-    <!-- New Year -->
-    <div class="tool-card" data-category="event">
-        <a href="newyear-wishes-generator.html">
-            <div class="tool-icon">🎆</div>
-            <h3>New Year Wishes Generator</h3>
-            <p>Happy New Year messages</p>
-            <span class="badge popular">🎆 Popular</span>
-        </a>
-    </div>
-
-    <!-- Ramadan -->
-    <div class="tool-card" data-category="festival">
-        <a href="ramadan-wishing-card-generator.html">
-            <div class="tool-icon">🕌</div>
-            <h3>Ramadan Wishes Generator Pro</h3>
-            <p>Ramadan Mubarak greetings</p>
-        </a>
-    </div>
-
-    <!-- Diwali -->
-    <div class="tool-card" data-category="festival">
-        <a href="diwali-wishes-generator.html">
-            <div class="tool-icon">🪷</div>
-            <h3>Diwali Wishes Generator</h3>
-            <p>Happy Diwali messages</p>
-            <span class="badge diwali">🪷 Diwali</span>
-        </a>
-    </div>
-
-    <!-- Holi -->
-    <div class="tool-card" data-category="festival">
-        <a href="holi-wishes-generator.html">
-            <div class="tool-icon">🎨</div>
-            <h3>Holi Wishes Generator</h3>
-            <p>Colorful Holi greetings</p>
-            <span class="badge colorful">🎨 Colorful</span>
-        </a>
-    </div>
-
-    <!-- Islamic New Year -->
-    <div class="tool-card" data-category="festival">
-        <a href="islamic-new-year-wishes-generator.html">
-            <div class="tool-icon">📿</div>
-            <h3>Islamic New Year Wishes</h3>
-            <p>Islamic New Year greetings</p>
-        </a>
-    </div>
-
-    <!-- Valentine -->
-    <div class="tool-card" data-category="event">
-        <a href="valentine-wishes-generator-pro.html">
-            <div class="tool-icon">💝</div>
-            <h3>Valentine's Day Wishes Generator</h3>
-            <p>Romantic Valentine messages</p>
-            <span class="badge love">💖 Love</span>
-        </a>
-    </div>
-
-    <!-- Thank You -->
-    <div class="tool-card" data-category="event">
-        <a href="thankyou-wishes-generator.html">
-            <div class="tool-icon">🙏</div>
-            <h3>Thank You Wishes Generator</h3>
-            <p>Gratitude and thanks messages</p>
-            <span class="badge gratitude">🙏 Gratitude</span>
-        </a>
-    </div>
-
-    <!-- Get Well -->
-    <div class="tool-card" data-category="event">
-        <a href="getwell-wishes-generator.html">
-            <div class="tool-icon">🏥</div>
-            <h3>Get Well Soon Wishes Generator</h3>
-            <p>Recovery and healing messages</p>
-        </a>
-    </div>
-
-    <!-- Congratulations -->
-    <div class="tool-card" data-category="event">
-        <a href="congratulations-wishes-generator.html">
-            <div class="tool-icon">🎊</div>
-            <h3>Congratulations Wishes Generator</h3>
-            <p>Celebration and success messages</p>
-        </a>
-    </div>
-
-    <!-- Wedding -->
-    <div class="tool-card" data-category="event">
-        <a href="wedding-wishes-generator-pro.html">
-            <div class="tool-icon">💒</div>
-            <h3>Wedding Wishes Generator Pro</h3>
-            <p>Beautiful wedding messages</p>
-            <span class="badge popular">💒 Popular</span>
-        </a>
-    </div>
-
-    <!-- Baby Shower -->
-    <div class="tool-card" data-category="event">
-        <a href="babyshower-wishes-generator.html">
-            <div class="tool-icon">👶</div>
-            <h3>Baby Shower Wishes Generator</h3>
-            <p>Baby celebration messages</p>
-        </a>
-    </div>
-
-    <!-- RIP -->
-    <div class="tool-card" data-category="event">
-        <a href="rip-message-generator.html">
-            <div class="tool-icon">🕊️</div>
-            <h3>RIP Message Generator</h3>
-            <p>Memorial and condolence messages</p>
-        </a>
-    </div>
-
-    <!-- Marriage -->
-    <div class="tool-card" data-category="event">
-        <a href="marriage-wishes-generator.html">
-            <div class="tool-icon">💑</div>
-            <h3>Marriage Wishes Generator</h3>
-            <p>Marriage blessing messages</p>
-        </a>
-    </div>
-
-    <!-- Engagement -->
-    <div class="tool-card" data-category="event">
-        <a href="engagement-wishes-generator.html">
-            <div class="tool-icon">💍</div>
-            <h3>Engagement Wishes Generator</h3>
-            <p>Engagement celebration messages</p>
-        </a>
-    </div>
-
-    <!-- Newborn -->
-    <div class="tool-card" data-category="event">
-        <a href="newborn-arrival-wishes-generator.html">
-            <div class="tool-icon">👨‍👩‍👧‍👦</div>
-            <h3>Newborn Arrival Wishes Generator</h3>
-            <p>New baby congratulations</p>
-        </a>
-    </div>
-
-    <!-- Father's Day -->
-    <div class="tool-card" data-category="event">
-        <a href="fathers-day-wishes-generator.html">
-            <div class="tool-icon">👨‍👧</div>
-            <h3>Father's Day Wishes Generator</h3>
-            <p>Father's Day appreciation</p>
-        </a>
-    </div>
-
-    <!-- Mother's Day -->
-    <div class="tool-card" data-category="event">
-        <a href="mothers-day-wishes-generator.html">
-            <div class="tool-icon">👩‍👧</div>
-            <h3>Mother's Day Wishes Generator</h3>
-            <p>Mother's Day love messages</p>
-        </a>
-    </div>
-
-    <!-- Friendship Day -->
-    <div class="tool-card" data-category="event">
-        <a href="friendship-day-wishes-generator.html">
-            <div class="tool-icon">🤝</div>
-            <h3>Friendship Day Wishes Generator</h3>
-            <p>Friendship celebration messages</p>
-        </a>
-    </div>
-
-    <!-- Navratri -->
-    <div class="tool-card" data-category="festival">
-        <a href="navratri-wishes-generator-pro.html">
-            <div class="tool-icon">🕉️</div>
-            <h3>Navratri Wishes Generator Pro</h3>
-            <p>Navratri festival greetings</p>
-        </a>
-    </div>
-
-    <!-- Dussehra -->
-    <div class="tool-card" data-category="festival">
-        <a href="dussehra_wishes_generator_pro.html">
-            <div class="tool-icon">⚔️</div>
-            <h3>Dussehra Wishes Generator Pro</h3>
-            <p>Dussehra victory messages</p>
-        </a>
-    </div>
-
-    <!-- Ganesh Chaturthi -->
-    <div class="tool-card" data-category="festival">
-        <a href="ganesh_chaturthi_wishes_generator.html">
-            <div class="tool-icon">🐘</div>
-            <h3>Ganesh Chaturthi Wishes Generator</h3>
-            <p>Ganesh festival greetings</p>
-        </a>
-    </div>
-
-    <!-- Janmashtami -->
-    <div class="tool-card" data-category="festival">
-        <a href="janmashtami_wishes_generator.html">
-            <div class="tool-icon">🪕</div>
-            <h3>Janmashtami Wishes Generator</h3>
-            <p>Krishna Janmashtami messages</p>
-        </a>
-    </div>
-
-    <!-- Maha Shivratri -->
-    <div class="tool-card" data-category="festival">
-        <a href="maha_shivratri_wishes_generator.html">
-            <div class="tool-icon">🔱</div>
-            <h3>Maha Shivratri Wishes Generator</h3>
-            <p>Shivratri festival greetings</p>
-        </a>
-    </div>
-
-    <!-- Raksha Bandhan -->
-    <div class="tool-card" data-category="festival">
-        <a href="raksha_bandhan_wishes_generator.html">
-            <div class="tool-icon">🧵</div>
-            <h3>Raksha Bandhan Wishes Generator</h3>
-            <p>Rakhi brother-sister messages</p>
-        </a>
-    </div>
-
-    <!-- Baisakhi -->
-    <div class="tool-card" data-category="festival">
-        <a href="baisakhi_wishes_generator.html">
-            <div class="tool-icon">🌾</div>
-            <h3>Baisakhi Wishes Generator</h3>
-            <p>Baisakhi harvest festival greetings</p>
-        </a>
-    </div>
-
-    <!-- Lohri -->
-    <div class="tool-card" data-category="festival">
-        <a href="lohri_wishes_generator.html">
-            <div class="tool-icon">🔥</div>
-            <h3>Lohri Wishes Generator</h3>
-            <p>Lohri winter festival messages</p>
-        </a>
-    </div>
-
-    <!-- Onam -->
-    <div class="tool-card" data-category="festival">
-        <a href="onam-wishes-generator.html">
-            <div class="tool-icon">🚣</div>
-            <h3>Onam Wishes Generator</h3>
-            <p>Onam festival greetings</p>
-        </a>
-    </div>
-
-    <!-- Pongal -->
-    <div class="tool-card" data-category="festival">
-        <a href="pongal-wishes-generator-with-themes.html">
-            <div class="tool-icon">🍚</div>
-            <h3>Pongal Wishes Generator</h3>
-            <p>Pongal harvest festival messages</p>
-        </a>
-    </div>
-</div>
+// Most Popular Tools
+const popularTools = [
+    {name: "Birthday Wishes Generator", file: "birthday-wishes-generator.html", users: 1250},
+    {name: "Anniversary Wishes Generator Pro", file: "anniversary-wishes-generator-pro.html", users: 980},
+    {name: "New Year Wishes Generator", file: "newyear-wishes-generator.html", users: 890},
+    {name: "Wedding Wishes Generator Pro", file: "wedding-wishes-generator-pro.html", users: 750},
+    {name: "Eid Mubarak Wishes Generator", file: "eid-wishes-generator-pro.html", users: 680}
+];
 const toolList = document.getElementById("toolList");
 const searchInput = document.getElementById("search");
 
