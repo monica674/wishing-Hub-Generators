@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Wishes Generator 🎂 | Personalized Birthday Messages</title>
+<meta name="description" content="Generate personalized birthday wishes with name, language, music, fireworks, WhatsApp share and downloadable birthday poster.">
+<meta name="keywords" content="birthday wishes generator, personalized birthday wishes, birthday poster generator, birthday song">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://onlinewebtool.live/birthday-wishes-generator.html">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    background:#000;
+    color:#00ff7f;
+    font-family:'Orbitron',sans-serif;
+    text-align:center;
+    overflow-x:hidden;
+}
+h1{
+    font-family:'Pacifico',cursive;
+    text-shadow:0 0 25px #00ff7f;
+}
+.container{
+    max-width:820px;
+    margin:40px auto;
+    padding:30px;
+    border:2px solid #00ff7f;
+    border-radius:20px;
+    box-shadow:0 0 40px #00ff7f66;
+}
+input,select{
+    width:90%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:10px;
+    border:none;
+}
+button{
+    background:#00ff7f;
+    color:#000;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    margin:8px;
+    cursor:pointer;
+}
+button:hover{transform:scale(1.08)}
+#wishBox{
+    margin-top:20px;
+    padding:20px;
+    border:1px dashed #00ff7f;
+    border-radius:10px;
+    min-height:90px;
+    font-size:1.2rem;
+}
+canvas#fireworks{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+}
+canvas#poster{
+    margin-top:20px;
+    border:2px solid #00ff7f;
+    border-radius:12px;
+}
+footer{
+    margin:40px 0;
+    font-size:.85rem;
+    opacity:.7;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<h1>🎉 Birthday Wishes Generator 🎂</h1>
+<p>Create personalized birthday wishes with music, fireworks & posters</p>
+
+<div class="container">
+
+<input id="nameInput" placeholder="Enter Name">
+
+<select id="lang">
+<option value="en">English</option>
+<option value="ur">Urdu</option>
+<option value="hi">Hindi</option>
+</select>
+
+<button onclick="generateWish()">Generate Wish</button>
+<button onclick="copyWish()">Copy</button>
+<button onclick="shareWhatsApp()">WhatsApp</button>
+<button onclick="playSong()">🎵 Song</button>
+
+<div id="wishBox"></div>
+
+<h3>🎨 Birthday Poster</h3>
+<button onclick="generatePoster()">Generate Poster</button>
+<button onclick="downloadPoster()">Download Poster</button>
+
+<br><br>
+<canvas id="poster" width="600" height="420"></canvas>
+
+</div>
+
+<footer>© 2026 Birthday Wishes Generator</footer>
+
+<audio id="song" preload="auto">
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_8e8b5b71b7.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* ================= WISH DATA ================= */
+const wishes={
+en:[
+"Happy Birthday {name}! May your life glow brighter than fireworks 🎆",
+"Wishing you endless happiness and success, {name}! 🎂",
+"Another year, another blessing. Happy Birthday {name}! 💚",
+"May your birthday be filled with joy and laughter, {name}! 🎉",
+"Cheers to a beautiful year ahead, {name}! 🥳"
+],
+ur:[
+"سالگرہ مبارک {name}! آپ کی زندگی خوشیوں سے بھری رہے 🎉",
+"{name}! آپ کو کامیابی اور خوشیاں نصیب ہوں 🎂",
+"{name}! یہ دن آپ کے لئے خاص ہو 💚",
+"سالگرہ کی ڈھیروں خوشیاں {name}! 🎊",
+"{name}! ہمیشہ مسکراتے رہیں 😊"
+],
+hi:[
+"जन्मदिन मुबारक {name}! आपकी ज़िंदगी खुशियों से भरी रहे 🎉",
+"{name}! आपको सफलता और खुशियाँ मिलें 🎂",
+"{name}! आपका दिन खास और शानदार हो 💚",
+"ढेर सारी शुभकामनाएँ {name}! 🎊",
+"{name}! हमेशा मुस्कुराते रहें 😊"
+]
+};
+
+let index={en:0,ur:0,hi:0};
+
+function generateWish(){
+    const name=document.getElementById("nameInput").value||"Dear";
+    const lang=document.getElementById("lang").value;
+    const msg=wishes[lang][index[lang]].replace("{name}",name);
+    document.getElementById("wishBox").innerText=msg;
+    index[lang]=(index[lang]+1)%wishes[lang].length;
+}
+
+function copyWish(){
+    navigator.clipboard.writeText(wishBox.innerText);
+    alert("Copied!");
+}
+function shareWhatsApp(){
+    window.open("https://wa.me/?text="+encodeURIComponent(wishBox.innerText));
+}
+function playSong(){
+    document.getElementById("song").play().catch(()=>alert("Tap again to play music"));
+}
+
+/* ================= POSTER ================= */
+const p=document.getElementById("poster");
+const ctx=p.getContext("2d");
+
+function generatePoster(){
+
+    // 🌈 Colorful gradient background
+    const gradient = ctx.createLinearGradient(0, 0, p.width, p.height);
+    gradient.addColorStop(0, "#ff6a00");
+    gradient.addColorStop(0.5, "#ff2f92");
+    gradient.addColorStop(1, "#00c6ff");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, p.width, p.height);
+
+    // ✨ Confetti dots
+    for(let i=0;i<120;i++){
+        ctx.fillStyle = `hsl(${Math.random()*360},100%,60%)`;
+        ctx.beginPath();
+        ctx.arc(Math.random()*p.width, Math.random()*p.height, 2, 0, Math.PI*2);
+        ctx.fill();
+    }
+
+    // 🟩 Neon border
+    ctx.strokeStyle="#ffffff";
+    ctx.lineWidth=4;
+    ctx.shadowColor="#ffffff";
+    ctx.shadowBlur=20;
+    ctx.strokeRect(12,12,p.width-24,p.height-24);
+    ctx.shadowBlur=0;
+
+    // 🎉 Title
+    ctx.font="42px 'Great Vibes'";
+    ctx.fillStyle="#fff700";
+    ctx.textAlign="center";
+    ctx.shadowColor="#ff9800";
+    ctx.shadowBlur=15;
+    ctx.fillText("🎉 HAPPY BIRTHDAY 🎂", p.width/2, 70);
+    ctx.shadowBlur=0;
+
+    // 🖼️ Message card
+    ctx.fillStyle="rgba(0,0,0,0.55)";
+    ctx.fillRect(50,110,p.width-100,p.height-200);
+
+    ctx.strokeStyle="#ffffffaa";
+    ctx.strokeRect(50,110,p.width-100,p.height-200);
+
+    // 💌 Wish text
+    ctx.font="24px 'Trebuchet MS'";
+    ctx.fillStyle="#00ff7f";
+    ctx.textAlign="left";
+
+    const text = wishBox.innerText || "Make a Wish!";
+    wrapText(text, 70, 150, p.width-140, 32);
+
+    // 💎 Footer
+    ctx.font="14px Arial";
+    ctx.fillStyle="#ffffffcc";
+    ctx.textAlign="center";
+    ctx.fillText("🎁 Birthday Wishes Generator", p.width/2, p.height-30);
+}
+
+
+function wrapText(text,x,y,maxWidth,lineHeight){
+    const words=text.split(" ");
+    let line="";
+    for(let i=0;i<words.length;i++){
+        let test=line+words[i]+" ";
+        if(ctx.measureText(test).width>maxWidth){
+            ctx.fillText(line,x,y);
+            line=words[i]+" ";
+            y+=lineHeight;
+        }else line=test;
+    }
+    ctx.fillText(line,x,y);
+}
+
+function downloadPoster(){
+    const a=document.createElement("a");
+    a.download="birthday-poster.png";
+    a.href=p.toDataURL("image/png");
+    a.click();
+}
+
+/* ================= FIREWORKS ================= */
+const c=document.getElementById("fireworks");
+const fx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+let sparks=[];
+function Spark(){this.x=Math.random()*c.width;this.y=Math.random()*c.height/2;this.r=0;this.a=1}
+Spark.prototype.draw=function(){
+    fx.beginPath();
+    fx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    fx.fillStyle=`rgba(0,255,127,${this.a})`;
+    fx.fill();
+}
+Spark.prototype.update=function(){this.r+=2;this.a-=0.03}
+
+(function animate(){
+    fx.clearRect(0,0,c.width,c.height);
+    if(Math.random()<0.05)sparks.push(new Spark());
+    sparks.forEach((s,i)=>{s.draw();s.update();if(s.a<=0)sparks.splice(i,1)});
+    requestAnimationFrame(animate);
+})();
+</script>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"WebApplication",
+"name":"Birthday Wishes Generator",
+"applicationCategory":"Entertainment",
+"operatingSystem":"All"
+}
+</script>
+
+</body>
+</html>
