@@ -14,7 +14,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-/* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box}
 body{
     background:#000;
@@ -23,18 +22,8 @@ body{
     text-align:center;
     overflow-x:hidden;
 }
-
-/* ===== HEADINGS ===== */
-h1{
-    font-family:'Pacifico',cursive;
-    text-shadow:0 0 25px #00ff7f;
-    margin-top:30px;
-}
-h3{
-    margin-top:30px;
-}
-
-/* ===== CONTAINER ===== */
+h1{font-family:'Pacifico',cursive;text-shadow:0 0 25px #00ff7f;margin-top:30px;}
+h3{margin-top:30px;}
 .container{
     max-width:820px;
     margin:40px auto;
@@ -43,8 +32,6 @@ h3{
     border-radius:20px;
     box-shadow:0 0 40px #00ff7f66;
 }
-
-/* ===== INPUTS & SELECTS ===== */
 input, select{
     width:90%;
     padding:12px;
@@ -53,8 +40,6 @@ input, select{
     border:none;
     font-size:16px;
 }
-
-/* ===== BUTTONS ===== */
 button{
     padding:12px 25px;
     border:none;
@@ -65,14 +50,10 @@ button{
     transition:transform 0.2s;
 }
 button:hover{transform:scale(1.08);}
-
-/* Primary Buttons */
 .generate-btn{background:#00ff7f;color:#000;}
 .copy-btn{background:#ffcc00;color:#000;}
 .song-btn{background:#ff33cc;color:#fff;}
 .poster-btn{background:#00ccff;color:#000;}
-
-/* ===== WhatsApp Floating Button ===== */
 .whatsapp-btn{
     background:#25D366;
     color:#fff;
@@ -93,8 +74,6 @@ button:hover{transform:scale(1.08);}
     50%{transform:scale(1.08)}
     100%{transform:scale(1)}
 }
-
-/* ===== WISH BOX ===== */
 #wishBox{
     margin-top:20px;
     padding:20px;
@@ -103,22 +82,16 @@ button:hover{transform:scale(1.08);}
     min-height:90px;
     font-size:1.2rem;
 }
-
-/* ===== POSTER ===== */
 canvas#poster{
     margin-top:20px;
     border:2px solid #00ff7f;
     border-radius:12px;
 }
-
-/* ===== FIREWORKS ===== */
 canvas#fireworks{
     position:fixed;
     inset:0;
     z-index:-1;
 }
-
-/* ===== FOOTER ===== */
 footer{
     margin:40px 0;
     font-size:.85rem;
@@ -161,9 +134,7 @@ footer{
 <footer>© 2026 Birthday Wishes Generator</footer>
 
 <!-- WhatsApp Floating Button -->
-<button class="whatsapp-btn" onclick="shareWhatsApp()" id="waBtn">
-    📱 Share on WhatsApp
-</button>
+<button class="whatsapp-btn" onclick="shareWhatsApp()" id="waBtn">📱 Share on WhatsApp</button>
 
 <audio id="song" preload="auto">
     <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_8e8b5b71b7.mp3" type="audio/mpeg">
@@ -206,16 +177,21 @@ function generateWish(){
 }
 
 function copyWish(){
+    if(!wishBox.innerText){alert("Generate a wish first!"); return;}
     navigator.clipboard.writeText(wishBox.innerText);
     alert("Copied!");
 }
 
+/* ================= WhatsApp Share Fix ================= */
 function shareWhatsApp(){
-    if(!wishBox.innerText){
+    const text = wishBox.innerText.trim();
+    if(!text){
         alert("Generate a wish first!");
         return;
     }
-    window.open("https://wa.me/?text="+encodeURIComponent(wishBox.innerText));
+    const encodedText = encodeURIComponent(text);
+    // Using fast api.whatsapp.com link
+    window.open(`https://api.whatsapp.com/send?text=${encodedText}`,"_blank");
 }
 
 function playSong(){
@@ -228,18 +204,18 @@ const ctx=p.getContext("2d");
 
 function generatePoster(){
     // Gradient background
-    const gradient = ctx.createLinearGradient(0, 0, p.width, p.height);
-    gradient.addColorStop(0, "#ff6a00");
-    gradient.addColorStop(0.5, "#ff2f92");
-    gradient.addColorStop(1, "#00c6ff");
+    const gradient = ctx.createLinearGradient(0,0,p.width,p.height);
+    gradient.addColorStop(0,"#ff6a00");
+    gradient.addColorStop(0.5,"#ff2f92");
+    gradient.addColorStop(1,"#00c6ff");
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, p.width, p.height);
+    ctx.fillRect(0,0,p.width,p.height);
 
     // Confetti
     for(let i=0;i<120;i++){
         ctx.fillStyle = `hsl(${Math.random()*360},100%,60%)`;
         ctx.beginPath();
-        ctx.arc(Math.random()*p.width, Math.random()*p.height, 2, 0, Math.PI*2);
+        ctx.arc(Math.random()*p.width, Math.random()*p.height, 2,0,Math.PI*2);
         ctx.fill();
     }
 
@@ -257,32 +233,22 @@ function generatePoster(){
     ctx.textAlign="center";
     ctx.shadowColor="#ff9800";
     ctx.shadowBlur=15;
-    ctx.fillText("🎉 HAPPY BIRTHDAY 🎂", p.width/2, 70);
+    ctx.fillText("🎉 HAPPY BIRTHDAY 🎂", p.width/2,70);
     ctx.shadowBlur=0;
 
-    // Message card
-    ctx.fillStyle="rgba(0,0,0,0.55)";
-    ctx.fillRect(50,110,p.width-100,p.height-200);
-
-    ctx.strokeStyle="#ffffffaa";
-    ctx.strokeRect(50,110,p.width-100,p.height-200);
-
-    // Wish text
-    ctx.font="24px 'Trebuchet MS'";
-    ctx.fillStyle="#00ff7f";
-    ctx.textAlign="left";
-
+    // Wish message with automatic wrapping
     const text = wishBox.innerText || "Make a Wish!";
-    wrapText(text, 70, 150, p.width-140, 32);
+    drawWrappedText(ctx,text,70,150,p.width-140,32);
 
     // Footer
     ctx.font="14px Arial";
     ctx.fillStyle="#ffffffcc";
     ctx.textAlign="center";
-    ctx.fillText("🎁 Birthday Wishes Generator", p.width/2, p.height-30);
+    ctx.fillText("🎁 Birthday Wishes Generator",p.width/2,p.height-30);
 }
 
-function wrapText(text,x,y,maxWidth,lineHeight){
+/* Auto-wrap text for poster without extra wrapText function */
+function drawWrappedText(ctx,text,x,y,maxWidth,lineHeight){
     const words=text.split(" ");
     let line="";
     for(let i=0;i<words.length;i++){
@@ -291,7 +257,7 @@ function wrapText(text,x,y,maxWidth,lineHeight){
             ctx.fillText(line,x,y);
             line=words[i]+" ";
             y+=lineHeight;
-        }else line=test;
+        } else line=test;
     }
     ctx.fillText(line,x,y);
 }
