@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maha Shivratri Wishes Generator Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #2c003e 0%, #4a0072 30%, #6a0080 70%, #8e24aa 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(187, 134, 252, 0.5);
+        }
+        
+        .shivratri-title {
+            color: #bb86fc;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .shivratri-title::before, .shivratri-title::after {
+            content: '🕉️';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+        }
+        
+        .shivratri-title::before {
+            right: -50px;
+        }
+        
+        .shivratri-title::after {
+            left: -50px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #d1c4e9;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: visible;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .shivratri-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #3700b3 0%, #6200ea 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: visible;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.3), 0 10px 25px rgba(0, 0, 0, 0.4);
+            border: 5px solid #bb86fc;
+        }
+        
+        .shiva-icon {
+            position: absolute;
+            font-size: 2.8rem;
+            opacity: 0.9;
+            animation: floatShiva 6s ease-in-out infinite;
+            z-index: 5;
+            filter: drop-shadow(0 0 10px rgba(187, 134, 252, 0.7));
+        }
+        
+        .shiva-icon1 { top: 20px; left: 20px; color: #bb86fc; animation-delay: 0s; }
+        .shiva-icon2 { top: 20px; right: 20px; color: #03dac6; animation-delay: 1.5s; }
+        .shiva-icon3 { bottom: 20px; left: 20px; color: #ffcc80; animation-delay: 3s; }
+        .shiva-icon4 { bottom: 20px; right: 20px; color: #cf6679; animation-delay: 4.5s; }
+        
+        @keyframes floatShiva {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
+            50% { transform: translateY(0) rotate(0deg) scale(1); }
+            75% { transform: translateY(-10px) rotate(-5deg) scale(1.05); }
+        }
+        
+        .card-title {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(187, 134, 252, 0.5);
+            z-index: 20;
+            position: relative;
+            background: rgba(30, 30, 46, 0.8);
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 3px solid #bb86fc;
+        }
+        
+        .card-message {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #e0e0e0;
+            z-index: 20;
+            position: relative;
+            background: rgba(30, 30, 46, 0.85);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(187, 134, 252, 0.3);
+        }
+        
+        .card-sender {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-top: 20px;
+            font-style: italic;
+            font-weight: bold;
+            z-index: 20;
+            position: relative;
+            background: rgba(187, 134, 252, 0.8);
+            padding: 12px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 2px solid #03dac6;
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(187, 134, 252, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(187, 134, 252, 0.15) 0%, transparent 20%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 15px,
+                    rgba(3, 218, 198, 0.1) 15px,
+                    rgba(3, 218, 198, 0.1) 30px
+                );
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* BELLS ANIMATION */
+        .bell {
+            position: absolute;
+            font-size: 1.8rem;
+            pointer-events: none;
+            z-index: 15;
+            animation: bellRing linear infinite;
+        }
+        
+        @keyframes bellRing {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* HOLY WATER DROPS */
+        .water-drop {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(45deg, #03dac6, #18ffff);
+            border-radius: 50% 50% 50% 0;
+            pointer-events: none;
+            z-index: 15;
+            animation: dropFall linear infinite;
+            transform: rotate(45deg);
+        }
+        
+        @keyframes dropFall {
+            0% {
+                transform: translateY(-50px) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px) rotate(135deg);
+                opacity: 0;
+            }
+        }
+        
+        /* DIVINE LIGHTS */
+        .divine-light {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            animation: lightGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes lightGlow {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+        
+        /* RUDRAKSHA BEADS */
+        .rudraksha {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(45deg, #5d4037, #8d6e63);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            animation: beadFloat 3s ease-in-out infinite;
+            box-shadow: 0 0 10px #5d4037;
+        }
+        
+        @keyframes beadFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-10px) scale(1.2); opacity: 1; }
+        }
+        
+        /* FLOWER PETALS */
+        .flower-petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #ffcc80, #ffab91);
+            border-radius: 50% 50% 50% 0;
+            pointer-events: none;
+            z-index: 15;
+            animation: petalFloat linear infinite;
+            transform: rotate(45deg);
+        }
+        
+        @keyframes petalFloat {
+            0% {
+                transform: translateY(-50px) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px) rotate(135deg);
+                opacity: 0;
+            }
+        }
+        
+        /* SOUND WAVE */
+        .sound-wave {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #bb86fc;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 8;
+            animation: waveExpand 2s ease-out infinite;
+            opacity: 0;
+        }
+        
+        @keyframes waveExpand {
+            0% { transform: scale(0.1); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(187, 134, 252, 0.2);
+            border: 1px solid rgba(187, 134, 252, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(187, 134, 252, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.3);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #bb86fc;
+            box-shadow: 0 0 15px rgba(187, 134, 252, 0.7);
+        }
+        
+        .color1 { background: linear-gradient(45deg, #3700b3, #6200ea); }
+        .color2 { background: linear-gradient(45deg, #bb86fc, #7c4dff); }
+        .color3 { background: linear-gradient(45deg, #03dac6, #00bcd4); }
+        .color4 { background: linear-gradient(45deg, #121212, #1e1e2e); }
+        .color5 { background: linear-gradient(45deg, #4a0072, #8e24aa); }
+        .color6 { background: linear-gradient(45deg, #311b92, #4527a0); }
+        .color7 { background: linear-gradient(45deg, #1a237e, #283593); }
+        .color8 { background: linear-gradient(45deg, #0d47a1, #1565c0); }
+        .color9 { background: linear-gradient(45deg, #004d40, #00695c); }
+        .color10 { background: linear-gradient(45deg, #880e4f, #ad1457); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .theme-type {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .theme-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .theme-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.2);
+        }
+        
+        .theme-btn.active {
+            border-color: #bb86fc;
+            background: rgba(187, 134, 252, 0.15);
+        }
+        
+        .shiva-btn.active {
+            border-color: #03dac6;
+            background: rgba(3, 218, 198, 0.15);
+        }
+        
+        .lingam-btn.active {
+            border-color: #ffcc80;
+            background: rgba(255, 204, 128, 0.15);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #6200ea, #3700b3);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #03dac6, #00bcd4);
+            color: #121212;
+            font-weight: bold;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .instruction {
+            background: rgba(187, 134, 252, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #03dac6;
+            font-size: 0.95rem;
+            color: #ffffff;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(187, 134, 252, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(187, 134, 252, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(30, 30, 46, 0.95);
+            color: #bb86fc;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+            border: 2px solid #03dac6;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-title {
+                font-size: 1.8rem;
+            }
+            
+            .card-message {
+                font-size: 1.2rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+            
+            .theme-type {
+                flex-wrap: wrap;
+            }
+            
+            .theme-btn {
+                min-width: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .theme-type {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="shivratri-title">Maha Shivratri Wishes Generator Pro</span></h1>
+            <p class="subtitle">Create divine Maha Shivratri cards with Lord Shiva's blessings</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Maha Shivratri Card</h2>
+                <div class="shivratri-card" id="shivratriCard">
+                    <div class="card-pattern"></div>
+                    <div class="shiva-icon shiva-icon1">🕉️</div>
+                    <div class="shiva-icon shiva-icon2">🔱</div>
+                    <div class="shiva-icon shiva-icon3">🌙</div>
+                    <div class="shiva-icon shiva-icon4">🔥</div>
+                    
+                    <h3 class="card-title" id="cardTitle">Om Namah Shivaya!</h3>
+                    <p class="card-message" id="cardMessage">May Lord Shiva bless you with peace, prosperity, and spiritual enlightenment. Wishing you a divine Maha Shivratri filled with devotion and blessings.</p>
+                    <p class="card-sender" id="cardSender">Har Har Mahadev! 🔱</p>
+                </div>
+                
+                <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://shivratriwishes.com/card/2024
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your Maha Shivratri card is ready! Customize it with different themes, designs, and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Shiva Blessings</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <button class="wish-btn">Divine Peace</button>
+                        <button class="wish-btn">Spiritual Growth</button>
+                        <button class="wish-btn">Inner Strength</button>
+                        <button class="wish-btn">Wisdom & Knowledge</button>
+                        <button class="wish-btn">Health & Harmony</button>
+                        <button class="wish-btn">Prosperity Blessing</button>
+                        <button class="wish-btn">Fear Removal</button>
+                        <button class="wish-btn">Enlightenment</button>
+                        <button class="wish-btn">Family Protection</button>
+                        <button class="wish-btn">Cosmic Energy</button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <button class="design-btn color1 active" title="Royal Purple"></button>
+                        <button class="design-btn color2" title="Divine Lavender"></button>
+                        <button class="design-btn color3" title="Turquoise Blue"></button>
+                        <button class="design-btn color4" title="Dark Cosmic"></button>
+                        <button class="design-btn color5" title="Deep Violet"></button>
+                        <button class="design-btn color6" title="Indigo Night"></button>
+                        <button class="design-btn color7" title="Midnight Blue"></button>
+                        <button class="design-btn color8" title="Ocean Deep"></button>
+                        <button class="design-btn color9" title="Emerald Green"></button>
+                        <button class="design-btn color10" title="Ruby Red"></button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Divine Theme</h3>
+                    <div class="theme-type">
+                        <button class="theme-btn shiva-btn active" id="shivaBtn">
+                            <i class="fas fa-mountain"></i> Lord Shiva
+                        </button>
+                        <button class="theme-btn lingam-btn" id="lingamBtn">
+                            <i class="fas fa-circle"></i> Shiva Lingam
+                        </button>
+                        <button class="theme-btn" id="meditationBtn">
+                            <i class="fas fa-spa"></i> Meditation
+                        </button>
+                        <button class="theme-btn" id="festivalBtn">
+                            <i class="fas fa-moon"></i> Night Festival
+                        </button>
+                    </div>
+                    
+                    <input type="text" class="custom-input" id="recipientName" placeholder="Recipient's Name (e.g., Sharma Family)">
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom Maha Shivratri message here..."></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., With blessings, Ankit)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send Shiva Blessings
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn copy-link" id="copyLinkBtn">
+                            <i class="fas fa-copy"></i> Copy Link
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#cf6679;"></i> for Maha Shivratri | Om Namah Shivaya! 🔱</p>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification" style="display: none;"></div>
+
+    <script>
+        // Maha Shivratri messages
+        const autoWishes = [
+            "May Lord Shiva bless you with peace, prosperity, and spiritual enlightenment. Wishing you a divine Maha Shivratri filled with devotion and blessings.",
+            "On this auspicious night of Maha Shivratri, may Lord Shiva destroy all your sins and grant you eternal peace and happiness. Om Namah Shivaya!",
+            "May the divine blessings of Lord Shiva be with you always. Wishing you a Maha Shivratri filled with devotion, peace, and spiritual awakening.",
+            "As we worship Lord Shiva on this sacred night, may he shower his blessings upon you and your family. Har Har Mahadev!",
+            "May the third eye of Lord Shiva give you the wisdom to see the truth and the strength to follow the right path. Happy Maha Shivratri!",
+            "On this Maha Shivratri, may Lord Shiva remove all obstacles from your life and fill it with prosperity and success. Om Namah Shivaya!",
+            "May the sound of Shiva's damru bring positivity and the holy water of Ganga cleanse your soul. Wishing you a blessed Maha Shivratri!",
+            "As we fast and pray on Maha Shivratri, may Lord Shiva grant you inner peace, good health, and spiritual growth.",
+            "May Lord Shiva's cosmic dance destroy all negativity and bring new beginnings in your life. Happy Maha Shivratri!",
+            "On this sacred night, may Lord Shiva's blessings be with you and your family. Wishing you a Maha Shivratri filled with devotion and divine grace."
+        ];
+
+        // Festival themes
+        const festivalThemes = {
+            shiva: {
+                title: "Om Namah Shivaya!",
+                icons: ['🕉️', '🔱', '🌙', '🔥'],
+                color: '#bb86fc',
+                greeting: "Har Har Mahadev! 🔱"
+            },
+            lingam: {
+                title: "Shiva Lingam Blessings!",
+                icons: ['🪨', '💧', '🌿', '🌸'],
+                color: '#ffcc80',
+                greeting: "Om Lingaya Namaha! 🪨"
+            },
+            meditation: {
+                title: "Divine Meditation Night!",
+                icons: ['🧘', '🕯️', '🌟', '✨'],
+                color: '#03dac6',
+                greeting: "Peace & Enlightenment! 🧘"
+            },
+            festival: {
+                title: "Happy Maha Shivratri!",
+                icons: ['🌃', '🔔', '🎵', '🎉'],
+                color: '#cf6679',
+                greeting: "Festival Greetings! 🌙"
+            }
+        };
+
+        // DOM elements
+        const shivratriCard = document.getElementById('shivratriCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+        const recipientName = document.getElementById('recipientName');
+        const shivaBtn = document.getElementById('shivaBtn');
+        const lingamBtn = document.getElementById('lingamBtn');
+        const meditationBtn = document.getElementById('meditationBtn');
+        const festivalBtn = document.getElementById('festivalBtn');
+        const notification = document.getElementById('notification');
+        
+        let selectedTheme = 'shiva';
+        
+        // Initialize wish buttons
+        document.querySelectorAll('.wish-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (index < autoWishes.length) {
+                    cardMessage.textContent = autoWishes[index];
+                    customMessage.value = '';
+                    showNotification(`Applied "${btn.textContent}" blessing!`);
+                }
+            });
+        });
+
+        // Initialize design buttons
+        document.querySelectorAll('.design-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all
+                document.querySelectorAll('.design-btn').forEach(b => b.classList.remove('active'));
+                // Add active to clicked
+                this.classList.add('active');
+                
+                // Apply design
+                const className = this.className.match(/color\d+/)[0];
+                const gradients = {
+                    'color1': ['#3700b3', '#6200ea'],
+                    'color2': ['#bb86fc', '#7c4dff'],
+                    'color3': ['#03dac6', '#00bcd4'],
+                    'color4': ['#121212', '#1e1e2e'],
+                    'color5': ['#4a0072', '#8e24aa'],
+                    'color6': ['#311b92', '#4527a0'],
+                    'color7': ['#1a237e', '#283593'],
+                    'color8': ['#0d47a1', '#1565c0'],
+                    'color9': ['#004d40', '#00695c'],
+                    'color10': ['#880e4f', '#ad1457']
+                };
+                
+                const colors = gradients[className];
+                shivratriCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+                
+                showNotification(`Applied ${this.title} design!`);
+            });
+        });
+
+        // Theme buttons
+        shivaBtn.addEventListener('click', () => {
+            selectedTheme = 'shiva';
+            updateThemeButtons();
+            showNotification("Applied Lord Shiva theme! Om Namah Shivaya! 🔱");
+        });
+        
+        lingamBtn.addEventListener('click', () => {
+            selectedTheme = 'lingam';
+            updateThemeButtons();
+            showNotification("Applied Shiva Lingam theme! Divine blessings! 🪨");
+        });
+        
+        meditationBtn.addEventListener('click', () => {
+            selectedTheme = 'meditation';
+            updateThemeButtons();
+            showNotification("Applied Meditation theme! Peace and enlightenment! 🧘");
+        });
+        
+        festivalBtn.addEventListener('click', () => {
+            selectedTheme = 'festival';
+            updateThemeButtons();
+            showNotification("Applied Festival theme! Happy Maha Shivratri! 🌙");
+        });
+        
+        function updateThemeButtons() {
+            [shivaBtn, lingamBtn, meditationBtn, festivalBtn].forEach(btn => btn.classList.remove('active'));
+            if (selectedTheme === 'shiva') shivaBtn.classList.add('active');
+            else if (selectedTheme === 'lingam') lingamBtn.classList.add('active');
+            else if (selectedTheme === 'meditation') meditationBtn.classList.add('active');
+            else festivalBtn.classList.add('active');
+            
+            updateCardForTheme();
+        }
+        
+        function updateCardForTheme() {
+            const theme = festivalThemes[selectedTheme];
+            cardTitle.textContent = theme.title;
+            
+            // Update icons
+            const icons = document.querySelectorAll('.shiva-icon');
+            theme.icons.forEach((icon, index) => {
+                if (icons[index]) icons[index].textContent = icon;
+            });
+            
+            // Update sender if no custom name
+            if (!senderName.value.trim()) {
+                cardSender.textContent = theme.greeting;
+            }
+            
+            // Update border color
+            shivratriCard.style.borderColor = theme.color;
+        }
+
+        // Custom message input
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            } else {
+                cardMessage.textContent = autoWishes[0];
+            }
+        });
+
+        // Sender name input
+        senderName.addEventListener('input', () => {
+            if (senderName.value.trim() !== '') {
+                cardSender.textContent = `${festivalThemes[selectedTheme].greeting}\nFrom: ${senderName.value}`;
+            } else {
+                cardSender.textContent = festivalThemes[selectedTheme].greeting;
+            }
+        });
+
+        // Recipient name input
+        recipientName.addEventListener('input', () => {
+            if (recipientName.value.trim() !== '') {
+                cardTitle.textContent = `${festivalThemes[selectedTheme].title}, ${recipientName.value}!`;
+            } else {
+                cardTitle.textContent = festivalThemes[selectedTheme].title;
+            }
+        });
+
+        // Edit button
+        document.getElementById('editBtn').addEventListener('click', () => {
+            customMessage.focus();
+            showNotification('Start editing your Maha Shivratri card message!');
+        });
+
+        // Send button
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const recipient = prompt("Enter recipient's name:", recipientName.value || "Dear Devotee");
+            if (recipient) {
+                showNotification(`Maha Shivratri card customized for ${recipient}! Ready to share.`);
+                recipientName.value = recipient;
+                cardTitle.textContent = `${festivalThemes[selectedTheme].title}, ${recipient}!`;
+                
+                // Celebration effect
+                createCelebration();
+            }
+        });
+
+        // Share buttons
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `*${cardTitle.textContent}*\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nOm Namah Shivaya! 🔱`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const quote = encodeURIComponent(`${cardTitle.textContent} - Om Namah Shivaya! 🔱`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}... #MahaShivratri #OmNamahShivaya`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('📸 Take a screenshot and share on Instagram with #MahaShivratri #OmNamahShivaya #LordShiva');
+        });
+
+        document.getElementById('copyLinkBtn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => showNotification('Card link copied to clipboard! Share Shiva blessings!'))
+                .catch(() => showNotification('Failed to copy link. Please try again.'));
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            const subject = encodeURIComponent(`${cardTitle.textContent} - Maha Shivratri Greetings`);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Maha Shivratri Wishes Generator\n${window.location.href}\n\nOm Namah Shivaya! 🔱`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // ANIMATION FUNCTIONS
+        function createBell() {
+            const cardRect = shivratriCard.getBoundingClientRect();
+            
+            const bell = document.createElement('div');
+            bell.className = 'bell';
+            bell.innerHTML = '🔔';
+            
+            const x = Math.random() * (cardRect.width - 40) + 20;
+            bell.style.left = `${x}px`;
+            bell.style.top = `-50px`;
+            bell.style.fontSize = `${Math.random() * 20 + 20}px`;
+            bell.style.animationDuration = `${Math.random() * 4 + 3}s`;
+            bell.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            shivratriCard.appendChild(bell);
+            
+            setTimeout(() => {
+                if (bell.parentNode) {
+                    bell.remove();
+                }
+            }, 7000);
+        }
+
+        function createWaterDrop() {
+            const cardRect = shivratriCard.getBoundingClientRect();
+            
+            const drop = document.createElement('div');
+            drop.className = 'water-drop';
+            
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            drop.style.left = `${x}px`;
+            drop.style.top = `-30px`;
+            drop.style.animationDuration = `${Math.random() * 5 + 3}s`;
+            drop.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            shivratriCard.appendChild(drop);
+            
+            setTimeout(() => {
+                if (drop.parentNode) {
+                    drop.remove();
+                }
+            }, 8000);
+        }
+
+        function createDivineLight() {
+            const cardRect = shivratriCard.getBoundingClientRect();
+            
+            const light = document.createElement('div');
+            light.className = 'divine-light';
+            
+            const x = Math.random() * (cardRect.width - 20) + 10;
+            const y = Math.random() * (cardRect.height - 20) + 10;
+            light.style.left = `${x}px`;
+            light.style.top = `${y}px`;
+            
+            const colors = ['#bb86fc', '#03dac6', '#ffcc80', '#cf6679'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            light.style.backgroundColor = color;
+            light.style.boxShadow = `0 0 15px ${color}`;
+            light.style.animationDelay = `${Math.random() * 2}s`;
+            
+            shivratriCard.appendChild(light);
+            
+            setTimeout(() => {
+                if (light.parentNode) {
+                    light.remove();
+                }
+            }, 3000);
+        }
+
+        function createRudraksha() {
+            const cardRect = shivratriCard.getBoundingClientRect();
+            
+            const bead = document.createElement('div');
+            bead.className = 'rudraksha';
+            
+            const x = Math.random() * (cardRect.width - 20) + 10;
+            const y = Math.random() * (cardRect.height - 20) + 10;
+            bead.style.left = `${x}px`;
+            bead.style.top = `${y}px`;
+            bead.style.animationDelay = `${Math.random() * 2}s`;
+            
+            shivratriCard.appendChild(bead);
+            
+            setTimeout(() => {
+                if (bead.parentNode) {
+                    bead.remove();
+                }
+            }, 4000);
+        }
+
+        function createFlowerPetal() {
+            const cardRect = shivratriCard.getBoundingClientRect();
+            
+            const petal = document.createElement('div');
+            petal.className = 'flower-petal';
+            
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            petal.style.left = `${x}px`;
+            petal.style.top = `-30px`;
+            petal.style.animationDuration = `${Math.random() * 5 + 3}s`;
+            petal.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            const colors = ['#ffcc80', '#ffab91', '#bb86fc', '#cf6679'];
+            petal.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]}, #ffcc99)`;
+            
+            shivratriCard.appendChild(petal);
+            
+            setTimeout(() => {
+                if (petal.parentNode) {
+                    petal.remove();
+                }
+            }, 8000);
+        }
+
+        function createSoundWave() {
+            const cardRect = shivratriCard.getBoundingClientRect();
+            
+            const wave = document.createElement('div');
+            wave.className = 'sound-wave';
+            
+            wave.style.left = `${cardRect.width / 2}px`;
+            wave.style.top = `${cardRect.height / 2}px`;
+            
+            shivratriCard.appendChild(wave);
+            
+            setTimeout(() => {
+                if (wave.parentNode) {
+                    wave.remove();
+                }
+            }, 2000);
+        }
+
+        function createCelebration() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createBell();
+                    createWaterDrop();
+                    createDivineLight();
+                    createRudraksha();
+                    if (i % 3 === 0) createFlowerPetal();
+                    if (i % 5 === 0) createSoundWave();
+                }, i * 200);
+            }
+            
+            document.querySelectorAll('.shiva-icon').forEach(icon => {
+                const originalAnimation = icon.style.animation;
+                icon.style.animation = 'floatShiva 1s ease-in-out infinite';
+                icon.style.filter = 'drop-shadow(0 0 20px rgba(187, 134, 252, 0.9)) brightness(1.4)';
+                
+                setTimeout(() => {
+                    icon.style.animation = originalAnimation || 'floatShiva 6s ease-in-out infinite';
+                    icon.style.filter = 'drop-shadow(0 0 10px rgba(187, 134, 252, 0.7))';
+                }, 4000);
+            });
+            
+            shivratriCard.style.boxShadow = 'inset 0 0 60px rgba(187, 134, 252, 0.4), 0 0 50px rgba(3, 218, 198, 0.5)';
+            shivratriCard.style.transition = 'all 0.5s ease';
+            
+            setTimeout(() => {
+                shivratriCard.style.boxShadow = 'inset 0 0 30px rgba(0, 0, 0, 0.3), 0 10px 20px rgba(0, 0, 0, 0.4)';
+            }, 4000);
+        }
+
+        // Notification function
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.style.display = 'block';
+            notification.style.animation = 'slideIn 0.3s ease';
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 300);
+            }, 3000);
+        }
+
+        // Start animations after page loads
+        setTimeout(() => {
+            // Continuous animations
+            setInterval(createBell, 3000);
+            setInterval(createWaterDrop, 2500);
+            setInterval(createDivineLight, 1500);
+            setInterval(createRudraksha, 3500);
+            setInterval(createFlowerPetal, 4000);
+            setInterval(createSoundWave, 6000);
+            
+            // Initial burst
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createBell();
+                    createWaterDrop();
+                    createDivineLight();
+                    createRudraksha();
+                    if (i % 2 === 0) createFlowerPetal();
+                }, i * 300);
+            }
+            
+            showNotification('🔱 Welcome to Maha Shivratri Wishes Generator! Om Namah Shivaya!');
+        }, 1000);
+    </script>
+</body>
+</html>
