@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baisakhi Wishes Generator Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f39c12 0%, #f1c40f 30%, #f7dc6f 70%, #f8c471 100%);
+            color: #2c3e50;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 3px solid rgba(44, 62, 80, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            text-shadow: 0 2px 10px rgba(243, 156, 18, 0.5);
+        }
+        
+        .baisakhi-title {
+            color: #e67e22;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .baisakhi-title::before, .baisakhi-title::after {
+            content: '🌾';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+        }
+        
+        .baisakhi-title::before {
+            right: -50px;
+        }
+        
+        .baisakhi-title::after {
+            left: -50px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #d35400;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(231, 126, 34, 0.3);
+            position: relative;
+            overflow: visible;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(231, 126, 34, 0.3);
+        }
+        
+        .baisakhi-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #f39c12 0%, #f1c40f 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: visible;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.1), 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 5px solid #e67e22;
+        }
+        
+        .baisakhi-icon {
+            position: absolute;
+            font-size: 2.8rem;
+            opacity: 0.9;
+            animation: floatBaisakhi 6s ease-in-out infinite;
+            z-index: 5;
+            filter: drop-shadow(0 0 10px rgba(243, 156, 18, 0.7));
+        }
+        
+        .baisakhi-icon1 { top: 20px; left: 20px; color: #f39c12; animation-delay: 0s; }
+        .baisakhi-icon2 { top: 20px; right: 20px; color: #27ae60; animation-delay: 1.5s; }
+        .baisakhi-icon3 { bottom: 20px; left: 20px; color: #2980b9; animation-delay: 3s; }
+        .baisakhi-icon4 { bottom: 20px; right: 20px; color: #8e44ad; animation-delay: 4.5s; }
+        
+        @keyframes floatBaisakhi {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
+            50% { transform: translateY(0) rotate(0deg) scale(1); }
+            75% { transform: translateY(-10px) rotate(-5deg) scale(1.05); }
+        }
+        
+        .card-title {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(243, 156, 18, 0.5);
+            z-index: 20;
+            position: relative;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 3px solid #e67e22;
+        }
+        
+        .card-message {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #34495e;
+            z-index: 20;
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(231, 126, 34, 0.3);
+        }
+        
+        .card-sender {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-top: 20px;
+            font-style: italic;
+            font-weight: bold;
+            z-index: 20;
+            position: relative;
+            background: rgba(243, 156, 18, 0.8);
+            padding: 12px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 2px solid #27ae60;
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(231, 126, 34, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(231, 126, 34, 0.15) 0%, transparent 20%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 15px,
+                    rgba(39, 174, 96, 0.1) 15px,
+                    rgba(39, 174, 96, 0.1) 30px
+                );
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* WHEAT STEMS */
+        .wheat-stem {
+            position: absolute;
+            font-size: 1.8rem;
+            pointer-events: none;
+            z-index: 15;
+            animation: wheatSway linear infinite;
+        }
+        
+        @keyframes wheatSway {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* FARMER HATS */
+        .farmer-hat {
+            position: absolute;
+            font-size: 1.8rem;
+            pointer-events: none;
+            z-index: 15;
+            animation: hatFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes hatFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-15px) rotate(10deg) scale(1.2); opacity: 1; }
+        }
+        
+        /* HARVEST GRAINS */
+        .harvest-grain {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(45deg, #f39c12, #f1c40f);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            animation: grainFall linear infinite;
+            box-shadow: 0 0 10px #f39c12;
+        }
+        
+        @keyframes grainFall {
+            0% {
+                transform: translateY(-50px) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        /* BHANGRA DRUMS */
+        .bhangra-drum {
+            position: absolute;
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 15;
+            animation: drumBeat 1s ease-in-out infinite;
+        }
+        
+        @keyframes drumBeat {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+        
+        /* FESTIVAL LIGHTS */
+        .festival-light {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            animation: lightGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes lightGlow {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+        
+        /* COLORFUL DUPATTAS */
+        .dupatta {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 50% 50% 50% 0;
+            pointer-events: none;
+            z-index: 15;
+            animation: dupattaFloat linear infinite;
+            transform: rotate(45deg);
+        }
+        
+        @keyframes dupattaFloat {
+            0% {
+                transform: translateY(-50px) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px) rotate(135deg);
+                opacity: 0;
+            }
+        }
+        
+        /* CELEBRATION WAVE */
+        .celebration-wave {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f39c12;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 8;
+            animation: waveExpand 2s ease-out infinite;
+            opacity: 0;
+        }
+        
+        @keyframes waveExpand {
+            0% { transform: scale(0.1); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(44, 62, 80, 0.3);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(243, 156, 18, 0.2);
+            border: 1px solid rgba(231, 126, 34, 0.3);
+            border-radius: 10px;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(243, 156, 18, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #e67e22;
+            box-shadow: 0 0 15px rgba(231, 126, 34, 0.7);
+        }
+        
+        .color1 { background: linear-gradient(45deg, #f39c12, #f1c40f); }
+        .color2 { background: linear-gradient(45deg, #27ae60, #2ecc71); }
+        .color3 { background: linear-gradient(45deg, #e74c3c, #c0392b); }
+        .color4 { background: linear-gradient(45deg, #3498db, #2980b9); }
+        .color5 { background: linear-gradient(45deg, #8e44ad, #9b59b6); }
+        .color6 { background: linear-gradient(45deg, #f7dc6f, #f8c471); }
+        .color7 { background: linear-gradient(45deg, #16a085, #1abc9c); }
+        .color8 { background: linear-gradient(45deg, #d35400, #e67e22); }
+        .color9 { background: linear-gradient(45deg, #2c3e50, #34495e); }
+        .color10 { background: linear-gradient(45deg, #f1c40f, #f39c12); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(231, 126, 34, 0.3);
+            border-radius: 10px;
+            color: #2c3e50;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(44, 62, 80, 0.6);
+        }
+        
+        .theme-type {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .theme-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .theme-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.2);
+        }
+        
+        .theme-btn.active {
+            border-color: #e67e22;
+            background: rgba(231, 126, 34, 0.15);
+        }
+        
+        .harvest-btn.active {
+            border-color: #27ae60;
+            background: rgba(39, 174, 96, 0.15);
+        }
+        
+        .bhangra-btn.active {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.15);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(44, 62, 80, 0.1);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .instruction {
+            background: rgba(243, 156, 18, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #27ae60;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(243, 156, 18, 0.2);
+            border-radius: 10px;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(243, 156, 18, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(44, 62, 80, 0.2);
+            color: #2c3e50;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(44, 62, 80, 0.95);
+            color: #f39c12;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+            border: 2px solid #27ae60;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-title {
+                font-size: 1.8rem;
+            }
+            
+            .card-message {
+                font-size: 1.2rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+            
+            .theme-type {
+                flex-wrap: wrap;
+            }
+            
+            .theme-btn {
+                min-width: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .theme-type {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="baisakhi-title">Baisakhi Wishes Generator Pro</span></h1>
+            <p class="subtitle">Create beautiful Baisakhi cards celebrating harvest and new beginnings</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Baisakhi Card</h2>
+                <div class="baisakhi-card" id="baisakhiCard">
+                    <div class="card-pattern"></div>
+                    <div class="baisakhi-icon baisakhi-icon1">🌾</div>
+                    <div class="baisakhi-icon baisakhi-icon2">🥁</div>
+                    <div class="baisakhi-icon baisakhi-icon3">🙏</div>
+                    <div class="baisakhi-icon baisakhi-icon4">🎉</div>
+                    
+                    <h3 class="card-title" id="cardTitle">Happy Baisakhi!</h3>
+                    <p class="card-message" id="cardMessage">May this Baisakhi bring you prosperity, happiness, and abundant blessings. Wishing you a harvest festival filled with joy, dance, and new beginnings.</p>
+                    <p class="card-sender" id="cardSender">Waheguru Ji Ka Khalsa! 🌾</p>
+                </div>
+                
+                <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://baisakhiwishes.com/card/2024
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your Baisakhi card is ready! Customize it with different themes, designs, and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Baisakhi Blessings</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <button class="wish-btn">Harvest Prosperity</button>
+                        <button class="wish-btn">New Beginnings</button>
+                        <button class="wish-btn">Abundant Joy</button>
+                        <button class="wish-btn">Farmers' Blessings</button>
+                        <button class="wish-btn">Dance & Celebration</button>
+                        <button class="wish-btn">Spiritual Growth</button>
+                        <button class="wish-btn">Family Harmony</button>
+                        <button class="wish-btn">Golden Harvest</button>
+                        <button class="wish-btn">Community Unity</button>
+                        <button class="wish-btn">Divine Grace</button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <button class="design-btn color1 active" title="Golden Harvest"></button>
+                        <button class="design-btn color2" title="Green Fields"></button>
+                        <button class="design-btn color3" title="Festival Red"></button>
+                        <button class="design-btn color4" title="Sky Blue"></button>
+                        <button class="design-btn color5" title="Royal Purple"></button>
+                        <button class="design-btn color6" title="Sunshine Yellow"></button>
+                        <button class="design-btn color7" title="Emerald Green"></button>
+                        <button class="design-btn color8" title="Orange Celebration"></button>
+                        <button class="design-btn color9" title="Midnight Blue"></button>
+                        <button class="design-btn color10" title="Golden Sun"></button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Festival Theme</h3>
+                    <div class="theme-type">
+                        <button class="theme-btn harvest-btn active" id="harvestBtn">
+                            <i class="fas fa-seedling"></i> Harvest Time
+                        </button>
+                        <button class="theme-btn bhangra-btn" id="bhangraBtn">
+                            <i class="fas fa-music"></i> Bhangra Dance
+                        </button>
+                        <button class="theme-btn" id="spiritualBtn">
+                            <i class="fas fa-pray"></i> Spiritual
+                        </button>
+                        <button class="theme-btn" id="communityBtn">
+                            <i class="fas fa-users"></i> Community Fest
+                        </button>
+                    </div>
+                    
+                    <input type="text" class="custom-input" id="recipientName" placeholder="Recipient's Name (e.g., Singh Family)">
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom Baisakhi message here..."></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., With blessings, Simran)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send Baisakhi Wishes
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn copy-link" id="copyLinkBtn">
+                            <i class="fas fa-copy"></i> Copy Link
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#e74c3c;"></i> for Baisakhi | Waheguru Ji Ka Khalsa! 🌾</p>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification" style="display: none;"></div>
+
+    <script>
+        // Baisakhi messages
+        const autoWishes = [
+            "May this Baisakhi bring you prosperity, happiness, and abundant blessings. Wishing you a harvest festival filled with joy, dance, and new beginnings.",
+            "On this auspicious day of Baisakhi, may Waheguru bless you with health, wealth, and happiness. May your life be as golden as the harvest fields.",
+            "Wishing you a Baisakhi filled with the rhythm of Bhangra, the sweetness of harvest, and the blessings of new beginnings. Happy Baisakhi!",
+            "As we celebrate the harvest festival, may your life be filled with abundance and prosperity. Happy Baisakhi to you and your family!",
+            "May the spirit of Baisakhi fill your home with happiness, your fields with golden harvest, and your heart with divine grace. Happy Baisakhi!",
+            "On this Baisakhi, may you be blessed with success in all your endeavors and joy in every moment. Wishing you a prosperous harvest festival!",
+            "As the farmers reap their golden harvest, may you reap the rewards of your hard work. Happy Baisakhi filled with abundance and joy!",
+            "May the sound of the dhol and the joy of Bhangra fill your heart with happiness this Baisakhi. Wishing you a festival full of celebrations!",
+            "On this sacred day of Baisakhi, may you be blessed with peace, prosperity, and spiritual enlightenment. Waheguru Ji Ka Khalsa!",
+            "As nature blesses us with a bountiful harvest, may life bless you with endless happiness and success. Happy Baisakhi!"
+        ];
+
+        // Festival themes
+        const festivalThemes = {
+            harvest: {
+                title: "Happy Baisakhi!",
+                icons: ['🌾', '🥁', '🙏', '🎉'],
+                color: '#f39c12',
+                greeting: "Waheguru Ji Ka Khalsa! 🌾"
+            },
+            bhangra: {
+                title: "Bhangra Celebrations!",
+                icons: ['💃', '🕺', '🥁', '🎵'],
+                color: '#e74c3c',
+                greeting: "Let's Bhangra! 💃"
+            },
+            spiritual: {
+                title: "Divine Blessings!",
+                icons: ['🕉️', '🙏', '🕯️', '🌟'],
+                color: '#3498db',
+                greeting: "Divine Grace 🙏"
+            },
+            community: {
+                title: "Community Festival!",
+                icons: ['👨‍🌾', '👩‍🌾', '🎪', '✨'],
+                color: '#27ae60',
+                greeting: "Community Joy! 🎪"
+            }
+        };
+
+        // DOM elements
+        const baisakhiCard = document.getElementById('baisakhiCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+        const recipientName = document.getElementById('recipientName');
+        const harvestBtn = document.getElementById('harvestBtn');
+        const bhangraBtn = document.getElementById('bhangraBtn');
+        const spiritualBtn = document.getElementById('spiritualBtn');
+        const communityBtn = document.getElementById('communityBtn');
+        const notification = document.getElementById('notification');
+        
+        let selectedTheme = 'harvest';
+        
+        // Initialize wish buttons
+        document.querySelectorAll('.wish-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (index < autoWishes.length) {
+                    cardMessage.textContent = autoWishes[index];
+                    customMessage.value = '';
+                    showNotification(`Applied "${btn.textContent}" blessing!`);
+                }
+            });
+        });
+
+        // Initialize design buttons
+        document.querySelectorAll('.design-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all
+                document.querySelectorAll('.design-btn').forEach(b => b.classList.remove('active'));
+                // Add active to clicked
+                this.classList.add('active');
+                
+                // Apply design
+                const className = this.className.match(/color\d+/)[0];
+                const gradients = {
+                    'color1': ['#f39c12', '#f1c40f'],
+                    'color2': ['#27ae60', '#2ecc71'],
+                    'color3': ['#e74c3c', '#c0392b'],
+                    'color4': ['#3498db', '#2980b9'],
+                    'color5': ['#8e44ad', '#9b59b6'],
+                    'color6': ['#f7dc6f', '#f8c471'],
+                    'color7': ['#16a085', '#1abc9c'],
+                    'color8': ['#d35400', '#e67e22'],
+                    'color9': ['#2c3e50', '#34495e'],
+                    'color10': ['#f1c40f', '#f39c12']
+                };
+                
+                const colors = gradients[className];
+                baisakhiCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+                
+                showNotification(`Applied ${this.title} design!`);
+            });
+        });
+
+        // Theme buttons
+        harvestBtn.addEventListener('click', () => {
+            selectedTheme = 'harvest';
+            updateThemeButtons();
+            showNotification("Applied Harvest theme! Golden blessings! 🌾");
+        });
+        
+        bhangraBtn.addEventListener('click', () => {
+            selectedTheme = 'bhangra';
+            updateThemeButtons();
+            showNotification("Applied Bhangra theme! Let's dance! 💃");
+        });
+        
+        spiritualBtn.addEventListener('click', () => {
+            selectedTheme = 'spiritual';
+            updateThemeButtons();
+            showNotification("Applied Spiritual theme! Divine grace! 🙏");
+        });
+        
+        communityBtn.addEventListener('click', () => {
+            selectedTheme = 'community';
+            updateThemeButtons();
+            showNotification("Applied Community Festival theme! Together we celebrate! 🎪");
+        });
+        
+        function updateThemeButtons() {
+            [harvestBtn, bhangraBtn, spiritualBtn, communityBtn].forEach(btn => btn.classList.remove('active'));
+            if (selectedTheme === 'harvest') harvestBtn.classList.add('active');
+            else if (selectedTheme === 'bhangra') bhangraBtn.classList.add('active');
+            else if (selectedTheme === 'spiritual') spiritualBtn.classList.add('active');
+            else communityBtn.classList.add('active');
+            
+            updateCardForTheme();
+        }
+        
+        function updateCardForTheme() {
+            const theme = festivalThemes[selectedTheme];
+            cardTitle.textContent = theme.title;
+            
+            // Update icons
+            const icons = document.querySelectorAll('.baisakhi-icon');
+            theme.icons.forEach((icon, index) => {
+                if (icons[index]) icons[index].textContent = icon;
+            });
+            
+            // Update sender if no custom name
+            if (!senderName.value.trim()) {
+                cardSender.textContent = theme.greeting;
+            }
+            
+            // Update border color
+            baisakhiCard.style.borderColor = theme.color;
+        }
+
+        // Custom message input
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            } else {
+                cardMessage.textContent = autoWishes[0];
+            }
+        });
+
+        // Sender name input
+        senderName.addEventListener('input', () => {
+            if (senderName.value.trim() !== '') {
+                cardSender.textContent = `${festivalThemes[selectedTheme].greeting}\nFrom: ${senderName.value}`;
+            } else {
+                cardSender.textContent = festivalThemes[selectedTheme].greeting;
+            }
+        });
+
+        // Recipient name input
+        recipientName.addEventListener('input', () => {
+            if (recipientName.value.trim() !== '') {
+                cardTitle.textContent = `${festivalThemes[selectedTheme].title}, ${recipientName.value}!`;
+            } else {
+                cardTitle.textContent = festivalThemes[selectedTheme].title;
+            }
+        });
+
+        // Edit button
+        document.getElementById('editBtn').addEventListener('click', () => {
+            customMessage.focus();
+            showNotification('Start editing your Baisakhi card message!');
+        });
+
+        // Send button
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const recipient = prompt("Enter recipient's name:", recipientName.value || "Dear Family");
+            if (recipient) {
+                showNotification(`Baisakhi card customized for ${recipient}! Ready to share.`);
+                recipientName.value = recipient;
+                cardTitle.textContent = `${festivalThemes[selectedTheme].title}, ${recipient}!`;
+                
+                // Celebration effect
+                createCelebration();
+            }
+        });
+
+        // Share buttons
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `*${cardTitle.textContent}*\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nHappy Baisakhi! 🌾`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const quote = encodeURIComponent(`${cardTitle.textContent} - Happy Baisakhi! 🌾`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}... #Baisakhi #HarvestFestival #HappyBaisakhi`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('📸 Take a screenshot and share on Instagram with #Baisakhi #HarvestFestival #Bhangra');
+        });
+
+        document.getElementById('copyLinkBtn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => showNotification('Card link copied to clipboard! Share Baisakhi wishes!'))
+                .catch(() => showNotification('Failed to copy link. Please try again.'));
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            const subject = encodeURIComponent(`${cardTitle.textContent} - Baisakhi Greetings`);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Baisakhi Wishes Generator\n${window.location.href}\n\nHappy Baisakhi! 🌾`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // ANIMATION FUNCTIONS
+        function createWheatStem() {
+            const cardRect = baisakhiCard.getBoundingClientRect();
+            
+            const wheat = document.createElement('div');
+            wheat.className = 'wheat-stem';
+            wheat.innerHTML = '🌾';
+            
+            const x = Math.random() * (cardRect.width - 40) + 20;
+            wheat.style.left = `${x}px`;
+            wheat.style.top = `-50px`;
+            wheat.style.fontSize = `${Math.random() * 20 + 20}px`;
+            wheat.style.animationDuration = `${Math.random() * 4 + 3}s`;
+            wheat.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            baisakhiCard.appendChild(wheat);
+            
+            setTimeout(() => {
+                if (wheat.parentNode) {
+                    wheat.remove();
+                }
+            }, 7000);
+        }
+
+        function createFarmerHat() {
+            const cardRect = baisakhiCard.getBoundingClientRect();
+            
+            const hat = document.createElement('div');
+            hat.className = 'farmer-hat';
+            hat.innerHTML = '👒';
+            
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            const y = Math.random() * (cardRect.height - 30) + 15;
+            hat.style.left = `${x}px`;
+            hat.style.top = `${y}px`;
+            hat.style.fontSize = `${Math.random() * 25 + 20}px`;
+            hat.style.animationDelay = `${Math.random() * 2}s`;
+            
+            baisakhiCard.appendChild(hat);
+            
+            setTimeout(() => {
+                if (hat.parentNode) {
+                    hat.remove();
+                }
+            }, 4000);
+        }
+
+        function createHarvestGrain() {
+            const cardRect = baisakhiCard.getBoundingClientRect();
+            
+            const grain = document.createElement('div');
+            grain.className = 'harvest-grain';
+            
+            const x = Math.random() * (cardRect.width - 20) + 10;
+            grain.style.left = `${x}px`;
+            grain.style.top = `-30px`;
+            grain.style.animationDuration = `${Math.random() * 5 + 3}s`;
+            grain.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            baisakhiCard.appendChild(grain);
+            
+            setTimeout(() => {
+                if (grain.parentNode) {
+                    grain.remove();
+                }
+            }, 8000);
+        }
+
+        function createBhangraDrum() {
+            const cardRect = baisakhiCard.getBoundingClientRect();
+            
+            const drum = document.createElement('div');
+            drum.className = 'bhangra-drum';
+            drum.innerHTML = '🥁';
+            
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            const y = Math.random() * (cardRect.height - 30) + 15;
+            drum.style.left = `${x}px`;
+            drum.style.top = `${y}px`;
+            drum.style.fontSize = `${Math.random() * 25 + 20}px`;
+            drum.style.animationDelay = `${Math.random() * 2}s`;
+            
+            baisakhiCard.appendChild(drum);
+            
+            setTimeout(() => {
+                if (drum.parentNode) {
+                    drum.remove();
+                }
+            }, 3000);
+        }
+
+        function createFestivalLight() {
+            const cardRect = baisakhiCard.getBoundingClientRect();
+            
+            const light = document.createElement('div');
+            light.className = 'festival-light';
+            
+            const x = Math.random() * (cardRect.width - 10) + 5;
+            const y = Math.random() * (cardRect.height - 10) + 5;
+            light.style.left = `${x}px`;
+            light.style.top = `${y}px`;
+            
+            const colors = ['#f39c12', '#27ae60', '#e74c3c', '#3498db'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            light.style.backgroundColor = color;
+            light.style.boxShadow = `0 0 15px ${color}`;
+            light.style.animationDelay = `${Math.random() * 2}s`;
+            
+            baisakhiCard.appendChild(light);
+            
+            setTimeout(() => {
+                if (light.parentNode) {
+                    light.remove();
+                }
+            }, 3000);
+        }
+
+        function createDupatta() {
+            const cardRect = baisakhiCard.getBoundingClientRect();
+            
+            const dupatta = document.createElement('div');
+            dupatta.className = 'dupatta';
+            
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            dupatta.style.left = `${x}px`;
+            dupatta.style.top = `-40px`;
+            dupatta.style.animationDuration = `${Math.random() * 6 + 4}s`;
+            dupatta.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            const colors = ['#e74c3c', '#f39c12', '#3498db', '#8e44ad'];
+            dupatta.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]}, #f1c40f)`;
+            
+            baisakhiCard.appendChild(dupatta);
+            
+            setTimeout(() => {
+                if (dupatta.parentNode) {
+                    dupatta.remove();
+                }
+            }, 10000);
+        }
+
+        function createCelebrationWave() {
+            const cardRect = baisakhiCard.getBoundingClientRect();
+            
+            const wave = document.createElement('div');
+            wave.className = 'celebration-wave';
+            
+            wave.style.left = `${cardRect.width / 2}px`;
+            wave.style.top = `${cardRect.height / 2}px`;
+            
+            baisakhiCard.appendChild(wave);
+            
+            setTimeout(() => {
+                if (wave.parentNode) {
+                    wave.remove();
+                }
+            }, 2000);
+        }
+
+        function createCelebration() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createWheatStem();
+                    createFarmerHat();
+                    createHarvestGrain();
+                    createBhangraDrum();
+                    createFestivalLight();
+                    createDupatta();
+                    if (i % 5 === 0) createCelebrationWave();
+                }, i * 200);
+            }
+            
+            document.querySelectorAll('.baisakhi-icon').forEach(icon => {
+                const originalAnimation = icon.style.animation;
+                icon.style.animation = 'floatBaisakhi 1s ease-in-out infinite';
+                icon.style.filter = 'drop-shadow(0 0 20px rgba(243, 156, 18, 0.9)) brightness(1.4)';
+                
+                setTimeout(() => {
+                    icon.style.animation = originalAnimation || 'floatBaisakhi 6s ease-in-out infinite';
+                    icon.style.filter = 'drop-shadow(0 0 10px rgba(243, 156, 18, 0.7))';
+                }, 4000);
+            });
+            
+            baisakhiCard.style.boxShadow = 'inset 0 0 60px rgba(243, 156, 18, 0.4), 0 0 50px rgba(39, 174, 96, 0.5)';
+            baisakhiCard.style.transition = 'all 0.5s ease';
+            
+            setTimeout(() => {
+                baisakhiCard.style.boxShadow = 'inset 0 0 30px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.3)';
+            }, 4000);
+        }
+
+        // Notification function
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.style.display = 'block';
+            notification.style.animation = 'slideIn 0.3s ease';
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 300);
+            }, 3000);
+        }
+
+        // Start animations after page loads
+        setTimeout(() => {
+            // Continuous animations
+            setInterval(createWheatStem, 3000);
+            setInterval(createFarmerHat, 3500);
+            setInterval(createHarvestGrain, 2500);
+            setInterval(createBhangraDrum, 2000);
+            setInterval(createFestivalLight, 1500);
+            setInterval(createDupatta, 4000);
+            setInterval(createCelebrationWave, 6000);
+            
+            // Initial burst
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createWheatStem();
+                    createFarmerHat();
+                    createHarvestGrain();
+                    createBhangraDrum();
+                    createFestivalLight();
+                }, i * 300);
+            }
+            
+            showNotification('🌾 Welcome to Baisakhi Wishes Generator! Happy Harvest Festival!');
+        }, 1000);
+    </script>
+</body>
+</html>
