@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You Wishes Generator Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a5c4a 0%, #2a7c62 30%, #4CAF50 70%, #8BC34A 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gratitude-title {
+            color: #4CAF50;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .gratitude-title::before, .gratitude-title::after {
+            content: '🙏';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+        }
+        
+        .gratitude-title::before {
+            right: -45px;
+        }
+        
+        .gratitude-title::after {
+            left: -45px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #c8e6c9;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .thankyou-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #2e7d32 0%, #4CAF50 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 5px solid #81c784;
+        }
+        
+        .leaf {
+            position: absolute;
+            color: #81c784;
+            font-size: 2rem;
+            opacity: 0.6;
+        }
+        
+        .leaf1 { top: 20px; left: 20px; transform: rotate(-30deg); }
+        .leaf2 { top: 20px; right: 20px; transform: rotate(30deg); }
+        .leaf3 { bottom: 20px; left: 20px; transform: rotate(-150deg); }
+        .leaf4 { bottom: 20px; right: 20px; transform: rotate(150deg); }
+        
+        .card-title {
+            font-size: 2.2rem;
+            color: #e8f5e9;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #fff;
+        }
+        
+        .card-sender {
+            font-size: 1.2rem;
+            color: #c8e6c9;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(129, 199, 132, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(129, 199, 132, 0.2) 0%, transparent 20%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #81c784;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(129, 199, 132, 0.3);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(129, 199, 132, 0.15);
+            border: 1px solid rgba(129, 199, 132, 0.3);
+            border-radius: 10px;
+            color: #81c784;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(129, 199, 132, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #81c784;
+            box-shadow: 0 0 10px #81c784;
+        }
+        
+        .color1 { background: linear-gradient(45deg, #2e7d32, #4CAF50); }
+        .color2 { background: linear-gradient(45deg, #1b5e20, #388e3c); }
+        .color3 { background: linear-gradient(45deg, #0d47a1, #1976d2); }
+        .color4 { background: linear-gradient(45deg, #6a1b9a, #8e24aa); }
+        .color5 { background: linear-gradient(45deg, #ad1457, #e91e63); }
+        .color6 { background: linear-gradient(45deg, #ff6f00, #ff9800); }
+        .color7 { background: linear-gradient(45deg, #004d40, #00796b); }
+        .color8 { background: linear-gradient(45deg, #1a237e, #283593); }
+        .color9 { background: linear-gradient(45deg, #4a148c, #7b1fa2); }
+        .color10 { background: linear-gradient(45deg, #bf360c, #d84315); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #81c784, #4CAF50);
+            color: white;
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #388e3c, #2e7d32);
+            color: white;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .leaf-fall {
+            position: absolute;
+            color: #81c784;
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 100;
+            animation: leafFall linear infinite;
+        }
+        
+        .blessing {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ffeb3b;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: 0 0 10px #ffeb3b;
+        }
+        
+        @keyframes leafFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .instruction {
+            background: rgba(129, 199, 132, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #81c784;
+            font-size: 0.95rem;
+            color: #c8e6c9;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(129, 199, 132, 0.2);
+            border-radius: 10px;
+            color: #81c784;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(129, 199, 132, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #c8e6c9;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(76, 175, 80, 0.95);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-message {
+                font-size: 1.3rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="gratitude-title">Thank You Wishes Generator Pro</span></h1>
+            <p class="subtitle">Create beautiful Thank You cards to express your gratitude and appreciation</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Thank You Card</h2>
+                <div class="thankyou-card" id="thankyouCard">
+                    <div class="leaf leaf1">🍃</div>
+                    <div class="leaf leaf2">🍃</div>
+                    <div class="leaf leaf3">🍃</div>
+                    <div class="leaf leaf4">🍃</div>
+                    <div class="card-pattern"></div>
+                    <h3 class="card-title" id="cardTitle">Thank You So Much!</h3>
+                    <p class="card-message" id="cardMessage">I want to express my sincere gratitude for your kindness and support. Your generosity means more than words can say.</p>
+                    <p class="card-sender" id="cardSender">With appreciation, Your Name</p>
+                </div>
+                
+                <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://thankyouwishes.com/card/<?php echo rand(1000,9999); ?>
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your Thank You card is ready! Customize it with different designs and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Gratitude Messages</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <!-- Auto wishes will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <!-- Card design buttons will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Custom Message</h3>
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom thank you message here..."></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., With gratitude, John)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send to Someone Special
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn telegram" id="telegramBtn">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#4CAF50;"></i> for expressing gratitude | Spread appreciation and kindness</p>
+        </footer>
+    </div>
+
+    <script>
+        // Thank You messages
+        const autoWishes = [
+            "I want to express my sincere gratitude for your kindness and support. Your generosity means more than words can say.",
+            "Thank you for your thoughtfulness and generosity. I truly appreciate everything you've done for me.",
+            "Your kindness has made such a positive difference. Thank you from the bottom of my heart!",
+            "I'm so grateful for your support and encouragement. Thank you for always being there for me.",
+            "Thank you for going above and beyond. Your help has been invaluable and deeply appreciated.",
+            "Your generosity has touched my heart. Thank you for making a difference in my life.",
+            "I can't thank you enough for your kindness. You have my deepest gratitude and appreciation.",
+            "Thank you for your wonderful gift and for thinking of me. It means so much!",
+            "Your support has been a blessing. Thank you for everything you've done for me.",
+            "I'm truly grateful for your help and guidance. Thank you for being such an amazing person."
+        ];
+
+        // Card designs with gratitude colors
+        const cardDesigns = [
+            { name: "Nature Green", className: "color1" },
+            { name: "Forest Green", className: "color2" },
+            { name: "Ocean Blue", className: "color3" },
+            { name: "Royal Purple", className: "color4" },
+            { name: "Pink Gratitude", className: "color5" },
+            { name: "Sunset Orange", className: "color6" },
+            { name: "Teal Thanks", className: "color7" },
+            { name: "Deep Blue", className: "color8" },
+            { name: "Violet Appreciation", className: "color9" },
+            { name: "Warm Red", className: "color10" }
+        ];
+
+        // DOM elements
+        const thankyouCard = document.getElementById('thankyouCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const autoWishesContainer = document.getElementById('autoWishes');
+        const cardDesignsContainer = document.getElementById('cardDesigns');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+        const siteLink = document.getElementById('siteLink');
+        
+        // Initialize auto wishes buttons
+        autoWishes.forEach((wish, index) => {
+            const wishButton = document.createElement('button');
+            wishButton.className = 'wish-btn';
+            wishButton.textContent = `Message ${index + 1}`;
+            wishButton.addEventListener('click', () => {
+                cardMessage.textContent = wish;
+                // Reset custom message input
+                customMessage.value = '';
+            });
+            autoWishesContainer.appendChild(wishButton);
+        });
+
+        // Initialize card design buttons
+        cardDesigns.forEach((design, index) => {
+            const designButton = document.createElement('button');
+            designButton.className = `design-btn ${design.className}`;
+            designButton.title = design.name;
+            if (index === 0) designButton.classList.add('active');
+            
+            designButton.addEventListener('click', () => {
+                // Remove active class from all design buttons
+                document.querySelectorAll('.design-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                designButton.classList.add('active');
+                
+                // Change card background
+                applyCardDesign(design.className);
+            });
+            
+            cardDesignsContainer.appendChild(designButton);
+        });
+
+        // Function to apply card design
+        function applyCardDesign(designClass) {
+            // Map design classes to gradient colors
+            const gradients = {
+                'color1': ['#2e7d32', '#4CAF50'],
+                'color2': ['#1b5e20', '#388e3c'],
+                'color3': ['#0d47a1', '#1976d2'],
+                'color4': ['#6a1b9a', '#8e24aa'],
+                'color5': ['#ad1457', '#e91e63'],
+                'color6': ['#ff6f00', '#ff9800'],
+                'color7': ['#004d40', '#00796b'],
+                'color8': ['#1a237e', '#283593'],
+                'color9': ['#4a148c', '#7b1fa2'],
+                'color10': ['#bf360c', '#d84315']
+            };
+            
+            const colors = gradients[designClass];
+            thankyouCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+        }
+
+        // Custom message input event
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            }
+        });
+
+        // Sender name input event
+        senderName.addEventListener('input', () => {
+            if (senderName.value.trim() !== '') {
+                cardSender.textContent = `With appreciation, ${senderName.value}`;
+            } else {
+                cardSender.textContent = 'With appreciation, Your Name';
+            }
+        });
+
+        // Edit button functionality
+        document.getElementById('editBtn').addEventListener('click', () => {
+            // Highlight the custom message field
+            customMessage.focus();
+            customMessage.style.border = '2px solid #81c784';
+            customMessage.style.boxShadow = '0 0 10px rgba(129, 199, 132, 0.5)';
+            
+            // Remove highlight after 2 seconds
+            setTimeout(() => {
+                customMessage.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                customMessage.style.boxShadow = 'none';
+            }, 2000);
+            
+            // Show notification
+            showNotification('You can now edit the card message and sender name');
+        });
+
+        // Send to someone special button functionality
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const recipient = prompt("Enter the recipient's name:");
+            const occasion = prompt("What are you thanking them for? (e.g., birthday gift, help with project, support):");
+            
+            if (recipient) {
+                const originalSender = cardSender.textContent.replace('With appreciation, ', '');
+                let personalizedMessage = `Dear ${recipient},\n\n`;
+                
+                if (occasion) {
+                    personalizedMessage += `Thank you so much for ${occasion}. `;
+                }
+                
+                personalizedMessage += cardMessage.textContent + `\n\n${cardSender.textContent}`;
+                
+                // Update card for preview
+                const originalMessage = cardMessage.textContent;
+                cardMessage.textContent = personalizedMessage;
+                cardSender.textContent = `To: ${recipient} | From: ${originalSender === 'Your Name' ? 'Grateful Friend' : originalSender}`;
+                
+                // Show success message
+                showNotification(`Thank you card customized for ${recipient}! Now you can share it.`);
+                
+                // Create special appreciation effect
+                createAppreciationEffect();
+                
+                // Revert after 10 seconds for preview
+                setTimeout(() => {
+                    cardMessage.textContent = originalMessage;
+                    cardSender.textContent = `With appreciation, ${originalSender === 'Your Name' ? 'Your Name' : originalSender}`;
+                }, 10000);
+            }
+        });
+
+        // Share buttons functionality
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `🙏 *${cardTitle.textContent}* 🙏\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreate your own Thank You card: ${window.location.href}`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const quote = encodeURIComponent(`🙏 ${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}...`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`🙏 ${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}...`);
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('To share on Instagram: 1. Take a screenshot of your card 2. Open Instagram 3. Post it as a story or feed with #ThankYou #Gratitude');
+        });
+
+        document.getElementById('telegramBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`🙏 ${cardTitle.textContent}\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\n${window.location.href}`);
+            window.open(`https://t.me/share/url?url=${text}`, '_blank');
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            const subject = encodeURIComponent(cardTitle.textContent);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Thank You Wishes Generator: ${window.location.href}`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // Copy link functionality
+        document.querySelector('.copy-link')?.addEventListener('click', () => {
+            const cardData = {
+                title: cardTitle.textContent,
+                message: cardMessage.textContent,
+                sender: cardSender.textContent,
+                design: document.querySelector('.design-btn.active').className.match(/color\d+/)[0]
+            };
+            
+            const encodedData = encodeURIComponent(JSON.stringify(cardData));
+            const shareableLink = `${window.location.origin}${window.location.pathname}?card=${encodedData}`;
+            
+            navigator.clipboard.writeText(shareableLink)
+                .then(() => showNotification('🙏 Card link copied to clipboard! Share it to express your gratitude.'))
+                .catch(err => {
+                    console.error('Could not copy text: ', err);
+                    showNotification('Failed to copy link. Please try again.');
+                });
+        });
+
+        // Falling leaves effect
+        function createFallingLeaf() {
+            const leaf = document.createElement('div');
+            leaf.className = 'leaf-fall';
+            leaf.innerHTML = '🍃';
+            leaf.style.left = `${Math.random() * 100}vw`;
+            leaf.style.fontSize = `${Math.random() * 20 + 15}px`;
+            leaf.style.animationDuration = `${Math.random() * 8 + 5}s`;
+            leaf.style.opacity = Math.random() * 0.5 + 0.3;
+            
+            document.body.appendChild(leaf);
+            
+            // Remove leaf after animation
+            setTimeout(() => {
+                leaf.remove();
+            }, 15000);
+        }
+
+        // Blessing particles effect
+        function createBlessingParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'blessing';
+            
+            // Random position
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = '-10px';
+            
+            // Random size
+            const size = Math.random() * 8 + 4;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            document.body.appendChild(particle);
+            
+            // Random animation
+            const duration = Math.random() * 4 + 2;
+            particle.style.transition = `all ${duration}s ease-out`;
+            
+            setTimeout(() => {
+                particle.style.top = '100vh';
+                particle.style.left = `${parseFloat(particle.style.left) + (Math.random() - 0.5) * 100}px`;
+                particle.style.opacity = '0';
+            }, 10);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                particle.remove();
+            }, duration * 1000);
+        }
+
+        // Appreciation effect (for when sending to someone)
+        function createAppreciationEffect() {
+            // Create lots of leaves and blessings
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    createFallingLeaf();
+                    if (i % 2 === 0) createBlessingParticle();
+                }, i * 100);
+            }
+            
+            // Make leaves on card glow
+            document.querySelectorAll('.leaf').forEach(leaf => {
+                leaf.style.textShadow = '0 0 15px #81c784';
+                leaf.style.transition = 'all 0.5s ease';
+            });
+            
+            // Return to normal after 3 seconds
+            setTimeout(() => {
+                document.querySelectorAll('.leaf').forEach(leaf => {
+                    leaf.style.textShadow = 'none';
+                });
+            }, 3000);
+        }
+
+        // Create periodic effects
+        setInterval(createFallingLeaf, 1000);
+        setInterval(createBlessingParticle, 800);
+        
+        // Create initial effects
+        setTimeout(() => {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createFallingLeaf();
+                    if (i % 3 === 0) createBlessingParticle();
+                }, i * 200);
+            }
+        }, 1000);
+
+        // Notification function
+        function showNotification(message) {
+            // Remove existing notification
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create new notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Generate a unique link for the card
+        const cardId = Math.floor(Math.random() * 10000);
+        siteLink.textContent = `https://thankyouwishes.com/card/${cardId}`;
+        siteLink.href = `https://thankyouwishes.com/card/${cardId}`;
+        
+        // Check for card data in URL (for sharing)
+        function loadCardFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cardDataParam = urlParams.get('card');
+            
+            if (cardDataParam) {
+                try {
+                    const cardData = JSON.parse(decodeURIComponent(cardDataParam));
+                    
+                    // Apply card data
+                    cardTitle.textContent = cardData.title || cardTitle.textContent;
+                    cardMessage.textContent = cardData.message || cardMessage.textContent;
+                    cardSender.textContent = cardData.sender || cardSender.textContent;
+                    
+                    // Apply design if specified
+                    if (cardData.design) {
+                        const designButton = document.querySelector(`.${cardData.design}`);
+                        if (designButton) {
+                            designButton.click();
+                        }
+                    }
+                    
+                    showNotification('🙏 Thank You card loaded successfully!');
+                } catch (e) {
+                    console.error('Error loading card data:', e);
+                }
+            }
+        }
+        
+        // Load card data from URL if present
+        loadCardFromURL();
+        
+        // Initialize with a random wish
+        const randomWishIndex = Math.floor(Math.random() * autoWishes.length);
+        cardMessage.textContent = autoWishes[randomWishIndex];
+        
+        // Show welcome notification
+        setTimeout(() => {
+            showNotification('🙏 Welcome! Create a beautiful Thank You card to express your gratitude!');
+        }, 1500);
+    </script>
+</body>
+</html>
