@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diwali Wishes Generator - Festival of Lights</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #f0f0f0;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 17, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 255, 17, 0.05) 0%, transparent 20%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid #00FF11;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .logo i {
+            color: #00FF11;
+            font-size: 2.5rem;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(to right, #00FF11, #aaffaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 17, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-top: 10px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .card-customizer {
+            flex: 1;
+            min-width: 300px;
+            background-color: rgba(20, 20, 20, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #333;
+            box-shadow: 0 0 20px rgba(0, 255, 17, 0.1);
+        }
+        
+        .card-preview {
+            flex: 1.5;
+            min-width: 300px;
+            background-color: rgba(10, 10, 10, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #333;
+            box-shadow: 0 0 20px rgba(0, 255, 17, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #00FF11;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            font-size: 1.3rem;
+        }
+        
+        .customization-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ddd;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #f0f0f0;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #00FF11;
+            box-shadow: 0 0 8px rgba(0, 255, 17, 0.3);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .wish-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .wish-option {
+            padding: 8px 15px;
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .wish-option:hover {
+            background-color: #222;
+            border-color: #00FF11;
+        }
+        
+        .wish-option.active {
+            background-color: rgba(0, 255, 17, 0.1);
+            border-color: #00FF11;
+            color: #00FF11;
+        }
+        
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #333;
+            transition: all 0.3s;
+        }
+        
+        .color-option.active {
+            border-color: #fff;
+            transform: scale(1.1);
+        }
+        
+        .color-picker {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .preview-card {
+            width: 100%;
+            max-width: 500px;
+            min-height: 350px;
+            background-color: #000;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            border: 2px solid #333;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .preview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #000, #00FF11, #000);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .diwali-icon {
+            color: #00FF11;
+            font-size: 2.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.8rem;
+            color: #00FF11;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .card-message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-align: center;
+            padding: 20px 0;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+        
+        .card-from {
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+        
+        .card-diwali {
+            color: #00FF11;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-generate {
+            background-color: #00FF11;
+            color: #000;
+        }
+        
+        .btn-generate:hover {
+            background-color: #00cc0e;
+            box-shadow: 0 0 15px rgba(0, 255, 17, 0.5);
+        }
+        
+        .btn-download {
+            background-color: #111;
+            color: #00FF11;
+            border: 1px solid #00FF11;
+        }
+        
+        .btn-download:hover {
+            background-color: rgba(0, 255, 17, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 17, 0.3);
+        }
+        
+        .file-name-input {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .instructions {
+            background-color: rgba(20, 20, 20, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid #333;
+        }
+        
+        .instructions h3 {
+            color: #00FF11;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .preview-card {
+                min-height: 300px;
+            }
+        }
+        
+        .diwali-decoration {
+            position: absolute;
+            font-size: 1.2rem;
+            color: #00FF11;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-gifts"></i>
+                <h1>Diwali Wishes Generator</h1>
+                <i class="fas fa-diwa"></i>
+            </div>
+            <p class="subtitle">Create and download beautiful Diwali greeting cards with festive black and green theme</p>
+        </header>
+        
+        <div class="app-container">
+            <div class="card-customizer">
+                <h2 class="section-title"><i class="fas fa-sliders-h"></i> Customize Your Card</h2>
+                
+                <div class="customization-group">
+                    <label for="senderName">Your Name</label>
+                    <input type="text" id="senderName" placeholder="Enter your name" value="From: Your Family">
+                </div>
+                
+                <div class="customization-group">
+                    <label for="recipientName">Recipient Name</label>
+                    <input type="text" id="recipientName" placeholder="Enter recipient name" value="Dear Friends">
+                </div>
+                
+                <div class="customization-group">
+                    <label>Select Your Diwali Wish</label>
+                    <div class="wish-options">
+                        <div class="wish-option active" data-wish="May the divine light of Diwali spread into your life peace, prosperity, happiness and good health. Happy Diwali!">Traditional</div>
+                        <div class="wish-option" data-wish="Wishing you a Diwali that brings happiness, prosperity and joy to you and all your family. May the festival of lights brighten your life.">Prosperity</div>
+                        <div class="wish-option" data-wish="May the lamps of joy illuminate your life and fill your days with the sparkles of peace, mirth and goodwill. Have a joyous Diwali!">Joy</div>
+                        <div class="wish-option" data-wish="As you celebrate the festival of lights, may you be blessed with good fortune, success and happiness. Shubh Deepawali!">Blessings</div>
+                        <div class="wish-option" data-wish="This Diwali, may your life be as colorful, sparkling and magical as the lights of the diyas. Wishing you a very Happy Diwali!">Magical</div>
+                    </div>
+                    <textarea id="customMessage" placeholder="Or write your own custom message...">May the divine light of Diwali spread into your life peace, prosperity, happiness and good health. Happy Diwali!</textarea>
+                </div>
+                
+                <div class="customization-group">
+                    <label>Card Accent Color</label>
+                    <div class="color-picker">
+                        <div class="color-option active" style="background-color: #00FF11;" data-color="#00FF11"></div>
+                        <div class="color-option" style="background-color: #FFD700;" data-color="#FFD700"></div>
+                        <div class="color-option" style="background-color: #FF6B6B;" data-color="#FF6B6B"></div>
+                        <div class="color-option" style="background-color: #4D96FF;" data-color="#4D96FF"></div>
+                        <div class="color-option" style="background-color: #9D4EDD;" data-color="#9D4EDD"></div>
+                    </div>
+                </div>
+                
+                <div class="file-name-input">
+                    <label for="fileName">Download File Name</label>
+                    <input type="text" id="fileName" placeholder="Enter file name for download" value="Diwali_Wishes_Card">
+                    <small style="color: #888; margin-top: 5px;">The card will be downloaded as a PNG image with this name</small>
+                </div>
+                
+                <button class="btn btn-generate" id="generateBtn">
+                    <i class="fas fa-magic"></i> Generate Card
+                </button>
+            </div>
+            
+            <div class="card-preview">
+                <h2 class="section-title"><i class="fas fa-eye"></i> Card Preview</h2>
+                
+                <div class="preview-card" id="cardPreview">
+                    <!-- Diwali decoration elements -->
+                    <div class="diwali-decoration" style="top: 10px; left: 10px;">🪔</div>
+                    <div class="diwali-decoration" style="top: 10px; right: 10px;">✨</div>
+                    <div class="diwali-decoration" style="bottom: 50px; left: 20px;">🪔</div>
+                    <div class="diwali-decoration" style="bottom: 30px; right: 30px;">✨</div>
+                    
+                    <div class="card-header">
+                        <div class="diwali-icon">🪔</div>
+                        <div class="card-title" id="previewTitle">Happy Diwali</div>
+                        <div class="diwali-icon">🪔</div>
+                    </div>
+                    
+                    <div class="card-message" id="previewMessage">
+                        May the divine light of Diwali spread into your life peace, prosperity, happiness and good health. Happy Diwali!
+                    </div>
+                    
+                    <div class="card-footer">
+                        <div class="card-from" id="previewSender">From: Your Family</div>
+                        <div class="card-diwali" id="previewRecipient">Dear Friends</div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-download" id="downloadBtn">
+                        <i class="fas fa-download"></i> Download Card
+                    </button>
+                    <button class="btn btn-generate" id="shareBtn">
+                        <i class="fas fa-share-alt"></i> Share Wish
+                    </button>
+                </div>
+                
+                <div class="file-name-input">
+                    <small style="color: #00FF11; margin-top: 10px; display: block;">
+                        <i class="fas fa-info-circle"></i> Your card will be saved as: <span id="fileNamePreview">Diwali_Wishes_Card.png</span>
+                    </small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> How to Use This Diwali Wishes Generator</h3>
+            <ol>
+                <li>Enter your name and the recipient's name in the respective fields.</li>
+                <li>Select a pre-written Diwali wish or type your own custom message.</li>
+                <li>Choose an accent color for your card (default is festive green #00FF11).</li>
+                <li>Enter a file name for your card when downloaded.</li>
+                <li>Click "Generate Card" to update the preview with your customizations.</li>
+                <li>Click "Download Card" to save your Diwali greeting card as a PNG image.</li>
+                <li>Share your personalized Diwali card with friends and family!</li>
+            </ol>
+        </div>
+        
+        <footer>
+            <p>Made with <span style="color: #00FF11;">♥</span> for the Festival of Lights | Happy Diwali to you and your family!</p>
+            <p>© 2023 Diwali Wishes Generator | This is a tool for creating personalized Diwali greeting cards.</p>
+        </footer>
+    </div>
+    
+    <!-- Include html2canvas for capturing the card as an image -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const senderNameInput = document.getElementById('senderName');
+            const recipientNameInput = document.getElementById('recipientName');
+            const customMessageInput = document.getElementById('customMessage');
+            const fileNameInput = document.getElementById('fileName');
+            const wishOptions = document.querySelectorAll('.wish-option');
+            const colorOptions = document.querySelectorAll('.color-option');
+            const generateBtn = document.getElementById('generateBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const shareBtn = document.getElementById('shareBtn');
+            
+            // Preview elements
+            const previewTitle = document.getElementById('previewTitle');
+            const previewMessage = document.getElementById('previewMessage');
+            const previewSender = document.getElementById('previewSender');
+            const previewRecipient = document.getElementById('previewRecipient');
+            const fileNamePreview = document.getElementById('fileNamePreview');
+            const cardPreview = document.getElementById('cardPreview');
+            
+            // Current color
+            let currentColor = '#00FF11';
+            
+            // Set up wish option click events
+            wishOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    wishOptions.forEach(opt => opt.classList.remove('active'));
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    
+                    // Update the message textarea with the selected wish
+                    const selectedWish = this.getAttribute('data-wish');
+                    customMessageInput.value = selectedWish;
+                    
+                    // Update the preview
+                    updatePreview();
+                });
+            });
+            
+            // Set up color option click events
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    colorOptions.forEach(opt => opt.classList.remove('active'));
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    
+                    // Update current color
+                    currentColor = this.getAttribute('data-color');
+                    
+                    // Update the preview with new color
+                    updatePreview();
+                });
+            });
+            
+            // Set up input events for real-time preview updates
+            senderNameInput.addEventListener('input', updatePreview);
+            recipientNameInput.addEventListener('input', updatePreview);
+            customMessageInput.addEventListener('input', updatePreview);
+            fileNameInput.addEventListener('input', updateFileNamePreview);
+            
+            // Generate button click event
+            generateBtn.addEventListener('click', updatePreview);
+            
+            // Download button click event
+            downloadBtn.addEventListener('click', downloadCard);
+            
+            // Share button click event
+            shareBtn.addEventListener('click', shareWish);
+            
+            // Initialize the preview
+            updatePreview();
+            updateFileNamePreview();
+            
+            // Function to update the card preview
+            function updatePreview() {
+                // Update preview elements with input values
+                previewSender.textContent = senderNameInput.value || 'From: Your Name';
+                previewRecipient.textContent = recipientNameInput.value || 'Dear Friend';
+                previewMessage.textContent = customMessageInput.value || 'Wishing you a very Happy Diwali!';
+                
+                // Update colors in the preview
+                const colorElements = document.querySelectorAll('.card-title, .card-diwali, .diwali-icon');
+                colorElements.forEach(el => {
+                    el.style.color = currentColor;
+                });
+                
+                // Update border and shadow with current color
+                cardPreview.style.borderColor = currentColor;
+                cardPreview.style.boxShadow = `0 10px 30px ${currentColor}40`;
+                
+                // Update decorative elements color
+                const decorations = document.querySelectorAll('.diwali-decoration');
+                decorations.forEach(decoration => {
+                    decoration.style.color = currentColor;
+                });
+            }
+            
+            // Function to update file name preview
+            function updateFileNamePreview() {
+                const fileName = fileNameInput.value.trim() || 'Diwali_Wishes_Card';
+                fileNamePreview.textContent = `${fileName}.png`;
+            }
+            
+            // Function to download the card as an image
+            function downloadCard() {
+                const fileName = fileNameInput.value.trim() || 'Diwali_Wishes_Card';
+                
+                // Use html2canvas to capture the card as an image
+                html2canvas(cardPreview, {
+                    backgroundColor: '#000000',
+                    scale: 2,
+                    useCORS: true
+                }).then(canvas => {
+                    // Convert canvas to data URL
+                    const imgData = canvas.toDataURL('image/png');
+                    
+                    // Create a temporary link to download the image
+                    const link = document.createElement('a');
+                    link.href = imgData;
+                    link.download = `${fileName}.png`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Show a success message (in a real app, you might use a toast notification)
+                    alert(`Your Diwali card has been downloaded as "${fileName}.png"`);
+                });
+            }
+            
+            // Function to share the wish
+            function shareWish() {
+                const message = customMessageInput.value;
+                const sender = senderNameInput.value || 'Your Name';
+                const recipient = recipientNameInput.value || 'Friend';
+                
+                const shareText = `Diwali Greetings for ${recipient}!\n\n${message}\n\n${sender}\n\nCreated with Diwali Wishes Generator`;
+                
+                // Check if the Web Share API is available
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Diwali Wishes',
+                        text: shareText,
+                        url: window.location.href
+                    })
+                    .catch(error => {
+                        console.log('Error sharing:', error);
+                        fallbackShare(shareText);
+                    });
+                } else {
+                    // Fallback for browsers that don't support Web Share API
+                    fallbackShare(shareText);
+                }
+            }
+            
+            // Fallback share function
+            function fallbackShare(shareText) {
+                // Copy to clipboard
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Diwali wish copied to clipboard! You can now paste it in any messaging app.');
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    // If clipboard fails, just show the text
+                    prompt('Copy this Diwali wish to share:', shareText);
+                });
+            }
+            
+            // Add some festive Diwali decoration elements dynamically
+            function addFestiveDecorations() {
+                const decorationsContainer = cardPreview;
+                
+                // Create more decoration elements
+                for (let i = 0; i < 8; i++) {
+                    const decoration = document.createElement('div');
+                    decoration.className = 'diwali-decoration';
+                    
+                    // Randomly select a decoration symbol
+                    const symbols = ['🪔', '✨', '🌟', '🎇', '🪷', '🎆'];
+                    const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+                    
+                    decoration.textContent = randomSymbol;
+                    
+                    // Random position
+                    const top = Math.random() * 80 + 10;
+                    const left = Math.random() * 80 + 10;
+                    
+                    decoration.style.top = `${top}%`;
+                    decoration.style.left = `${left}%`;
+                    decoration.style.fontSize = `${Math.random() * 1 + 0.8}rem`;
+                    decoration.style.opacity = Math.random() * 0.5 + 0.3;
+                    
+                    decorationsContainer.appendChild(decoration);
+                }
+            }
+            
+            // Initialize decorations
+            addFestiveDecorations();
+        });
+    </script>
+</body>
+</html>
