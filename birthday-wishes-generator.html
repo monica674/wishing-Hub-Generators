@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Wishes Generator 🎂 | Personalized Birthday Messages</title>
-<meta name="description" content="Generate personalized birthday wishes with name, music, fireworks, WhatsApp share and downloadable birthday poster.">
+<meta name="description" content="Generate personalized birthday wishes with name, music, fireworks, WhatsApp share, and downloadable birthday poster.">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -55,7 +55,6 @@ footer{margin:40px 0;font-size:.85rem;opacity:.7;}
 
 <footer>© 2026 Birthday Wishes Generator</footer>
 
-<!-- WhatsApp floating button -->
 <button class="whatsapp-btn" onclick="shareWhatsApp()">📱 Share on WhatsApp</button>
 
 <audio id="song" preload="auto">
@@ -96,6 +95,7 @@ function generateWish(){
     const msg=wishes[lang][index[lang]].replace("{name}",name);
     document.getElementById("wishBox").innerText=msg;
     index[lang]=(index[lang]+1)%wishes[lang].length;
+    generatePoster(); // auto-update poster preview
 }
 
 function copyWish(){
@@ -114,8 +114,7 @@ function shareWhatsApp(){
     if(!wishText){alert("Generate a wish first!"); return;}
     const name = document.getElementById("nameInput").value || "Dear";
 
-    // Compose WhatsApp message: show wish card text first, then link
-    const fullMessage = `${wishText}\n\nFrom: ${name}\n\nShare your own Birthday card: https://your-github-username.github.io/repository-name/birthday-wishes-generator.html`;
+    const fullMessage = `${wishText}\n\nFrom: ${name}\n\nShare your own Birthday card: https://monica674.github.io/wishing-Hub-Generators/birthday-wishes-generator.html`;
 
     const encodedText = encodeURIComponent(fullMessage);
     window.open(`https://api.whatsapp.com/send?text=${encodedText}`,"_blank");
@@ -156,7 +155,7 @@ function generatePoster(){
     ctx.shadowBlur=0;
 
     const text=wishBox.innerText||"Make a Wish!";
-    drawWrappedText(ctx,text,70,150,p.width-140,32);
+    drawWrappedText(ctx,text,p.width/2,150,p.width-100,32);
 
     ctx.font="14px Arial";
     ctx.fillStyle="#ffffffcc";
@@ -164,20 +163,26 @@ function generatePoster(){
     ctx.fillText("🎁 Birthday Wishes Generator",p.width/2,p.height-30);
 }
 
-function drawWrappedText(ctx,text,x,y,maxWidth,lineHeight){
+// ===== CENTERED WRAP TEXT =====
+function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight){
     const words=text.split(" ");
     let line="";
+    let lines=[];
     for(let i=0;i<words.length;i++){
         let test=line+words[i]+" ";
         if(ctx.measureText(test).width>maxWidth){
-            ctx.fillText(line,x,y);
+            lines.push(line.trim());
             line=words[i]+" ";
-            y+=lineHeight;
         }else line=test;
     }
-    ctx.fillText(line,x,y);
+    lines.push(line.trim());
+    ctx.textAlign="center";
+    lines.forEach((ln,i)=>{
+        ctx.fillText(ln, x, y + i*lineHeight);
+    });
 }
 
+// ===== DOWNLOAD POSTER =====
 function downloadPoster(){
     const a=document.createElement("a");
     a.download="birthday-poster.png";
