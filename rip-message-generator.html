@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest in Peace Message Generator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            margin: 0;
+            background-image: linear-gradient(to bottom, #e8f4f8, #f0f7fb);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin: 0 0 10px 0;
+            font-weight: 300;
+            font-size: 2.2rem;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            padding: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .input-section, .output-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #4a6491;
+            outline: none;
+        }
+        
+        .style-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .style-option {
+            border: 2px solid #eaeaea;
+            border-radius: 5px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .style-option:hover {
+            border-color: #b8c7d9;
+        }
+        
+        .style-option.active {
+            border-color: #4a6491;
+            background-color: #f0f5ff;
+        }
+        
+        .style-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .style-desc {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .btn {
+            background-color: #4a6491;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #3a5379;
+        }
+        
+        .btn-generate {
+            width: 100%;
+        }
+        
+        .output-box {
+            background-color: #f9fafc;
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            padding: 20px;
+            min-height: 300px;
+            white-space: pre-wrap;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            flex-grow: 1;
+        }
+        
+        .output-box p {
+            margin-top: 0;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn-copy, .btn-reset {
+            flex: 1;
+        }
+        
+        .btn-copy {
+            background-color: #2ecc71;
+        }
+        
+        .btn-copy:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-reset {
+            background-color: #e74c3c;
+        }
+        
+        .btn-reset:hover {
+            background-color: #c0392b;
+        }
+        
+        .message-preview {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border-left: 3px solid #4a6491;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaeaea;
+            background-color: #f9fafc;
+        }
+        
+        .heart {
+            color: #e74c3c;
+        }
+        
+        .instructions {
+            background-color: #f0f7ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .instructions h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rest in Peace Message Generator</h1>
+            <p class="subtitle">Create respectful and personalized memorial messages to honor your loved ones</p>
+        </header>
+        
+        <div class="content">
+            <div class="input-section">
+                <h2 class="section-title">Personalize Your Message</h2>
+                
+                <div class="instructions">
+                    <h3>How to use:</h3>
+                    <p>Fill in the details about the departed, select a message style, and customize options. Click "Generate Message" to create a personalized memorial message.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Name of Departed *</label>
+                    <input type="text" id="name" placeholder="Enter full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="relationship">Your Relationship</label>
+                    <select id="relationship">
+                        <option value="family">Family Member</option>
+                        <option value="friend">Friend</option>
+                        <option value="colleague">Colleague</option>
+                        <option value="neighbor">Neighbor</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="qualities">Personal Qualities (optional)</label>
+                    <input type="text" id="qualities" placeholder="e.g., kind, generous, funny">
+                </div>
+                
+                <div class="form-group">
+                    <label for="memory">Special Memory (optional)</label>
+                    <textarea id="memory" rows="3" placeholder="A brief memory or shared moment"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Message Style</label>
+                    <div class="style-options">
+                        <div class="style-option active" data-style="traditional">
+                            <div class="style-name">Traditional</div>
+                            <div class="style-desc">Formal and respectful</div>
+                        </div>
+                        <div class="style-option" data-style="heartfelt">
+                            <div class="style-name">Heartfelt</div>
+                            <div class="style-desc">Emotional and personal</div>
+                        </div>
+                        <div class="style-option" data-style="short">
+                            <div class="style-name">Short & Simple</div>
+                            <div class="style-desc">Brief and concise</div>
+                        </div>
+                        <div class="style-option" data-style="poetic">
+                            <div class="style-name">Poetic</div>
+                            <div class="style-desc">Lyrical and symbolic</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Additional Options</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="include-quote" checked>
+                        <label for="include-quote">Include an inspirational quote</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="religious">
+                        <label for="religious">Include religious elements</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="future-meeting">
+                        <label for="future-meeting">Mention future reunion</label>
+                    </div>
+                </div>
+                
+                <button class="btn btn-generate" id="generate-btn">Generate Message</button>
+                
+                <div class="message-preview" id="preview">
+                    Fill in the details and click "Generate Message" to see your personalized memorial message here.
+                </div>
+            </div>
+            
+            <div class="output-section">
+                <h2 class="section-title">Your Memorial Message</h2>
+                <div class="output-box" id="output">
+                    Your generated message will appear here.
+                </div>
+                
+                <div class="actions">
+                    <button class="btn btn-copy" id="copy-btn">Copy to Clipboard</button>
+                    <button class="btn btn-reset" id="reset-btn">Reset Form</button>
+                </div>
+                
+                <div class="form-group" style="margin-top: 20px;">
+                    <label for="customize">Customize Further (optional)</label>
+                    <textarea id="customize" rows="4" placeholder="You can edit the generated message here to make it more personal"></textarea>
+                    <button class="btn" id="update-btn" style="margin-top: 10px;">Update Message</button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Created with <span class="heart">❤</span> to help you honor and remember loved ones</p>
+            <p>May their memory be a blessing and bring comfort in difficult times</p>
+        </footer>
+    </div>
+
+    <script>
+        // DOM Elements
+        const nameInput = document.getElementById('name');
+        const relationshipSelect = document.getElementById('relationship');
+        const qualitiesInput = document.getElementById('qualities');
+        const memoryInput = document.getElementById('memory');
+        const styleOptions = document.querySelectorAll('.style-option');
+        const includeQuoteCheckbox = document.getElementById('include-quote');
+        const religiousCheckbox = document.getElementById('religious');
+        const futureMeetingCheckbox = document.getElementById('future-meeting');
+        const generateBtn = document.getElementById('generate-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const outputBox = document.getElementById('output');
+        const previewBox = document.getElementById('preview');
+        const customizeTextarea = document.getElementById('customize');
+        const updateBtn = document.getElementById('update-btn');
+        
+        // Selected style
+        let selectedStyle = 'traditional';
+        
+        // Quotes database
+        const quotes = [
+            "Those we love don't go away, they walk beside us every day.",
+            "Perhaps they are not stars in the sky, but rather openings where our loved ones shine down to let us know they are happy.",
+            "What we once enjoyed and deeply loved we can never lose, for all that we love deeply becomes a part of us.",
+            "Death leaves a heartache no one can heal, love leaves a memory no one can steal.",
+            "To live in hearts we leave behind is not to die.",
+            "While we are mourning the loss of our friend, others are rejoicing to meet him behind the veil.",
+            "When someone you love becomes a memory, the memory becomes a treasure."
+        ];
+        
+        // Religious phrases
+        const religiousPhrases = [
+            "May God grant them eternal peace and rest in His heavenly kingdom.",
+            "May the Lord welcome them into His loving embrace.",
+            "May they find eternal rest in the arms of our Savior.",
+            "May their soul find peace in the presence of the Almighty."
+        ];
+        
+        // Future reunion phrases
+        const reunionPhrases = [
+            "We look forward to the day we will be reunited in eternity.",
+            "Until we meet again, may you rest in perfect peace.",
+            "We will hold you in our hearts until we can hold you in heaven.",
+            "Goodbyes are not forever, goodbyes are not the end. They simply mean we'll miss you until we meet again."
+        ];
+        
+        // Set up style selection
+        styleOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                styleOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                selectedStyle = option.dataset.style;
+            });
+        });
+        
+        // Generate message function
+        function generateMessage() {
+            const name = nameInput.value.trim();
+            const relationship = relationshipSelect.value;
+            const qualities = qualitiesInput.value.trim();
+            const memory = memoryInput.value.trim();
+            
+            if (!name) {
+                outputBox.textContent = "Please enter the name of the departed to generate a message.";
+                return;
+            }
+            
+            // Build relationship phrase
+            let relationshipPhrase = "";
+            switch(relationship) {
+                case 'family': relationshipPhrase = "a beloved family member"; break;
+                case 'friend': relationshipPhrase = "a dear friend"; break;
+                case 'colleague': relationshipPhrase = "a respected colleague"; break;
+                case 'neighbor': relationshipPhrase = "a wonderful neighbor"; break;
+                default: relationshipPhrase = "a cherished person";
+            }
+            
+            // Build qualities phrase
+            let qualitiesPhrase = "";
+            if (qualities) {
+                const qualitiesList = qualities.split(',').map(q => q.trim()).filter(q => q);
+                if (qualitiesList.length > 0) {
+                    if (qualitiesList.length === 1) {
+                        qualitiesPhrase = `Remembered for ${qualitiesList[0]} nature, `;
+                    } else {
+                        const lastQuality = qualitiesList.pop();
+                        qualitiesPhrase = `Remembered for ${qualitiesList.join(', ')} and ${lastQuality}, `;
+                    }
+                }
+            }
+            
+            // Build memory phrase
+            let memoryPhrase = "";
+            if (memory) {
+                memoryPhrase = `I will always treasure the memory of ${memory}. `;
+            }
+            
+            // Generate message based on selected style
+            let message = "";
+            
+            switch(selectedStyle) {
+                case 'traditional':
+                    message = `With profound sadness, we honor the memory of ${name}.\n\n`;
+                    message += `${qualitiesPhrase}${name} was ${relationshipPhrase} who touched the lives of many. ${memoryPhrase}\n\n`;
+                    message += `Our thoughts are with all who knew and loved ${name.split(' ')[0]}. May the memories you shared bring comfort during this difficult time.\n\n`;
+                    message += `Rest in peace, dear ${name.split(' ')[0]}.`;
+                    break;
+                    
+                case 'heartfelt':
+                    message = `My heart aches as I say goodbye to ${name}.\n\n`;
+                    message += `${qualitiesPhrase}${name} was more than ${relationshipPhrase}; ${name.split(' ')[0]} was a light in our lives. ${memoryPhrase}\n\n`;
+                    message += `Though we grieve this tremendous loss, we are grateful for every moment we shared. The impact you made on our lives will never fade.\n\n`;
+                    message += `You will be forever missed, ${name.split(' ')[0]}.`;
+                    break;
+                    
+                case 'short':
+                    message = `In loving memory of ${name}.\n\n`;
+                    message += `${qualitiesPhrase}A life well-lived and a person dearly loved. ${memoryPhrase}\n\n`;
+                    message += `Forever in our hearts.`;
+                    break;
+                    
+                case 'poetic':
+                    message = `Like a gentle breeze that has passed, ${name} has left our sight.\n\n`;
+                    message += `${qualitiesPhrase}Yet ${name.split(' ')[0]}'s spirit remains in the echoes of laughter and the warmth of shared moments. ${memoryPhrase}\n\n`;
+                    message += `Though the veil of eternity now separates us, love transcends all boundaries.\n\n`;
+                    message += `Sleep peacefully among the stars, dear ${name.split(' ')[0]}.`;
+                    break;
+            }
+            
+            // Add optional elements
+            if (includeQuoteCheckbox.checked) {
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                message += `\n\n"${randomQuote}"`;
+            }
+            
+            if (religiousCheckbox.checked) {
+                const randomReligious = religiousPhrases[Math.floor(Math.random() * religiousPhrases.length)];
+                message += `\n\n${randomReligious}`;
+            }
+            
+            if (futureMeetingCheckbox.checked) {
+                const randomReunion = reunionPhrases[Math.floor(Math.random() * reunionPhrases.length)];
+                message += `\n\n${randomReunion}`;
+            }
+            
+            // Update output and customize textarea
+            outputBox.textContent = message;
+            customizeTextarea.value = message;
+            
+            // Update preview
+            previewBox.textContent = `Generated a ${selectedStyle} style message for ${name}`;
+        }
+        
+        // Copy to clipboard
+        function copyToClipboard() {
+            const message = outputBox.textContent;
+            
+            if (message && !message.includes("Your generated message will appear here")) {
+                navigator.clipboard.writeText(message).then(() => {
+                    const originalText = copyBtn.textContent;
+                    copyBtn.textContent = "Copied!";
+                    setTimeout(() => {
+                        copyBtn.textContent = originalText;
+                    }, 2000);
+                });
+            }
+        }
+        
+        // Reset form
+        function resetForm() {
+            nameInput.value = '';
+            qualitiesInput.value = '';
+            memoryInput.value = '';
+            relationshipSelect.value = 'family';
+            includeQuoteCheckbox.checked = true;
+            religiousCheckbox.checked = false;
+            futureMeetingCheckbox.checked = false;
+            
+            styleOptions.forEach(opt => opt.classList.remove('active'));
+            document.querySelector('.style-option[data-style="traditional"]').classList.add('active');
+            selectedStyle = 'traditional';
+            
+            outputBox.textContent = 'Your generated message will appear here.';
+            customizeTextarea.value = '';
+            previewBox.textContent = 'Fill in the details and click "Generate Message" to see your personalized memorial message here.';
+        }
+        
+        // Update message with custom edits
+        function updateMessage() {
+            const customMessage = customizeTextarea.value.trim();
+            if (customMessage) {
+                outputBox.textContent = customMessage;
+                previewBox.textContent = "Message updated with your customizations";
+            }
+        }
+        
+        // Event listeners
+        generateBtn.addEventListener('click', generateMessage);
+        copyBtn.addEventListener('click', copyToClipboard);
+        resetBtn.addEventListener('click', resetForm);
+        updateBtn.addEventListener('click', updateMessage);
+        
+        // Generate on Enter key in name field
+        nameInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                generateMessage();
+            }
+        });
+        
+        // Initialize with a sample on load
+        window.addEventListener('load', () => {
+            nameInput.value = "John Smith";
+            qualitiesInput.value = "kind, generous, always smiling";
+            memoryInput.value = "our summer barbecues where you told the best stories";
+            generateMessage();
+        });
+    </script>
+</body>
+</html>
