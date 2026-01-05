@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wishing Hub Generators | Create Beautiful Wishes Instantly</title>
+<meta name="description" content="Free online wishing generators for birthdays, festivals, and special events. Create, customize, and share beautiful wishes in seconds.">
+<meta name="keywords" content="wishing hub, wish generator, birthday wishes, festival wishes, event wishes, greeting maker">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://toolnest.live/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+
+<style>
+/* ===== GLOBAL STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: #000;
+    color: #00ff7f;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+/* ===== NAVIGATION ===== */
+.main-nav {
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom: 2px solid #00ff7f;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 255, 127, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-brand {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.nav-brand i {
+    font-size: 1.8rem;
+    color: #00ff7f;
+    text-shadow: 0 0 8px #00ff7f;
+}
+
+.nav-brand h1 {
+    font-size: 1.5rem;
+    text-shadow: 0 0 12px #00ff7f;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: #00ff7f;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: #00ff7f;
+    color: #000;
+    box-shadow: 0 0 20px #00ff7f;
+    border: 1px solid #00ff7f;
+    transform: translateY(-2px);
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    padding: 70px 20px 50px;
+    background: radial-gradient(circle at center, rgba(0, 30, 15, 0.4) 0%, rgba(0, 0, 0, 0.8) 70%);
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    text-shadow: 0 0 35px #00ff7f;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #00ff7f, #00cc66, #00ff7f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 20px #00ff7f, 0 0 30px #00ff7f; }
+    100% { text-shadow: 0 0 30px #00ff7f, 0 0 40px #00ff7f, 0 0 50px #00ff7f; }
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== SEARCH BOX ===== */
+.search-box {
+    max-width: 500px;
+    margin: 30px auto;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 35px;
+    border: 2px solid #00ff7f;
+    background: rgba(17, 17, 17, 0.9);
+    color: #00ff7f;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: 0 0 15px rgba(0, 255, 127, 0.2);
+}
+
+.search-box input:focus {
+    box-shadow: 0 0 25px #00ff7f;
+    background: rgba(10, 10, 10, 0.95);
+}
+
+.search-box::before {
+    content: '\f002';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #00ff7f;
+}
+
+/* ===== FILTER BUTTONS ===== */
+.filters {
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filters button {
+    background: #000;
+    border: 2px solid #00ff7f;
+    color: #00ff7f;
+    padding: 10px 22px;
+    margin: 5px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+}
+
+.filters button.active,
+.filters button:hover {
+    background: #00ff7f;
+    color: #000;
+    box-shadow: 0 0 20px #00ff7f;
+    transform: translateY(-3px);
+}
+
+/* ===== TOOLS GRID ===== */
+.tools-scroll {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.tool {
+    width: 100%;
+    height: 200px;
+    border: 2px solid #00ff7f;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #00ff7f;
+    transition: all 0.4s ease;
+    background: rgba(10, 20, 15, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.tool::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(0, 255, 127, 0.05), transparent);
+    transform: translateX(-100%);
+}
+
+.tool:hover::before {
+    animation: shine 1.5s;
+}
+
+@keyframes shine {
+    100% { transform: translateX(100%); }
+}
+
+.tool:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 0 50px #00ff7f;
+    background: rgba(0, 255, 127, 0.15);
+    border-color: #00ffaa;
+}
+
+.tool h3 {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.tool span {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+
+.badge {
+    background: #00ff7f;
+    color: #000;
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ===== FOOTER ===== */
+.main-footer {
+    margin-top: auto;
+    background: #0a0a0a;
+    padding: 50px 20px 30px;
+    border-top: 2px solid #00ff7f;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: left;
+}
+
+.footer-section h3 {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    color: #00ffaa;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #00ff7f;
+}
+
+.footer-section p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.footer-section a {
+    color: #00ff7f;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+    padding: 3px 0;
+}
+
+.footer-section a:hover {
+    color: #00ffaa;
+    transform: translateX(5px);
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    border-top: 1px solid rgba(0, 255, 127, 0.2);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        justify-content: center;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .tools-scroll {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 20px;
+    }
+    
+    .tool {
+        height: 180px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .tools-scroll {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .tool {
+        height: 160px;
+    }
+    
+    .tool h3 {
+        font-size: 1rem;
+    }
+    
+    .filters button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <i class="fas fa-wand-magic-sparkles"></i>
+            <h1>Wishing Hub Generators</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="wishing-Hub-Generators.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact-us.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <h1>🎉 Wishing Hub Generators 🎉</h1>
+    <p>Create Beautiful, Personalized Wishes for Every Occasion in Seconds</p>
+    
+    <div class="search-box">
+        <input id="search" type="text" placeholder="Search wishing generator...">
+    </div>
+    
+    <div class="filters">
+        <button class="active" onclick="filterTools('all')">All Generators</button>
+        <button onclick="filterTools('birthday')">🎂 Birthday</button>
+        <button onclick="filterTools('festival')">🎊 Festival</button>
+        <button onclick="filterTools('event')">📅 Event</button>
+    </div>
+</section>
+
+<!-- TOOLS GRID -->
+<section>
+    <div class="tools-scroll" id="toolList">
+        <!-- Tools will be dynamically added here -->
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="main-footer">
+    <div class="footer-content">
+        
+        <div class="footer-section">
+            <h3>Wishing Hub Generators</h3>
+            <p>Your one-stop destination for creating beautiful wishes for every occasion. Free, fast, and fully customizable.</p>
+            <p>Generate perfect wishes in seconds!</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="wishing-Hub-Generators.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact-us.html">Contact Us</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Popular Generators</h3>
+            <a href="birthday-wishes-generator.html">Birthday Wishes Generator</a>
+            <a href="anniversary-wishes-generator-pro.html">Anniversary Wishes Generator</a>
+            <a href="festival-wishes-generator-pro.html">Festival Wishes Generator</a>
+            <a href="newyear-wishes-generator.html">New Year Wishes Generator</a>
+            <a href="christmas-wishes-generator-pro.html">Christmas Wishes Generator</a>
+            <a href="ramadan-wishing-card-generator.html">Ramadan Wishes Generator</a>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Categories</h3>
+            <a href="#birthday">Birthday Wishes</a>
+            <a href="#festival">Festival Wishes</a>
+            <a href="#event">Event Wishes</a>
+            <a href="#holiday">Holiday Wishes</a>
+            <a href="#special">Special Occasions</a>
+        </div>
+        
+    </div>
+    
+    <div class="footer-bottom">
+        © 2026 Wishing Hub Generators | Part of ToolNest.live — All Rights Reserved
+    </div>
+</footer>
+
+const tools = [
+    {name: "Birthday Wishes Generator", file: "birthday-wishes-generator.html", cat: "birthday", badge: "🔥 Trending"},
+    {name: "Anniversary Wishes Generator Pro", file: "anniversary-wishes-generator-pro.html", cat: "event", badge: "❤️ Popular"},
+    {name: "Eid Mubarak Wishes Generator", file: "eid-wishes-generator-pro.html", cat: "festival", badge: "✨ New"},
+    {name: "Festival Wishes Generator Pro", file: "festival-wishes-generator-pro.html", cat: "festival"},
+    {name: "Christmas Wishes Generator Pro", file: "christmas-wishes-generator-pro.html", cat: "event", badge: "🎄 Festive"},
+    {name: "New Year Wishes Generator", file: "newyear-wishes-generator.html", cat: "event", badge: "🎆 Popular"},
+    {name: "Ramadan Wishes Generator Pro", file: "ramadan-wishing-card-generator.html", cat: "festival"},
+    {name: "Diwali Wishes Generator", file: "diwali-wishes-generator.html", cat: "festival", badge: "🪷 Diwali"},
+    {name: "Holi Wishes Generator", file: "holi-wishes-generator.html", cat: "festival", badge: "🎨 Colorful"},
+    {name: "Islamic New Year Wishes", file: "islamic-new-year-wishes-generator.html", cat: "festival"},
+    {name: "Valentine's Day Wishes Generator", file: "valentine-wishes-generator-pro.html", cat: "event", badge: "💖 Love"},
+    {name: "Thank You Wishes Generator", file: "thankyou-wishes-generator.html", cat: "event", badge: "🙏 Gratitude"},
+    {name: "Get Well Soon Wishes Generator", file: "getwell-wishes-generator.html", cat: "event"},
+    {name: "Congratulations Wishes Generator", file: "congratulations-wishes-generator.html", cat: "event"},
+    {name: "Wedding Wishes Generator Pro", file: "wedding-wishes-generator-pro.html", cat: "event", badge: "💒 Popular"},
+    {name: "Baby Shower Wishes Generator", file: "babyshower-wishes-generator.html", cat: "event"},
+    {name: "RIP Message Generator", file: "rip-message-generator.html", cat: "event"},
+    {name: "Marriage Wishes Generator", file: "marriage-wishes-generator.html", cat: "event"},
+    {name: "Engagement Wishes Generator", file: "engagement-wishes-generator.html", cat: "event"},
+    {name: "Newborn Arrival Wishes Generator", file: "newborn-arrival-wishes-generator.html", cat: "event"},
+    {name: "Father's Day Wishes Generator", file: "fathers-day-wishes-generator.html", cat: "event"},
+    {name: "Mother's Day Wishes Generator", file: "mothers-day-wishes-generator.html", cat: "event"},
+    {name: "Friendship Day Wishes Generator", file: "friendship-day-wishes-generator.html", cat: "event"},
+    {name: "Navratri Wishes Generator Pro", file: "navratri-wishes-generator-pro.html", cat: "festival"},
+    {name: "Dussehra Wishes Generator Pro", file: "dussehra_wishes_generator_pro.html", cat: "festival"},
+    {name: "Ganesh Chaturthi Wishes Generator", file: "ganesh_chaturthi_wishes_generator.html", cat: "festival"},
+    {name: "Janmashtami Wishes Generator", file: "janmashtami_wishes_generator.html", cat: "festival"},
+    {name: "Maha Shivratri Wishes Generator", file: "maha_shivratri_wishes_generator.html", cat: "festival"},
+    {name: "Raksha Bandhan Wishes Generator", file: "raksha_bandhan_wishes_generator.html", cat: "festival"},
+    {name: "Baisakhi Wishes Generator", file: "baisakhi_wishes_generator.html", cat: "festival"},
+    {name: "Lohri Wishes Generator", file: "lohri_wishes_generator.html", cat: "festival"},
+    {name: "Onam Wishes Generator", file: "onam-wishes-generator.html", cat: "festival"},
+    {name: "Pongal Wishes Generator", file: "pongal-wishes-generator-with-themes.html", cat: "festival"}
+];
+// Categories Data
+const categories = [
+    {id: "all", name: "All Tools", count: 33},
+    {id: "festival", name: "Festival Wishes", count: 16},
+    {id: "event", name: "Special Events", count: 15},
+    {id: "birthday", name: "Birthday", count: 1}
+];
+
+// Recently Added Tools
+const recentTools = [
+    {name: "RIP Message Generator", file: "rip-message-generator.html", added: "1 hour ago"},
+    {name: "Engagement Wishes Generator", file: "engagement-wishes-generator.html", added: "1 hour ago"},
+    {name: "Father's Day Wishes Generator", file: "fathers-day-wishes-generator.html", added: "1 hour ago"},
+    {name: "Mother's Day Wishes Generator", file: "mothers-day-wishes-generator.html", added: "1 hour ago"},
+    {name: "Friendship Day Wishes Generator", file: "friendship-day-wishes-generator.html", added: "1 hour ago"}
+];
+
+// Most Popular Tools
+const popularTools = [
+    {name: "Birthday Wishes Generator", file: "birthday-wishes-generator.html", users: 1250},
+    {name: "Anniversary Wishes Generator Pro", file: "anniversary-wishes-generator-pro.html", users: 980},
+    {name: "New Year Wishes Generator", file: "newyear-wishes-generator.html", users: 890},
+    {name: "Wedding Wishes Generator Pro", file: "wedding-wishes-generator-pro.html", users: 750},
+    {name: "Eid Mubarak Wishes Generator", file: "eid-wishes-generator-pro.html", users: 680}
+];
+const toolList = document.getElementById("toolList");
+const searchInput = document.getElementById("search");
+
+// Render tools function
+function renderTools(toolsArray) {
+    toolList.innerHTML = "";
+    
+    if (toolsArray.length === 0) {
+        toolList.innerHTML = `
+            <div style="grid-column: 1 / -1; padding: 40px; color: #00ff7f; font-size: 1.2rem;">
+                <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 15px; opacity: 0.7;"></i>
+                <p>No generators found matching your search.</p>
+                <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.7;">Try a different keyword or browse all categories.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    toolsArray.forEach(tool => {
+        toolList.innerHTML += `
+            <a class="tool" href="${tool.file}">
+                ${tool.badge ? `<div class="badge">${tool.badge}</div>` : ""}
+                <h3>${tool.name}</h3>
+                <span>${tool.cat.charAt(0).toUpperCase() + tool.cat.slice(1)} Wishes</span>
+            </a>
+        `;
+    });
+}
+
+// Initialize with all tools
+renderTools(tools);
+
+// Search functionality
+searchInput.addEventListener("input", (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const filteredTools = tools.filter(tool => 
+        tool.name.toLowerCase().includes(searchTerm) || 
+        tool.cat.toLowerCase().includes(searchTerm)
+    );
+    renderTools(filteredTools);
+});
+
+// Filter by category
+function filterTools(category) {
+    // Update active button
+    document.querySelectorAll('.filters button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    if (category === "all") {
+        renderTools(tools);
+        searchInput.value = ""; // Clear search when showing all
+    } else {
+        const filteredTools = tools.filter(tool => tool.cat === category);
+        renderTools(filteredTools);
+        searchInput.value = ""; // Clear search when filtering
+    }
+}
+
+// Add some interactive effects
+document.addEventListener('DOMContentLoaded', function() {
+    // Add hover effect to tool cards
+    const toolCards = document.querySelectorAll('.tool');
+    
+    // Add a subtle animation on page load for tools
+    setTimeout(() => {
+        toolCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 50);
+        });
+    }, 300);
+});
+</script>
+
+</body>
+</html>
