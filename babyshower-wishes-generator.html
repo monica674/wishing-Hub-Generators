@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Shower Wishes Generator Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 30%, #90caf9 70%, #64b5f6 100%);
+            color: #1565c0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(21, 101, 192, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #0d47a1;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .baby-title {
+            color: #1976d2;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .baby-title::before, .baby-title::after {
+            content: '👶';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+        }
+        
+        .baby-title::before {
+            right: -45px;
+        }
+        
+        .baby-title::after {
+            left: -45px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #1976d2;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(33, 150, 243, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(33, 150, 243, 0.2);
+        }
+        
+        .babyshower-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #bbdefb 0%, #90caf9 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.15);
+            border: 5px solid #64b5f6;
+        }
+        
+        .baby-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.7;
+            animation: gentleBounce 3s ease-in-out infinite;
+        }
+        
+        .baby-icon1 { top: 20px; left: 20px; color: #bbdefb; animation-delay: 0s; }
+        .baby-icon2 { top: 20px; right: 20px; color: #90caf9; animation-delay: 0.5s; }
+        .baby-icon3 { bottom: 20px; left: 20px; color: #64b5f6; animation-delay: 1s; }
+        .baby-icon4 { bottom: 20px; right: 20px; color: #42a5f5; animation-delay: 1.5s; }
+        
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.05); }
+        }
+        
+        .card-title {
+            font-size: 2.2rem;
+            color: #1565c0;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #0d47a1;
+        }
+        
+        .card-sender {
+            font-size: 1.2rem;
+            color: #1976d2;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(100, 181, 246, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(100, 181, 246, 0.1) 0%, transparent 20%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #2196f3;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(33, 150, 243, 0.3);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(187, 222, 251, 0.4);
+            border: 1px solid rgba(33, 150, 243, 0.2);
+            border-radius: 10px;
+            color: #1976d2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(187, 222, 251, 0.7);
+            transform: translateY(-3px);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #64b5f6;
+            box-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
+        }
+        
+        .color1 { background: linear-gradient(45deg, #bbdefb, #90caf9); }
+        .color2 { background: linear-gradient(45deg, #90caf9, #64b5f6); }
+        .color3 { background: linear-gradient(45deg, #f8bbd9, #f48fb1); }
+        .color4 { background: linear-gradient(45deg, #c8e6c9, #a5d6a7); }
+        .color5 { background: linear-gradient(45deg, #fff9c4, #fff59d); }
+        .color6 { background: linear-gradient(45deg, #ffccbc, #ffab91); }
+        .color7 { background: linear-gradient(45deg, #e1bee7, #ce93d8); }
+        .color8 { background: linear-gradient(45deg, #f5f5f5, #eeeeee); }
+        .color9 { background: linear-gradient(45deg, #ffecb3, #ffd54f); }
+        .color10 { background: linear-gradient(45deg, #b2ebf2, #80deea); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(33, 150, 243, 0.3);
+            border-radius: 10px;
+            color: #0d47a1;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(13, 71, 161, 0.6);
+        }
+        
+        .gender-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .gender-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            color: #1976d2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .gender-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .gender-btn.active {
+            border-color: #64b5f6;
+            background: rgba(100, 181, 246, 0.2);
+        }
+        
+        .boy-btn.active {
+            border-color: #42a5f5;
+            background: rgba(66, 165, 245, 0.2);
+        }
+        
+        .girl-btn.active {
+            border-color: #f48fb1;
+            background: rgba(244, 143, 177, 0.2);
+        }
+        
+        .surprise-btn.active {
+            border-color: #ba68c8;
+            background: rgba(186, 104, 200, 0.2);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #64b5f6, #42a5f5);
+            color: white;
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #2196f3, #1976d2);
+            color: white;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(33, 150, 243, 0.2);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .baby-bubble {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 100;
+            animation: bubbleFloat linear infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .starry-dust {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffeb3b;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 100;
+            animation: starTwinkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes bubbleFloat {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+        
+        .instruction {
+            background: rgba(187, 222, 251, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #64b5f6;
+            font-size: 0.95rem;
+            color: #1976d2;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(187, 222, 251, 0.3);
+            border-radius: 10px;
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(187, 222, 251, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(33, 150, 243, 0.2);
+            color: #1976d2;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(33, 150, 243, 0.95);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-message {
+                font-size: 1.3rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+            
+            .gender-buttons {
+                flex-wrap: wrap;
+            }
+            
+            .gender-btn {
+                min-width: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .gender-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="baby-title">Baby Shower Wishes Generator Pro</span></h1>
+            <p class="subtitle">Create beautiful baby shower cards to welcome the little bundle of joy</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Baby Shower Card</h2>
+                <div class="babyshower-card" id="babyshowerCard">
+                    <div class="baby-icon baby-icon1">👶</div>
+                    <div class="baby-icon baby-icon2">🐣</div>
+                    <div class="baby-icon baby-icon3">🍼</div>
+                    <div class="baby-icon baby-icon4">🧸</div>
+                    <div class="card-pattern"></div>
+                    <h3 class="card-title" id="cardTitle">Congratulations!</h3>
+                    <p class="card-message" id="cardMessage">Wishing you all the happiness as you welcome your precious little one into the world! May your baby bring you endless joy and your home be filled with laughter and love.</p>
+                    <p class="card-sender" id="cardSender">With love, Your Name</p>
+                </div>
+                
+                <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://babyshowerwishes.com/card/<?php echo rand(1000,9999); ?>
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your Baby Shower card is ready! Customize it with different designs and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Baby Blessings</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <!-- Auto wishes will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <!-- Card design buttons will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Baby's Details</h3>
+                    <div class="gender-buttons">
+                        <button class="gender-btn boy-btn" id="boyBtn">
+                            <i class="fas fa-mars"></i> Boy
+                        </button>
+                        <button class="gender-btn girl-btn" id="girlBtn">
+                            <i class="fas fa-venus"></i> Girl
+                        </button>
+                        <button class="gender-btn surprise-btn active" id="surpriseBtn">
+                            <i class="fas fa-gift"></i> Surprise
+                        </button>
+                    </div>
+                    
+                    <input type="text" class="custom-input" id="babyName" placeholder="Baby's name (or leave blank for 'Baby')">
+                    <input type="text" class="custom-input" id="parentsNames" placeholder="Parents' names (e.g., Sarah & John)">
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom baby shower message here..."></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., Aunt Lisa)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send to Parents
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn telegram" id="telegramBtn">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#2196f3;"></i> for new beginnings | Welcome little miracles</p>
+        </footer>
+    </div>
+
+    <script>
+        // Baby Shower messages
+        const autoWishes = [
+            "Wishing you all the happiness as you welcome your precious little one into the world! May your baby bring you endless joy and your home be filled with laughter and love.",
+            "Congratulations on your upcoming bundle of joy! May your baby shower be filled with special moments and your hearts overflow with happiness.",
+            "Wishing you a beautiful baby shower and a lifetime of precious memories with your little one. May your journey into parenthood be blessed with love and joy.",
+            "So excited for you as you prepare to welcome your precious baby! May this new chapter bring you more happiness than you could ever imagine.",
+            "Wishing you a wonderful baby shower filled with love, laughter, and all things baby! May your little one bring sunshine into your lives.",
+            "Congratulations on your pregnancy! May your baby shower be as special as the little miracle you're expecting. Wishing you all the best.",
+            "As you celebrate the upcoming arrival of your baby, may you be surrounded by love and joy. Wishing you a beautiful baby shower and a smooth journey ahead.",
+            "May your baby shower be filled with beautiful memories and your home soon be filled with the sweet sounds of a newborn. Congratulations!",
+            "Wishing you a magical baby shower and a lifetime of happiness with your little one. May your baby bring you endless smiles and cherished moments.",
+            "Congratulations on your upcoming arrival! May your baby shower be wonderful and your transition to parenthood be smooth and joyful."
+        ];
+
+        // Card designs with baby colors
+        const cardDesigns = [
+            { name: "Baby Blue", className: "color1" },
+            { name: "Sky Blue", className: "color2" },
+            { name: "Pink Princess", className: "color3" },
+            { name: "Mint Green", className: "color4" },
+            { name: "Sunshine Yellow", className: "color5" },
+            { name: "Peach Blush", className: "color6" },
+            { name: "Lavender Dream", className: "color7" },
+            { name: "Cloud White", className: "color8" },
+            { name: "Golden Honey", className: "color9" },
+            { name: "Aqua Breeze", className: "color10" }
+        ];
+
+        // DOM elements
+        const babyshowerCard = document.getElementById('babyshowerCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const autoWishesContainer = document.getElementById('autoWishes');
+        const cardDesignsContainer = document.getElementById('cardDesigns');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+        const babyName = document.getElementById('babyName');
+        const parentsNames = document.getElementById('parentsNames');
+        const boyBtn = document.getElementById('boyBtn');
+        const girlBtn = document.getElementById('girlBtn');
+        const surpriseBtn = document.getElementById('surpriseBtn');
+        const siteLink = document.getElementById('siteLink');
+        
+        let babyGender = 'surprise';
+        let babyIcons = ['👶', '🐣', '🍼', '🧸'];
+        
+        // Initialize auto wishes buttons
+        autoWishes.forEach((wish, index) => {
+            const wishButton = document.createElement('button');
+            wishButton.className = 'wish-btn';
+            wishButton.textContent = `Blessing ${index + 1}`;
+            wishButton.addEventListener('click', () => {
+                cardMessage.textContent = wish;
+                // Reset custom message input
+                customMessage.value = '';
+            });
+            autoWishesContainer.appendChild(wishButton);
+        });
+
+        // Initialize card design buttons
+        cardDesigns.forEach((design, index) => {
+            const designButton = document.createElement('button');
+            designButton.className = `design-btn ${design.className}`;
+            designButton.title = design.name;
+            if (index === 0) designButton.classList.add('active');
+            
+            designButton.addEventListener('click', () => {
+                // Remove active class from all design buttons
+                document.querySelectorAll('.design-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                designButton.classList.add('active');
+                
+                // Change card background
+                applyCardDesign(design.className);
+            });
+            
+            cardDesignsContainer.appendChild(designButton);
+        });
+
+        // Function to apply card design
+        function applyCardDesign(designClass) {
+            // Map design classes to gradient colors
+            const gradients = {
+                'color1': ['#bbdefb', '#90caf9'],
+                'color2': ['#90caf9', '#64b5f6'],
+                'color3': ['#f8bbd9', '#f48fb1'],
+                'color4': ['#c8e6c9', '#a5d6a7'],
+                'color5': ['#fff9c4', '#fff59d'],
+                'color6': ['#ffccbc', '#ffab91'],
+                'color7': ['#e1bee7', '#ce93d8'],
+                'color8': ['#f5f5f5', '#eeeeee'],
+                'color9': ['#ffecb3', '#ffd54f'],
+                'color10': ['#b2ebf2', '#80deea']
+            };
+            
+            const colors = gradients[designClass];
+            babyshowerCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+        }
+
+        // Gender button functionality
+        boyBtn.addEventListener('click', () => {
+            babyGender = 'boy';
+            updateGenderButtons();
+            updateBabyIcons();
+        });
+        
+        girlBtn.addEventListener('click', () => {
+            babyGender = 'girl';
+            updateGenderButtons();
+            updateBabyIcons();
+        });
+        
+        surpriseBtn.addEventListener('click', () => {
+            babyGender = 'surprise';
+            updateGenderButtons();
+            updateBabyIcons();
+        });
+        
+        function updateGenderButtons() {
+            [boyBtn, girlBtn, surpriseBtn].forEach(btn => btn.classList.remove('active'));
+            if (babyGender === 'boy') boyBtn.classList.add('active');
+            else if (babyGender === 'girl') girlBtn.classList.add('active');
+            else surpriseBtn.classList.add('active');
+        }
+        
+        function updateBabyIcons() {
+            const icons = document.querySelectorAll('.baby-icon');
+            if (babyGender === 'boy') {
+                babyIcons = ['👶', '🚙', '⚽', '🦁'];
+            } else if (babyGender === 'girl') {
+                babyIcons = ['👶', '🌸', '🎀', '🐰'];
+            } else {
+                babyIcons = ['👶', '🐣', '🍼', '🧸'];
+            }
+            
+            icons.forEach((icon, index) => {
+                icon.textContent = babyIcons[index];
+            });
+        }
+
+        // Custom message input event
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            }
+        });
+
+        // Sender name input event
+        senderName.addEventListener('input', () => {
+            if (senderName.value.trim() !== '') {
+                cardSender.textContent = `With love, ${senderName.value}`;
+            } else {
+                cardSender.textContent = 'With love, Your Name';
+            }
+        });
+
+        // Baby name input event
+        babyName.addEventListener('input', () => {
+            updateCardTitle();
+        });
+
+        // Parents names input event
+        parentsNames.addEventListener('input', () => {
+            updateCardTitle();
+        });
+
+        // Update card title based on inputs
+        function updateCardTitle() {
+            let title = 'Congratulations';
+            
+            if (babyName.value.trim() !== '') {
+                const name = babyName.value.trim();
+                title += ` ${name}!`;
+                
+                // Add gender-specific title if known
+                if (babyGender === 'boy') {
+                    cardTitle.innerHTML = `Welcome Baby ${name}! <span style="color:#42a5f5;">👶</span>`;
+                } else if (babyGender === 'girl') {
+                    cardTitle.innerHTML = `Welcome Baby ${name}! <span style="color:#f48fb1;">👶</span>`;
+                } else {
+                    cardTitle.innerHTML = `Welcome Baby ${name}! 👶`;
+                }
+            } else if (parentsNames.value.trim() !== '') {
+                title += ` ${parentsNames.value}!`;
+                cardTitle.textContent = title;
+            } else {
+                cardTitle.textContent = 'Congratulations!';
+            }
+        }
+
+        // Edit button functionality
+        document.getElementById('editBtn').addEventListener('click', () => {
+            // Highlight the custom message field
+            customMessage.focus();
+            customMessage.style.border = '2px solid #64b5f6';
+            customMessage.style.boxShadow = '0 0 10px rgba(100, 181, 246, 0.3)';
+            
+            // Remove highlight after 2 seconds
+            setTimeout(() => {
+                customMessage.style.border = '1px solid rgba(33, 150, 243, 0.3)';
+                customMessage.style.boxShadow = 'none';
+            }, 2000);
+            
+            // Show notification
+            showNotification('You can now edit all card details including baby gender, names, and message');
+        });
+
+        // Send to parents button functionality
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const parent1 = prompt("Enter first parent's name:");
+            const parent2 = prompt("Enter second parent's name (or leave blank):");
+            const dueDate = prompt("When is the baby due? (e.g., Next month, June 15th):");
+            
+            if (parent1) {
+                const originalSender = cardSender.textContent.replace('With love, ', '');
+                const originalTitle = cardTitle.textContent;
+                const originalMessage = cardMessage.textContent;
+                
+                const parents = parent2 ? `${parent1} & ${parent2}` : parent1;
+                const baby = babyName.value.trim() || 'your little one';
+                
+                let personalizedMessage = `Dear ${parents},\n\n`;
+                
+                if (dueDate) {
+                    personalizedMessage += `As you await ${baby}'s arrival${dueDate.toLowerCase() !== 'soon' ? ` in ${dueDate}` : ''}, `;
+                } else {
+                    personalizedMessage += `As you prepare to welcome ${baby}, `;
+                }
+                
+                personalizedMessage += cardMessage.textContent + `\n\n${cardSender.textContent}`;
+                
+                // Update card for preview
+                cardMessage.textContent = personalizedMessage;
+                cardSender.textContent = `To: ${parents} | From: ${originalSender === 'Your Name' ? 'Well-Wisher' : originalSender}`;
+                parentsNames.value = parents;
+                
+                // Show success message
+                showNotification(`Baby shower card customized for ${parents}! Now you can share it.`);
+                
+                // Create special baby celebration effect
+                createBabyCelebration();
+                
+                // Revert after 10 seconds for preview
+                setTimeout(() => {
+                    cardMessage.textContent = originalMessage;
+                    cardSender.textContent = `With love, ${originalSender === 'Your Name' ? 'Your Name' : originalSender}`;
+                    cardTitle.textContent = originalTitle;
+                }, 10000);
+            }
+        });
+
+        // Share buttons functionality
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `👶 *${cardTitle.textContent}* 👶\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreate your own Baby Shower card: ${window.location.href}`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const quote = encodeURIComponent(`👶 ${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}...`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`👶 ${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}...`);
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('To share on Instagram: 1. Take a screenshot of your card 2. Open Instagram 3. Post it as a story or feed with #BabyShower #NewBaby');
+        });
+
+        document.getElementById('telegramBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`👶 ${cardTitle.textContent}\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\n${window.location.href}`);
+            window.open(`https://t.me/share/url?url=${text}`, '_blank');
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            const subject = encodeURIComponent(cardTitle.textContent);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Baby Shower Wishes Generator: ${window.location.href}`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // Copy link functionality
+        document.querySelector('.copy-link')?.addEventListener('click', () => {
+            const cardData = {
+                title: cardTitle.textContent,
+                message: cardMessage.textContent,
+                sender: cardSender.textContent,
+                design: document.querySelector('.design-btn.active').className.match(/color\d+/)[0],
+                gender: babyGender
+            };
+            
+            const encodedData = encodeURIComponent(JSON.stringify(cardData));
+            const shareableLink = `${window.location.origin}${window.location.pathname}?card=${encodedData}`;
+            
+            navigator.clipboard.writeText(shareableLink)
+                .then(() => showNotification('👶 Card link copied to clipboard! Share it to send baby blessings.'))
+                .catch(err => {
+                    console.error('Could not copy text: ', err);
+                    showNotification('Failed to copy link. Please try again.');
+                });
+        });
+
+        // Baby bubble effect
+        function createBabyBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'baby-bubble';
+            
+            // Random position
+            bubble.style.left = `${Math.random() * 100}vw`;
+            bubble.style.top = '100vh';
+            
+            // Random size
+            const size = Math.random() * 20 + 15;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            
+            document.body.appendChild(bubble);
+            
+            // Random animation
+            const duration = Math.random() * 10 + 6;
+            bubble.style.animationDuration = `${duration}s`;
+            
+            // Remove bubble after animation
+            setTimeout(() => {
+                bubble.remove();
+            }, duration * 1000);
+        }
+
+        // Starry dust effect
+        function createStarryDust() {
+            const star = document.createElement('div');
+            star.className = 'starry-dust';
+            
+            // Random position
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            
+            document.body.appendChild(star);
+            
+            // Random animation delay
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            
+            // Remove star after animation
+            setTimeout(() => {
+                star.remove();
+            }, 4000);
+        }
+
+        // Baby celebration effect (for when sending to parents)
+        function createBabyCelebration() {
+            // Create lots of bubbles and stars
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    createBabyBubble();
+                    if (i % 3 === 0) createStarryDust();
+                }, i * 80);
+            }
+            
+            // Make baby icons bounce more
+            document.querySelectorAll('.baby-icon').forEach(icon => {
+                const originalAnimation = icon.style.animation;
+                icon.style.animation = 'gentleBounce 0.5s ease-in-out infinite';
+                icon.style.textShadow = '0 0 15px rgba(100, 181, 246, 0.5)';
+                
+                // Return to normal after 3 seconds
+                setTimeout(() => {
+                    icon.style.animation = originalAnimation || 'gentleBounce 3s ease-in-out infinite';
+                    icon.style.textShadow = 'none';
+                }, 3000);
+            });
+            
+            // Add pacifier animation to card
+            babyshowerCard.style.animation = 'gentleBounce 1s ease-in-out';
+            
+            // Return to normal after 3 seconds
+            setTimeout(() => {
+                babyshowerCard.style.animation = 'none';
+            }, 3000);
+        }
+
+        // Create periodic effects
+        setInterval(createBabyBubble, 600);
+        setInterval(createStarryDust, 400);
+        
+        // Create initial effects
+        setTimeout(() => {
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    createBabyBubble();
+                    if (i % 4 === 0) createStarryDust();
+                }, i * 120);
+            }
+        }, 1000);
+
+        // Notification function
+        function showNotification(message) {
+            // Remove existing notification
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create new notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Generate a unique link for the card
+        const cardId = Math.floor(Math.random() * 10000);
+        siteLink.textContent = `https://babyshowerwishes.com/card/${cardId}`;
+        siteLink.href = `https://babyshowerwishes.com/card/${cardId}`;
+        
+        // Check for card data in URL (for sharing)
+        function loadCardFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cardDataParam = urlParams.get('card');
+            
+            if (cardDataParam) {
+                try {
+                    const cardData = JSON.parse(decodeURIComponent(cardDataParam));
+                    
+                    // Apply card data
+                    cardTitle.textContent = cardData.title || cardTitle.textContent;
+                    cardMessage.textContent = cardData.message || cardMessage.textContent;
+                    cardSender.textContent = cardData.sender || cardSender.textContent;
+                    
+                    // Apply gender if specified
+                    if (cardData.gender) {
+                        babyGender = cardData.gender;
+                        updateGenderButtons();
+                        updateBabyIcons();
+                    }
+                    
+                    // Apply design if specified
+                    if (cardData.design) {
+                        const designButton = document.querySelector(`.${cardData.design}`);
+                        if (designButton) {
+                            designButton.click();
+                        }
+                    }
+                    
+                    showNotification('👶 Baby shower card loaded successfully!');
+                } catch (e) {
+                    console.error('Error loading card data:', e);
+                }
+            }
+        }
+        
+        // Load card data from URL if present
+        loadCardFromURL();
+        
+        // Initialize with a random wish
+        const randomWishIndex = Math.floor(Math.random() * autoWishes.length);
+        cardMessage.textContent = autoWishes[randomWishIndex];
+        
+        // Show welcome notification
+        setTimeout(() => {
+            showNotification('👶 Welcome! Create a beautiful Baby Shower card to welcome the little one!');
+        }, 1500);
+    </script>
+</body>
+</html>
