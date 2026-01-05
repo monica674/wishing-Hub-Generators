@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Wishes Generator | Festive Messages & Cards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0a0f0a;
+            color: #e8f5e9;
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(11, 46, 20, 0.3) 0%, transparent 25%),
+                radial-gradient(circle at 85% 80%, rgba(30, 92, 45, 0.2) 0%, transparent 25%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 25px;
+        }
+
+        header {
+            text-align: center;
+            padding: 35px 0;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #1e5c2d 0%, #2e8b57 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #00cc66;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff3366, #ff9900, #00cc66);
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 3.2rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            font-weight: 300;
+            color: #d1f7c4;
+        }
+
+        .header-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .header-decoration i {
+            color: #00ff88;
+            font-size: 2rem;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.7);
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.15); }
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 950px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .generator-section, .preview-section {
+            background: rgba(15, 25, 18, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            border: 2px solid #00cc66;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .generator-section::before, .preview-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #00cc66, #ff3366, #00cc66);
+        }
+
+        .section-title {
+            color: #00ff88;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #00cc66;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: #ff3366;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #00ff88;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(10, 20, 12, 0.8);
+            border: 2px solid #00cc66;
+            border-radius: 10px;
+            color: #e8f5e9;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #ff3366;
+            box-shadow: 0 0 0 3px rgba(255, 51, 102, 0.2);
+            background: rgba(15, 25, 18, 0.9);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 16px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, #00cc66 0%, #1e5c2d 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 204, 102, 0.4);
+        }
+
+        .btn-generate:hover {
+            background: linear-gradient(135deg, #1e5c2d 0%, #00cc66 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 204, 102, 0.5);
+        }
+
+        .btn-copy {
+            background: rgba(10, 20, 12, 0.8);
+            color: #00cc66;
+            border: 2px solid #00cc66;
+        }
+
+        .btn-copy:hover {
+            background: #00cc66;
+            color: white;
+            border-color: #00cc66;
+        }
+
+        .btn-whatsapp {
+            background: rgba(10, 20, 12, 0.8);
+            color: #25D366;
+            border: 2px solid #25D366;
+        }
+
+        .btn-whatsapp:hover {
+            background: #25D366;
+            color: white;
+            border-color: #25D366;
+        }
+
+        .btn-song {
+            background: rgba(10, 20, 12, 0.8);
+            color: #ff3366;
+            border: 2px solid #ff3366;
+        }
+
+        .btn-song:hover {
+            background: #ff3366;
+            color: white;
+            border-color: #ff3366;
+        }
+
+        .btn-reset {
+            background: rgba(30, 10, 10, 0.8);
+            color: #ff3366;
+            border: 2px solid #ff3366;
+        }
+
+        .btn-reset:hover {
+            background: #ff3366;
+            color: white;
+        }
+
+        .preview-box {
+            background: rgba(10, 20, 12, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            min-height: 350px;
+            border: 2px solid #00cc66;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: auto;
+        }
+
+        .wish-preview {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            padding: 20px 0;
+            color: #e8f5e9;
+        }
+
+        .signature {
+            margin-top: 30px;
+            text-align: center;
+            color: #00ff88;
+            font-weight: 700;
+            font-size: 1.3rem;
+            font-style: italic;
+            border-top: 1px solid #00cc66;
+            padding-top: 20px;
+        }
+
+        .decoration {
+            position: absolute;
+            font-size: 1.8rem;
+            color: #00cc66;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        .decoration.top-left {
+            top: 20px;
+            left: 20px;
+        }
+
+        .decoration.top-right {
+            top: 20px;
+            right: 20px;
+        }
+
+        .decoration.bottom-left {
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .decoration.bottom-right {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .poster-section {
+            background: rgba(15, 25, 18, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 2px solid #00cc66;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poster-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #00cc66, #ff3366, #00cc66);
+        }
+
+        .poster-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        .poster-preview {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(10, 20, 12, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid #00cc66;
+            text-align: center;
+        }
+
+        .poster-preview canvas {
+            background: rgba(30, 40, 32, 0.9);
+            border-radius: 10px;
+            border: 1px solid #00cc66;
+            margin-bottom: 20px;
+        }
+
+        .poster-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-poster {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #00cc66 0%, #1e5c2d 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-poster:hover {
+            background: linear-gradient(135deg, #1e5c2d 0%, #00cc66 100%);
+            transform: translateY(-2px);
+        }
+
+        .btn-download {
+            background: rgba(10, 20, 12, 0.8);
+            color: #00cc66;
+            border: 2px solid #00cc66;
+        }
+
+        .btn-download:hover {
+            background: #00cc66;
+            color: white;
+        }
+
+        .music-player {
+            background: rgba(15, 25, 18, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 2px solid #00cc66;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .music-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .btn-music {
+            padding: 12px 20px;
+            background: rgba(10, 20, 12, 0.8);
+            color: #ff3366;
+            border: 2px solid #ff3366;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-music:hover {
+            background: #ff3366;
+            color: white;
+        }
+
+        .btn-music.active {
+            background: #ff3366;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px 0;
+            margin-top: 50px;
+            border-top: 2px solid #00cc66;
+            color: #8fbc8f;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 20px 30px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #00cc66 0%, #1e5c2d 100%);
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s ease;
+            border-left: 6px solid #ff3366;
+            font-weight: 700;
+            max-width: 400px;
+        }
+
+        .message.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .message.error {
+            background: linear-gradient(135deg, #ff3366 0%, #8b0000 100%);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .main-content {
+                gap: 25px;
+            }
+            
+            .generator-section, .preview-section, .poster-section {
+                padding: 25px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                min-width: 100%;
+            }
+            
+            .poster-container {
+                flex-direction: column;
+            }
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .fireworks.active {
+            opacity: 1;
+        }
+
+        .accent-red {
+            color: #ff3366;
+        }
+
+        .accent-green {
+            color: #00ff88;
+        }
+
+        .accent-gold {
+            color: #ffd700;
+        }
+
+        .feature-tag {
+            display: inline-block;
+            background: #ff3366;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fireworks Container -->
+    <div class="fireworks" id="fireworks"></div>
+
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-tree accent-gold"></i> Christmas Wishes Generator</h1>
+            <p>Create personalized Christmas wishes with music, fireworks & festive cards</p>
+            <div class="header-decoration">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-candy-cane"></i>
+                <i class="fas fa-gift"></i>
+                <i class="fas fa-snowflake"></i>
+                <i class="fas fa-music"></i>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <section class="generator-section">
+                <h2 class="section-title"><i class="fas fa-cogs accent-red"></i> Customize Your Christmas Wish</h2>
+                
+                <div class="input-group">
+                    <label for="name"><i class="fas fa-user accent-green"></i> Enter Name</label>
+                    <input type="text" id="name" placeholder="Enter recipient's name" value="John">
+                </div>
+                
+                <div class="input-group">
+                    <label for="language"><i class="fas fa-language accent-green"></i> Language</label>
+                    <select id="language">
+                        <option value="english">English</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="french">French</option>
+                        <option value="german">German</option>
+                        <option value="italian">Italian</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="category"><i class="fas fa-list-alt accent-green"></i> Wish Category</label>
+                    <select id="category">
+                        <option value="family">Family & Friends</option>
+                        <option value="business">Business & Colleagues</option>
+                        <option value="funny">Funny & Casual</option>
+                        <option value="religious">Religious & Traditional</option>
+                        <option value="romantic">Romantic</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="length"><i class="fas fa-ruler accent-green"></i> Message Length</label>
+                    <select id="length">
+                        <option value="short">Short & Sweet</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="long">Long & Detailed</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-generate" id="generateBtn">
+                        <i class="fas fa-magic"></i> Generate Wish
+                    </button>
+                    <button class="btn btn-copy" id="copyBtn">
+                        <i class="far fa-copy"></i> Copy
+                    </button>
+                    <button class="btn btn-whatsapp" id="whatsappBtn">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </button>
+                    <button class="btn btn-song" id="songBtn">
+                        <i class="fas fa-music"></i> Song
+                    </button>
+                    <button class="btn btn-reset" id="resetBtn">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+            </section>
+
+            <section class="preview-section">
+                <h2 class="section-title"><i class="far fa-eye accent-red"></i> Wish Preview <span class="feature-tag">LIVE</span></h2>
+                
+                <div class="preview-box">
+                    <div class="decoration top-left"><i class="fas fa-holly-berry"></i></div>
+                    <div class="decoration top-right"><i class="fas fa-star"></i></div>
+                    
+                    <div class="wish-preview" id="wishPreview">
+                        <p>Dear John,</p>
+                        <p>Wishing you a Christmas sparkling with moments of love, laughter, and goodwill. May this festive season wrap you in warmth and fill your home with joy and harmony.</p>
+                        <p>Merry Christmas and a Happy New Year!</p>
+                        <div class="signature">🎄 Christmas Greetings 🎄</div>
+                    </div>
+                    
+                    <div class="decoration bottom-left"><i class="fas fa-candy-cane"></i></div>
+                    <div class="decoration bottom-right"><i class="fas fa-gift"></i></div>
+                </div>
+                
+                <p style="text-align: center; color: #8fbc8f; font-size: 0.9rem; margin-top: 15px; font-weight: 600;">
+                    <i class="fas fa-lightbulb accent-red"></i> Your wish updates instantly as you customize the options!
+                </p>
+            </section>
+        </div>
+
+        <section class="poster-section">
+            <h2 class="section-title"><i class="fas fa-image accent-red"></i> Christmas Poster <span class="feature-tag">NEW</span></h2>
+            
+            <div class="poster-container">
+                <div class="poster-preview">
+                    <canvas id="posterCanvas" width="400" height="500"></canvas>
+                    <div class="poster-buttons">
+                        <button class="btn-poster" id="generatePosterBtn">
+                            <i class="fas fa-image"></i> Generate Poster
+                        </button>
+                        <button class="btn-poster btn-download" id="downloadPosterBtn">
+                            <i class="fas fa-download"></i> Download Poster
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="flex: 2; min-width: 300px;">
+                    <p style="margin-bottom: 20px; color: #e8f5e9; line-height: 1.7;">
+                        Create beautiful Christmas posters with personalized messages. Choose from festive templates and customize with your own text and colors.
+                    </p>
+                    
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <label for="posterText"><i class="fas fa-font accent-green"></i> Poster Text</label>
+                        <input type="text" id="posterText" placeholder="Enter text for your poster" value="Merry Christmas!">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="template"><i class="fas fa-palette accent-green"></i> Template Style</label>
+                        <select id="template">
+                            <option value="classic">Classic Red & Green</option>
+                            <option value="elegant">Elegant Gold</option>
+                            <option value="modern">Modern Minimal</option>
+                            <option value="fun">Fun & Festive</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="music-player">
+            <h2 class="section-title"><i class="fas fa-music accent-red"></i> Christmas Music Player</h2>
+            
+            <p style="margin-bottom: 20px; color: #e8f5e9;">
+                Play festive Christmas music while creating your wishes. Click the fireworks button for a visual celebration!
+            </p>
+            
+            <div class="music-controls">
+                <button class="btn-music" id="playMusicBtn">
+                    <i class="fas fa-play"></i> Play Music
+                </button>
+                <button class="btn-music" id="pauseMusicBtn">
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+                <button class="btn-music" id="nextMusicBtn">
+                    <i class="fas fa-forward"></i> Next Song
+                </button>
+                <button class="btn-music" id="fireworksBtn">
+                    <i class="fas fa-fire"></i> Fireworks
+                </button>
+            </div>
+            
+            <div style="margin-top: 20px; color: #8fbc8f; font-size: 0.9rem;">
+                <i class="fas fa-volume-up accent-green"></i> Now Playing: <span id="nowPlaying">Jingle Bells - Traditional</span>
+            </div>
+        </section>
+
+        <footer>
+            <p>Christmas Wishes Generator &copy; 2023 | Designed with <i class="fas fa-heart accent-red"></i> for joyful holiday greetings</p>
+            <p>Black & Green Theme | <a href="javascript:void(0)" id="shareBtn">Share this generator</a> | <a href="javascript:void(0)" id="printBtn">Print Wish</a></p>
+            <p style="margin-top: 15px; font-size: 0.8rem; color: #6a8a6a;">
+                <i class="fas fa-music"></i> Includes festive music | <i class="fas fa-fire"></i> Animated fireworks | <i class="fas fa-image"></i> Poster generator
+            </p>
+        </footer>
+    </div>
+
+    <!-- Hidden Audio Player -->
+    <audio id="christmasMusic" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-jingle-bells-311.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="message" id="copyMessage">🎄 Wish copied to clipboard!</div>
+
+    <script>
+        // DOM elements
+        const nameInput = document.getElementById('name');
+        const languageSelect = document.getElementById('language');
+        const categorySelect = document.getElementById('category');
+        const lengthSelect = document.getElementById('length');
+        const generateBtn = document.getElementById('generateBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        const songBtn = document.getElementById('songBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const wishPreview = document.getElementById('wishPreview');
+        const copyMessage = document.getElementById('copyMessage');
+        const shareBtn = document.getElementById('shareBtn');
+        const printBtn = document.getElementById('printBtn');
+        const fireworksContainer = document.getElementById('fireworks');
+        const fireworksBtn = document.getElementById('fireworksBtn');
+        
+        // Poster elements
+        const posterCanvas = document.getElementById('posterCanvas');
+        const posterTextInput = document.getElementById('posterText');
+        const templateSelect = document.getElementById('template');
+        const generatePosterBtn = document.getElementById('generatePosterBtn');
+        const downloadPosterBtn = document.getElementById('downloadPosterBtn');
+        
+        // Music elements
+        const musicPlayer = document.getElementById('christmasMusic');
+        const playMusicBtn = document.getElementById('playMusicBtn');
+        const pauseMusicBtn = document.getElementById('pauseMusicBtn');
+        const nextMusicBtn = document.getElementById('nextMusicBtn');
+        const nowPlayingSpan = document.getElementById('nowPlaying');
+        
+        // App state
+        let wishCounter = 0;
+        let isMusicPlaying = false;
+        let currentSongIndex = 0;
+        
+        // Christmas songs (placeholders - in production, use actual music files)
+        const christmasSongs = [
+            { name: "Jingle Bells - Traditional", url: "https://assets.mixkit.co/music/preview/mixkit-jingle-bells-311.mp3" },
+            { name: "Silent Night - Traditional", url: "https://assets.mixkit.co/music/preview/mixkit-silent-night-310.mp3" },
+            { name: "Deck the Halls - Traditional", url: "#" },
+            { name: "We Wish You a Merry Christmas - Traditional", url: "#" }
+        ];
+        
+        // Wish templates by category and language
+        const wishTemplates = {
+            english: {
+                family: {
+                    short: [
+                        "Dear [name], Wishing you a Christmas filled with love, joy, and warmth. May this festive season bring you closer to your loved ones. Merry Christmas!",
+                        "Dear [name], May your Christmas be merry, your heart be light, and your home be filled with love this holiday season. Warmest wishes!"
+                    ],
+                    medium: [
+                        "Dear [name], As the Christmas season arrives, I wish you a time filled with joy, peace, and cherished moments with those you hold dear. May the magic of Christmas fill every corner of your heart and home. Wishing you all the best this holiday season!",
+                        "Dear [name], During this magical season, I'm thinking of you and sending my warmest wishes for a Christmas filled with laughter, love, and light. May the spirit of the holidays bring you closer to those you cherish."
+                    ],
+                    long: [
+                        "Dear [name], As the festive lights twinkle and the scent of pine fills the air, I want to take a moment to send you my warmest Christmas wishes. This special time of year reminds us of the importance of family, friendship, and the simple joys that make life so beautiful. I hope your holiday season is filled with laughter, love, and memorable moments that you'll treasure for years to come. May the Christmas spirit uplift you, the New Year bring fresh opportunities, and may you find peace and contentment in the days ahead."
+                    ]
+                },
+                business: {
+                    short: ["Dear [name], On behalf of our team, we extend our best wishes for a joyful Christmas and a prosperous New Year. We appreciate our partnership."],
+                    medium: ["Dear [name], As the year draws to a close, we want to express our sincere gratitude and wish you a Merry Christmas. May the holiday season bring you well-deserved rest. We look forward to continuing our successful collaboration."],
+                    long: ["Dear [name], As we approach the end of another year, we want to thank you for your valuable partnership and wish you a very Merry Christmas and Happy New Year. The holiday season is a time for reflection, gratitude, and celebration. We're truly grateful for the relationship we've built and the successes we've achieved together. We hope you enjoy a well-deserved break, returning refreshed for the opportunities the New Year will bring."]
+                },
+                funny: {
+                    short: ["Hey [name]! May your Christmas be filled with more joy than there are crumbs under the tree from Santa's cookies! Have a holly jolly one!"],
+                    medium: ["Hey [name]! Wishing you a Christmas that's merry, bright, and involves zero fruitcake! May your holidays be filled with good cheer, great food, and minimal family drama. Merry Christmas!"],
+                    long: ["Dear [name], Tis the season to be jolly, eat too much, and pretend you love that gift you're definitely regifting next year! We hope your Christmas is filled with more happiness than a kid on sugar cookies. May your days be merry and may you successfully avoid all discussions about politics at the dinner table. Have a fantastic Christmas!"]
+                },
+                religious: {
+                    short: ["Dear [name], May the miracle of Christmas fill your heart with peace and joy. Wishing you blessings as we celebrate the birth of our Savior. Merry Christmas."],
+                    medium: ["Dear [name], As we celebrate the birth of Jesus Christ, may your heart be filled with the peace, hope, and joy that only He can bring. During this holy season, we pray that God's love surrounds you. Wishing you a blessed Christmas."],
+                    long: ["Dear [name], During this sacred season of Christmas, we reflect on the greatest gift ever given—our Lord and Savior, Jesus Christ. As we celebrate His birth, we pray that you experience the profound peace, unconditional love, and eternal hope that comes through Him. May your home be filled with His presence and your hearts with His joy. Let us remember that Christmas is not just a day, but a state of heart that honors the Prince of Peace."]
+                },
+                romantic: {
+                    short: ["My dearest [name], May this Christmas be as magical as the love we share. You're the best gift I could ever receive. All my love."],
+                    medium: ["My love [name], At this special time of year, I'm reminded of how blessed I am to have you in my life. You make every day brighter, and this Christmas, I wish for us to create beautiful memories together. With all my heart."],
+                    long: ["My beloved [name], As Christmas approaches, my heart overflows with gratitude for having you by my side. You are the light that guides me, the warmth that comforts me, and the joy that fills my days. This Christmas, I wish for us to slow down, cherish each moment, and remember the true magic of the season—the love we share. You are the greatest gift I've ever received, and I look forward to many more Christmases together."]
+                }
+            }
+        };
+
+        // Initialize the app
+        function init() {
+            // Generate wish button
+            generateBtn.addEventListener('click', generateWish);
+            
+            // Copy to clipboard button
+            copyBtn.addEventListener('click', copyToClipboard);
+            
+            // WhatsApp button
+            whatsappBtn.addEventListener('click', shareOnWhatsApp);
+            
+            // Song button
+            songBtn.addEventListener('click', playChristmasSong);
+            
+            // Reset button
+            resetBtn.addEventListener('click', resetForm);
+            
+            // Share button
+            shareBtn.addEventListener('click', shareGenerator);
+            
+            // Print button
+            printBtn.addEventListener('click', printWish);
+            
+            // Fireworks button
+            fireworksBtn.addEventListener('click', toggleFireworks);
+            
+            // Auto-generate when inputs change
+            nameInput.addEventListener('input', generateWish);
+            languageSelect.addEventListener('change', generateWish);
+            categorySelect.addEventListener('change', generateWish);
+            lengthSelect.addEventListener('change', generateWish);
+            
+            // Poster buttons
+            generatePosterBtn.addEventListener('click', generatePoster);
+            downloadPosterBtn.addEventListener('click', downloadPoster);
+            posterTextInput.addEventListener('input', generatePoster);
+            templateSelect.addEventListener('change', generatePoster);
+            
+            // Music controls
+            playMusicBtn.addEventListener('click', playMusic);
+            pauseMusicBtn.addEventListener('click', pauseMusic);
+            nextMusicBtn.addEventListener('click', nextSong);
+            
+            // Generate initial wish and poster
+            generateWish();
+            generatePoster();
+            
+            // Setup music player
+            setupMusicPlayer();
+        }
+
+        // Generate a wish based on current selections
+        function generateWish() {
+            const name = nameInput.value.trim() || "Friend";
+            const language = languageSelect.value;
+            const category = categorySelect.value;
+            const length = lengthSelect.value;
+            
+            // Get appropriate template
+            const languageTemplates = wishTemplates[language] || wishTemplates.english;
+            const categoryTemplates = languageTemplates[category] || languageTemplates.family;
+            const templates = categoryTemplates[length] || categoryTemplates.medium;
+            
+            // Select random template from available options
+            const template = templates[Math.floor(Math.random() * templates.length)];
+            
+            // Replace placeholder with actual name
+            let wishText = template.replace(/\[name\]/g, name);
+            
+            // Format the wish text for display
+            const paragraphs = wishText.split(/\.\s+/);
+            
+            // Build HTML for preview
+            let html = '';
+            paragraphs.forEach(paragraph => {
+                if (paragraph.trim()) {
+                    html += `<p>${paragraph.trim()}.</p>`;
+                }
+            });
+            
+            // Add festive signature
+            const signatures = ["🎄 Christmas Greetings 🎄", "✨ Season's Greetings ✨", "🎁 Wishing You Joy 🎁", "🌟 Merry Christmas 🌟"];
+            const signature = signatures[Math.floor(Math.random() * signatures.length)];
+            html += `<div class="signature">${signature}</div>`;
+            
+            // Update preview
+            wishPreview.innerHTML = html;
+            
+            // Update counter
+            wishCounter++;
+        }
+
+        // Copy generated wish to clipboard
+        function copyToClipboard() {
+            const textToCopy = wishPreview.innerText;
+            
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => {
+                    showMessage("🎄 Wish copied to clipboard!");
+                })
+                .catch(err => {
+                    console.error('Failed to copy text: ', err);
+                    showMessage("❌ Failed to copy. Please try again.", true);
+                });
+        }
+
+        // Share on WhatsApp
+        function shareOnWhatsApp() {
+            const text = wishPreview.innerText;
+            const encodedText = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/?text=${encodedText}`;
+            
+            window.open(whatsappUrl, '_blank');
+            showMessage("📱 Opening WhatsApp...");
+        }
+
+        // Play Christmas song
+        function playChristmasSong() {
+            if (!isMusicPlaying) {
+                playMusic();
+                showMessage("🎵 Playing Christmas music!");
+            } else {
+                pauseMusic();
+                showMessage("⏸️ Music paused");
+            }
+        }
+
+        // Reset form
+        function resetForm() {
+            nameInput.value = "John";
+            languageSelect.value = "english";
+            categorySelect.value = "family";
+            lengthSelect.value = "medium";
+            templateSelect.value = "classic";
+            posterTextInput.value = "Merry Christmas!";
+            
+            generateWish();
+            generatePoster();
+            showMessage("🔄 Form reset to default values!");
+        }
+
+        // Share generator
+        function shareGenerator() {
+            const shareText = "Check out this amazing Christmas Wishes Generator with music, fireworks, and posters!";
+            const shareUrl = window.location.href;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Christmas Wishes Generator',
+                    text: shareText,
+                    url: shareUrl
+                });
+            } else {
+                navigator.clipboard.writeText(shareUrl);
+                showMessage("🔗 Link copied! Share it with friends!");
+            }
+        }
+
+        // Print wish
+        function printWish() {
+            const printWindow = window.open('', '', 'width=800,height=600');
+            const wishContent = document.getElementById('wishPreview').innerHTML;
+            
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Christmas Wish</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 50px; color: #006633; background: white; }
+                        h1 { color: #00cc66; text-align: center; }
+                        .wish-content { font-size: 18px; line-height: 1.8; margin: 40px 0; }
+                        .signature { text-align: center; font-weight: bold; color: #ff3366; margin-top: 50px; font-size: 22px; }
+                        @media print { body { padding: 20px; } }
+                    </style>
+                </head>
+                <body>
+                    <h1>🎄 Christmas Wish 🎄</h1>
+                    <div class="wish-content">${wishContent}</div>
+                </body>
+                </html>
+            `);
+            
+            printWindow.document.close();
+            printWindow.focus();
+            setTimeout(() => {
+                printWindow.print();
+                printWindow.close();
+            }, 250);
+            
+            showMessage("🖨️ Opening print dialog...");
+        }
+
+        // Show message
+        function showMessage(text, isError = false) {
+            copyMessage.textContent = text;
+            copyMessage.classList.remove('error', 'show');
+            
+            if (isError) {
+                copyMessage.classList.add('error');
+            }
+            
+            copyMessage.classList.add('show');
+            
+            setTimeout(() => {
+                copyMessage.classList.remove('show');
+            }, 3000);
+        }
+
+        // Generate poster
+        function generatePoster() {
+            const canvas = posterCanvas;
+            const ctx = canvas.getContext('2d');
+            const text = posterTextInput.value || "Merry Christmas!";
+            const template = templateSelect.value;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Set background based on template
+            switch(template) {
+                case 'classic':
+                    drawClassicPoster(ctx, canvas, text);
+                    break;
+                case 'elegant':
+                    drawElegantPoster(ctx, canvas, text);
+                    break;
+                case 'modern':
+                    drawModernPoster(ctx, canvas, text);
+                    break;
+                case 'fun':
+                    drawFunPoster(ctx, canvas, text);
+                    break;
+                default:
+                    drawClassicPoster(ctx, canvas, text);
+            }
+        }
+
+        // Draw classic poster
+        function drawClassicPoster(ctx, canvas, text) {
+            // Background
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#0a0f0a');
+            gradient.addColorStop(1, '#1e5c2d');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Border
+            ctx.strokeStyle = '#00cc66';
+            ctx.lineWidth = 5;
+            ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
+            
+            // Title
+            ctx.font = 'bold 36px Arial';
+            ctx.fillStyle = '#ff3366';
+            ctx.textAlign = 'center';
+            ctx.fillText('Merry Christmas', canvas.width / 2, 80);
+            
+            // Main text
+            ctx.font = '28px Georgia';
+            ctx.fillStyle = '#00ff88';
+            ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+            
+            // Decoration
+            ctx.font = '40px Arial';
+            ctx.fillStyle = '#ffd700';
+            ctx.fillText('🎄', canvas.width / 2 - 100, canvas.height - 100);
+            ctx.fillText('🎁', canvas.width / 2 + 100, canvas.height - 100);
+            
+            // Footer
+            ctx.font = '18px Arial';
+            ctx.fillStyle = '#8fbc8f';
+            ctx.fillText('Season\'s Greetings', canvas.width / 2, canvas.height - 40);
+        }
+
+        // Draw elegant poster
+        function drawElegantPoster(ctx, canvas, text) {
+            // Gold gradient background
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#1a1a00');
+            gradient.addColorStop(1, '#333300');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Gold border
+            ctx.strokeStyle = '#ffd700';
+            ctx.lineWidth = 8;
+            ctx.strokeRect(15, 15, canvas.width - 30, canvas.height - 30);
+            
+            // Elegant text
+            ctx.font = 'italic 40px Georgia';
+            ctx.fillStyle = '#ffd700';
+            ctx.textAlign = 'center';
+            ctx.fillText('Christmas Wishes', canvas.width / 2, 100);
+            
+            // Main message
+            ctx.font = '32px "Times New Roman"';
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+            
+            // Gold accents
+            ctx.font = '50px Arial';
+            ctx.fillText('✨', canvas.width / 2, canvas.height - 120);
+            
+            // Signature
+            ctx.font = '20px Georgia';
+            ctx.fillStyle = '#cccc00';
+            ctx.fillText('Elegant Christmas Greetings', canvas.width / 2, canvas.height - 50);
+        }
+
+        // Draw modern poster
+        function drawModernPoster(ctx, canvas, text) {
+            // Modern dark background
+            ctx.fillStyle = '#111111';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Geometric pattern
+            ctx.fillStyle = '#00cc66';
+            for(let i = 0; i < 10; i++) {
+                ctx.fillRect(i * 40, 20, 20, 20);
+                ctx.fillRect(canvas.width - i * 40 - 40, canvas.height - 40, 20, 20);
+            }
+            
+            // Modern title
+            ctx.font = 'bold 34px "Segoe UI"';
+            ctx.fillStyle = '#ffffff';
+            ctx.textAlign = 'center';
+            ctx.fillText('CHRISTMAS', canvas.width / 2, 100);
+            
+            // Main text with gradient
+            const textGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+            textGradient.addColorStop(0, '#00cc66');
+            textGradient.addColorStop(1, '#00ff88');
+            ctx.font = 'bold 30px "Segoe UI"';
+            ctx.fillStyle = textGradient;
+            ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+            
+            // Modern icons
+            ctx.font = '40px Arial';
+            ctx.fillStyle = '#ff3366';
+            ctx.fillText('❄️', canvas.width / 2 - 60, canvas.height - 80);
+            ctx.fillText('⭐', canvas.width / 2 + 60, canvas.height - 80);
+        }
+
+        // Draw fun poster
+        function drawFunPoster(ctx, canvas, text) {
+            // Colorful gradient background
+            const gradient = ctx.createRadialGradient(
+                canvas.width / 2, canvas.height / 2, 50,
+                canvas.width / 2, canvas.height / 2, 300
+            );
+            gradient.addColorStop(0, '#ff3366');
+            gradient.addColorStop(0.5, '#00cc66');
+            gradient.addColorStop(1, '#1e5c2d');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Fun border
+            ctx.strokeStyle = '#ff9900';
+            ctx.lineWidth = 10;
+            ctx.setLineDash([10, 10]);
+            ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+            ctx.setLineDash([]);
+            
+            // Fun title
+            ctx.font = 'bold 38px "Comic Sans MS"';
+            ctx.fillStyle = '#ffff00';
+            ctx.textAlign = 'center';
+            ctx.strokeStyle = '#ff3366';
+            ctx.lineWidth = 2;
+            ctx.strokeText('HAPPY CHRISTMAS!', canvas.width / 2, 90);
+            ctx.fillText('HAPPY CHRISTMAS!', canvas.width / 2, 90);
+            
+            // Main text
+            ctx.font = '30px "Comic Sans MS"';
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+            
+            // Fun emojis
+            ctx.font = '50px Arial';
+            ctx.fillText('🎅🎄🎁❄️⭐', canvas.width / 2, canvas.height - 100);
+        }
+
+        // Download poster
+        function downloadPoster() {
+            const canvas = posterCanvas;
+            const link = document.createElement('a');
+            link.download = 'christmas-poster.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            showMessage("📥 Poster downloaded!");
+        }
+
+        // Setup music player
+        function setupMusicPlayer() {
+            musicPlayer.addEventListener('play', () => {
+                isMusicPlaying = true;
+                playMusicBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Music';
+                playMusicBtn.classList.add('active');
+            });
+            
+            musicPlayer.addEventListener('pause', () => {
+                isMusicPlaying = false;
+                playMusicBtn.innerHTML = '<i class="fas fa-play"></i> Play Music';
+                playMusicBtn.classList.remove('active');
+            });
+            
+            // Set initial song
+            updateNowPlaying();
+        }
+
+        // Play music
+        function playMusic() {
+            if (musicPlayer.paused) {
+                musicPlayer.play();
+                showMessage("🎵 Now playing: " + christmasSongs[currentSongIndex].name);
+            } else {
+                pauseMusic();
+            }
+        }
+
+        // Pause music
+        function pauseMusic() {
+            musicPlayer.pause();
+        }
+
+        // Next song
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % christmasSongs.length;
+            // In a real app, you would change the audio source here
+            // For now, we'll just update the display
+            updateNowPlaying();
+            showMessage("⏭️ Next song: " + christmasSongs[currentSongIndex].name);
+        }
+
+        // Update now playing display
+        function updateNowPlaying() {
+            nowPlayingSpan.textContent = christmasSongs[currentSongIndex].name;
+        }
+
+        // Toggle fireworks
+        function toggleFireworks() {
+            if (fireworksContainer.classList.contains('active')) {
+                fireworksContainer.classList.remove('active');
+                showMessage("🎆 Fireworks ended");
+            } else {
+                fireworksContainer.classList.add('active');
+                showMessage("🎆 Enjoy the fireworks!");
+                
+                // Auto-hide fireworks after 5 seconds
+                setTimeout(() => {
+                    fireworksContainer.classList.remove('active');
+                }, 5000);
+                
+                // Create simple fireworks effect
+                createFireworks();
+            }
+        }
+
+        // Create simple fireworks effect
+        function createFireworks() {
+            const fireworks = fireworksContainer;
+            fireworks.innerHTML = '';
+            
+            for (let i = 0; i < 50; i++) {
+                const firework = document.createElement('div');
+                firework.style.position = 'absolute';
+                firework.style.width = '4px';
+                firework.style.height = '4px';
+                firework.style.borderRadius = '50%';
+                firework.style.backgroundColor = ['#ff3366', '#00ff88', '#ff9900', '#00cc66', '#ffff00'][Math.floor(Math.random() * 5)];
+                firework.style.left = Math.random() * 100 + '%';
+                firework.style.top = Math.random() * 100 + '%';
+                firework.style.boxShadow = '0 0 10px currentColor';
+                firework.style.animation = `firework ${1 + Math.random() * 2}s ease-out forwards`;
+                
+                fireworks.appendChild(firework);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    if (firework.parentNode === fireworks) {
+                        fireworks.removeChild(firework);
+                    }
+                }, 3000);
+            }
+            
+            // Add CSS for animation
+            if (!document.getElementById('firework-animation')) {
+                const style = document.createElement('style');
+                style.id = 'firework-animation';
+                style.textContent = `
+                    @keyframes firework {
+                        0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                        50% { opacity: 0.8; }
+                        100% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) scale(0); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        // Initialize when page loads
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
