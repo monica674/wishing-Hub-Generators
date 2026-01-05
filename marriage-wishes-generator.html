@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marriage Wishes Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&family=Crimson+Text:wght@600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f8f4ff 0%, #fff4f8 50%, #f4f8ff 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            transition: background 0.5s ease;
+        }
+        
+        /* Body Themes */
+        .body-theme-1 { background: linear-gradient(135deg, #f8f4ff 0%, #fff4f8 50%, #f4f8ff 100%); }
+        .body-theme-2 { background: linear-gradient(135deg, #fff0f5 0%, #ffe6ee 50%, #fff5f9 100%); }
+        .body-theme-3 { background: linear-gradient(135deg, #f0fff8 0%, #e6fff3 50%, #f5fffb 100%); }
+        .body-theme-4 { background: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 50%, #f5fbff 100%); }
+        .body-theme-5 { background: linear-gradient(135deg, #fff8f0 0%, #fff2e6 50%, #fffaf5 100%); }
+        .body-theme-6 { background: linear-gradient(135deg, #f9f0ff 0%, #f3e6ff 50%, #faf5ff 100%); }
+        .body-theme-7 { background: linear-gradient(135deg, #fff5f0 0%, #ffece6 50%, #fffaf5 100%); }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 50px 0 40px;
+            margin-bottom: 40px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+        
+        .header-decoration {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: #d4af37;
+            opacity: 0.8;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+        
+        .logo {
+            font-size: 4.5rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: #8b4513;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #8b4513, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 850px;
+            margin: 0 auto;
+            line-height: 1.7;
+            color: #666;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .wish-customizer {
+            flex: 1;
+            min-width: 380px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        
+        .wish-preview {
+            flex: 1;
+            min-width: 380px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 25px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 35px;
+            color: #8b4513;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .section-title i {
+            font-size: 2rem;
+            color: #d4af37;
+        }
+        
+        .customization-group {
+            margin-bottom: 32px;
+        }
+        
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #5d4037;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 15px;
+            border: 2px solid #e8e0d0;
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+            background: white;
+        }
+        
+        textarea {
+            height: 160px;
+            resize: vertical;
+        }
+        
+        .couple-names {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .couple-names input {
+            flex: 1;
+        }
+        
+        .wish-card {
+            background: white;
+            border-radius: 25px;
+            padding: 60px 50px;
+            width: 100%;
+            max-width: 600px;
+            color: #333;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            min-height: 550px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 20px solid #f5e9d0;
+            transition: all 0.3s ease;
+        }
+        
+        .wish-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(90deg, #d4af37, #f5e9d0, #d4af37);
+            transition: all 0.3s ease;
+        }
+        
+        .wish-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(90deg, #d4af37, #f5e9d0, #d4af37);
+            transition: all 0.3s ease;
+        }
+        
+        .wish-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.8rem;
+            color: #8b4513;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            transition: color 0.3s ease;
+        }
+        
+        .couple-name-display {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #5d4037;
+            margin-bottom: 20px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+        }
+        
+        .couple-name-display::before, .couple-name-display::after {
+            content: "💖";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+        }
+        
+        .couple-name-display::before {
+            left: -10px;
+        }
+        
+        .couple-name-display::after {
+            right: -10px;
+        }
+        
+        .marriage-decoration {
+            font-size: 3.2rem;
+            color: #d4af37;
+            margin: 25px 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            transition: color 0.3s ease;
+        }
+        
+        .wish-message {
+            font-size: 1.5rem;
+            line-height: 1.9;
+            margin: 30px 0;
+            color: #555;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .wish-footer {
+            font-size: 1.4rem;
+            color: #8b4513;
+            font-weight: 600;
+            margin-top: 35px;
+            padding-top: 30px;
+            border-top: 3px double #d4af37;
+            transition: all 0.3s ease;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            padding: 18px 36px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+            font-family: 'Roboto', sans-serif;
+            min-width: 200px;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, #d4af37, #b8860b);
+            color: white;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.95);
+            color: #8b4513;
+            border: 2px solid #e8e0d0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to right, #b8860b, #d4af37);
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            border-color: #d4af37;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 50px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            font-size: 1.2rem;
+            color: #666;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 25px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #copyMessage {
+            background: #d4af37;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-top: 20px;
+            animation: fadeOut 3s forwards;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        @media (max-width: 1200px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .logo {
+                font-size: 3.8rem;
+            }
+            
+            .wish-card {
+                padding: 50px 40px;
+                min-height: 520px;
+            }
+            
+            .wish-title {
+                font-size: 3.2rem;
+            }
+            
+            .couple-name-display {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .logo {
+                font-size: 3.2rem;
+            }
+            
+            .wish-card {
+                padding: 40px 30px;
+                min-height: 500px;
+                border-width: 15px;
+            }
+            
+            .wish-title {
+                font-size: 2.8rem;
+            }
+            
+            .couple-name-display {
+                font-size: 1.9rem;
+            }
+            
+            .wish-message {
+                font-size: 1.3rem;
+            }
+            
+            .couple-names {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .btn {
+                min-width: 170px;
+                padding: 16px 28px;
+            }
+        }
+        
+        .theme-section {
+            margin-top: 50px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        }
+        
+        .theme-options {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .theme-option {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 5px solid transparent;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .theme-option::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        .theme-option:hover::after {
+            opacity: 1;
+            bottom: -40px;
+        }
+        
+        .theme-option.active {
+            border-color: white;
+            transform: scale(1.15);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Theme Colors */
+        .theme-1 { background: linear-gradient(135deg, #f5e9d0, #fff8e8); color: #d4af37; }
+        .theme-2 { background: linear-gradient(135deg, #ffe6e6, #fff0f0); color: #ff6666; }
+        .theme-3 { background: linear-gradient(135deg, #e6ffe6, #f0fff0); color: #33cc33; }
+        .theme-4 { background: linear-gradient(135deg, #e6f2ff, #f0f8ff); color: #3399ff; }
+        .theme-5 { background: linear-gradient(135deg, #fff2e6, #fff8f0); color: #ff9933; }
+        .theme-6 { background: linear-gradient(135deg, #f3e6ff, #f9f0ff); color: #9933ff; }
+        .theme-7 { background: linear-gradient(135deg, #ffe6f2, #fff0f8); color: #ff66b2; }
+        
+        /* Card themes */
+        .card-theme-1 { 
+            background: white; 
+            border-color: #f5e9d0;
+        }
+        
+        .card-theme-1 .wish-title {
+            color: #8b4513;
+        }
+        
+        .card-theme-1 .couple-name-display {
+            color: #5d4037;
+        }
+        
+        .card-theme-1 .wish-footer {
+            color: #8b4513;
+            border-top-color: #d4af37;
+        }
+        
+        .card-theme-1 .marriage-decoration {
+            color: #d4af37;
+        }
+        
+        .card-theme-1::before, .card-theme-1::after {
+            background: linear-gradient(90deg, #d4af37, #f5e9d0, #d4af37);
+        }
+        
+        .card-theme-2 { 
+            background: white; 
+            border-color: #fff0f0;
+        }
+        
+        .card-theme-2 .wish-title {
+            color: #cc3333;
+        }
+        
+        .card-theme-2 .couple-name-display {
+            color: #993333;
+        }
+        
+        .card-theme-2 .wish-footer {
+            color: #cc3333;
+            border-top-color: #ff6666;
+        }
+        
+        .card-theme-2 .marriage-decoration {
+            color: #ff6666;
+        }
+        
+        .card-theme-2::before, .card-theme-2::after {
+            background: linear-gradient(90deg, #ff6666, #ffe6e6, #ff6666);
+        }
+        
+        .card-theme-3 { 
+            background: white; 
+            border-color: #f0fff0;
+        }
+        
+        .card-theme-3 .wish-title {
+            color: #228822;
+        }
+        
+        .card-theme-3 .couple-name-display {
+            color: #116611;
+        }
+        
+        .card-theme-3 .wish-footer {
+            color: #228822;
+            border-top-color: #33cc33;
+        }
+        
+        .card-theme-3 .marriage-decoration {
+            color: #33cc33;
+        }
+        
+        .card-theme-3::before, .card-theme-3::after {
+            background: linear-gradient(90deg, #33cc33, #e6ffe6, #33cc33);
+        }
+        
+        .card-theme-4 { 
+            background: white; 
+            border-color: #f0f8ff;
+        }
+        
+        .card-theme-4 .wish-title {
+            color: #0066cc;
+        }
+        
+        .card-theme-4 .couple-name-display {
+            color: #004d99;
+        }
+        
+        .card-theme-4 .wish-footer {
+            color: #0066cc;
+            border-top-color: #3399ff;
+        }
+        
+        .card-theme-4 .marriage-decoration {
+            color: #3399ff;
+        }
+        
+        .card-theme-4::before, .card-theme-4::after {
+            background: linear-gradient(90deg, #3399ff, #e6f2ff, #3399ff);
+        }
+        
+        .card-theme-5 { 
+            background: white; 
+            border-color: #fff8f0;
+        }
+        
+        .card-theme-5 .wish-title {
+            color: #cc6600;
+        }
+        
+        .card-theme-5 .couple-name-display {
+            color: #994d00;
+        }
+        
+        .card-theme-5 .wish-footer {
+            color: #cc6600;
+            border-top-color: #ff9933;
+        }
+        
+        .card-theme-5 .marriage-decoration {
+            color: #ff9933;
+        }
+        
+        .card-theme-5::before, .card-theme-5::after {
+            background: linear-gradient(90deg, #ff9933, #fff2e6, #ff9933);
+        }
+        
+        .card-theme-6 { 
+            background: white; 
+            border-color: #f9f0ff;
+        }
+        
+        .card-theme-6 .wish-title {
+            color: #6600cc;
+        }
+        
+        .card-theme-6 .couple-name-display {
+            color: #4d0099;
+        }
+        
+        .card-theme-6 .wish-footer {
+            color: #6600cc;
+            border-top-color: #9933ff;
+        }
+        
+        .card-theme-6 .marriage-decoration {
+            color: #9933ff;
+        }
+        
+        .card-theme-6::before, .card-theme-6::after {
+            background: linear-gradient(90deg, #9933ff, #f3e6ff, #9933ff);
+        }
+        
+        .card-theme-7 { 
+            background: white; 
+            border-color: #fff0f8;
+        }
+        
+        .card-theme-7 .wish-title {
+            color: #cc0066;
+        }
+        
+        .card-theme-7 .couple-name-display {
+            color: #99004d;
+        }
+        
+        .card-theme-7 .wish-footer {
+            color: #cc0066;
+            border-top-color: #ff66b2;
+        }
+        
+        .card-theme-7 .marriage-decoration {
+            color: #ff66b2;
+        }
+        
+        .card-theme-7::before, .card-theme-7::after {
+            background: linear-gradient(90deg, #ff66b2, #ffe6f2, #ff66b2);
+        }
+        
+        .card-background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.04;
+            z-index: 0;
+            pointer-events: none;
+            font-size: 50px;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            padding: 40px;
+        }
+        
+        .wish-card-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ring-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 25px 0;
+        }
+        
+        .ring {
+            font-size: 3.5rem;
+            animation: sparkle 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+        }
+        
+        .ring:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .ring:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .ring:nth-child(3) {
+            animation-delay: 1s;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(10deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
+        }
+        
+        .wedding-symbols {
+            margin: 20px 0;
+            font-size: 2.5rem;
+            letter-spacing: 15px;
+        }
+        
+        .theme-label {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: #5d4037;
+            text-align: center;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .language-option {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .lang-btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 2px solid #e8e0d0;
+            background: rgba(255, 255, 255, 0.9);
+            color: #5d4037;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .lang-btn.active {
+            background: rgba(212, 175, 55, 0.8);
+            color: white;
+            border-color: #d4af37;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: #d4af37;
+        }
+        
+        .relation-options {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .relation-btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 2px solid #e8e0d0;
+            background: rgba(255, 255, 255, 0.9);
+            color: #5d4037;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .relation-btn.active {
+            background: rgba(212, 175, 55, 0.8);
+            color: white;
+            border-color: #d4af37;
+        }
+        
+        .relation-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: #d4af37;
+        }
+        
+        .wish-length {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .length-btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 2px solid #e8e0d0;
+            background: rgba(255, 255, 255, 0.9);
+            color: #5d4037;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-family: 'Roboto', sans-serif;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .length-btn.active {
+            background: rgba(212, 175, 55, 0.8);
+            color: white;
+            border-color: #d4af37;
+        }
+        
+        .length-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: #d4af37;
+        }
+        
+        .premium-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            z-index: 10;
+        }
+        
+        .wedding-date {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .wedding-date input {
+            flex: 1;
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: floatUp 8s linear infinite;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="body-theme-1">
+    <div class="container">
+        <header>
+            <div class="header-decoration">💒</div>
+            <div class="logo">
+                <i class="fas fa-ring"></i>
+            </div>
+            <h1>Marriage Wishes Generator</h1>
+            <p class="subtitle">Create beautiful, heartfelt marriage wishes for the newlyweds. Customize every detail with our premium generator to send the perfect message on their special day!</p>
+        </header>
+        
+        <div class="content">
+            <div class="wish-customizer">
+                <div class="premium-badge">PREMIUM</div>
+                <h2 class="section-title"><i class="fas fa-sliders-h"></i> Customize Your Marriage Wish</h2>
+                
+                <div class="customization-group">
+                    <label><i class="fas fa-heart"></i> Couple's Names</label>
+                    <div class="couple-names">
+                        <input type="text" id="groomName" placeholder="Groom's Name" value="Michael">
+                        <input type="text" id="brideName" placeholder="Bride's Name" value="Sarah">
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label><i class="fas fa-calendar-alt"></i> Wedding Date (Optional)</label>
+                    <div class="wedding-date">
+                        <input type="text" id="weddingDate" placeholder="e.g., June 15, 2024">
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label for="wishType"><i class="fas fa-star"></i> Wish Style</label>
+                    <select id="wishType">
+                        <option value="formal">Formal & Traditional</option>
+                        <option value="religious">Religious & Blessings</option>
+                        <option value="romantic">Romantic & Heartfelt</option>
+                        <option value="casual">Casual & Friendly</option>
+                        <option value="humorous">Humorous & Fun</option>
+                        <option value="poetic">Poetic & Beautiful</option>
+                        <option value="custom">Custom Message</option>
+                    </select>
+                </div>
+                
+                <div class="customization-group">
+                    <label><i class="fas fa-user-friends"></i> Your Relationship</label>
+                    <div class="relation-options">
+                        <button class="relation-btn active" data-relation="friend">Friend</button>
+                        <button class="relation-btn" data-relation="family">Family</button>
+                        <button class="relation-btn" data-relation="colleague">Colleague</button>
+                        <button class="relation-btn" data-relation="guest">Wedding Guest</button>
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label><i class="fas fa-ruler"></i> Message Length</label>
+                    <div class="wish-length">
+                        <button class="length-btn active" data-length="short">Short</button>
+                        <button class="length-btn" data-length="medium">Medium</button>
+                        <button class="length-btn" data-length="long">Long</button>
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label for="customMessage"><i class="fas fa-edit"></i> Custom Message (if selected)</label>
+                    <textarea id="customMessage" placeholder="Type your own personal marriage wish here...">Congratulations on your wedding! May your marriage be filled with love, joy, and beautiful moments that last a lifetime.</textarea>
+                </div>
+                
+                <div class="customization-group">
+                    <label for="senderName"><i class="fas fa-signature"></i> Your Name</label>
+                    <input type="text" id="senderName" placeholder="Enter your name" value="With Love">
+                </div>
+            </div>
+            
+            <div class="wish-preview">
+                <h2 class="section-title"><i class="fas fa-eye"></i> Marriage Wish Preview</h2>
+                
+                <div class="wish-card card-theme-1" id="wishCard">
+                    <div class="floating-hearts" id="floatingHearts"></div>
+                    <div class="card-background-pattern" id="cardPattern">
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-ring"></i>
+                        <i class="fas fa-dove"></i>
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-ring"></i>
+                        <i class="fas fa-dove"></i>
+                    </div>
+                    <div class="wish-card-content">
+                        <h2 class="wish-title" id="previewTitle">Congratulations!</h2>
+                        
+                        <div class="ring-decoration">
+                            <div class="ring">💍</div>
+                            <div class="ring">👰</div>
+                            <div class="ring">🤵</div>
+                        </div>
+                        
+                        <div class="couple-name-display" id="coupleNames">Michael & Sarah</div>
+                        
+                        <div class="wedding-symbols">💖 🕊️ 💐</div>
+                        
+                        <p class="wish-message" id="previewMessage">
+                            Congratulations on your wedding! May your marriage be filled with endless love, joy, and beautiful moments that create a lifetime of cherished memories. Wishing you both a journey of togetherness filled with understanding, support, and growing love.
+                        </p>
+                        
+                        <div class="marriage-decoration">
+                            <i class="fas fa-heart"></i> <i class="fas fa-ring"></i> <i class="fas fa-heart"></i>
+                        </div>
+                        
+                        <p class="wish-footer" id="previewFooter">
+                            With warmest regards,<br>
+                            <span id="previewSender">With Love</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="generateWish">
+                        <i class="fas fa-magic"></i> Generate New Wish
+                    </button>
+                    <button class="btn btn-secondary" id="copyWish">
+                        <i class="fas fa-copy"></i> Copy Wish Text
+                    </button>
+                    <button class="btn btn-secondary" id="shareWish">
+                        <i class="fas fa-share-alt"></i> Share Wish
+                    </button>
+                </div>
+                
+                <div id="copyMessage" class="hidden">Marriage wish copied to clipboard!</div>
+            </div>
+        </div>
+        
+        <!-- Theme Selection Section -->
+        <div class="theme-section">
+            <h2 class="section-title"><i class="fas fa-palette"></i> Choose Your Wedding Theme</h2>
+            <p class="theme-label">Select a color theme that matches the wedding style or your personal preference:</p>
+            <div class="theme-options">
+                <div class="theme-option theme-1 active" data-theme="1" title="Classic Gold">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="theme-option theme-2" data-theme="2" title="Romantic Red">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="theme-option theme-3" data-theme="3" title="Fresh Green">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="theme-option theme-4" data-theme="4" title="Calm Blue">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <div class="theme-option theme-5" data-theme="5" title="Warm Orange">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="theme-option theme-6" data-theme="6" title="Royal Purple">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <div class="theme-option theme-7" data-theme="7" title="Sweet Pink">
+                    <i class="fas fa-ring"></i>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; opacity: 0.7; font-size: 1rem;">
+                <i class="fas fa-info-circle"></i> Premium themes change the entire color scheme for a personalized wedding wish experience
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>"A successful marriage requires falling in love many times, always with the same person." – Mignon McLaughlin</p>
+            <p style="margin-top: 20px;">May love be the foundation of your journey together. Wishing the newlyweds a lifetime of happiness, understanding, and beautiful moments ahead!</p>
+            <p style="margin-top: 15px;">© 2023 Marriage Wishes Generator | Created with ❤️ for celebrating love and commitment</p>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const groomInput = document.getElementById('groomName');
+        const brideInput = document.getElementById('brideName');
+        const weddingDateInput = document.getElementById('weddingDate');
+        const wishTypeSelect = document.getElementById('wishType');
+        const customMessageTextarea = document.getElementById('customMessage');
+        const senderNameInput = document.getElementById('senderName');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const relationButtons = document.querySelectorAll('.relation-btn');
+        const lengthButtons = document.querySelectorAll('.length-btn');
+        const wishCard = document.getElementById('wishCard');
+        const cardPattern = document.getElementById('cardPattern');
+        const floatingHearts = document.getElementById('floatingHearts');
+        const body = document.body;
+        
+        const previewTitle = document.getElementById('previewTitle');
+        const coupleNamesDisplay = document.getElementById('coupleNames');
+        const previewMessage = document.getElementById('previewMessage');
+        const previewFooter = document.getElementById('previewFooter');
+        const previewSender = document.getElementById('previewSender');
+        
+        const generateWishBtn = document.getElementById('generateWish');
+        const copyWishBtn = document.getElementById('copyWish');
+        const shareWishBtn = document.getElementById('shareWish');
+        const copyMessage = document.getElementById('copyMessage');
+        
+        // Current settings
+        let currentRelation = 'friend';
+        let currentLength = 'short';
+        
+        // Marriage wish templates for different relationships and lengths
+        const wishTemplates = {
+            friend: {
+                short: {
+                    formal: [
+                        "Congratulations on your wedding! Wishing you both a lifetime of love and happiness together.",
+                        "Heartiest congratulations on your marriage! May your life together be filled with joy and beautiful moments.",
+                        "Congratulations to the wonderful couple! Wishing you endless love and happiness in your marriage."
+                    ],
+                    religious: [
+                        "Congratulations on your wedding! May God bless your union with love, faith, and endless blessings.",
+                        "Wishing you God's blessings as you begin your married life together. Congratulations!",
+                        "May God shower His blessings upon your marriage. Congratulations on your wedding!"
+                    ],
+                    romantic: [
+                        "Congratulations on finding your forever love! May your marriage be as beautiful as your love story.",
+                        "Wishing you a lifetime of love, laughter, and romantic moments. Congratulations on your wedding!",
+                        "Congratulations on your wedding! May your love continue to grow and flourish each day."
+                    ],
+                    casual: [
+                        "So happy for you both! Congratulations on getting married! Wishing you tons of love and fun ahead.",
+                        "Yay! Married! So thrilled for you two. Wishing you all the happiness in the world together.",
+                        "Big congratulations on your wedding! So excited for you both as you start this amazing journey."
+                    ],
+                    humorous: [
+                        "Congratulations on your wedding! Remember, marriage is just like a walk in the park... Jurassic Park! So happy for you!",
+                        "You're married! Does this mean we get cake? Congratulations to both of you!",
+                        "Congratulations on your wedding! Don't worry, I've heard marriage is just a long sleepover with your favorite person."
+                    ],
+                    poetic: [
+                        "Two hearts now beat as one, a journey has just begun. Congratulations on your wedding day!",
+                        "Love's sweet symphony begins today. Congratulations on your beautiful union!",
+                        "A new chapter of love starts now. Congratulations on your marriage!"
+                    ]
+                },
+                medium: {
+                    formal: [
+                        "Congratulations on your wedding! Wishing you both a lifetime of love, happiness, and beautiful moments together. May your marriage be filled with understanding, respect, and growing love with each passing day.",
+                        "Heartiest congratulations on your marriage! May your bond grow stronger with time, and may your life together be blessed with joy, prosperity, and cherished memories that last forever.",
+                        "Congratulations to the wonderful couple on this special day! Wishing you a marriage filled with love, laughter, and shared dreams. May your journey together be as beautiful as your wedding day."
+                    ],
+                    religious: [
+                        "Congratulations on your wedding! May God bless your union with love, faith, patience, and endless blessings. May He guide you both in your journey together and fill your home with peace and harmony.",
+                        "Wishing you God's abundant blessings as you begin your married life together. May your marriage be grounded in faith, strengthened by love, and blessed with His grace every step of the way. Congratulations!",
+                        "May God shower His blessings upon your marriage and fill your lives with love, joy, and spiritual fulfillment. Congratulations on your wedding! May your faith in each other and in God continue to grow stronger."
+                    ],
+                    romantic: [
+                        "Congratulations on finding your forever love! May your marriage be as beautiful as your love story, filled with romantic moments, deep connection, and a love that grows stronger with each passing day.",
+                        "Wishing you a lifetime of love, laughter, and romantic adventures together. Congratulations on your wedding! May every chapter of your life be filled with passion, understanding, and endless affection for one another.",
+                        "Congratulations on your wedding! May your love continue to blossom and flourish, bringing you endless joy, beautiful moments, and a deep connection that weathers all of life's seasons together."
+                    ],
+                    casual: [
+                        "So incredibly happy for you both! Congratulations on getting married! Wishing you tons of love, fun adventures, and amazing memories as you start this new chapter together. Can't wait to celebrate with you!",
+                        "Yay! You're married! So thrilled for you two amazing people. Wishing you all the happiness, laughter, and love in the world as you embark on this wonderful journey together. Cheers to the newlyweds!",
+                        "Big congratulations on your wedding! So excited for you both as you start this amazing adventure called marriage. Here's to love, friendship, and creating beautiful memories together. You guys are awesome!"
+                    ],
+                    humorous: [
+                        "Congratulations on your wedding! Remember, marriage is just like a walk in the park... Jurassic Park! But seriously, I know you two will make it an amazing adventure. So happy for you both!",
+                        "You're married! Does this mean we get unlimited wedding cake? Just kidding! Congratulations to both of you! Wishing you a lifetime of laughter, love, and figuring out who does the dishes. You've got this!",
+                        "Congratulations on your wedding! Don't worry, I've heard marriage is just a long sleepover with your favorite person... who also occasionally steals the covers. Wishing you endless fun and love together!"
+                    ],
+                    poetic: [
+                        "Two hearts now beat as one, a journey has just begun. Under the sun and moon above, bound together by eternal love. Congratulations on your beautiful wedding day!",
+                        "Love's sweet symphony begins today, in every word you softly say. A dance of souls, a promise true, a lifetime of 'I love you'. Congratulations on your union!",
+                        "A new chapter of love starts now, with sacred vows and solemn vow. May your story be forever sweet, with every challenge you shall meet. Congratulations on your marriage!"
+                    ]
+                },
+                long: {
+                    formal: [
+                        "Congratulations on your wedding! As you begin this beautiful journey together, may your marriage be blessed with endless love, deep understanding, and mutual respect. May you face life's challenges as a united team and celebrate its joys as cherished partners. Wishing you a lifetime of happiness, shared dreams, and beautiful moments that create a tapestry of memories to treasure forever. May your bond grow stronger with each passing year, and may your love continue to flourish in the garden of your marriage.",
+                        "Heartiest congratulations on your marriage! This special day marks the beginning of a wonderful journey that will be filled with love, companionship, and shared experiences. May your life together be blessed with joy, prosperity, and the fulfillment of all your dreams. As you build your home together, may it be filled with laughter, warmth, and the comfort of knowing you have found your true partner in life. Wishing you a marriage that stands the test of time, growing more beautiful and meaningful with each passing year.",
+                        "Congratulations to the wonderful couple on this most special day! Your wedding marks the beautiful beginning of a lifelong partnership built on love, trust, and mutual admiration. May your marriage be a sanctuary of peace and happiness, a source of strength during challenges, and a celebration of love during happy times. As you walk hand in hand through life's journey, may you always find comfort in each other's presence and joy in each other's company. Wishing you a future filled with shared dreams realized and a love that deepens with every sunrise."
+                    ]
+                }
+            },
+            family: {
+                short: {
+                    formal: [
+                        "Congratulations on your wedding! We are overjoyed to welcome a new member to our family. Wishing you endless happiness together.",
+                        "With hearts full of joy, we congratulate you on your marriage. Welcome to the family!",
+                        "Congratulations on your wedding! We are thrilled to see you begin this beautiful journey together."
+                    ],
+                    romantic: [
+                        "Congratulations on your wedding! Seeing you both so happy brings us so much joy. May your love continue to grow.",
+                        "Your love for each other is beautiful to witness. Congratulations on your marriage!",
+                        "Congratulations on finding your soulmate! We are overjoyed to see you both so happy."
+                    ]
+                },
+                medium: {
+                    formal: [
+                        "Congratulations on your wedding! As family, we are overjoyed to welcome a new member and watch your love story unfold. Wishing you both endless happiness, understanding, and a lifetime of beautiful moments together as you build your home and future.",
+                        "With hearts full of joy and love, we congratulate you on your marriage. Welcome to the family! May your union be blessed with love, respect, and shared dreams. We look forward to watching your love grow and supporting you both in this wonderful journey ahead.",
+                        "Congratulations on your wedding! We are thrilled to see you both take this important step and begin this beautiful journey together. May your marriage be filled with love, laughter, and the comfort of knowing you have a family that loves and supports you always."
+                    ]
+                }
+            },
+            colleague: {
+                short: {
+                    formal: [
+                        "Congratulations on your wedding from all of us at work! Wishing you a lifetime of happiness together.",
+                        "Heartiest congratulations on your marriage! Wishing you both joy and beautiful moments ahead.",
+                        "Congratulations on your wedding! Wishing you a future filled with love and shared dreams."
+                    ]
+                },
+                medium: {
+                    formal: [
+                        "Congratulations on your wedding from all of us at work! Wishing you both a lifetime of happiness, love, and beautiful moments together. May your journey be filled with understanding, support, and growing love with each passing day.",
+                        "Heartiest congratulations on your marriage from your work family! May your bond grow stronger with time, and may your life together be blessed with joy, prosperity, and cherished memories. We're so happy for you both!",
+                        "Congratulations to the wonderful couple on this special day! From all your colleagues, we wish you a marriage filled with love, laughter, and shared dreams. May your journey together be as beautiful as your wedding day."
+                    ]
+                }
+            },
+            guest: {
+                short: {
+                    formal: [
+                        "Thank you for including us in your special day. Congratulations on your wedding! Wishing you endless happiness.",
+                        "Congratulations on your beautiful wedding! It was an honor to celebrate with you. Wishing you a lifetime of love.",
+                        "What a beautiful celebration! Congratulations on your marriage. Wishing you both all the happiness in the world."
+                    ]
+                },
+                medium: {
+                    formal: [
+                        "Thank you for including us in your beautiful wedding celebration. Congratulations on your marriage! Wishing you both a lifetime of love, happiness, and beautiful moments together. May your journey be filled with understanding and growing love.",
+                        "Congratulations on your wedding! It was an honor to celebrate this special day with you. Wishing you a marriage filled with love, laughter, and shared dreams. May your bond grow stronger with each passing year.",
+                        "What a beautiful celebration of love! Congratulations on your marriage. From all of us who shared in your joy today, we wish you both all the happiness in the world as you begin this wonderful journey together."
+                    ]
+                }
+            }
+        };
+        
+        // Theme color configurations
+        const themeConfigs = {
+            1: {
+                name: "Classic Gold",
+                primary: "#d4af37",
+                secondary: "#f5e9d0",
+                cardClass: "card-theme-1",
+                bodyClass: "body-theme-1"
+            },
+            2: {
+                name: "Romantic Red",
+                primary: "#ff6666",
+                secondary: "#ffe6e6",
+                cardClass: "card-theme-2",
+                bodyClass: "body-theme-2"
+            },
+            3: {
+                name: "Fresh Green",
+                primary: "#33cc33",
+                secondary: "#e6ffe6",
+                cardClass: "card-theme-3",
+                bodyClass: "body-theme-3"
+            },
+            4: {
+                name: "Calm Blue",
+                primary: "#3399ff",
+                secondary: "#e6f2ff",
+                cardClass: "card-theme-4",
+                bodyClass: "body-theme-4"
+            },
+            5: {
+                name: "Warm Orange",
+                primary: "#ff9933",
+                secondary: "#fff2e6",
+                cardClass: "card-theme-5",
+                bodyClass: "body-theme-5"
+            },
+            6: {
+                name: "Royal Purple",
+                primary: "#9933ff",
+                secondary: "#f3e6ff",
+                cardClass: "card-theme-6",
+                bodyClass: "body-theme-6"
+            },
+            7: {
+                name: "Sweet Pink",
+                primary: "#ff66b2",
+                secondary: "#ffe6f2",
+                cardClass: "card-theme-7",
+                bodyClass: "body-theme-7"
+            }
+        };
+        
+        // Background patterns
+        const patterns = [
+            ['fas fa-heart', 'fas fa-ring', 'fas fa-dove', 'fas fa-heart', 'fas fa-ring', 'fas fa-dove'],
+            ['fas fa-ring', 'fas fa-heart', 'fas fa-gem', 'fas fa-ring', 'fas fa-heart', 'fas fa-gem'],
+            ['fas fa-dove', 'fas fa-gem', 'fas fa-heart', 'fas fa-dove', 'fas fa-gem', 'fas fa-heart'],
+            ['fas fa-gem', 'fas fa-dove', 'fas fa-ring', 'fas fa-gem', 'fas fa-dove', 'fas fa-ring']
+        ];
+        
+        // Wedding symbols
+        const weddingSymbols = ["💍", "💎", "❤️", "✨", "🌸", "🕊️", "🎉", "💐", "🥂", "🎊", "👰", "🤵"];
+        
+        // Initialize with a random wish
+        generateRandomWish();
+        createFloatingHearts();
+        
+        // Event Listeners
+        groomInput.addEventListener('input', updateWishPreview);
+        brideInput.addEventListener('input', updateWishPreview);
+        weddingDateInput.addEventListener('input', updateWishPreview);
+        wishTypeSelect.addEventListener('change', updateWishPreview);
+        customMessageTextarea.addEventListener('input', updateWishPreview);
+        senderNameInput.addEventListener('input', updateWishPreview);
+        
+        generateWishBtn.addEventListener('click', generateRandomWish);
+        copyWishBtn.addEventListener('click', copyWishToClipboard);
+        shareWishBtn.addEventListener('click', shareWish);
+        
+        // Theme selection
+        themeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from all themes
+                themeOptions.forEach(opt => opt.classList.remove('active'));
+                // Add active class to clicked theme
+                this.classList.add('active');
+                
+                // Apply theme to page and card
+                const theme = this.getAttribute('data-theme');
+                applyTheme(theme);
+            });
+        });
+        
+        // Relationship selection
+        relationButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all relation buttons
+                relationButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update current relationship
+                currentRelation = this.getAttribute('data-relation');
+                
+                // Regenerate wish with new relationship context
+                generateRandomWish();
+            });
+        });
+        
+        // Length selection
+        lengthButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all length buttons
+                lengthButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update current length
+                currentLength = this.getAttribute('data-length');
+                
+                // Regenerate wish with new length
+                generateRandomWish();
+            });
+        });
+        
+        // Functions
+        function updateWishPreview() {
+            const groom = groomInput.value || "Groom";
+            const bride = brideInput.value || "Bride";
+            const weddingDate = weddingDateInput.value || "";
+            const wishType = wishTypeSelect.value;
+            const customMessage = customMessageTextarea.value;
+            const senderName = senderNameInput.value || "With Love";
+            
+            // Update couple names display
+            coupleNamesDisplay.textContent = `${groom} & ${bride}`;
+            
+            // Update title
+            previewTitle.textContent = weddingDate ? `Congratulations! ${weddingDate}` : "Congratulations!";
+            
+            // Update message based on wish type
+            if (wishType === 'custom') {
+                previewMessage.textContent = customMessage || "Congratulations on your wedding! May your marriage be filled with love, joy, and beautiful moments that last a lifetime.";
+            }
+            
+            // Update footer
+            previewFooter.innerHTML = `With warmest regards,<br><span id="previewSender">${senderName}</span>`;
+            previewSender.textContent = senderName;
+        }
+        
+        function generateRandomWish() {
+            const groom = groomInput.value || "Groom";
+            const bride = brideInput.value || "Bride";
+            const weddingDate = weddingDateInput.value || "";
+            const wishType = wishTypeSelect.value;
+            const senderName = senderNameInput.value || "With Love";
+            
+            // Update couple names display
+            coupleNamesDisplay.textContent = `${groom} & ${bride}`;
+            
+            // Update title
+            previewTitle.textContent = weddingDate ? `Congratulations! ${weddingDate}` : "Congratulations!";
+            
+            // Get random wish based on type, relationship, and length
+            let wishText;
+            if (wishType === 'custom') {
+                wishText = customMessageTextarea.value || "Congratulations on your wedding! May your marriage be filled with love, joy, and beautiful moments that last a lifetime.";
+            } else {
+                // Try to get templates for current relationship and length
+                let templates = wishTemplates[currentRelation]?.[currentLength]?.[wishType];
+                
+                // If not found, try medium length
+                if (!templates) {
+                    templates = wishTemplates[currentRelation]?.medium?.[wishType];
+                }
+                
+                // If still not found, use friend templates
+                if (!templates) {
+                    templates = wishTemplates.friend?.[currentLength]?.[wishType] || wishTemplates.friend?.medium?.[wishType];
+                }
+                
+                if (templates && templates.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * templates.length);
+                    wishText = templates[randomIndex];
+                } else {
+                    // Fallback message
+                    wishText = "Congratulations on your wedding! May your marriage be filled with love, joy, and beautiful moments that create a lifetime of cherished memories.";
+                }
+            }
+            
+            // Update wish message
+            previewMessage.innerHTML = wishText;
+            
+            // Update footer with sender name
+            previewFooter.innerHTML = `With warmest regards,<br><span id="previewSender">${senderName}</span>`;
+            
+            // Update background pattern
+            updateBackgroundPattern();
+        }
+        
+        function applyTheme(themeNumber) {
+            const theme = themeConfigs[themeNumber];
+            
+            // Remove all theme classes from body
+            for (let i = 1; i <= 7; i++) {
+                body.classList.remove(`body-theme-${i}`);
+                wishCard.classList.remove(`card-theme-${i}`);
+            }
+            
+            // Add new theme class to body
+            body.classList.add(theme.bodyClass);
+            
+            // Add selected theme class to card
+            wishCard.classList.add(theme.cardClass);
+            
+            // Update primary button color
+            const primaryBtn = document.querySelector('.btn-primary');
+            primaryBtn.style.background = `linear-gradient(to right, ${theme.primary}, ${theme.secondary})`;
+            
+            // Update copy message background
+            copyMessage.style.background = theme.primary;
+            
+            // Update active buttons
+            document.querySelector('.relation-btn.active').style.background = `rgba(${hexToRgb(theme.primary)}, 0.8)`;
+            document.querySelector('.length-btn.active').style.background = `rgba(${hexToRgb(theme.primary)}, 0.8)`;
+            
+            // Update background pattern
+            updateBackgroundPattern();
+        }
+        
+        function createFloatingHearts() {
+            // Create 15 floating hearts
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                heart.style.fontSize = `${Math.random() * 1 + 1.2}rem`;
+                floatingHearts.appendChild(heart);
+            }
+        }
+        
+        function updateBackgroundPattern() {
+            const patternIndex = Math.floor(Math.random() * patterns.length);
+            const patternIcons = patterns[patternIndex];
+            
+            let patternHTML = '';
+            patternIcons.forEach(icon => {
+                const size = Math.floor(Math.random() * 35) + 45;
+                const left = Math.floor(Math.random() * 80);
+                const top = Math.floor(Math.random() * 80);
+                const rotate = Math.floor(Math.random() * 360);
+                
+                patternHTML += `<i class="${icon}" style="position:absolute;left:${left}%;top:${top}%;font-size:${size}px;transform:rotate(${rotate}deg);"></i>`;
+            });
+            
+            cardPattern.innerHTML = patternHTML;
+        }
+        
+        function hexToRgb(hex) {
+            // Convert hex color to RGB
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? 
+                `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` 
+                : "212, 175, 55";
+        }
+        
+        function copyWishToClipboard() {
+            const groom = groomInput.value || "Groom";
+            const bride = brideInput.value || "Bride";
+            const weddingDate = weddingDateInput.value ? ` on ${weddingDateInput.value}` : "";
+            const senderName = senderNameInput.value || "With Love";
+            
+            const wishText = `💒 Marriage Congratulations 💒
+
+To: ${groom} & ${bride}${weddingDate}
+
+${previewMessage.textContent}
+
+With warmest regards,
+${senderName}
+
+Wishing you a lifetime of love and happiness together! ❤️`;
+
+            navigator.clipboard.writeText(wishText).then(() => {
+                // Show copy confirmation
+                copyMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    copyMessage.classList.add('hidden');
+                }, 3000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy wish to clipboard. Please select and copy the text manually.');
+            });
+        }
+        
+        function shareWish() {
+            const groom = groomInput.value || "Groom";
+            const bride = brideInput.value || "Bride";
+            const weddingDate = weddingDateInput.value ? ` on ${weddingDateInput.value}` : "";
+            const senderName = senderNameInput.value || "With Love";
+            
+            const wishText = `💒 Marriage Congratulations 💒
+
+To: ${groom} & ${bride}${weddingDate}
+
+${previewMessage.textContent}
+
+With warmest regards,
+${senderName}
+
+Wishing you a lifetime of love and happiness together! Created with Marriage Wishes Generator`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Marriage Congratulations',
+                    text: wishText,
+                    url: window.location.href
+                })
+                .then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing:', error));
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                copyWishToClipboard();
+                alert('Marriage wish copied to clipboard! You can now paste it in any messaging app, social media, or wedding card.');
+            }
+        }
+        
+        // Initialize with theme 1 and pattern
+        applyTheme(1);
+        updateBackgroundPattern();
+    </script>
+</body>
+</html>
