@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onam Wishes Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a472a 0%, #2a623d 50%, #3a7d4f 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            color: #ffcc00;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .wish-customizer {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .wish-preview {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #ffcc00;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            font-size: 1.5rem;
+        }
+        
+        .customization-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            transition: all 0.3s;
+            color: #333;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #ffcc00;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            background: white;
+        }
+        
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .wish-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 500px;
+            color: #222;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #ffcc00;
+        }
+        
+        .wish-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #ffcc00, #ff9900, #ffcc00);
+        }
+        
+        .wish-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #ffcc00, #ff9900, #ffcc00);
+        }
+        
+        .wish-title {
+            font-size: 2.2rem;
+            color: #1a472a;
+            margin-bottom: 20px;
+            font-family: 'Georgia', serif;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .wish-message {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .wish-footer {
+            font-size: 1.2rem;
+            color: #1a472a;
+            font-weight: 700;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #ffcc00;
+        }
+        
+        .onam-decoration {
+            font-size: 2.5rem;
+            color: #ff9900;
+            margin: 15px 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, #ffcc00, #ff9900);
+            color: #1a472a;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to right, #ff9900, #ffcc00);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #copyMessage {
+            background: #ffcc00;
+            color: #1a472a;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-top: 15px;
+            animation: fadeOut 3s forwards;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo {
+                font-size: 2.8rem;
+            }
+            
+            .wish-card {
+                padding: 30px 20px;
+                min-height: 350px;
+            }
+            
+            .wish-title {
+                font-size: 1.8rem;
+            }
+            
+            .wish-message {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .theme-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .theme-option {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        
+        .theme-option.active {
+            border-color: white;
+            transform: scale(1.15);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+        }
+        
+        .theme-1 { background: linear-gradient(135deg, #ffffff, #f5f5f5); }
+        .theme-2 { background: linear-gradient(135deg, #fff8e1, #ffecb3); }
+        .theme-3 { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+        .theme-4 { background: linear-gradient(135deg, #f3e5f5, #e1bee7); }
+        
+        /* Card themes */
+        .card-theme-1 { 
+            background: white; 
+            border-color: #ffcc00;
+        }
+        
+        .card-theme-1 .wish-title {
+            color: #1a472a;
+        }
+        
+        .card-theme-1 .wish-footer {
+            color: #1a472a;
+        }
+        
+        .card-theme-2 { 
+            background: #fff8e1; 
+            border-color: #ff9900;
+        }
+        
+        .card-theme-2 .wish-title {
+            color: #8b4513;
+        }
+        
+        .card-theme-2 .wish-footer {
+            color: #8b4513;
+        }
+        
+        .card-theme-3 { 
+            background: #e8f5e9; 
+            border-color: #4caf50;
+        }
+        
+        .card-theme-3 .wish-title {
+            color: #1b5e20;
+        }
+        
+        .card-theme-3 .wish-footer {
+            color: #1b5e20;
+        }
+        
+        .card-theme-4 { 
+            background: #f3e5f5; 
+            border-color: #9c27b0;
+        }
+        
+        .card-theme-4 .wish-title {
+            color: #4a148c;
+        }
+        
+        .card-theme-4 .wish-footer {
+            color: #4a148c;
+        }
+        
+        .card-background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .wish-card-content {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <h1>Onam Wishes Generator</h1>
+            <p class="subtitle">Create beautiful and personalized Onam greetings to share with your family and friends. Customize every aspect of your wish and spread the joy of this harvest festival!</p>
+        </header>
+        
+        <div class="content">
+            <div class="wish-customizer">
+                <h2 class="section-title"><i class="fas fa-sliders-h"></i> Customize Your Wish</h2>
+                
+                <div class="customization-group">
+                    <label for="recipientName"><i class="fas fa-user"></i> Recipient's Name</label>
+                    <input type="text" id="recipientName" placeholder="Enter recipient's name" value="Dear Friend">
+                </div>
+                
+                <div class="customization-group">
+                    <label for="wishType"><i class="fas fa-star"></i> Wish Type</label>
+                    <select id="wishType">
+                        <option value="traditional">Traditional Onam Wish</option>
+                        <option value="prosperity">Prosperity & Happiness</option>
+                        <option value="family">Family Togetherness</option>
+                        <option value="festive">Festive Cheer</option>
+                        <option value="custom">Custom Message</option>
+                    </select>
+                </div>
+                
+                <div class="customization-group">
+                    <label for="customMessage"><i class="fas fa-edit"></i> Your Custom Message (if selected)</label>
+                    <textarea id="customMessage" placeholder="Type your own personal Onam wish here...">May this Onam bring you happiness, prosperity, and joy!</textarea>
+                </div>
+                
+                <div class="customization-group">
+                    <label><i class="fas fa-palette"></i> Card Theme</label>
+                    <div class="theme-options">
+                        <div class="theme-option theme-1 active" data-theme="1"></div>
+                        <div class="theme-option theme-2" data-theme="2"></div>
+                        <div class="theme-option theme-3" data-theme="3"></div>
+                        <div class="theme-option theme-4" data-theme="4"></div>
+                    </div>
+                </div>
+                
+                <div class="customization-group">
+                    <label for="senderName"><i class="fas fa-signature"></i> Your Name</label>
+                    <input type="text" id="senderName" placeholder="Enter your name" value="From Your Well-Wisher">
+                </div>
+            </div>
+            
+            <div class="wish-preview">
+                <h2 class="section-title"><i class="fas fa-eye"></i> Wish Preview</h2>
+                
+                <div class="wish-card card-theme-1" id="wishCard">
+                    <div class="card-background-pattern" id="cardPattern"></div>
+                    <div class="wish-card-content">
+                        <h2 class="wish-title" id="previewTitle">Happy Onam!</h2>
+                        <div class="onam-decoration">
+                            <i class="fas fa-star"></i> <i class="fas fa-heart"></i> <i class="fas fa-star"></i>
+                        </div>
+                        <p class="wish-message" id="previewMessage">
+                            May this Onam bring you happiness, prosperity, and joy! Wishing you and your family a harvest festival filled with delightful moments and cherished memories.
+                        </p>
+                        <div class="onam-decoration">
+                            <i class="fas fa-star"></i> <i class="fas fa-heart"></i> <i class="fas fa-star"></i>
+                        </div>
+                        <p class="wish-footer" id="previewFooter">
+                            With warm regards,<br>
+                            <span id="previewSender">From Your Well-Wisher</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="generateWish">
+                        <i class="fas fa-magic"></i> Generate New Wish
+                    </button>
+                    <button class="btn btn-secondary" id="copyWish">
+                        <i class="fas fa-copy"></i> Copy Wish Text
+                    </button>
+                    <button class="btn btn-secondary" id="shareWish">
+                        <i class="fas fa-share-alt"></i> Share Wish
+                    </button>
+                </div>
+                
+                <div id="copyMessage" class="hidden">Wish copied to clipboard!</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>May the spirit of Onam fill your home with happiness, peace, and prosperity. Wishing you a joyful Thiru Onam!</p>
+            <p style="margin-top: 10px;">© 2023 Onam Wishes Generator | Created with ❤️ for the Festival of Onam</p>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const recipientNameInput = document.getElementById('recipientName');
+        const wishTypeSelect = document.getElementById('wishType');
+        const customMessageTextarea = document.getElementById('customMessage');
+        const senderNameInput = document.getElementById('senderName');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const wishCard = document.getElementById('wishCard');
+        const cardPattern = document.getElementById('cardPattern');
+        
+        const previewTitle = document.getElementById('previewTitle');
+        const previewMessage = document.getElementById('previewMessage');
+        const previewFooter = document.getElementById('previewFooter');
+        const previewSender = document.getElementById('previewSender');
+        
+        const generateWishBtn = document.getElementById('generateWish');
+        const copyWishBtn = document.getElementById('copyWish');
+        const shareWishBtn = document.getElementById('shareWish');
+        const copyMessage = document.getElementById('copyMessage');
+        
+        // Wish templates
+        const wishTemplates = {
+            traditional: [
+                "May the divine grace of King Mahabali fill your home with happiness, peace, and prosperity. Wishing you and your family a blessed and joyful Onam!",
+                "On this auspicious occasion of Onam, may your life be filled with success, happiness, and the vibrant colors of pookalam. Have a wonderful Thiruvonam!",
+                "May the spirit of Onam bring you joy, the pookalam bring you colors, and the feast bring you happiness. Wishing you a harvest festival filled with delight!"
+            ],
+            prosperity: [
+                "May this Onam bring abundant prosperity and success to your doorstep. Wishing you a year filled with growth, happiness, and wonderful opportunities!",
+                "As you celebrate the harvest festival, may your life be blessed with prosperity, good health, and countless reasons to smile. Happy Onam!",
+                "On this joyous occasion, may Lord Vishnu bless you with wealth, happiness, and success in all your endeavors. Have a prosperous Onam!"
+            ],
+            family: [
+                "May this Onam strengthen the bonds of love in your family and create beautiful memories that last a lifetime. Wishing you togetherness and happiness!",
+                "Onam is a time for family, feasts, and festivities. May your home be filled with laughter, love, and the joy of being together. Happy Onam!",
+                "As you gather around the Onam sadya with your loved ones, may your hearts be filled with gratitude and joy. Wishing your family a blessed Onam celebration!"
+            ],
+            festive: [
+                "Let the vibrant pookalams, the thrilling vallamkali, and the delicious sadya fill your Onam with unforgettable moments. Wishing you a festival full of cheer!",
+                "May the festive spirit of Onam fill your days with excitement, your heart with contentment, and your life with endless blessings. Happy Onam celebrations!",
+                "Wishing you an Onam filled with the rhythm of traditional music, the beauty of flower arrangements, and the taste of delightful feasts. Enjoy the festivities!"
+            ]
+        };
+        
+        // Background patterns
+        const patterns = [
+            '🌸🪷✨🌼💐⭐',
+            '🕉️🙏🌸🌼✨',
+            '🥭🍌🌼💐🌸',
+            '✨⭐🌸🪷🌼'
+        ];
+        
+        // Initialize with a random wish
+        generateRandomWish();
+        
+        // Event Listeners
+        recipientNameInput.addEventListener('input', updateWishPreview);
+        wishTypeSelect.addEventListener('change', updateWishPreview);
+        customMessageTextarea.addEventListener('input', updateWishPreview);
+        senderNameInput.addEventListener('input', updateWishPreview);
+        
+        generateWishBtn.addEventListener('click', generateRandomWish);
+        copyWishBtn.addEventListener('click', copyWishToClipboard);
+        shareWishBtn.addEventListener('click', shareWish);
+        
+        // Theme selection
+        themeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from all themes
+                themeOptions.forEach(opt => opt.classList.remove('active'));
+                // Add active class to clicked theme
+                this.classList.add('active');
+                
+                // Apply theme to wish card
+                const theme = this.getAttribute('data-theme');
+                applyTheme(theme);
+            });
+        });
+        
+        // Functions
+        function updateWishPreview() {
+            const recipientName = recipientNameInput.value || "Dear Friend";
+            const wishType = wishTypeSelect.value;
+            const customMessage = customMessageTextarea.value;
+            const senderName = senderNameInput.value || "From Your Well-Wisher";
+            
+            // Update title
+            previewTitle.textContent = `Happy Onam, ${recipientName}!`;
+            
+            // Update message based on wish type
+            if (wishType === 'custom') {
+                previewMessage.textContent = customMessage || "May this Onam bring you happiness, prosperity, and joy!";
+            }
+            
+            // Update footer
+            previewFooter.innerHTML = `With warm regards,<br><span id="previewSender">${senderName}</span>`;
+            previewSender.textContent = senderName;
+        }
+        
+        function generateRandomWish() {
+            const wishType = wishTypeSelect.value;
+            const recipientName = recipientNameInput.value || "Dear Friend";
+            
+            // Update title
+            previewTitle.textContent = `Happy Onam, ${recipientName}!`;
+            
+            // Get random wish based on type
+            let wishText;
+            if (wishType === 'custom') {
+                wishText = customMessageTextarea.value || "May this Onam bring you happiness, prosperity, and joy!";
+            } else {
+                const wishes = wishTemplates[wishType];
+                const randomIndex = Math.floor(Math.random() * wishes.length);
+                wishText = wishes[randomIndex];
+            }
+            
+            // Update wish message with improved readability
+            previewMessage.innerHTML = wishText;
+            
+            // Update footer with sender name
+            const senderName = senderNameInput.value || "From Your Well-Wisher";
+            previewFooter.innerHTML = `With warm regards,<br><span id="previewSender">${senderName}</span>`;
+            
+            // Update background pattern
+            updateBackgroundPattern();
+        }
+        
+        function applyTheme(themeNumber) {
+            // Remove all theme classes
+            wishCard.classList.remove('card-theme-1', 'card-theme-2', 'card-theme-3', 'card-theme-4');
+            
+            // Add selected theme class
+            wishCard.classList.add(`card-theme-${themeNumber}`);
+            
+            // Update background pattern
+            updateBackgroundPattern();
+        }
+        
+        function updateBackgroundPattern() {
+            // Create a subtle pattern background for the card
+            const patternIndex = Math.floor(Math.random() * patterns.length);
+            const pattern = patterns[patternIndex];
+            
+            // Create a pattern text with reduced opacity
+            let patternHTML = '';
+            for (let i = 0; i < 50; i++) {
+                const charIndex = Math.floor(Math.random() * pattern.length);
+                const char = pattern.charAt(charIndex);
+                const size = Math.floor(Math.random() * 20) + 15;
+                const left = Math.floor(Math.random() * 100);
+                const top = Math.floor(Math.random() * 100);
+                const rotate = Math.floor(Math.random() * 360);
+                
+                patternHTML += `<span style="position:absolute;left:${left}%;top:${top}%;font-size:${size}px;transform:rotate(${rotate}deg);opacity:0.07;">${char}</span>`;
+            }
+            
+            cardPattern.innerHTML = patternHTML;
+        }
+        
+        function copyWishToClipboard() {
+            const wishText = `🌟 Happy Onam! 🌟
+
+${previewMessage.textContent}
+
+${previewFooter.textContent}
+
+Wishing you a blessed and joyful Onam celebration! 🎉`;
+
+            navigator.clipboard.writeText(wishText).then(() => {
+                // Show copy confirmation
+                copyMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    copyMessage.classList.add('hidden');
+                }, 3000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy wish to clipboard. Please select and copy the text manually.');
+            });
+        }
+        
+        function shareWish() {
+            const wishText = `🌟 Happy Onam! 🌟
+
+${previewMessage.textContent}
+
+${previewFooter.textContent}
+
+Created with Onam Wishes Generator`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Onam Greetings',
+                    text: wishText,
+                    url: window.location.href
+                })
+                .then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing:', error));
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                copyWishToClipboard();
+                alert('Wish copied to clipboard! You can now paste it in any messaging app or social media.');
+            }
+        }
+        
+        // Initialize with theme 1 and pattern
+        applyTheme(1);
+        updateBackgroundPattern();
+    </script>
+</body>
+</html>
