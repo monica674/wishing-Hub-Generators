@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganesh Chaturthi Wishes Generator Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff9933 0%, #ffcc66 30%, #ffcc99 70%, #ffcc33 100%);
+            color: #663300;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 3px solid rgba(153, 102, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #663300;
+            text-shadow: 0 2px 10px rgba(255, 204, 51, 0.5);
+        }
+        
+        .ganesh-title {
+            color: #cc6600;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .ganesh-title::before, .ganesh-title::after {
+            content: '🐘';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+        }
+        
+        .ganesh-title::before {
+            right: -50px;
+        }
+        
+        .ganesh-title::after {
+            left: -50px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #996600;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(153, 102, 0, 0.3);
+            position: relative;
+            overflow: visible;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(153, 102, 0, 0.3);
+        }
+        
+        .ganesh-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #ffcc66 0%, #ffcc33 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: visible; /* IMPORTANT: Changed from hidden */
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.1), 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 5px solid #996600;
+        }
+        
+        .ganesh-icon {
+            position: absolute;
+            font-size: 2.8rem;
+            opacity: 0.9;
+            animation: floatGanesh 6s ease-in-out infinite;
+            z-index: 5; /* Fixed z-index */
+            filter: drop-shadow(0 0 10px rgba(255, 204, 51, 0.7));
+        }
+        
+        .ganesh-icon1 { top: 20px; left: 20px; color: #ffcc00; animation-delay: 0s; }
+        .ganesh-icon2 { top: 20px; right: 20px; color: #996600; animation-delay: 1.5s; }
+        .ganesh-icon3 { bottom: 20px; left: 20px; color: #663300; animation-delay: 3s; }
+        .ganesh-icon4 { bottom: 20px; right: 20px; color: #ff9933; animation-delay: 4.5s; }
+        
+        @keyframes floatGanesh {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
+            50% { transform: translateY(0) rotate(0deg) scale(1); }
+            75% { transform: translateY(-10px) rotate(-5deg) scale(1.05); }
+        }
+        
+        .card-title {
+            font-size: 2.2rem;
+            color: #663300;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(255, 204, 51, 0.5);
+            z-index: 20; /* HIGHEST z-index for text */
+            position: relative;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 3px solid #996600;
+        }
+        
+        .card-message {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #333333;
+            z-index: 20; /* HIGHEST z-index for text */
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(153, 102, 0, 0.3);
+        }
+        
+        .card-sender {
+            font-size: 1.3rem;
+            color: #663300;
+            margin-top: 20px;
+            font-style: italic;
+            font-weight: bold;
+            z-index: 20; /* HIGHEST z-index for text */
+            position: relative;
+            background: rgba(255, 204, 51, 0.8);
+            padding: 12px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 2px solid #996600;
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(153, 102, 0, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(153, 102, 0, 0.15) 0%, transparent 20%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 15px,
+                    rgba(255, 204, 51, 0.1) 15px,
+                    rgba(255, 204, 51, 0.1) 30px
+                );
+            z-index: 1; /* LOWEST z-index for background */
+            pointer-events: none;
+        }
+        
+        /* MODAK FALLING EFFECT - FIXED Z-INDEX */
+        .modak {
+            position: absolute;
+            font-size: 1.8rem;
+            pointer-events: none;
+            z-index: 15; /* HIGHER than icons but LOWER than text */
+            animation: modakFall linear infinite;
+        }
+        
+        @keyframes modakFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* FLOWER PETALS - FIXED Z-INDEX */
+        .flower-petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #ff9933, #ffcc66);
+            border-radius: 50% 50% 50% 0;
+            pointer-events: none;
+            z-index: 15; /* HIGHER than icons but LOWER than text */
+            animation: petalFloat linear infinite;
+            transform: rotate(45deg);
+        }
+        
+        @keyframes petalFloat {
+            0% {
+                transform: translateY(-50px) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px) rotate(135deg);
+                opacity: 0;
+            }
+        }
+        
+        /* DIVINE LIGHTS - FIXED Z-INDEX */
+        .divine-light {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15; /* HIGHER than icons but LOWER than text */
+            animation: lightTwinkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes lightTwinkle {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+        
+        /* AARTI FLAMES - FIXED Z-INDEX */
+        .aarti-flame {
+            position: absolute;
+            width: 15px;
+            height: 25px;
+            background: linear-gradient(to top, #ff4500, #ff8c00, #ffd700);
+            border-radius: 50% 50% 20% 20%;
+            pointer-events: none;
+            z-index: 15; /* HIGHER than icons but LOWER than text */
+            animation: flameFlicker 1s ease-in-out infinite;
+            filter: blur(2px);
+            box-shadow: 0 0 20px #ff4500;
+        }
+        
+        @keyframes flameFlicker {
+            0%, 100% { transform: scale(1) translateY(0); opacity: 0.8; }
+            50% { transform: scale(1.2) translateY(-3px); opacity: 1; }
+        }
+        
+        /* BELL SOUND WAVE - FIXED Z-INDEX */
+        .sound-wave {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #ffcc00;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 8; /* Lower than icons */
+            animation: waveExpand 2s ease-out infinite;
+            opacity: 0;
+        }
+        
+        @keyframes waveExpand {
+            0% { transform: scale(0.1); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #663300;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(153, 102, 0, 0.3);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(255, 153, 51, 0.2);
+            border: 1px solid rgba(153, 102, 0, 0.3);
+            border-radius: 10px;
+            color: #663300;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(255, 153, 51, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 153, 51, 0.3);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #996600;
+            box-shadow: 0 0 15px rgba(153, 102, 0, 0.7);
+        }
+        
+        .color1 { background: linear-gradient(45deg, #ffcc66, #ffcc33); }
+        .color2 { background: linear-gradient(45deg, #996600, #cc6600); }
+        .color3 { background: linear-gradient(45deg, #ff9933, #ff6600); }
+        .color4 { background: linear-gradient(45deg, #ffcc00, #ff9900); }
+        .color5 { background: linear-gradient(45deg, #663300, #996633); }
+        .color6 { background: linear-gradient(45deg, #ff9966, #ffcc99); }
+        .color7 { background: linear-gradient(45deg, #cc9966, #ffcc66); }
+        .color8 { background: linear-gradient(45deg, #ffcc99, #ff9966); }
+        .color9 { background: linear-gradient(45deg, #996633, #cc9966); }
+        .color10 { background: linear-gradient(45deg, #ffcc33, #ff9933); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(153, 102, 0, 0.3);
+            border-radius: 10px;
+            color: #333333;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(102, 51, 0, 0.6);
+        }
+        
+        .theme-type {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .theme-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            color: #663300;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .theme-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .theme-btn.active {
+            border-color: #996600;
+            background: rgba(153, 102, 0, 0.15);
+        }
+        
+        .ganesha-btn.active {
+            border-color: #ffcc00;
+            background: rgba(255, 204, 0, 0.15);
+        }
+        
+        .modak-btn.active {
+            border-color: #ff9933;
+            background: rgba(255, 153, 51, 0.15);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #ff9933, #ff6600);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #996600, #cc6600);
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(153, 102, 0, 0.2);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .instruction {
+            background: rgba(255, 153, 51, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #996600;
+            font-size: 0.95rem;
+            color: #663300;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(255, 153, 51, 0.2);
+            border-radius: 10px;
+            color: #663300;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(255, 153, 51, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 153, 51, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(153, 102, 0, 0.2);
+            color: #663300;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(153, 102, 0, 0.95);
+            color: #ffcc00;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+            border: 2px solid #ffcc00;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-title {
+                font-size: 1.8rem;
+            }
+            
+            .card-message {
+                font-size: 1.2rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+            
+            .theme-type {
+                flex-wrap: wrap;
+            }
+            
+            .theme-btn {
+                min-width: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .theme-type {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="ganesh-title">Ganesh Chaturthi Wishes Generator Pro</span></h1>
+            <p class="subtitle">Create beautiful Ganesh Chaturthi cards with Lord Ganesha's blessings</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Ganesh Chaturthi Card</h2>
+                <div class="ganesh-card" id="ganeshCard">
+                    <div class="card-pattern"></div>
+                    <!-- Fixed: Added ganesh-icon divs -->
+                    <div class="ganesh-icon ganesh-icon1">🐘</div>
+                    <div class="ganesh-icon ganesh-icon2">🪔</div>
+                    <div class="ganesh-icon ganesh-icon3">🪔</div>
+                    <div class="ganesh-icon ganesh-icon4">🎉</div>
+                    
+                    <h3 class="card-title" id="cardTitle">Ganpati Bappa Morya!</h3>
+                    <p class="card-message" id="cardMessage">May Lord Ganesha bless you with wisdom, prosperity, and success. Wishing you and your family a very Happy Ganesh Chaturthi filled with joy, peace, and celebrations.</p>
+                    <p class="card-sender" id="cardSender">Ganpati Bappa Morya! 🐘</p>
+                </div>
+                
+                <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://ganeshwishes.com/card/2024
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your Ganesh Chaturthi card is ready! Customize it with different themes, designs, and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Ganesha Blessings</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <button class="wish-btn">Wisdom Blessing</button>
+                        <button class="wish-btn">Prosperity Wish</button>
+                        <button class="wish-btn">Success Prayer</button>
+                        <button class="wish-btn">Health & Happiness</button>
+                        <button class="wish-btn">Remove Obstacles</button>
+                        <button class="wish-btn">Family Harmony</button>
+                        <button class="wish-btn">New Beginnings</button>
+                        <button class="wish-btn">Divine Guidance</button>
+                        <button class="wish-btn">Peace & Joy</button>
+                        <button class="wish-btn">Abundance Wish</button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <button class="design-btn color1 active" title="Festival Gold"></button>
+                        <button class="design-btn color2" title="Divine Red"></button>
+                        <button class="design-btn color3" title="Orange Celebration"></button>
+                        <button class="design-btn color4" title="Golden Yellow"></button>
+                        <button class="design-btn color5" title="Earth Brown"></button>
+                        <button class="design-btn color6" title="Peach Blossom"></button>
+                        <button class="design-btn color7" title="Copper Shine"></button>
+                        <button class="design-btn color8" title="Coral Pink"></button>
+                        <button class="design-btn color9" title="Wooden Tone"></button>
+                        <button class="design-btn color10" title="Sunset Orange"></button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Festival Theme</h3>
+                    <div class="theme-type">
+                        <button class="theme-btn ganesha-btn active" id="ganeshaBtn">
+                            <i class="fas fa-elephant"></i> Lord Ganesha
+                        </button>
+                        <button class="theme-btn modak-btn" id="modakBtn">
+                            <i class="fas fa-cookie-bite"></i> Modak Theme
+                        </button>
+                        <button class="theme-btn" id="festivalBtn">
+                            <i class="fas fa-music"></i> Festival Joy
+                        </button>
+                        <button class="theme-btn" id="aartiBtn">
+                            <i class="fas fa-fire"></i> Aarti & Lights
+                        </button>
+                    </div>
+                    
+                    <input type="text" class="custom-input" id="recipientName" placeholder="Recipient's Name (e.g., Patil Family)">
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom Ganesh Chaturthi message here..."></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., With blessings, Raj)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send Ganesha Blessings
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn copy-link" id="copyLinkBtn">
+                            <i class="fas fa-copy"></i> Copy Link
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#cc6600;"></i> for Ganesh Chaturthi | Ganpati Bappa Morya! 🐘</p>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification" style="display: none;"></div>
+
+    <script>
+        // Ganesh Chaturthi messages
+        const autoWishes = [
+            "May Lord Ganesha bless you with wisdom, prosperity, and success. Wishing you and your family a very Happy Ganesh Chaturthi filled with joy, peace, and celebrations.",
+            "On this auspicious occasion of Ganesh Chaturthi, may Lord Ganesha remove all obstacles from your life and fill it with happiness and success. Ganpati Bappa Morya!",
+            "May the divine blessings of Lord Ganesha bring you good luck and prosperity. Wishing you a Ganesh Chaturthi filled with sweetness and joy.",
+            "As we welcome Lord Ganesha into our homes, may he bring with him peace, harmony, and endless blessings. Happy Ganesh Chaturthi to you and your family!",
+            "May the modak-loving Lord Ganesha shower you with sweet moments and prosperous days. Wishing you a very Happy Ganesh Chaturthi!",
+            "On this Ganesh Chaturthi, may Lord Ganesha's blessings guide you towards success and remove all hurdles from your path. Ganpati Bappa Morya!",
+            "May the elephant-headed God bless you with strength to face challenges and wisdom to make right decisions. Happy Ganesh Chaturthi!",
+            "Wishing you a Ganesh Chaturthi filled with the sound of bells, the fragrance of flowers, and the blessings of Lord Ganesha.",
+            "May Lord Ganesha's presence in your home bring eternal joy and prosperity. Have a blessed and wonderful Ganesh Chaturthi!",
+            "As we celebrate the birth of Lord Ganesha, may he bless you with new beginnings and success in all your endeavors. Happy Ganesh Chaturthi!"
+        ];
+
+        // Festival themes
+        const festivalThemes = {
+            ganesha: {
+                title: "Ganpati Bappa Morya!",
+                icons: ['🐘', '🪔', '🪔', '🎉'],
+                color: '#ffcc00',
+                greeting: "Ganpati Bappa Morya! 🐘"
+            },
+            modak: {
+                title: "Modak Feast Celebration!",
+                icons: ['🍡', '🥮', '🍬', '🎊'],
+                color: '#ff9933',
+                greeting: "Sweet Modak Blessings! 🍡"
+            },
+            festival: {
+                title: "Happy Ganesh Chaturthi!",
+                icons: ['🎵', '🥁', '💃', '✨'],
+                color: '#996600',
+                greeting: "Festival Greetings! 🎉"
+            },
+            aarti: {
+                title: "Aarti & Diya Blessings!",
+                icons: ['🪔', '🔥', '🌟', '🙏'],
+                color: '#cc6600',
+                greeting: "Divine Light Blessings! 🪔"
+            }
+        };
+
+        // DOM elements
+        const ganeshCard = document.getElementById('ganeshCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+        const recipientName = document.getElementById('recipientName');
+        const ganeshaBtn = document.getElementById('ganeshaBtn');
+        const modakBtn = document.getElementById('modakBtn');
+        const festivalBtn = document.getElementById('festivalBtn');
+        const aartiBtn = document.getElementById('aartiBtn');
+        const notification = document.getElementById('notification');
+        
+        let selectedTheme = 'ganesha';
+        
+        // Initialize wish buttons
+        document.querySelectorAll('.wish-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (index < autoWishes.length) {
+                    cardMessage.textContent = autoWishes[index];
+                    customMessage.value = '';
+                    showNotification(`Applied "${btn.textContent}" blessing!`);
+                }
+            });
+        });
+
+        // Initialize design buttons
+        document.querySelectorAll('.design-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all
+                document.querySelectorAll('.design-btn').forEach(b => b.classList.remove('active'));
+                // Add active to clicked
+                this.classList.add('active');
+                
+                // Apply design
+                const className = this.className.match(/color\d+/)[0];
+                const gradients = {
+                    'color1': ['#ffcc66', '#ffcc33'],
+                    'color2': ['#996600', '#cc6600'],
+                    'color3': ['#ff9933', '#ff6600'],
+                    'color4': ['#ffcc00', '#ff9900'],
+                    'color5': ['#663300', '#996633'],
+                    'color6': ['#ff9966', '#ffcc99'],
+                    'color7': ['#cc9966', '#ffcc66'],
+                    'color8': ['#ffcc99', '#ff9966'],
+                    'color9': ['#996633', '#cc9966'],
+                    'color10': ['#ffcc33', '#ff9933']
+                };
+                
+                const colors = gradients[className];
+                ganeshCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+                
+                showNotification(`Applied ${this.title} design!`);
+            });
+        });
+
+        // Theme buttons
+        ganeshaBtn.addEventListener('click', () => {
+            selectedTheme = 'ganesha';
+            updateThemeButtons();
+            showNotification("Applied Lord Ganesha theme! Ganpati Bappa Morya! 🐘");
+        });
+        
+        modakBtn.addEventListener('click', () => {
+            selectedTheme = 'modak';
+            updateThemeButtons();
+            showNotification("Applied Modak theme! Sweet blessings incoming! 🍡");
+        });
+        
+        festivalBtn.addEventListener('click', () => {
+            selectedTheme = 'festival';
+            updateThemeButtons();
+            showNotification("Applied Festival Joy theme! Let's celebrate! 🎉");
+        });
+        
+        aartiBtn.addEventListener('click', () => {
+            selectedTheme = 'aarti';
+            updateThemeButtons();
+            showNotification("Applied Aarti & Lights theme! Divine blessings! 🪔");
+        });
+        
+        function updateThemeButtons() {
+            [ganeshaBtn, modakBtn, festivalBtn, aartiBtn].forEach(btn => btn.classList.remove('active'));
+            if (selectedTheme === 'ganesha') ganeshaBtn.classList.add('active');
+            else if (selectedTheme === 'modak') modakBtn.classList.add('active');
+            else if (selectedTheme === 'festival') festivalBtn.classList.add('active');
+            else aartiBtn.classList.add('active');
+            
+            updateCardForTheme();
+        }
+        
+        function updateCardForTheme() {
+            const theme = festivalThemes[selectedTheme];
+            cardTitle.textContent = theme.title;
+            
+            // Update icons
+            const icons = document.querySelectorAll('.ganesh-icon');
+            theme.icons.forEach((icon, index) => {
+                if (icons[index]) icons[index].textContent = icon;
+            });
+            
+            // Update sender if no custom name
+            if (!senderName.value.trim()) {
+                cardSender.textContent = theme.greeting;
+            }
+            
+            // Update border color
+            ganeshCard.style.borderColor = theme.color;
+        }
+
+        // Custom message input
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            } else {
+                cardMessage.textContent = autoWishes[0];
+            }
+        });
+
+        // Sender name input
+        senderName.addEventListener('input', () => {
+            if (senderName.value.trim() !== '') {
+                cardSender.textContent = `${festivalThemes[selectedTheme].greeting}\nFrom: ${senderName.value}`;
+            } else {
+                cardSender.textContent = festivalThemes[selectedTheme].greeting;
+            }
+        });
+
+        // Recipient name input
+        recipientName.addEventListener('input', () => {
+            if (recipientName.value.trim() !== '') {
+                cardTitle.textContent = `${festivalThemes[selectedTheme].title}, ${recipientName.value}!`;
+            } else {
+                cardTitle.textContent = festivalThemes[selectedTheme].title;
+            }
+        });
+
+        // Edit button
+        document.getElementById('editBtn').addEventListener('click', () => {
+            customMessage.focus();
+            showNotification('Start editing your Ganesh Chaturthi card message!');
+        });
+
+        // Send button
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const recipient = prompt("Enter recipient's name:", recipientName.value || "Dear Friend");
+            if (recipient) {
+                showNotification(`Ganesh Chaturthi card customized for ${recipient}! Ready to share.`);
+                recipientName.value = recipient;
+                cardTitle.textContent = `${festivalThemes[selectedTheme].title}, ${recipient}!`;
+                
+                // Celebration effect
+                createCelebration();
+            }
+        });
+
+        // Share buttons
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `*${cardTitle.textContent}*\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nGanpati Bappa Morya! 🐘`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const quote = encodeURIComponent(`${cardTitle.textContent} - Ganpati Bappa Morya! 🐘`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}... #GaneshChaturthi #GanpatiBappaMorya`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('📸 Take a screenshot and share on Instagram with #GaneshChaturthi #GanpatiBappaMorya #Ganesha');
+        });
+
+        document.getElementById('copyLinkBtn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => showNotification('Card link copied to clipboard! Share Ganesha blessings!'))
+                .catch(() => showNotification('Failed to copy link. Please try again.'));
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            const subject = encodeURIComponent(`${cardTitle.textContent} - Ganesh Chaturthi Greetings`);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Ganesh Chaturthi Wishes Generator\n${window.location.href}\n\nGanpati Bappa Morya! 🐘`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // ANIMATION FUNCTIONS - NOW VISIBLE ON TOP
+        function createModak() {
+            const cardRect = ganeshCard.getBoundingClientRect();
+            
+            const modak = document.createElement('div');
+            modak.className = 'modak';
+            modak.innerHTML = '🍡';
+            
+            // Position within card bounds
+            const x = Math.random() * (cardRect.width - 40) + 20;
+            modak.style.left = `${x}px`;
+            modak.style.top = `-50px`;
+            modak.style.fontSize = `${Math.random() * 20 + 20}px`;
+            modak.style.animationDuration = `${Math.random() * 4 + 3}s`;
+            modak.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            // Add to card
+            ganeshCard.appendChild(modak);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (modak.parentNode) {
+                    modak.remove();
+                }
+            }, 7000);
+        }
+
+        function createFlowerPetal() {
+            const cardRect = ganeshCard.getBoundingClientRect();
+            
+            const petal = document.createElement('div');
+            petal.className = 'flower-petal';
+            
+            // Position within card bounds
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            petal.style.left = `${x}px`;
+            petal.style.top = `-30px`;
+            petal.style.animationDuration = `${Math.random() * 5 + 3}s`;
+            petal.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            // Random petal colors
+            const colors = ['#ff9933', '#ffcc66', '#ff9966', '#ffcc33'];
+            petal.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]}, #ffcc99)`;
+            
+            // Add to card
+            ganeshCard.appendChild(petal);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (petal.parentNode) {
+                    petal.remove();
+                }
+            }, 8000);
+        }
+
+        function createDivineLight() {
+            const cardRect = ganeshCard.getBoundingClientRect();
+            
+            const light = document.createElement('div');
+            light.className = 'divine-light';
+            
+            // Position within card bounds
+            const x = Math.random() * (cardRect.width - 20) + 10;
+            const y = Math.random() * (cardRect.height - 20) + 10;
+            light.style.left = `${x}px`;
+            light.style.top = `${y}px`;
+            
+            // Random light colors
+            const colors = ['#ffcc00', '#ff9900', '#ffff66', '#ffcc33'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            light.style.backgroundColor = color;
+            light.style.boxShadow = `0 0 15px ${color}`;
+            light.style.animationDelay = `${Math.random() * 2}s`;
+            
+            // Add to card
+            ganeshCard.appendChild(light);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (light.parentNode) {
+                    light.remove();
+                }
+            }, 3000);
+        }
+
+        function createAartiFlame() {
+            const cardRect = ganeshCard.getBoundingClientRect();
+            
+            const flame = document.createElement('div');
+            flame.className = 'aarti-flame';
+            
+            // Position at bottom of card
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            flame.style.left = `${x}px`;
+            flame.style.top = `${cardRect.height - 50}px`;
+            
+            // Add to card
+            ganeshCard.appendChild(flame);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (flame.parentNode) {
+                    flame.remove();
+                }
+            }, 3000);
+        }
+
+        function createSoundWave() {
+            const cardRect = ganeshCard.getBoundingClientRect();
+            
+            const wave = document.createElement('div');
+            wave.className = 'sound-wave';
+            
+            // Position at center of card
+            wave.style.left = `${cardRect.width / 2}px`;
+            wave.style.top = `${cardRect.height / 2}px`;
+            
+            // Add to card
+            ganeshCard.appendChild(wave);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (wave.parentNode) {
+                    wave.remove();
+                }
+            }, 2000);
+        }
+
+        function createCelebration() {
+            // Create burst of effects
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createModak();
+                    createFlowerPetal();
+                    createDivineLight();
+                    if (i % 3 === 0) createAartiFlame();
+                    if (i % 5 === 0) createSoundWave();
+                }, i * 200);
+            }
+            
+            // Make icons more dramatic
+            document.querySelectorAll('.ganesh-icon').forEach(icon => {
+                const originalAnimation = icon.style.animation;
+                icon.style.animation = 'floatGanesh 1s ease-in-out infinite';
+                icon.style.filter = 'drop-shadow(0 0 20px rgba(255, 204, 51, 0.9)) brightness(1.4)';
+                
+                setTimeout(() => {
+                    icon.style.animation = originalAnimation || 'floatGanesh 6s ease-in-out infinite';
+                    icon.style.filter = 'drop-shadow(0 0 10px rgba(255, 204, 51, 0.7))';
+                }, 4000);
+            });
+            
+            // Add glow to card
+            ganeshCard.style.boxShadow = 'inset 0 0 60px rgba(255, 204, 51, 0.4), 0 0 50px rgba(153, 102, 0, 0.5)';
+            ganeshCard.style.transition = 'all 0.5s ease';
+            
+            setTimeout(() => {
+                ganeshCard.style.boxShadow = 'inset 0 0 30px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.2)';
+            }, 4000);
+        }
+
+        // Notification function
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.style.display = 'block';
+            notification.style.animation = 'slideIn 0.3s ease';
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 300);
+            }, 3000);
+        }
+
+        // Start animations after page loads
+        setTimeout(() => {
+            // Continuous animations
+            setInterval(createModak, 3000);
+            setInterval(createFlowerPetal, 2500);
+            setInterval(createDivineLight, 1500);
+            setInterval(createAartiFlame, 4000);
+            setInterval(createSoundWave, 6000);
+            
+            // Initial burst
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createModak();
+                    createFlowerPetal();
+                    createDivineLight();
+                    if (i % 2 === 0) createAartiFlame();
+                }, i * 300);
+            }
+            
+            showNotification('🐘 Welcome to Ganesh Chaturthi Wishes Generator! Ganpati Bappa Morya!');
+        }, 1000);
+    </script>
+</body>
+</html>
