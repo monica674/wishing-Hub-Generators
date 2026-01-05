@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dussehra Wishes Generator Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 30%, #ffa500 70%, #ffd700 100%);
+            color: #8b0000;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(139, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #8b0000;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .dussehra-title {
+            color: #ff4500;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dussehra-title::before, .dussehra-title::after {
+            content: '🏹';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+        }
+        
+        .dussehra-title::before {
+            right: -50px;
+        }
+        
+        .dussehra-title::after {
+            left: -50px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b22222;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+        }
+        
+        .dussehra-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #ff8c00 0%, #ffa500 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: visible; /* Changed from hidden to visible */
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.2), 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 5px solid #8b0000;
+        }
+        
+        .rama-icon {
+            position: absolute;
+            font-size: 2.8rem;
+            opacity: 0.9;
+            animation: victoryFloat 6s ease-in-out infinite;
+            z-index: 5; /* Icons on top */
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7));
+        }
+        
+        .rama-icon1 { top: 20px; left: 20px; color: #ffd700; animation-delay: 0s; }
+        .rama-icon2 { top: 20px; right: 20px; color: #8b0000; animation-delay: 1.5s; }
+        .rama-icon3 { bottom: 20px; left: 20px; color: #228b22; animation-delay: 3s; }
+        .rama-icon4 { bottom: 20px; right: 20px; color: #4169e1; animation-delay: 4.5s; }
+        
+        @keyframes victoryFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
+            50% { transform: translateY(0) rotate(0deg) scale(1); }
+            75% { transform: translateY(-10px) rotate(-5deg) scale(1.05); }
+        }
+        
+        .card-title {
+            font-size: 2.5rem;
+            color: #8b0000;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(255, 215, 0, 0.5);
+            z-index: 15; /* Text on top of everything */
+            position: relative;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 3px solid #8b0000;
+        }
+        
+        .card-message {
+            font-size: 1.6rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #2f4f4f;
+            z-index: 15; /* Text on top of everything */
+            position: relative;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+        }
+        
+        .card-sender {
+            font-size: 1.3rem;
+            color: #8b0000;
+            margin-top: 20px;
+            font-style: italic;
+            font-weight: bold;
+            z-index: 15; /* Text on top of everything */
+            position: relative;
+            background: rgba(255, 215, 0, 0.8);
+            padding: 12px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 2px solid #8b0000;
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(139, 0, 0, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 0, 0, 0.15) 0%, transparent 20%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 15px,
+                    rgba(255, 215, 0, 0.1) 15px,
+                    rgba(255, 215, 0, 0.1) 30px
+                );
+            z-index: 1; /* Pattern stays at back */
+            pointer-events: none;
+        }
+        
+        /* DUSSEHRA FIREWORKS - FIXED Z-INDEX */
+        .dussehra-firework {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10; /* Fireworks on top of pattern but under text */
+        }
+        
+        .dussehra-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10; /* Particles on top of pattern but under text */
+        }
+        
+        /* RAVANA EFFIGY SPARKS - FIXED Z-INDEX */
+        .ravana-spark {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ff4500;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10; /* Sparks on top of pattern but under text */
+            animation: sparkRise linear forwards;
+            box-shadow: 0 0 10px #ff4500;
+        }
+        
+        @keyframes sparkRise {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #8b0000;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(139, 0, 0, 0.3);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(255, 140, 0, 0.2);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 10px;
+            color: #8b0000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(255, 140, 0, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.2);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #8b0000;
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.7);
+        }
+        
+        .color1 { background: linear-gradient(45deg, #ff8c00, #ffa500); }
+        .color2 { background: linear-gradient(45deg, #8b0000, #b22222); }
+        .color3 { background: linear-gradient(45deg, #ff4500, #ff6347); }
+        .color4 { background: linear-gradient(45deg, #ffd700, #daa520); }
+        .color5 { background: linear-gradient(45deg, #006400, #228b22); }
+        .color6 { background: linear-gradient(45deg, #1e90ff, #4169e1); }
+        .color7 { background: linear-gradient(45deg, #4b0082, #8a2be2); }
+        .color8 { background: linear-gradient(45deg, #2f4f4f, #708090); }
+        .color9 { background: linear-gradient(45deg, #d2691e, #cd853f); }
+        .color10 { background: linear-gradient(45deg, #dc143c, #ff1493); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 10px;
+            color: #2f4f4f;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(139, 0, 0, 0.6);
+        }
+        
+        .victory-type {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .victory-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            color: #8b0000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .victory-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .victory-btn.active {
+            border-color: #8b0000;
+            background: rgba(139, 0, 0, 0.15);
+        }
+        
+        .rama-btn.active {
+            border-color: #4169e1;
+            background: rgba(65, 105, 225, 0.15);
+        }
+        
+        .durga-btn.active {
+            border-color: #dc143c;
+            background: rgba(220, 20, 60, 0.15);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #ff8c00, #ff4500);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #8b0000, #b22222);
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(139, 0, 0, 0.2);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* FALLING ARROWS (RAMA'S ARROWS) - FIXED Z-INDEX */
+        .rama-arrow {
+            position: absolute;
+            color: #8b0000;
+            font-size: 1.8rem;
+            pointer-events: none;
+            z-index: 100; /* Arrows on top of everything */
+            animation: arrowFall linear infinite;
+        }
+        
+        @keyframes arrowFall {
+            0% {
+                transform: translateY(-100px) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(135deg);
+                opacity: 0;
+            }
+        }
+        
+        /* BURNING RAVANA EFFIGY - FIXED Z-INDEX */
+        .ravana-fire {
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            background: linear-gradient(to top, #ff4500, #ff8c00, #ffd700);
+            border-radius: 50% 50% 20% 20%;
+            pointer-events: none;
+            z-index: 10; /* Fire on top of pattern but under text */
+            animation: fireBurn 1s ease-in-out infinite;
+            filter: blur(2px);
+            box-shadow: 0 0 25px #ff4500;
+        }
+        
+        @keyframes fireBurn {
+            0%, 100% { transform: scale(1) translateY(0); opacity: 0.8; }
+            50% { transform: scale(1.2) translateY(-5px); opacity: 1; }
+        }
+        
+        .instruction {
+            background: rgba(255, 140, 0, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #8b0000;
+            font-size: 0.95rem;
+            color: #8b0000;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(255, 140, 0, 0.2);
+            border-radius: 10px;
+            color: #8b0000;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(255, 140, 0, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.2);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(139, 0, 0, 0.2);
+            color: #8b0000;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(139, 0, 0, 0.95);
+            color: #ffd700;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+            border: 2px solid #ffd700;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-title {
+                font-size: 2rem;
+            }
+            
+            .card-message {
+                font-size: 1.4rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+            
+            .victory-type {
+                flex-wrap: wrap;
+            }
+            
+            .victory-btn {
+                min-width: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .victory-type {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="dussehra-title">Dussehra Wishes Generator Pro</span></h1>
+            <p class="subtitle">Create beautiful Dussehra cards celebrating the victory of good over evil</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Dussehra Card</h2>
+                <div class="dussehra-card" id="dussehraCard">
+                    <div class="rama-icon rama-icon1">🏹</div>
+                    <div class="rama-icon rama-icon2">🛡️</div>
+                    <div class="rama-icon rama-icon3">🙏</div>
+                    <div class="rama-icon rama-icon4">🔥</div>
+                    <div class="card-pattern"></div>
+                    <h3 class="card-title" id="cardTitle">Shubh Vijayadashami!</h3>
+                    <p class="card-message" id="cardMessage">May Lord Rama's victory over evil inspire you to overcome all challenges in your life. Wishing you and your family a very happy and prosperous Dussehra filled with joy, success, and new beginnings.</p>
+                    <p class="card-sender" id="cardSender">Jai Shree Ram! 🏹</p>
+                </div>
+                
+                <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://dussehrawishes.com/card/5842
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your Dussehra card is ready! Customize it with different victory themes, designs, and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Dussehra Blessings</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <button class="wish-btn">Rama's Blessing</button>
+                        <button class="wish-btn">Good Over Evil</button>
+                        <button class="wish-btn">Ravana Effigy</button>
+                        <button class="wish-btn">Divine Victory</button>
+                        <button class="wish-btn">Fresh Start</button>
+                        <button class="wish-btn">Peace & Prosperity</button>
+                        <button class="wish-btn">Wisdom & Strength</button>
+                        <button class="wish-btn">New Beginnings</button>
+                        <button class="wish-btn">Conquer Challenges</button>
+                        <button class="wish-btn">Righteous Path</button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <button class="design-btn color1 active" title="Dussehra Orange"></button>
+                        <button class="design-btn color2" title="Victory Red"></button>
+                        <button class="design-btn color3" title="Festive Flame"></button>
+                        <button class="design-btn color4" title="Golden Triumph"></button>
+                        <button class="design-btn color5" title="Green Prosperity"></button>
+                        <button class="design-btn color6" title="Blue Divine"></button>
+                        <button class="design-btn color7" title="Royal Purple"></button>
+                        <button class="design-btn color8" title="Steel Gray"></button>
+                        <button class="design-btn color9" title="Copper Brown"></button>
+                        <button class="design-btn color10" title="Pink Celebration"></button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Victory Theme</h3>
+                    <div class="victory-type">
+                        <button class="victory-btn rama-btn active" id="ramaBtn">
+                            <i class="fas fa-crown"></i> Rama's Victory
+                        </button>
+                        <button class="victory-btn durga-btn" id="durgaBtn">
+                            <i class="fas fa-fist-raised"></i> Durga's Victory
+                        </button>
+                        <button class="victory-btn" id="genericBtn">
+                            <i class="fas fa-peace"></i> Good Over Evil
+                        </button>
+                    </div>
+                    
+                    <input type="text" class="custom-input" id="recipientName" placeholder="Recipient's Name (e.g., Sharma Family)">
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom Dussehra message here..."></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., With blessings, Amit)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send Dussehra Wishes
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn copy-link" id="copyLinkBtn">
+                            <i class="fas fa-copy"></i> Copy Link
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#b22222;"></i> for Dussehra | Jai Shree Ram! 🏹</p>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification" style="display: none;"></div>
+
+    <script>
+        // Dussehra messages
+        const autoWishes = [
+            "May Lord Rama's victory over evil inspire you to overcome all challenges in your life. Wishing you and your family a very happy and prosperous Dussehra filled with joy, success, and new beginnings.",
+            "As we celebrate the victory of good over evil, may your life be filled with positivity, success, and happiness. Shubh Vijayadashami to you and your loved ones!",
+            "On this auspicious day of Dussehra, may all the negativity in your life be burnt like Ravana's effigy and may you be blessed with prosperity and success. Jai Shree Ram!",
+            "Wishing you a Dussehra filled with the triumph of truth, the joy of victory, and the blessings of the divine. May Lord Rama guide you towards success in all your endeavors.",
+            "May the burning of Ravana's effigy burn all your sorrows and bring new hope, joy, and success in your life. Happy Dussehra to you and your family!",
+            "As the effigy of Ravana burns, may all your troubles burn away. May this Dussehra bring you peace, prosperity, and happiness. Shubh Vijayadashami!",
+            "On this Vijaya Dashami, may you be blessed with the strength to overcome evil, the wisdom to choose right, and the prosperity to enjoy life. Happy Dussehra!",
+            "May the divine blessings of Lord Rama always be with you. Wishing you a Dussehra that marks the beginning of new victories and achievements in your life.",
+            "As we celebrate Rama's victory, may you conquer all challenges and achieve great success. Wishing you and your family a very Happy Dussehra!",
+            "May this Dussehra light up your life with happiness, prosperity, and success. May you always walk on the path of righteousness. Jai Shree Ram!"
+        ];
+
+        // Victory themes
+        const victoryThemes = {
+            rama: {
+                title: "Shubh Vijayadashami!",
+                icons: ['🏹', '🛡️', '🙏', '🔥'],
+                color: '#4169e1',
+                greeting: "Jai Shree Ram! 🏹"
+            },
+            durga: {
+                title: "Jai Maa Durga!",
+                icons: ['🪔', '🔱', '🕉️', '🌸'],
+                color: '#dc143c',
+                greeting: "Jai Maa Durga! 🪔"
+            },
+            generic: {
+                title: "Victory of Good Over Evil!",
+                icons: ['✨', '🌟', '💫', '🎉'],
+                color: '#8b0000',
+                greeting: "Happy Dussehra! ✨"
+            }
+        };
+
+        // DOM elements
+        const dussehraCard = document.getElementById('dussehraCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+        const recipientName = document.getElementById('recipientName');
+        const ramaBtn = document.getElementById('ramaBtn');
+        const durgaBtn = document.getElementById('durgaBtn');
+        const genericBtn = document.getElementById('genericBtn');
+        const notification = document.getElementById('notification');
+        
+        let selectedTheme = 'rama';
+        
+        // Initialize wish buttons
+        document.querySelectorAll('.wish-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (index < autoWishes.length) {
+                    cardMessage.textContent = autoWishes[index];
+                    customMessage.value = '';
+                    showNotification(`Applied "${btn.textContent}" blessing!`);
+                }
+            });
+        });
+
+        // Initialize design buttons
+        document.querySelectorAll('.design-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all
+                document.querySelectorAll('.design-btn').forEach(b => b.classList.remove('active'));
+                // Add active to clicked
+                this.classList.add('active');
+                
+                // Apply design
+                const className = this.className.match(/color\d+/)[0];
+                const gradients = {
+                    'color1': ['#ff8c00', '#ffa500'],
+                    'color2': ['#8b0000', '#b22222'],
+                    'color3': ['#ff4500', '#ff6347'],
+                    'color4': ['#ffd700', '#daa520'],
+                    'color5': ['#006400', '#228b22'],
+                    'color6': ['#1e90ff', '#4169e1'],
+                    'color7': ['#4b0082', '#8a2be2'],
+                    'color8': ['#2f4f4f', '#708090'],
+                    'color9': ['#d2691e', '#cd853f'],
+                    'color10': ['#dc143c', '#ff1493']
+                };
+                
+                const colors = gradients[className];
+                dussehraCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+                
+                showNotification(`Applied ${this.title} theme!`);
+            });
+        });
+
+        // Theme buttons
+        ramaBtn.addEventListener('click', () => {
+            selectedTheme = 'rama';
+            updateThemeButtons();
+            showNotification("Applied Rama's Victory theme! Jai Shree Ram! 🏹");
+        });
+        
+        durgaBtn.addEventListener('click', () => {
+            selectedTheme = 'durga';
+            updateThemeButtons();
+            showNotification("Applied Maa Durga's Victory theme! Jai Maa Durga! 🪔");
+        });
+        
+        genericBtn.addEventListener('click', () => {
+            selectedTheme = 'generic';
+            updateThemeButtons();
+            showNotification("Applied Good Over Evil theme! 🎉");
+        });
+        
+        function updateThemeButtons() {
+            [ramaBtn, durgaBtn, genericBtn].forEach(btn => btn.classList.remove('active'));
+            if (selectedTheme === 'rama') ramaBtn.classList.add('active');
+            else if (selectedTheme === 'durga') durgaBtn.classList.add('active');
+            else genericBtn.classList.add('active');
+            
+            updateCardForTheme();
+        }
+        
+        function updateCardForTheme() {
+            const theme = victoryThemes[selectedTheme];
+            cardTitle.textContent = theme.title;
+            
+            // Update icons
+            const icons = document.querySelectorAll('.rama-icon');
+            theme.icons.forEach((icon, index) => {
+                if (icons[index]) icons[index].textContent = icon;
+            });
+            
+            // Update sender if no custom name
+            if (!senderName.value.trim()) {
+                cardSender.textContent = theme.greeting;
+            }
+            
+            // Update border color
+            dussehraCard.style.borderColor = theme.color;
+        }
+
+        // Custom message input
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            } else {
+                cardMessage.textContent = autoWishes[0];
+            }
+        });
+
+        // Sender name input
+        senderName.addEventListener('input', () => {
+            if (senderName.value.trim() !== '') {
+                cardSender.textContent = `${victoryThemes[selectedTheme].greeting}\nFrom: ${senderName.value}`;
+            } else {
+                cardSender.textContent = victoryThemes[selectedTheme].greeting;
+            }
+        });
+
+        // Recipient name input
+        recipientName.addEventListener('input', () => {
+            if (recipientName.value.trim() !== '') {
+                cardTitle.textContent = `${victoryThemes[selectedTheme].title}, ${recipientName.value}!`;
+            } else {
+                cardTitle.textContent = victoryThemes[selectedTheme].title;
+            }
+        });
+
+        // Edit button
+        document.getElementById('editBtn').addEventListener('click', () => {
+            customMessage.focus();
+            showNotification('Start editing your Dussehra card message!');
+        });
+
+        // Send button
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const recipient = prompt("Enter recipient's name:", recipientName.value || "Dear Friend");
+            if (recipient) {
+                showNotification(`Dussehra card customized for ${recipient}! Ready to share.`);
+                recipientName.value = recipient;
+                cardTitle.textContent = `${victoryThemes[selectedTheme].title}, ${recipient}!`;
+                
+                // Celebration effect
+                createCelebration();
+            }
+        });
+
+        // Share buttons
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `*${cardTitle.textContent}*\n\n${cardMessage.textContent}\n\n${cardSender.textContent}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}...`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('Take a screenshot and share on Instagram with #Dussehra #Vijayadashami');
+        });
+
+        document.getElementById('copyLinkBtn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => showNotification('Link copied to clipboard!'))
+                .catch(() => showNotification('Failed to copy link.'));
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            const subject = encodeURIComponent(cardTitle.textContent);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // ANIMATION FUNCTIONS - NOW VISIBLE ON TOP OF CARD
+        function createFirework() {
+            const cardRect = dussehraCard.getBoundingClientRect();
+            const cardContainerRect = dussehraCard.parentElement.getBoundingClientRect();
+            
+            // Position relative to card
+            const x = Math.random() * (cardRect.width - 20) + 10;
+            const y = Math.random() * (cardRect.height - 20) + 10;
+            
+            const firework = document.createElement('div');
+            firework.className = 'dussehra-firework';
+            firework.style.left = `${x}px`;
+            firework.style.top = `${y}px`;
+            
+            const colors = ['#FF4500', '#FF8C00', '#FFD700', '#8B0000'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.backgroundColor = color;
+            firework.style.boxShadow = `0 0 15px ${color}`;
+            
+            dussehraCard.appendChild(firework);
+            
+            // Create particles
+            const particleCount = 12;
+            for (let i = 0; i < particleCount; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'dussehra-particle';
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+                    particle.style.backgroundColor = color;
+                    particle.style.boxShadow = `0 0 10px ${color}`;
+                    
+                    const angle = (i * (360 / particleCount)) * (Math.PI / 180);
+                    const distance = 30 + Math.random() * 40;
+                    
+                    dussehraCard.appendChild(particle);
+                    
+                    // Animate particle
+                    setTimeout(() => {
+                        particle.style.transition = 'all 0.8s ease-out';
+                        particle.style.left = `${x + Math.cos(angle) * distance}px`;
+                        particle.style.top = `${y + Math.sin(angle) * distance}px`;
+                        particle.style.opacity = '0';
+                        particle.style.transform = 'scale(0)';
+                    }, 10);
+                    
+                    // Remove particle
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.remove();
+                        }
+                    }, 900);
+                }, i * 50);
+            }
+            
+            setTimeout(() => {
+                if (firework.parentNode) {
+                    firework.remove();
+                }
+            }, 500);
+        }
+
+        function createSpark() {
+            const cardRect = dussehraCard.getBoundingClientRect();
+            
+            const spark = document.createElement('div');
+            spark.className = 'ravana-spark';
+            spark.style.left = `${Math.random() * (cardRect.width - 10) + 5}px`;
+            spark.style.top = `${cardRect.height - 10}px`;
+            
+            dussehraCard.appendChild(spark);
+            
+            const duration = Math.random() * 0.8 + 0.4;
+            spark.style.animation = `sparkRise ${duration}s ease-out forwards`;
+            
+            setTimeout(() => {
+                if (spark.parentNode) {
+                    spark.remove();
+                }
+            }, duration * 1000);
+        }
+
+        function createArrow() {
+            const cardRect = dussehraCard.getBoundingClientRect();
+            const cardContainerRect = dussehraCard.parentElement.getBoundingClientRect();
+            
+            const arrow = document.createElement('div');
+            arrow.className = 'rama-arrow';
+            arrow.innerHTML = '🏹';
+            
+            // Position arrow to start from above the card
+            arrow.style.left = `${cardContainerRect.left + Math.random() * cardRect.width}px`;
+            arrow.style.top = `${cardContainerRect.top - 50}px`;
+            arrow.style.fontSize = `${Math.random() * 15 + 20}px`;
+            arrow.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            arrow.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            document.body.appendChild(arrow);
+            
+            setTimeout(() => {
+                if (arrow.parentNode) {
+                    arrow.remove();
+                }
+            }, 5000);
+        }
+
+        function createFire() {
+            const cardRect = dussehraCard.getBoundingClientRect();
+            
+            const fire = document.createElement('div');
+            fire.className = 'ravana-fire';
+            fire.style.left = `${Math.random() * (cardRect.width - 30) + 15}px`;
+            fire.style.top = `${cardRect.height - 40}px`;
+            
+            dussehraCard.appendChild(fire);
+            
+            setTimeout(() => {
+                if (fire.parentNode) {
+                    fire.remove();
+                }
+            }, 2000);
+        }
+
+        function createCelebration() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createFirework();
+                    createSpark();
+                    if (i % 3 === 0) createArrow();
+                    if (i % 4 === 0) createFire();
+                }, i * 150);
+            }
+            
+            // Make icons more dramatic
+            document.querySelectorAll('.rama-icon').forEach(icon => {
+                icon.style.animation = 'victoryFloat 1s ease-in-out infinite';
+                icon.style.filter = 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.9)) brightness(1.4)';
+                
+                setTimeout(() => {
+                    icon.style.animation = 'victoryFloat 6s ease-in-out infinite';
+                    icon.style.filter = 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.7))';
+                }, 3000);
+            });
+        }
+
+        // Notification function
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.style.display = 'block';
+            notification.style.animation = 'slideIn 0.3s ease';
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 300);
+            }, 3000);
+        }
+
+        // Initial effects - Start after page loads
+        setTimeout(() => {
+            // Start continuous animations
+            setInterval(createFirework, 2500);
+            setInterval(createSpark, 1200);
+            setInterval(createArrow, 1800);
+            setInterval(createFire, 2200);
+            
+            // Initial burst of effects
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createFirework();
+                    createSpark();
+                    if (i % 2 === 0) createArrow();
+                    if (i % 3 === 0) createFire();
+                }, i * 300);
+            }
+            
+            showNotification('🎉 Welcome to Dussehra Wishes Generator! Create beautiful cards.');
+        }, 1000);
+    </script>
+</body>
+</html>
