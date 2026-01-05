@@ -18,6 +18,7 @@
             color: #4a148c;
             min-height: 100vh;
             padding: 20px;
+            overflow-x: hidden;
         }
         
         .container {
@@ -122,6 +123,7 @@
             font-size: 2.5rem;
             opacity: 0.7;
             animation: newbornFloat 4s ease-in-out infinite;
+            z-index: 5;
         }
         
         .newborn-icon1 { top: 20px; left: 20px; color: #e1bee7; animation-delay: 0s; }
@@ -139,6 +141,12 @@
             color: #6a1b9a;
             margin-bottom: 20px;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            position: relative;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
         }
         
         .card-message {
@@ -147,6 +155,12 @@
             margin-bottom: 20px;
             padding: 0 20px;
             color: #4a148c;
+            z-index: 10;
+            position: relative;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
         }
         
         .card-sender {
@@ -154,6 +168,12 @@
             color: #7b1fa2;
             margin-top: 20px;
             font-style: italic;
+            z-index: 10;
+            position: relative;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 8px 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
         }
         
         .card-pattern {
@@ -163,8 +183,27 @@
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(171, 71, 188, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(171, 71, 188, 0.1) 0%, transparent 20%);
-            z-index: 0;
+            z-index: 1;
             pointer-events: none;
+        }
+        
+        /* FIREWORKS INSIDE CARD */
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .firework-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
         }
         
         .section-title {
@@ -892,14 +931,78 @@
 
         // Update card details
         function updateCardDetails() {
-            // This can be used to show birth details in the message if desired
             const details = [];
             if (birthDate.value.trim()) details.push(`Born on ${birthDate.value}`);
             if (birthWeight.value.trim()) details.push(`Weight: ${birthWeight.value}`);
             if (birthTime.value.trim()) details.push(`Time: ${birthTime.value}`);
             
-            // Could incorporate these into the message if needed
             return details;
+        }
+
+        // COLORFUL FIREWORKS INSIDE THE CARD
+        function createFireworkInsideCard() {
+            // Get card position and dimensions
+            const cardRect = newbornCard.getBoundingClientRect();
+            const containerRect = document.querySelector('.card-container').getBoundingClientRect();
+            
+            // Random position inside the card
+            const x = Math.random() * (cardRect.width - 20) + 10;
+            const y = Math.random() * (cardRect.height - 20) + 10;
+            
+            // Create firework center
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = `${x}px`;
+            firework.style.top = `${y}px`;
+            
+            // Random color for firework
+            const colors = ['#FF4081', '#FFEB3B', '#3F51B5', '#4CAF50', '#E91E63', '#00BCD4', '#FF9800', '#9C27B0'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.backgroundColor = color;
+            firework.style.boxShadow = `0 0 10px ${color}`;
+            
+            newbornCard.appendChild(firework);
+            
+            // Create particles
+            const particleCount = 12 + Math.floor(Math.random() * 12);
+            for (let i = 0; i < particleCount; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'firework-particle';
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+                    particle.style.backgroundColor = color;
+                    
+                    // Random direction
+                    const angle = (i * (360 / particleCount)) * (Math.PI / 180);
+                    const distance = 30 + Math.random() * 40;
+                    
+                    newbornCard.appendChild(particle);
+                    
+                    // Animate particle
+                    setTimeout(() => {
+                        particle.style.transition = 'all 0.8s ease-out';
+                        particle.style.left = `${x + Math.cos(angle) * distance}px`;
+                        particle.style.top = `${y + Math.sin(angle) * distance}px`;
+                        particle.style.opacity = '0';
+                        particle.style.transform = 'scale(0)';
+                    }, 10);
+                    
+                    // Remove particle
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.remove();
+                        }
+                    }, 900);
+                }, i * 30);
+            }
+            
+            // Remove firework center
+            setTimeout(() => {
+                if (firework.parentNode) {
+                    firework.remove();
+                }
+            }, 500);
         }
 
         // Edit button functionality
@@ -965,7 +1068,7 @@
                 // Show success message
                 showNotification(`Newborn card customized for ${parents}! Now you can share it.`);
                 
-                // Create special newborn celebration effect
+                // Create special newborn celebration with fireworks
                 createNewbornCelebration();
                 
                 // Revert after 10 seconds for preview
@@ -1075,11 +1178,18 @@
         // Newborn celebration effect (for when sending to family)
         function createNewbornCelebration() {
             // Create lots of stars and footprints
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 30; i++) {
                 setTimeout(() => {
                     createBabyStar();
                     if (i % 4 === 0) createBabyFootprint();
-                }, i * 60);
+                }, i * 80);
+            }
+            
+            // Create colorful fireworks inside the card
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createFireworkInsideCard();
+                }, i * 200);
             }
             
             // Make newborn icons float more dramatically
@@ -1106,17 +1216,25 @@
             }, 4000);
         }
 
-        // Create periodic effects
+        // Create periodic effects - regular fireworks inside card
+        setInterval(createFireworkInsideCard, 1500);
         setInterval(createBabyStar, 300);
         setInterval(createBabyFootprint, 800);
         
         // Create initial effects
         setTimeout(() => {
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 20; i++) {
                 setTimeout(() => {
                     createBabyStar();
                     if (i % 5 === 0) createBabyFootprint();
                 }, i * 100);
+            }
+            
+            // Initial fireworks inside card
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createFireworkInsideCard();
+                }, i * 300);
             }
         }, 1000);
 
