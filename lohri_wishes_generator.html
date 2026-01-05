@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lohri Wishes Generator Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 30%, #ffa726 70%, #ffcc80 100%);
+            color: #5d4037;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 3px solid rgba(93, 64, 55, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #5d4037;
+            text-shadow: 0 2px 10px rgba(255, 167, 38, 0.5);
+        }
+        
+        .lohri-title {
+            color: #d84315;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .lohri-title::before, .lohri-title::after {
+            content: '🔥';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+        }
+        
+        .lohri-title::before {
+            right: -50px;
+        }
+        
+        .lohri-title::after {
+            left: -50px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #bf360c;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(93, 64, 55, 0.3);
+            position: relative;
+            overflow: visible;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(93, 64, 55, 0.3);
+        }
+        
+        .lohri-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #ff8e53 0%, #ffa726 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: visible;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.1), 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 5px solid #d84315;
+        }
+        
+        .lohri-icon {
+            position: absolute;
+            font-size: 2.8rem;
+            opacity: 0.9;
+            animation: floatLohri 6s ease-in-out infinite;
+            z-index: 5;
+            filter: drop-shadow(0 0 10px rgba(255, 167, 38, 0.7));
+        }
+        
+        .lohri-icon1 { top: 20px; left: 20px; color: #ffa726; animation-delay: 0s; }
+        .lohri-icon2 { top: 20px; right: 20px; color: #d84315; animation-delay: 1.5s; }
+        .lohri-icon3 { bottom: 20px; left: 20px; color: #5d4037; animation-delay: 3s; }
+        .lohri-icon4 { bottom: 20px; right: 20px; color: #ff8e53; animation-delay: 4.5s; }
+        
+        @keyframes floatLohri {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
+            50% { transform: translateY(0) rotate(0deg) scale(1); }
+            75% { transform: translateY(-10px) rotate(-5deg) scale(1.05); }
+        }
+        
+        .card-title {
+            font-size: 2.2rem;
+            color: #5d4037;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(255, 167, 38, 0.5);
+            z-index: 20;
+            position: relative;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 3px solid #d84315;
+        }
+        
+        .card-message {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #4e342e;
+            z-index: 20;
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(216, 67, 21, 0.3);
+        }
+        
+        .card-sender {
+            font-size: 1.3rem;
+            color: #5d4037;
+            margin-top: 20px;
+            font-style: italic;
+            font-weight: bold;
+            z-index: 20;
+            position: relative;
+            background: rgba(255, 167, 38, 0.8);
+            padding: 12px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 2px solid #d84315;
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(216, 67, 21, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(216, 67, 21, 0.15) 0%, transparent 20%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 15px,
+                    rgba(255, 167, 38, 0.1) 15px,
+                    rgba(255, 167, 38, 0.1) 30px
+                );
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* FIRE SPARKS */
+        .fire-spark {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            animation: sparkFloat linear infinite;
+        }
+        
+        @keyframes sparkFloat {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* POPCORN KERNELS */
+        .popcorn-kernel {
+            position: absolute;
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 15;
+            animation: popcornPop 2s ease-in-out infinite;
+        }
+        
+        @keyframes popcornPop {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+        
+        /* PEANUTS */
+        .peanut {
+            position: absolute;
+            width: 20px;
+            height: 10px;
+            background: linear-gradient(45deg, #8d6e63, #a1887f);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            animation: peanutFall linear infinite;
+        }
+        
+        @keyframes peanutFall {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px) rotate(180deg);
+                opacity: 0;
+            }
+        }
+        
+        /* GUR REVRI */
+        .gur-revri {
+            position: absolute;
+            width: 25px;
+            height: 15px;
+            background: linear-gradient(45deg, #d84315, #ff8e53);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            pointer-events: none;
+            z-index: 15;
+            animation: revriFloat 3s ease-in-out infinite;
+            box-shadow: 0 0 10px #d84315;
+        }
+        
+        @keyframes revriFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-10px) rotate(10deg) scale(1.2); opacity: 1; }
+        }
+        
+        /* BONFIRE FLAMES */
+        .bonfire-flame {
+            position: absolute;
+            width: 15px;
+            height: 25px;
+            background: linear-gradient(to top, #ff6b6b, #ffa726, #ffcc80);
+            border-radius: 50% 50% 20% 20%;
+            pointer-events: none;
+            z-index: 15;
+            animation: flameFlicker 1s ease-in-out infinite;
+            filter: blur(2px);
+            box-shadow: 0 0 20px #ff6b6b;
+        }
+        
+        @keyframes flameFlicker {
+            0%, 100% { transform: scale(1) translateY(0); opacity: 0.8; }
+            50% { transform: scale(1.2) translateY(-3px); opacity: 1; }
+        }
+        
+        /* BHANGRA DANCE */
+        .bhangra-dancer {
+            position: absolute;
+            font-size: 1.8rem;
+            pointer-events: none;
+            z-index: 15;
+            animation: dancerMove 2s ease-in-out infinite;
+        }
+        
+        @keyframes dancerMove {
+            0%, 100% { transform: translateX(0) rotate(0deg); opacity: 0.8; }
+            25% { transform: translateX(10px) rotate(5deg); opacity: 1; }
+            75% { transform: translateX(-10px) rotate(-5deg); opacity: 1; }
+        }
+        
+        /* WARM GLOW */
+        .warm-glow {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #ffa726;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 8;
+            animation: glowExpand 2s ease-out infinite;
+            opacity: 0;
+        }
+        
+        @keyframes glowExpand {
+            0% { transform: scale(0.1); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #5d4037;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(93, 64, 55, 0.3);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(255, 167, 38, 0.2);
+            border: 1px solid rgba(216, 67, 21, 0.3);
+            border-radius: 10px;
+            color: #5d4037;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(255, 167, 38, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 167, 38, 0.3);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #d84315;
+            box-shadow: 0 0 15px rgba(216, 67, 21, 0.7);
+        }
+        
+        .color1 { background: linear-gradient(45deg, #ff8e53, #ffa726); }
+        .color2 { background: linear-gradient(45deg, #d84315, #ff6b6b); }
+        .color3 { background: linear-gradient(45deg, #ffcc80, #ffb74d); }
+        .color4 { background: linear-gradient(45deg, #5d4037, #8d6e63); }
+        .color5 { background: linear-gradient(45deg, #ff9800, #ff5722); }
+        .color6 { background: linear-gradient(45deg, #ffb300, #ff8f00); }
+        .color7 { background: linear-gradient(45deg, #e65100, #ff6d00); }
+        .color8 { background: linear-gradient(45deg, #ffd180, #ffab40); }
+        .color9 { background: linear-gradient(45deg, #bf360c, #d84315); }
+        .color10 { background: linear-gradient(45deg, #ffecb3, #ffcc80); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(93, 64, 55, 0.3);
+            border-radius: 10px;
+            color: #5d4037;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(93, 64, 55, 0.6);
+        }
+        
+        .theme-type {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .theme-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            color: #5d4037;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .theme-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 167, 38, 0.2);
+        }
+        
+        .theme-btn.active {
+            border-color: #d84315;
+            background: rgba(216, 67, 21, 0.15);
+        }
+        
+        .bonfire-btn.active {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.15);
+        }
+        
+        .harvest-btn.active {
+            border-color: #ffa726;
+            background: rgba(255, 167, 38, 0.15);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #ff8e53, #ff5722);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #d84315, #bf360c);
+            color: #ffecb3;
+            font-weight: bold;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(93, 64, 55, 0.1);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .instruction {
+            background: rgba(255, 167, 38, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #d84315;
+            font-size: 0.95rem;
+            color: #5d4037;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(255, 167, 38, 0.2);
+            border-radius: 10px;
+            color: #5d4037;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(255, 167, 38, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 167, 38, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(93, 64, 55, 0.2);
+            color: #5d4037;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(93, 64, 55, 0.95);
+            color: #ffa726;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+            border: 2px solid #ffa726;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-title {
+                font-size: 1.8rem;
+            }
+            
+            .card-message {
+                font-size: 1.2rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+            
+            .theme-type {
+                flex-wrap: wrap;
+            }
+            
+            .theme-btn {
+                min-width: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .theme-type {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="lohri-title">Lohri Wishes Generator Pro</span></h1>
+            <p class="subtitle">Create warm Lohri cards celebrating bonfire and harvest</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Lohri Card</h2>
+                <div class="lohri-card" id="lohriCard">
+                    <div class="card-pattern"></div>
+                    <div class="lohri-icon lohri-icon1">🔥</div>
+                    <div class="lohri-icon lohri-icon2">🌾</div>
+                    <div class="lohri-icon lohri-icon3">🥜</div>
+                    <div class="lohri-icon lohri-icon4">🎵</div>
+                    
+                    <h3 class="card-title" id="cardTitle">Happy Lohri!</h3>
+                    <p class="card-message" id="cardMessage">May the warmth of the bonfire fill your home with happiness and prosperity. Wishing you a Lohri filled with joy, dance, and sweet treats.</p>
+                    <p class="card-sender" id="cardSender">Sunder mundriye ho! 🔥</p>
+                </div>
+                
+                <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://lohriwishes.com/card/2024
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your Lohri card is ready! Customize it with different themes, designs, and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Lohri Blessings</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <button class="wish-btn">Bonfire Warmth</button>
+                        <button class="wish-btn">Harvest Abundance</button>
+                        <button class="wish-btn">Sweet Celebrations</button>
+                        <button class="wish-btn">Family Togetherness</button>
+                        <button class="wish-btn">Dance & Music</button>
+                        <button class="wish-btn">Prosperity & Joy</button>
+                        <button class="wish-btn">New Beginnings</button>
+                        <button class="wish-btn">Winter Warmth</button>
+                        <button class="wish-btn">Community Bonding</button>
+                        <button class="wish-btn">Traditional Blessings</button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <button class="design-btn color1 active" title="Bonfire Orange"></button>
+                        <button class="design-btn color2" title="Flame Red"></button>
+                        <button class="design-btn color3" title="Golden Glow"></button>
+                        <button class="design-btn color4" title="Earth Brown"></button>
+                        <button class="design-btn color5" title="Sunset Fire"></button>
+                        <button class="design-btn color6" title="Amber Yellow"></button>
+                        <button class="design-btn color7" title="Copper Flame"></button>
+                        <button class="design-btn color8" title="Peach Warmth"></button>
+                        <button class="design-btn color9" title="Brick Red"></button>
+                        <button class="design-btn color10" title="Creamy Gold"></button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Festival Theme</h3>
+                    <div class="theme-type">
+                        <button class="theme-btn bonfire-btn active" id="bonfireBtn">
+                            <i class="fas fa-fire"></i> Bonfire Night
+                        </button>
+                        <button class="theme-btn harvest-btn" id="harvestBtn">
+                            <i class="fas fa-wheat-alt"></i> Harvest Feast
+                        </button>
+                        <button class="theme-btn" id="danceBtn">
+                            <i class="fas fa-music"></i> Bhangra Dance
+                        </button>
+                        <button class="theme-btn" id="sweetsBtn">
+                            <i class="fas fa-candy-cane"></i> Sweet Treats
+                        </button>
+                    </div>
+                    
+                    <input type="text" class="custom-input" id="recipientName" placeholder="Recipient's Name (e.g., Singh Family)">
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom Lohri message here..."></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., With warmth, Harpreet)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send Lohri Wishes
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn copy-link" id="copyLinkBtn">
+                            <i class="fas fa-copy"></i> Copy Link
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#ff6b6b;"></i> for Lohri | Sunder mundriye ho! 🔥</p>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification" style="display: none;"></div>
+
+    <script>
+        // Lohri messages
+        const autoWishes = [
+            "May the warmth of the bonfire fill your home with happiness and prosperity. Wishing you a Lohri filled with joy, dance, and sweet treats.",
+            "As we gather around the bonfire, may all your worries burn away and new hopes rise. Happy Lohri filled with warmth and celebrations!",
+            "May this Lohri bring you abundant happiness, prosperity, and sweet moments with loved ones. Sunder mundriye ho!",
+            "Wishing you a Lohri that lights up your life with joy, warms your heart with love, and fills your home with prosperity. Happy Lohri!",
+            "As the bonfire burns bright, may your life be filled with light, happiness, and success. Wishing you and your family a very Happy Lohri!",
+            "May the rhythm of the dhol and the sweetness of rewri-gajak make your Lohri celebrations unforgettable. Happy Lohri!",
+            "On this auspicious festival of Lohri, may you be blessed with good health, prosperity, and endless happiness. Sunder mundriye ho!",
+            "As we toss peanuts and popcorn into the fire, may all negativity burn away and positivity fill your life. Happy Lohri!",
+            "May the Lohri bonfire illuminate your path to success and warm your heart with love and happiness. Wishing you a blessed Lohri!",
+            "With the crackling of the fire and the beats of the dhol, may your Lohri be filled with joy, laughter, and sweet memories."
+        ];
+
+        // Festival themes
+        const festivalThemes = {
+            bonfire: {
+                title: "Happy Lohri!",
+                icons: ['🔥', '🌾', '🥜', '🎵'],
+                color: '#ffa726',
+                greeting: "Sunder mundriye ho! 🔥"
+            },
+            harvest: {
+                title: "Harvest Celebrations!",
+                icons: ['🌾', '🌽', '🎑', '✨'],
+                color: '#ffa726',
+                greeting: "Bountiful harvest! 🌾"
+            },
+            dance: {
+                title: "Bhangra Night!",
+                icons: ['💃', '🕺', '🥁', '🎉'],
+                color: '#ff6b6b',
+                greeting: "Let's Bhangra! 💃"
+            },
+            sweets: {
+                title: "Sweet Treats Feast!",
+                icons: ['🍬', '🥜', '🍯', '🎊'],
+                color: '#d84315',
+                greeting: "Sweet Lohri! 🍬"
+            }
+        };
+
+        // DOM elements
+        const lohriCard = document.getElementById('lohriCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+        const recipientName = document.getElementById('recipientName');
+        const bonfireBtn = document.getElementById('bonfireBtn');
+        const harvestBtn = document.getElementById('harvestBtn');
+        const danceBtn = document.getElementById('danceBtn');
+        const sweetsBtn = document.getElementById('sweetsBtn');
+        const notification = document.getElementById('notification');
+        
+        let selectedTheme = 'bonfire';
+        
+        // Initialize wish buttons
+        document.querySelectorAll('.wish-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (index < autoWishes.length) {
+                    cardMessage.textContent = autoWishes[index];
+                    customMessage.value = '';
+                    showNotification(`Applied "${btn.textContent}" blessing!`);
+                }
+            });
+        });
+
+        // Initialize design buttons
+        document.querySelectorAll('.design-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all
+                document.querySelectorAll('.design-btn').forEach(b => b.classList.remove('active'));
+                // Add active to clicked
+                this.classList.add('active');
+                
+                // Apply design
+                const className = this.className.match(/color\d+/)[0];
+                const gradients = {
+                    'color1': ['#ff8e53', '#ffa726'],
+                    'color2': ['#d84315', '#ff6b6b'],
+                    'color3': ['#ffcc80', '#ffb74d'],
+                    'color4': ['#5d4037', '#8d6e63'],
+                    'color5': ['#ff9800', '#ff5722'],
+                    'color6': ['#ffb300', '#ff8f00'],
+                    'color7': ['#e65100', '#ff6d00'],
+                    'color8': ['#ffd180', '#ffab40'],
+                    'color9': ['#bf360c', '#d84315'],
+                    'color10': ['#ffecb3', '#ffcc80']
+                };
+                
+                const colors = gradients[className];
+                lohriCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+                
+                showNotification(`Applied ${this.title} design!`);
+            });
+        });
+
+        // Theme buttons
+        bonfireBtn.addEventListener('click', () => {
+            selectedTheme = 'bonfire';
+            updateThemeButtons();
+            showNotification("Applied Bonfire theme! Warm wishes! 🔥");
+        });
+        
+        harvestBtn.addEventListener('click', () => {
+            selectedTheme = 'harvest';
+            updateThemeButtons();
+            showNotification("Applied Harvest theme! Abundant blessings! 🌾");
+        });
+        
+        danceBtn.addEventListener('click', () => {
+            selectedTheme = 'dance';
+            updateThemeButtons();
+            showNotification("Applied Bhangra theme! Let's dance! 💃");
+        });
+        
+        sweetsBtn.addEventListener('click', () => {
+            selectedTheme = 'sweets';
+            updateThemeButtons();
+            showNotification("Applied Sweet Treats theme! Sweet celebrations! 🍬");
+        });
+        
+        function updateThemeButtons() {
+            [bonfireBtn, harvestBtn, danceBtn, sweetsBtn].forEach(btn => btn.classList.remove('active'));
+            if (selectedTheme === 'bonfire') bonfireBtn.classList.add('active');
+            else if (selectedTheme === 'harvest') harvestBtn.classList.add('active');
+            else if (selectedTheme === 'dance') danceBtn.classList.add('active');
+            else sweetsBtn.classList.add('active');
+            
+            updateCardForTheme();
+        }
+        
+        function updateCardForTheme() {
+            const theme = festivalThemes[selectedTheme];
+            cardTitle.textContent = theme.title;
+            
+            // Update icons
+            const icons = document.querySelectorAll('.lohri-icon');
+            theme.icons.forEach((icon, index) => {
+                if (icons[index]) icons[index].textContent = icon;
+            });
+            
+            // Update sender if no custom name
+            if (!senderName.value.trim()) {
+                cardSender.textContent = theme.greeting;
+            }
+            
+            // Update border color
+            lohriCard.style.borderColor = theme.color;
+        }
+
+        // Custom message input
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            } else {
+                cardMessage.textContent = autoWishes[0];
+            }
+        });
+
+        // Sender name input
+        senderName.addEventListener('input', () => {
+            if (senderName.value.trim() !== '') {
+                cardSender.textContent = `${festivalThemes[selectedTheme].greeting}\nFrom: ${senderName.value}`;
+            } else {
+                cardSender.textContent = festivalThemes[selectedTheme].greeting;
+            }
+        });
+
+        // Recipient name input
+        recipientName.addEventListener('input', () => {
+            if (recipientName.value.trim() !== '') {
+                cardTitle.textContent = `${festivalThemes[selectedTheme].title}, ${recipientName.value}!`;
+            } else {
+                cardTitle.textContent = festivalThemes[selectedTheme].title;
+            }
+        });
+
+        // Edit button
+        document.getElementById('editBtn').addEventListener('click', () => {
+            customMessage.focus();
+            showNotification('Start editing your Lohri card message!');
+        });
+
+        // Send button
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const recipient = prompt("Enter recipient's name:", recipientName.value || "Dear Family");
+            if (recipient) {
+                showNotification(`Lohri card customized for ${recipient}! Ready to share.`);
+                recipientName.value = recipient;
+                cardTitle.textContent = `${festivalThemes[selectedTheme].title}, ${recipient}!`;
+                
+                // Celebration effect
+                createCelebration();
+            }
+        });
+
+        // Share buttons
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `*${cardTitle.textContent}*\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nHappy Lohri! 🔥`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const quote = encodeURIComponent(`${cardTitle.textContent} - Happy Lohri! 🔥`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}... #Lohri #HappyLohri #BonfireNight`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('📸 Take a screenshot and share on Instagram with #Lohri #HappyLohri #Bonfire');
+        });
+
+        document.getElementById('copyLinkBtn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => showNotification('Card link copied to clipboard! Share Lohri wishes!'))
+                .catch(() => showNotification('Failed to copy link. Please try again.'));
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            const subject = encodeURIComponent(`${cardTitle.textContent} - Lohri Greetings`);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Lohri Wishes Generator\n${window.location.href}\n\nHappy Lohri! 🔥`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // ANIMATION FUNCTIONS
+        function createFireSpark() {
+            const cardRect = lohriCard.getBoundingClientRect();
+            
+            const spark = document.createElement('div');
+            spark.className = 'fire-spark';
+            
+            const x = Math.random() * (cardRect.width - 10) + 5;
+            spark.style.left = `${x}px`;
+            spark.style.top = `${cardRect.height - 10}px`;
+            spark.style.animationDuration = `${Math.random() * 4 + 2}s`;
+            spark.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            const colors = ['#ff6b6b', '#ffa726', '#ffcc80', '#ff8e53'];
+            spark.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]}, #ffa726)`;
+            
+            lohriCard.appendChild(spark);
+            
+            setTimeout(() => {
+                if (spark.parentNode) {
+                    spark.remove();
+                }
+            }, 6000);
+        }
+
+        function createPopcornKernel() {
+            const cardRect = lohriCard.getBoundingClientRect();
+            
+            const popcorn = document.createElement('div');
+            popcorn.className = 'popcorn-kernel';
+            popcorn.innerHTML = '🍿';
+            
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            const y = Math.random() * (cardRect.height - 30) + 15;
+            popcorn.style.left = `${x}px`;
+            popcorn.style.top = `${y}px`;
+            popcorn.style.fontSize = `${Math.random() * 20 + 15}px`;
+            popcorn.style.animationDelay = `${Math.random() * 2}s`;
+            
+            lohriCard.appendChild(popcorn);
+            
+            setTimeout(() => {
+                if (popcorn.parentNode) {
+                    popcorn.remove();
+                }
+            }, 3000);
+        }
+
+        function createPeanut() {
+            const cardRect = lohriCard.getBoundingClientRect();
+            
+            const peanut = document.createElement('div');
+            peanut.className = 'peanut';
+            
+            const x = Math.random() * (cardRect.width - 25) + 12.5;
+            peanut.style.left = `${x}px`;
+            peanut.style.top = `-30px`;
+            peanut.style.animationDuration = `${Math.random() * 5 + 3}s`;
+            peanut.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            lohriCard.appendChild(peanut);
+            
+            setTimeout(() => {
+                if (peanut.parentNode) {
+                    peanut.remove();
+                }
+            }, 8000);
+        }
+
+        function createGurRevri() {
+            const cardRect = lohriCard.getBoundingClientRect();
+            
+            const revri = document.createElement('div');
+            revri.className = 'gur-revri';
+            
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            const y = Math.random() * (cardRect.height - 20) + 10;
+            revri.style.left = `${x}px`;
+            revri.style.top = `${y}px`;
+            revri.style.animationDelay = `${Math.random() * 2}s`;
+            
+            lohriCard.appendChild(revri);
+            
+            setTimeout(() => {
+                if (revri.parentNode) {
+                    revri.remove();
+                }
+            }, 4000);
+        }
+
+        function createBonfireFlame() {
+            const cardRect = lohriCard.getBoundingClientRect();
+            
+            const flame = document.createElement('div');
+            flame.className = 'bonfire-flame';
+            
+            const x = Math.random() * (cardRect.width - 20) + 10;
+            flame.style.left = `${x}px`;
+            flame.style.top = `${cardRect.height - 40}px`;
+            
+            lohriCard.appendChild(flame);
+            
+            setTimeout(() => {
+                if (flame.parentNode) {
+                    flame.remove();
+                }
+            }, 2000);
+        }
+
+        function createBhangraDancer() {
+            const cardRect = lohriCard.getBoundingClientRect();
+            
+            const dancer = document.createElement('div');
+            dancer.className = 'bhangra-dancer';
+            dancer.innerHTML = '💃';
+            
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            const y = Math.random() * (cardRect.height - 30) + 15;
+            dancer.style.left = `${x}px`;
+            dancer.style.top = `${y}px`;
+            dancer.style.fontSize = `${Math.random() * 25 + 20}px`;
+            dancer.style.animationDelay = `${Math.random() * 2}s`;
+            
+            lohriCard.appendChild(dancer);
+            
+            setTimeout(() => {
+                if (dancer.parentNode) {
+                    dancer.remove();
+                }
+            }, 3000);
+        }
+
+        function createWarmGlow() {
+            const cardRect = lohriCard.getBoundingClientRect();
+            
+            const glow = document.createElement('div');
+            glow.className = 'warm-glow';
+            
+            glow.style.left = `${cardRect.width / 2}px`;
+            glow.style.top = `${cardRect.height / 2}px`;
+            
+            lohriCard.appendChild(glow);
+            
+            setTimeout(() => {
+                if (glow.parentNode) {
+                    glow.remove();
+                }
+            }, 2000);
+        }
+
+        function createCelebration() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createFireSpark();
+                    createPopcornKernel();
+                    createPeanut();
+                    createGurRevri();
+                    createBonfireFlame();
+                    createBhangraDancer();
+                    if (i % 5 === 0) createWarmGlow();
+                }, i * 200);
+            }
+            
+            document.querySelectorAll('.lohri-icon').forEach(icon => {
+                const originalAnimation = icon.style.animation;
+                icon.style.animation = 'floatLohri 1s ease-in-out infinite';
+                icon.style.filter = 'drop-shadow(0 0 20px rgba(255, 167, 38, 0.9)) brightness(1.4)';
+                
+                setTimeout(() => {
+                    icon.style.animation = originalAnimation || 'floatLohri 6s ease-in-out infinite';
+                    icon.style.filter = 'drop-shadow(0 0 10px rgba(255, 167, 38, 0.7))';
+                }, 4000);
+            });
+            
+            lohriCard.style.boxShadow = 'inset 0 0 60px rgba(255, 167, 38, 0.4), 0 0 50px rgba(216, 67, 21, 0.5)';
+            lohriCard.style.transition = 'all 0.5s ease';
+            
+            setTimeout(() => {
+                lohriCard.style.boxShadow = 'inset 0 0 30px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.3)';
+            }, 4000);
+        }
+
+        // Notification function
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.style.display = 'block';
+            notification.style.animation = 'slideIn 0.3s ease';
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 300);
+            }, 3000);
+        }
+
+        // Start animations after page loads
+        setTimeout(() => {
+            // Continuous animations
+            setInterval(createFireSpark, 1500);
+            setInterval(createPopcornKernel, 2000);
+            setInterval(createPeanut, 2500);
+            setInterval(createGurRevri, 3500);
+            setInterval(createBonfireFlame, 1000);
+            setInterval(createBhangraDancer, 3000);
+            setInterval(createWarmGlow, 6000);
+            
+            // Initial burst
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createFireSpark();
+                    createPopcornKernel();
+                    createPeanut();
+                    createGurRevri();
+                    createBonfireFlame();
+                }, i * 300);
+            }
+            
+            showNotification('🔥 Welcome to Lohri Wishes Generator! Sunder mundriye ho!');
+        }, 1000);
+    </script>
+</body>
+</html>
