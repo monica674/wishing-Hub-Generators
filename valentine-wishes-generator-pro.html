@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Wishes Generator Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #8a2b5c 0%, #c2185b 30%, #e91e63 70%, #ff4081 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #ffebee;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .heart-title {
+            color: #ff4081;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .heart-title::before, .heart-title::after {
+            content: '💖';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+        }
+        
+        .heart-title::before {
+            right: -45px;
+        }
+        
+        .heart-title::after {
+            left: -45px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ffcdd2;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .valentine-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #8a2b5c 0%, #c2185b 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 5px solid #ff80ab;
+        }
+        
+        .heart {
+            position: absolute;
+            background: #ff4081;
+            width: 40px;
+            height: 40px;
+            transform: rotate(45deg);
+            box-shadow: 0 0 20px #ff4081;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        .heart:before, .heart:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #ff4081;
+            border-radius: 50%;
+        }
+        
+        .heart:before {
+            top: -20px;
+            left: 0;
+        }
+        
+        .heart:after {
+            top: 0;
+            left: -20px;
+        }
+        
+        .heart1 { top: 20px; left: 20px; }
+        .heart2 { top: 20px; right: 20px; }
+        .heart3 { bottom: 20px; left: 20px; }
+        .heart4 { bottom: 20px; right: 20px; }
+        
+        @keyframes heartbeat {
+            0% { transform: rotate(45deg) scale(1); }
+            5% { transform: rotate(45deg) scale(1.1); }
+            10% { transform: rotate(45deg) scale(1); }
+            15% { transform: rotate(45deg) scale(1.2); }
+            50% { transform: rotate(45deg) scale(1); }
+            100% { transform: rotate(45deg) scale(1); }
+        }
+        
+        .card-title {
+            font-size: 2.2rem;
+            color: #ffebee;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #fff;
+            font-style: italic;
+        }
+        
+        .card-sender {
+            font-size: 1.2rem;
+            color: #ffcdd2;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 64, 129, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 64, 129, 0.2) 0%, transparent 20%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #ff80ab;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 128, 171, 0.3);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(255, 128, 171, 0.15);
+            border: 1px solid rgba(255, 128, 171, 0.3);
+            border-radius: 10px;
+            color: #ff80ab;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(255, 128, 171, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #ff80ab;
+            box-shadow: 0 0 10px #ff80ab;
+        }
+        
+        .color1 { background: linear-gradient(45deg, #8a2b5c, #c2185b); }
+        .color2 { background: linear-gradient(45deg, #880e4f, #ad1457); }
+        .color3 { background: linear-gradient(45deg, #6a1b9a, #8e24aa); }
+        .color4 { background: linear-gradient(45deg, #c62828, #d32f2f); }
+        .color5 { background: linear-gradient(45deg, #ad1457, #e91e63); }
+        .color6 { background: linear-gradient(45deg, #1a237e, #283593); }
+        .color7 { background: linear-gradient(45deg, #311b92, #4527a0); }
+        .color8 { background: linear-gradient(45deg, #bf360c, #d84315); }
+        .color9 { background: linear-gradient(45deg, #004d40, #00695c); }
+        .color10 { background: linear-gradient(45deg, #33691e, #558b2f); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #ff80ab, #ff4081);
+            color: white;
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #e91e63, #c2185b);
+            color: white;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .pinterest { background: linear-gradient(45deg, #bd081c, #9c0718); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hearts-fall {
+            position: absolute;
+            color: #ff4081;
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 100;
+            animation: fall linear infinite;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .instruction {
+            background: rgba(255, 128, 171, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #ff80ab;
+            font-size: 0.95rem;
+            color: #ffcdd2;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(255, 128, 171, 0.2);
+            border-radius: 10px;
+            color: #ff80ab;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(255, 128, 171, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffcdd2;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 128, 171, 0.95);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-message {
+                font-size: 1.3rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="heart-title">Valentine's Day Wishes Generator Pro</span></h1>
+            <p class="subtitle">Create beautiful Valentine's Day greetings to share with your loved ones</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Valentine's Card</h2>
+                <div class="valentine-card" id="valentineCard">
+                    <div class="heart heart1"></div>
+                    <div class="heart heart2"></div>
+                    <div class="heart heart3"></div>
+                    <div class="heart heart4"></div>
+                    <div class="card-pattern"></div>
+                    <h3 class="card-title" id="cardTitle">Happy Valentine's Day!</h3>
+                    <p class="card-message" id="cardMessage">My love for you is a journey starting at forever and ending at never. You're the missing piece I've been searching for.</p>
+                    <p class="card-sender" id="cardSender">With love, Your Name</p>
+                </div>
+                
+                <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://valentinewishes.com/card/<?php echo rand(1000,9999); ?>
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your Valentine's card is ready! Customize it with different designs and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Romantic Messages</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <!-- Auto wishes will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <!-- Card design buttons will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Custom Message</h3>
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom romantic message here..."></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., With love, Sarah)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send to Loved One
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn telegram" id="telegramBtn">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                        <button class="social-btn copy-link" id="copyLinkBtn">
+                            <i class="fas fa-copy"></i> Copy Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#ff4081;"></i> for Valentine's Day | Spread love and happiness</p>
+        </footer>
+    </div>
+
+    <script>
+        // Valentine's Day romantic messages
+        const autoWishes = [
+            "My love for you is a journey starting at forever and ending at never. You're the missing piece I've been searching for.",
+            "You are the source of my joy, the center of my world, and the whole of my heart. Happy Valentine's Day!",
+            "In you, I've found the love of my life and my closest, truest friend. I love you more than words can express.",
+            "Every love story is beautiful, but ours is my favorite. Happy Valentine's Day to the one who holds my heart.",
+            "If I had a flower for every time I thought of you, I could walk in my garden forever. Happy Valentine's Day!",
+            "You're the butter to my bread, and the breath to my life. I love you more than all the stars in the sky.",
+            "I saw that you were perfect, and so I loved you. Then I saw that you were not perfect and I loved you even more.",
+            "I love you not only for what you are, but for what I am when I am with you. Happy Valentine's Day my love!",
+            "To the world you may be one person, but to me you are the world. Happy Valentine's Day to my everything.",
+            "I don't need a special day to remind me how much I love you. Every day with you feels like Valentine's Day."
+        ];
+
+        // Card designs with romantic colors
+        const cardDesigns = [
+            { name: "Classic Red", className: "color1" },
+            { name: "Deep Pink", className: "color2" },
+            { name: "Romantic Purple", className: "color3" },
+            { name: "Passionate Red", className: "color4" },
+            { name: "Pink Love", className: "color5" },
+            { name: "Royal Blue", className: "color6" },
+            { name: "Violet Dream", className: "color7" },
+            { name: "Fiery Orange", className: "color8" },
+            { name: "Emerald Green", className: "color9" },
+            { name: "Forest Green", className: "color10" }
+        ];
+
+        // DOM elements
+        const valentineCard = document.getElementById('valentineCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const autoWishesContainer = document.getElementById('autoWishes');
+        const cardDesignsContainer = document.getElementById('cardDesigns');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+        const siteLink = document.getElementById('siteLink');
+        
+        // Initialize auto wishes buttons
+        autoWishes.forEach((wish, index) => {
+            const wishButton = document.createElement('button');
+            wishButton.className = 'wish-btn';
+            wishButton.textContent = `Message ${index + 1}`;
+            wishButton.addEventListener('click', () => {
+                cardMessage.textContent = wish;
+                // Reset custom message input
+                customMessage.value = '';
+            });
+            autoWishesContainer.appendChild(wishButton);
+        });
+
+        // Initialize card design buttons
+        cardDesigns.forEach((design, index) => {
+            const designButton = document.createElement('button');
+            designButton.className = `design-btn ${design.className}`;
+            designButton.title = design.name;
+            if (index === 0) designButton.classList.add('active');
+            
+            designButton.addEventListener('click', () => {
+                // Remove active class from all design buttons
+                document.querySelectorAll('.design-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                designButton.classList.add('active');
+                
+                // Change card background
+                applyCardDesign(design.className);
+            });
+            
+            cardDesignsContainer.appendChild(designButton);
+        });
+
+        // Function to apply card design
+        function applyCardDesign(designClass) {
+            // Map design classes to gradient colors
+            const gradients = {
+                'color1': ['#8a2b5c', '#c2185b'],
+                'color2': ['#880e4f', '#ad1457'],
+                'color3': ['#6a1b9a', '#8e24aa'],
+                'color4': ['#c62828', '#d32f2f'],
+                'color5': ['#ad1457', '#e91e63'],
+                'color6': ['#1a237e', '#283593'],
+                'color7': ['#311b92', '#4527a0'],
+                'color8': ['#bf360c', '#d84315'],
+                'color9': ['#004d40', '#00695c'],
+                'color10': ['#33691e', '#558b2f']
+            };
+            
+            const colors = gradients[designClass];
+            valentineCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+        }
+
+        // Custom message input event
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            }
+        });
+
+        // Sender name input event
+        senderName.addEventListener('input', () => {
+            if (senderName.value.trim() !== '') {
+                cardSender.textContent = `With love, ${senderName.value}`;
+            } else {
+                cardSender.textContent = 'With love, Your Name';
+            }
+        });
+
+        // Edit button functionality
+        document.getElementById('editBtn').addEventListener('click', () => {
+            // Highlight the custom message field
+            customMessage.focus();
+            customMessage.style.border = '2px solid #ff80ab';
+            customMessage.style.boxShadow = '0 0 10px rgba(255, 128, 171, 0.5)';
+            
+            // Remove highlight after 2 seconds
+            setTimeout(() => {
+                customMessage.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                customMessage.style.boxShadow = 'none';
+            }, 2000);
+            
+            // Show notification
+            showNotification('You can now edit the card message and sender name');
+        });
+
+        // Send to loved one button functionality
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const recipient = prompt("Enter your loved one's name:");
+            if (recipient) {
+                const originalSender = cardSender.textContent.replace('With love, ', '');
+                cardSender.textContent = `To: ${recipient} | From: ${originalSender === 'Your Name' ? 'Your Secret Admirer' : originalSender}`;
+                
+                // Show success message
+                showNotification(`Card customized for ${recipient}! Now you can share it.`);
+                
+                // Create special celebration
+                createLoveCelebration();
+            }
+        });
+
+        // Share buttons functionality
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `💖 *${cardTitle.textContent}* 💖\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreate your own Valentine's card: ${window.location.href}`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const quote = encodeURIComponent(`💖 ${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}...`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`💖 ${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}...`);
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('To share on Instagram: 1. Take a screenshot of your card 2. Open Instagram 3. Post it as a story or feed with #ValentinesLove');
+        });
+
+        document.getElementById('telegramBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`💖 ${cardTitle.textContent}\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\n${window.location.href}`);
+            window.open(`https://t.me/share/url?url=${text}`, '_blank');
+        });
+
+        document.getElementById('copyLinkBtn').addEventListener('click', () => {
+            // Copy the current card details as a shareable link
+            const cardData = {
+                title: cardTitle.textContent,
+                message: cardMessage.textContent,
+                sender: cardSender.textContent,
+                design: document.querySelector('.design-btn.active').className.match(/color\d+/)[0]
+            };
+            
+            const encodedData = encodeURIComponent(JSON.stringify(cardData));
+            const shareableLink = `${window.location.origin}${window.location.pathname}?card=${encodedData}`;
+            
+            navigator.clipboard.writeText(shareableLink)
+                .then(() => showNotification('💖 Card link copied to clipboard! Share it with your loved one.'))
+                .catch(err => {
+                    console.error('Could not copy text: ', err);
+                    showNotification('Failed to copy link. Please try again.');
+                });
+        });
+
+        // Falling hearts effect
+        function createFallingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'hearts-fall';
+            heart.innerHTML = '💖';
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+            heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            
+            document.body.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+        // Confetti effect
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            
+            // Random colors for confetti
+            const colors = ['#ff4081', '#e91e63', '#c2185b', '#ff80ab', '#f8bbd0'];
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Random position
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.top = '-10px';
+            
+            // Random size
+            const size = Math.random() * 10 + 5;
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            
+            document.body.appendChild(confetti);
+            
+            // Random animation
+            const duration = Math.random() * 3 + 2;
+            confetti.style.transition = `all ${duration}s ease-out`;
+            
+            setTimeout(() => {
+                confetti.style.top = '100vh';
+                confetti.style.left = `${parseFloat(confetti.style.left) + (Math.random() - 0.5) * 100}px`;
+                confetti.style.opacity = '0';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+            }, 10);
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                confetti.remove();
+            }, duration * 1000);
+        }
+
+        // Love celebration effect (for when sending to loved one)
+        function createLoveCelebration() {
+            // Create lots of hearts and confetti
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createFallingHeart();
+                    createConfetti();
+                }, i * 50);
+            }
+            
+            // Add extra special effects
+            setTimeout(() => {
+                // Make hearts beat faster
+                document.querySelectorAll('.heart').forEach(heart => {
+                    heart.style.animationDuration = '0.5s';
+                });
+                
+                // Return to normal after 3 seconds
+                setTimeout(() => {
+                    document.querySelectorAll('.heart').forEach(heart => {
+                        heart.style.animationDuration = '1.5s';
+                    });
+                }, 3000);
+            }, 500);
+        }
+
+        // Create periodic effects
+        setInterval(createFallingHeart, 800);
+        setInterval(createConfetti, 500);
+        
+        // Create initial celebration
+        setTimeout(() => {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createFallingHeart();
+                    if (i % 2 === 0) createConfetti();
+                }, i * 100);
+            }
+        }, 1000);
+
+        // Notification function
+        function showNotification(message) {
+            // Remove existing notification
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create new notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Generate a unique link for the card
+        const cardId = Math.floor(Math.random() * 10000);
+        siteLink.textContent = `https://valentinewishes.com/card/${cardId}`;
+        siteLink.href = `https://valentinewishes.com/card/${cardId}`;
+        
+        // Check for card data in URL (for sharing)
+        function loadCardFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cardDataParam = urlParams.get('card');
+            
+            if (cardDataParam) {
+                try {
+                    const cardData = JSON.parse(decodeURIComponent(cardDataParam));
+                    
+                    // Apply card data
+                    cardTitle.textContent = cardData.title || cardTitle.textContent;
+                    cardMessage.textContent = cardData.message || cardMessage.textContent;
+                    cardSender.textContent = cardData.sender || cardSender.textContent;
+                    
+                    // Apply design if specified
+                    if (cardData.design) {
+                        const designButton = document.querySelector(`.${cardData.design}`);
+                        if (designButton) {
+                            designButton.click();
+                        }
+                    }
+                    
+                    showNotification('💖 Valentine card loaded successfully!');
+                } catch (e) {
+                    console.error('Error loading card data:', e);
+                }
+            }
+        }
+        
+        // Load card data from URL if present
+        loadCardFromURL();
+        
+        // Initialize with a random wish
+        const randomWishIndex = Math.floor(Math.random() * autoWishes.length);
+        cardMessage.textContent = autoWishes[randomWishIndex];
+        
+        // Show welcome notification
+        setTimeout(() => {
+            showNotification('💖 Welcome! Create a beautiful Valentine card for your loved one!');
+        }, 1500);
+    </script>
+</body>
+</html>
