@@ -11,9 +11,10 @@
 <link rel="canonical" href="https://onlinewebtool.live/birthday-wishes-generator.html">
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
+/* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box}
 body{
     background:#000;
@@ -22,10 +23,18 @@ body{
     text-align:center;
     overflow-x:hidden;
 }
+
+/* ===== HEADINGS ===== */
 h1{
     font-family:'Pacifico',cursive;
     text-shadow:0 0 25px #00ff7f;
+    margin-top:30px;
 }
+h3{
+    margin-top:30px;
+}
+
+/* ===== CONTAINER ===== */
 .container{
     max-width:820px;
     margin:40px auto;
@@ -34,23 +43,58 @@ h1{
     border-radius:20px;
     box-shadow:0 0 40px #00ff7f66;
 }
-input,select{
+
+/* ===== INPUTS & SELECTS ===== */
+input, select{
     width:90%;
     padding:12px;
     margin:10px 0;
     border-radius:10px;
     border:none;
+    font-size:16px;
 }
+
+/* ===== BUTTONS ===== */
 button{
-    background:#00ff7f;
-    color:#000;
     padding:12px 25px;
     border:none;
     border-radius:25px;
     margin:8px;
     cursor:pointer;
+    font-weight:700;
+    transition:transform 0.2s;
 }
-button:hover{transform:scale(1.08)}
+button:hover{transform:scale(1.08);}
+
+/* Primary Buttons */
+.generate-btn{background:#00ff7f;color:#000;}
+.copy-btn{background:#ffcc00;color:#000;}
+.song-btn{background:#ff33cc;color:#fff;}
+.poster-btn{background:#00ccff;color:#000;}
+
+/* ===== WhatsApp Floating Button ===== */
+.whatsapp-btn{
+    background:#25D366;
+    color:#fff;
+    font-weight:700;
+    animation:pulse 1.8s infinite;
+    box-shadow:0 0 20px #25D366;
+    border:none;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    z-index:9999;
+}
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.08)}
+    100%{transform:scale(1)}
+}
+
+/* ===== WISH BOX ===== */
 #wishBox{
     margin-top:20px;
     padding:20px;
@@ -59,16 +103,22 @@ button:hover{transform:scale(1.08)}
     min-height:90px;
     font-size:1.2rem;
 }
-canvas#fireworks{
-    position:fixed;
-    inset:0;
-    z-index:-1;
-}
+
+/* ===== POSTER ===== */
 canvas#poster{
     margin-top:20px;
     border:2px solid #00ff7f;
     border-radius:12px;
 }
+
+/* ===== FIREWORKS ===== */
+canvas#fireworks{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+}
+
+/* ===== FOOTER ===== */
 footer{
     margin:40px 0;
     font-size:.85rem;
@@ -89,31 +139,34 @@ footer{
 <input id="nameInput" placeholder="Enter Name">
 
 <select id="lang">
-<option value="en">English</option>
-<option value="ur">Urdu</option>
-<option value="hi">Hindi</option>
+    <option value="en">English</option>
+    <option value="ur">Urdu</option>
+    <option value="hi">Hindi</option>
 </select>
 
-<button onclick="generateWish()">Generate Wish</button>
-<button onclick="copyWish()">Copy</button>
-<button onclick="shareWhatsApp()">WhatsApp</button>
-<button onclick="playSong()">🎵 Song</button>
+<button class="generate-btn" onclick="generateWish()">Generate Wish</button>
+<button class="copy-btn" onclick="copyWish()">Copy</button>
+<button class="song-btn" onclick="playSong()">🎵 Song</button>
 
 <div id="wishBox"></div>
 
 <h3>🎨 Birthday Poster</h3>
-<button onclick="generatePoster()">Generate Poster</button>
-<button onclick="downloadPoster()">Download Poster</button>
+<button class="poster-btn" onclick="generatePoster()">Generate Poster</button>
+<button class="poster-btn" onclick="downloadPoster()">Download Poster</button>
 
-<br><br>
 <canvas id="poster" width="600" height="420"></canvas>
 
 </div>
 
 <footer>© 2026 Birthday Wishes Generator</footer>
 
+<!-- WhatsApp Floating Button -->
+<button class="whatsapp-btn" onclick="shareWhatsApp()" id="waBtn">
+    📱 Share on WhatsApp
+</button>
+
 <audio id="song" preload="auto">
-<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_8e8b5b71b7.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_8e8b5b71b7.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -156,9 +209,15 @@ function copyWish(){
     navigator.clipboard.writeText(wishBox.innerText);
     alert("Copied!");
 }
+
 function shareWhatsApp(){
+    if(!wishBox.innerText){
+        alert("Generate a wish first!");
+        return;
+    }
     window.open("https://wa.me/?text="+encodeURIComponent(wishBox.innerText));
 }
+
 function playSong(){
     document.getElementById("song").play().catch(()=>alert("Tap again to play music"));
 }
@@ -168,8 +227,7 @@ const p=document.getElementById("poster");
 const ctx=p.getContext("2d");
 
 function generatePoster(){
-
-    // 🌈 Colorful gradient background
+    // Gradient background
     const gradient = ctx.createLinearGradient(0, 0, p.width, p.height);
     gradient.addColorStop(0, "#ff6a00");
     gradient.addColorStop(0.5, "#ff2f92");
@@ -177,7 +235,7 @@ function generatePoster(){
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, p.width, p.height);
 
-    // ✨ Confetti dots
+    // Confetti
     for(let i=0;i<120;i++){
         ctx.fillStyle = `hsl(${Math.random()*360},100%,60%)`;
         ctx.beginPath();
@@ -185,7 +243,7 @@ function generatePoster(){
         ctx.fill();
     }
 
-    // 🟩 Neon border
+    // Neon border
     ctx.strokeStyle="#ffffff";
     ctx.lineWidth=4;
     ctx.shadowColor="#ffffff";
@@ -193,7 +251,7 @@ function generatePoster(){
     ctx.strokeRect(12,12,p.width-24,p.height-24);
     ctx.shadowBlur=0;
 
-    // 🎉 Title
+    // Title
     ctx.font="42px 'Great Vibes'";
     ctx.fillStyle="#fff700";
     ctx.textAlign="center";
@@ -202,14 +260,14 @@ function generatePoster(){
     ctx.fillText("🎉 HAPPY BIRTHDAY 🎂", p.width/2, 70);
     ctx.shadowBlur=0;
 
-    // 🖼️ Message card
+    // Message card
     ctx.fillStyle="rgba(0,0,0,0.55)";
     ctx.fillRect(50,110,p.width-100,p.height-200);
 
     ctx.strokeStyle="#ffffffaa";
     ctx.strokeRect(50,110,p.width-100,p.height-200);
 
-    // 💌 Wish text
+    // Wish text
     ctx.font="24px 'Trebuchet MS'";
     ctx.fillStyle="#00ff7f";
     ctx.textAlign="left";
@@ -217,13 +275,12 @@ function generatePoster(){
     const text = wishBox.innerText || "Make a Wish!";
     wrapText(text, 70, 150, p.width-140, 32);
 
-    // 💎 Footer
+    // Footer
     ctx.font="14px Arial";
     ctx.fillStyle="#ffffffcc";
     ctx.textAlign="center";
     ctx.fillText("🎁 Birthday Wishes Generator", p.width/2, p.height-30);
 }
-
 
 function wrapText(text,x,y,maxWidth,lineHeight){
     const words=text.split(" ");
@@ -259,7 +316,6 @@ Spark.prototype.draw=function(){
     fx.fill();
 }
 Spark.prototype.update=function(){this.r+=2;this.a-=0.03}
-
 (function animate(){
     fx.clearRect(0,0,c.width,c.height);
     if(Math.random()<0.05)sparks.push(new Spark());
