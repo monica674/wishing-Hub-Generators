@@ -482,6 +482,7 @@ body {
     </div>
 </footer>
 
+<script>
 const tools = [
     {name: "Birthday Wishes Generator", file: "birthday-wishes-generator.html", cat: "birthday", badge: "🔥 Trending"},
     {name: "Anniversary Wishes Generator Pro", file: "anniversary-wishes-generator-pro.html", cat: "event", badge: "❤️ Popular"},
@@ -517,6 +518,37 @@ const tools = [
     {name: "Onam Wishes Generator", file: "onam-wishes-generator.html", cat: "festival"},
     {name: "Pongal Wishes Generator", file: "pongal-wishes-generator-with-themes.html", cat: "festival"}
 ];
+
+const toolList = document.getElementById("toolList");
+const searchInput = document.getElementById("search");
+
+function renderTools(toolsArray) {
+    toolList.innerHTML = "";
+    toolsArray.forEach(tool => {
+        toolList.innerHTML += `
+            <a class="tool" href="${tool.file}">
+                ${tool.badge ? `<div class="badge">${tool.badge}</div>` : ""}
+                <h3>${tool.name}</h3>
+                <span>${tool.cat.charAt(0).toUpperCase() + tool.cat.slice(1)} Wishes</span>
+            </a>
+        `;
+    });
+}
+
+renderTools(tools);
+
+function filterTools(category) {
+    document.querySelectorAll('.filters button').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    if (category === "all") {
+        renderTools(tools);
+    } else {
+        renderTools(tools.filter(tool => tool.cat === category));
+    }
+}
+</script>
+
 // Categories Data
 const categories = [
     {id: "all", name: "All Tools", count: 33},
