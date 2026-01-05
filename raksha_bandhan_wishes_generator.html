@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raksha Bandhan Wishes Generator Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8a5c2 0%, #fd79a8 30%, #e84393 70%, #d63031 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(255, 107, 129, 0.5);
+        }
+        
+        .rakhi-title {
+            color: #ffd32a;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .rakhi-title::before, .rakhi-title::after {
+            content: '🎀';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+        }
+        
+        .rakhi-title::before {
+            right: -50px;
+        }
+        
+        .rakhi-title::after {
+            left: -50px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ffeaa7;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: visible;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .rakhi-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #fd79a8 0%, #e84393 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: visible;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.1), 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 5px solid #ffd32a;
+        }
+        
+        .rakhi-icon {
+            position: absolute;
+            font-size: 2.8rem;
+            opacity: 0.9;
+            animation: floatRakhi 6s ease-in-out infinite;
+            z-index: 5;
+            filter: drop-shadow(0 0 10px rgba(255, 211, 42, 0.7));
+        }
+        
+        .rakhi-icon1 { top: 20px; left: 20px; color: #ffd32a; animation-delay: 0s; }
+        .rakhi-icon2 { top: 20px; right: 20px; color: #fd79a8; animation-delay: 1.5s; }
+        .rakhi-icon3 { bottom: 20px; left: 20px; color: #e84393; animation-delay: 3s; }
+        .rakhi-icon4 { bottom: 20px; right: 20px; color: #6c5ce7; animation-delay: 4.5s; }
+        
+        @keyframes floatRakhi {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
+            50% { transform: translateY(0) rotate(0deg) scale(1); }
+            75% { transform: translateY(-10px) rotate(-5deg) scale(1.05); }
+        }
+        
+        .card-title {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(255, 211, 42, 0.5);
+            z-index: 20;
+            position: relative;
+            background: rgba(214, 48, 49, 0.8);
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 3px solid #ffd32a;
+        }
+        
+        .card-message {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #ffeaa7;
+            z-index: 20;
+            position: relative;
+            background: rgba(214, 48, 49, 0.85);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 211, 42, 0.3);
+        }
+        
+        .card-sender {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-top: 20px;
+            font-style: italic;
+            font-weight: bold;
+            z-index: 20;
+            position: relative;
+            background: rgba(255, 211, 42, 0.8);
+            padding: 12px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 2px solid #fd79a8;
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 211, 42, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 211, 42, 0.15) 0%, transparent 20%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 15px,
+                    rgba(253, 121, 168, 0.1) 15px,
+                    rgba(253, 121, 168, 0.1) 30px
+                );
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* RAKHI THREADS */
+        .rakhi-thread {
+            position: absolute;
+            font-size: 1.8rem;
+            pointer-events: none;
+            z-index: 15;
+            animation: threadFloat linear infinite;
+        }
+        
+        @keyframes threadFloat {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* SWEET CANDIES */
+        .sweet-candy {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #ffd32a, #fdcb6e);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            animation: candyFall linear infinite;
+            box-shadow: 0 0 10px #ffd32a;
+        }
+        
+        @keyframes candyFall {
+            0% {
+                transform: translateY(-50px) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        /* FLOWER PETALS */
+        .flower-petal {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(45deg, #fd79a8, #e84393);
+            border-radius: 50% 50% 50% 0;
+            pointer-events: none;
+            z-index: 15;
+            animation: petalFloat linear infinite;
+            transform: rotate(45deg);
+        }
+        
+        @keyframes petalFloat {
+            0% {
+                transform: translateY(-50px) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px) rotate(135deg);
+                opacity: 0;
+            }
+        }
+        
+        /* HEART BEATS */
+        .heart-beat {
+            position: absolute;
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 15;
+            animation: heartbeat 1s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+        
+        /* GIFT BOXES */
+        .gift-box {
+            position: absolute;
+            font-size: 1.8rem;
+            pointer-events: none;
+            z-index: 15;
+            animation: giftFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes giftFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-15px) rotate(10deg) scale(1.2); opacity: 1; }
+        }
+        
+        /* LOVE SPARKLES */
+        .love-sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            animation: sparkleGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkleGlow {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+        
+        /* RIBBON WAVE */
+        .ribbon-wave {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #ffd32a;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 8;
+            animation: waveExpand 2s ease-out infinite;
+            opacity: 0;
+        }
+        
+        @keyframes waveExpand {
+            0% { transform: scale(0.1); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(255, 211, 42, 0.2);
+            border: 1px solid rgba(255, 211, 42, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(255, 211, 42, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 211, 42, 0.3);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #ffd32a;
+            box-shadow: 0 0 15px rgba(255, 211, 42, 0.7);
+        }
+        
+        .color1 { background: linear-gradient(45deg, #fd79a8, #e84393); }
+        .color2 { background: linear-gradient(45deg, #ffd32a, #fdcb6e); }
+        .color3 { background: linear-gradient(45deg, #6c5ce7, #a29bfe); }
+        .color4 { background: linear-gradient(45deg, #00cec9, #81ecec); }
+        .color5 { background: linear-gradient(45deg, #d63031, #ff7675); }
+        .color6 { background: linear-gradient(45deg, #f8a5c2, #f78fb3); }
+        .color7 { background: linear-gradient(45deg, #cf6a87, #574b90); }
+        .color8 { background: linear-gradient(45deg, #feca57, #ff9ff3); }
+        .color9 { background: linear-gradient(45deg, #48dbfb, #0abde3); }
+        .color10 { background: linear-gradient(45deg, #1dd1a1, #10ac84); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .theme-type {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .theme-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .theme-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 211, 42, 0.2);
+        }
+        
+        .theme-btn.active {
+            border-color: #ffd32a;
+            background: rgba(255, 211, 42, 0.15);
+        }
+        
+        .sibling-btn.active {
+            border-color: #fd79a8;
+            background: rgba(253, 121, 168, 0.15);
+        }
+        
+        .love-btn.active {
+            border-color: #d63031;
+            background: rgba(214, 48, 49, 0.15);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #e84393, #fd79a8);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #ffd32a, #fdcb6e);
+            color: #d63031;
+            font-weight: bold;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .instruction {
+            background: rgba(255, 211, 42, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #fd79a8;
+            font-size: 0.95rem;
+            color: #ffffff;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(255, 211, 42, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(255, 211, 42, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 211, 42, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(214, 48, 49, 0.95);
+            color: #ffd32a;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+            border: 2px solid #ffd32a;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-title {
+                font-size: 1.8rem;
+            }
+            
+            .card-message {
+                font-size: 1.2rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+            
+            .theme-type {
+                flex-wrap: wrap;
+            }
+            
+            .theme-btn {
+                min-width: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .theme-type {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="rakhi-title">Raksha Bandhan Wishes Generator Pro</span></h1>
+            <p class="subtitle">Create beautiful Rakhi cards with sibling love and blessings</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Raksha Bandhan Card</h2>
+                <div class="rakhi-card" id="rakhiCard">
+                    <div class="card-pattern"></div>
+                    <div class="rakhi-icon rakhi-icon1">🎀</div>
+                    <div class="rakhi-icon rakhi-icon2">❤️</div>
+                    <div class="rakhi-icon rakhi-icon3">🎁</div>
+                    <div class="rakhi-icon rakhi-icon4">🌸</div>
+                    
+                    <h3 class="card-title" id="cardTitle">Happy Raksha Bandhan!</h3>
+                    <p class="card-message" id="cardMessage">May this Rakhi strengthen our bond of love and protection. Wishing my dear brother/sister a very Happy Raksha Bandhan filled with joy and sweet moments.</p>
+                    <p class="card-sender" id="cardSender">With love and blessings 🎀</p>
+                </div>
+                
+                <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://rakhiwishes.com/card/2024
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your Raksha Bandhan card is ready! Customize it with different themes, designs, and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Rakhi Blessings</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <button class="wish-btn">Brother's Protection</button>
+                        <button class="wish-btn">Sister's Love</button>
+                        <button class="wish-btn">Eternal Bond</button>
+                        <button class="wish-btn">Sweet Memories</button>
+                        <button class="wish-btn">Family Harmony</button>
+                        <button class="wish-btn">Health & Happiness</button>
+                        <button class="wish-btn">Success & Prosperity</button>
+                        <button class="wish-btn">Lifelong Friendship</button>
+                        <button class="wish-btn">Childhood Nostalgia</button>
+                        <button class="wish-btn">Divine Protection</button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <button class="design-btn color1 active" title="Pink Passion"></button>
+                        <button class="design-btn color2" title="Golden Rakhi"></button>
+                        <button class="design-btn color3" title="Purple Royalty"></button>
+                        <button class="design-btn color4" title="Turquoise Love"></button>
+                        <button class="design-btn color5" title="Red Celebration"></button>
+                        <button class="design-btn color6" title="Soft Pink"></button>
+                        <button class="design-btn color7" title="Berry Mix"></button>
+                        <button class="design-btn color8" title="Sunset Glow"></button>
+                        <button class="design-btn color9" title="Sky Blue"></button>
+                        <button class="design-btn color10" title="Emerald Green"></button>
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Rakhi Theme</h3>
+                    <div class="theme-type">
+                        <button class="theme-btn sibling-btn active" id="siblingBtn">
+                            <i class="fas fa-users"></i> Sibling Love
+                        </button>
+                        <button class="theme-btn love-btn" id="loveBtn">
+                            <i class="fas fa-heart"></i> Heartfelt
+                        </button>
+                        <button class="theme-btn" id="traditionalBtn">
+                            <i class="fas fa-hands"></i> Traditional
+                        </button>
+                        <button class="theme-btn" id="modernBtn">
+                            <i class="fas fa-gift"></i> Modern Celebration
+                        </button>
+                    </div>
+                    
+                    <input type="text" class="custom-input" id="brotherName" placeholder="Brother's Name (e.g., Dear Raj)">
+                    <input type="text" class="custom-input" id="sisterName" placeholder="Sister's Name (e.g., Love, Priya)">
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom Rakhi message here..."></textarea>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send Rakhi Wishes
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn copy-link" id="copyLinkBtn">
+                            <i class="fas fa-copy"></i> Copy Link
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#fd79a8;"></i> for Raksha Bandhan | Happy Rakhi! 🎀</p>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification" style="display: none;"></div>
+
+    <script>
+        // Raksha Bandhan messages
+        const autoWishes = [
+            "May this Rakhi strengthen our bond of love and protection. Wishing my dear brother/sister a very Happy Raksha Bandhan filled with joy and sweet moments.",
+            "On this Raksha Bandhan, I pray to God to always keep you happy, healthy, and protected. You're the best brother/sister anyone could ask for. Happy Rakhi!",
+            "This Rakhi, I tie this thread of love and protection around your wrist, promising to always be there for you. Happy Raksha Bandhan, dear sibling!",
+            "May our bond of love grow stronger with each passing year. Wishing you a Raksha Bandhan filled with happiness, sweets, and beautiful memories.",
+            "You're not just my brother/sister, you're my best friend, my protector, and my confidant. Happy Raksha Bandhan to the most amazing sibling!",
+            "As I tie this Rakhi, I pray for your success, health, and happiness. May God bless you with all the joys of life. Happy Rakhi!",
+            "Distance may separate us, but our bond of love remains strong. Sending you warm Rakhi wishes across the miles. Happy Raksha Bandhan!",
+            "Thank you for always protecting me and standing by my side. Wishing you a very Happy Raksha Bandhan filled with love and blessings.",
+            "May this Rakhi bring loads of happiness, success, and prosperity in your life. You deserve all the best things. Happy Rakhi, dear sibling!",
+            "Our childhood memories, our fights, our laughter - everything makes our bond special. Wishing you a wonderful Raksha Bandhan!"
+        ];
+
+        // Rakhi themes
+        const rakhiThemes = {
+            sibling: {
+                title: "Happy Raksha Bandhan!",
+                icons: ['🎀', '❤️', '🎁', '🌸'],
+                color: '#ffd32a',
+                greeting: "With love and blessings 🎀"
+            },
+            love: {
+                title: "With All My Love!",
+                icons: ['💖', '💝', '💕', '💓'],
+                color: '#d63031',
+                greeting: "Forever yours 💖"
+            },
+            traditional: {
+                title: "Traditional Blessings!",
+                icons: ['🪔', '🙏', '🎊', '🕌'],
+                color: '#6c5ce7',
+                greeting: "Divine blessings 🙏"
+            },
+            modern: {
+                title: "Modern Celebration!",
+                icons: ['🎉', '✨', '🌟', '🎈'],
+                color: '#00cec9',
+                greeting: "Cheers to us! 🎉"
+            }
+        };
+
+        // DOM elements
+        const rakhiCard = document.getElementById('rakhiCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const customMessage = document.getElementById('customMessage');
+        const brotherName = document.getElementById('brotherName');
+        const sisterName = document.getElementById('sisterName');
+        const siblingBtn = document.getElementById('siblingBtn');
+        const loveBtn = document.getElementById('loveBtn');
+        const traditionalBtn = document.getElementById('traditionalBtn');
+        const modernBtn = document.getElementById('modernBtn');
+        const notification = document.getElementById('notification');
+        
+        let selectedTheme = 'sibling';
+        
+        // Initialize wish buttons
+        document.querySelectorAll('.wish-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (index < autoWishes.length) {
+                    cardMessage.textContent = autoWishes[index];
+                    customMessage.value = '';
+                    showNotification(`Applied "${btn.textContent}" blessing!`);
+                }
+            });
+        });
+
+        // Initialize design buttons
+        document.querySelectorAll('.design-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all
+                document.querySelectorAll('.design-btn').forEach(b => b.classList.remove('active'));
+                // Add active to clicked
+                this.classList.add('active');
+                
+                // Apply design
+                const className = this.className.match(/color\d+/)[0];
+                const gradients = {
+                    'color1': ['#fd79a8', '#e84393'],
+                    'color2': ['#ffd32a', '#fdcb6e'],
+                    'color3': ['#6c5ce7', '#a29bfe'],
+                    'color4': ['#00cec9', '#81ecec'],
+                    'color5': ['#d63031', '#ff7675'],
+                    'color6': ['#f8a5c2', '#f78fb3'],
+                    'color7': ['#cf6a87', '#574b90'],
+                    'color8': ['#feca57', '#ff9ff3'],
+                    'color9': ['#48dbfb', '#0abde3'],
+                    'color10': ['#1dd1a1', '#10ac84']
+                };
+                
+                const colors = gradients[className];
+                rakhiCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+                
+                showNotification(`Applied ${this.title} design!`);
+            });
+        });
+
+        // Theme buttons
+        siblingBtn.addEventListener('click', () => {
+            selectedTheme = 'sibling';
+            updateThemeButtons();
+            showNotification("Applied Sibling Love theme! Happy Rakhi! 🎀");
+        });
+        
+        loveBtn.addEventListener('click', () => {
+            selectedTheme = 'love';
+            updateThemeButtons();
+            showNotification("Applied Heartfelt theme! With all my love! 💖");
+        });
+        
+        traditionalBtn.addEventListener('click', () => {
+            selectedTheme = 'traditional';
+            updateThemeButtons();
+            showNotification("Applied Traditional theme! Divine blessings! 🙏");
+        });
+        
+        modernBtn.addEventListener('click', () => {
+            selectedTheme = 'modern';
+            updateThemeButtons();
+            showNotification("Applied Modern Celebration theme! Cheers! 🎉");
+        });
+        
+        function updateThemeButtons() {
+            [siblingBtn, loveBtn, traditionalBtn, modernBtn].forEach(btn => btn.classList.remove('active'));
+            if (selectedTheme === 'sibling') siblingBtn.classList.add('active');
+            else if (selectedTheme === 'love') loveBtn.classList.add('active');
+            else if (selectedTheme === 'traditional') traditionalBtn.classList.add('active');
+            else modernBtn.classList.add('active');
+            
+            updateCardForTheme();
+        }
+        
+        function updateCardForTheme() {
+            const theme = rakhiThemes[selectedTheme];
+            
+            // Update title based on names
+            if (brotherName.value.trim() && sisterName.value.trim()) {
+                cardTitle.textContent = `Happy Rakhi, ${brotherName.value}!`;
+                cardSender.textContent = `Love, ${sisterName.value} ${theme.icons[0]}`;
+            } else {
+                cardTitle.textContent = theme.title;
+                cardSender.textContent = theme.greeting;
+            }
+            
+            // Update icons
+            const icons = document.querySelectorAll('.rakhi-icon');
+            theme.icons.forEach((icon, index) => {
+                if (icons[index]) icons[index].textContent = icon;
+            });
+            
+            // Update border color
+            rakhiCard.style.borderColor = theme.color;
+        }
+
+        // Custom message input
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            } else {
+                cardMessage.textContent = autoWishes[0];
+            }
+        });
+
+        // Brother name input
+        brotherName.addEventListener('input', updateCardForTheme);
+
+        // Sister name input
+        sisterName.addEventListener('input', updateCardForTheme);
+
+        // Edit button
+        document.getElementById('editBtn').addEventListener('click', () => {
+            customMessage.focus();
+            showNotification('Start editing your Rakhi card message!');
+        });
+
+        // Send button
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const brother = prompt("Enter brother's name:", brotherName.value || "Dear Brother");
+            const sister = prompt("Enter sister's name:", sisterName.value || "Your Loving Sister");
+            
+            if (brother && sister) {
+                showNotification(`Rakhi card customized for ${brother} from ${sister}! Ready to share.`);
+                brotherName.value = brother;
+                sisterName.value = sister;
+                updateCardForTheme();
+                
+                // Celebration effect
+                createCelebration();
+            }
+        });
+
+        // Share buttons
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `*${cardTitle.textContent}*\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nHappy Raksha Bandhan! 🎀`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const quote = encodeURIComponent(`${cardTitle.textContent} - Happy Raksha Bandhan! 🎀`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}... #RakshaBandhan #HappyRakhi #Rakhi`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('📸 Take a screenshot and share on Instagram with #RakshaBandhan #HappyRakhi #SiblingLove');
+        });
+
+        document.getElementById('copyLinkBtn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => showNotification('Card link copied to clipboard! Share Rakhi wishes!'))
+                .catch(() => showNotification('Failed to copy link. Please try again.'));
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            const subject = encodeURIComponent(`${cardTitle.textContent} - Raksha Bandhan Greetings`);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Raksha Bandhan Wishes Generator\n${window.location.href}\n\nHappy Rakhi! 🎀`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // ANIMATION FUNCTIONS
+        function createRakhiThread() {
+            const cardRect = rakhiCard.getBoundingClientRect();
+            
+            const thread = document.createElement('div');
+            thread.className = 'rakhi-thread';
+            thread.innerHTML = '🎀';
+            
+            const x = Math.random() * (cardRect.width - 40) + 20;
+            thread.style.left = `${x}px`;
+            thread.style.top = `-50px`;
+            thread.style.fontSize = `${Math.random() * 20 + 20}px`;
+            thread.style.animationDuration = `${Math.random() * 4 + 3}s`;
+            thread.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            rakhiCard.appendChild(thread);
+            
+            setTimeout(() => {
+                if (thread.parentNode) {
+                    thread.remove();
+                }
+            }, 7000);
+        }
+
+        function createSweetCandy() {
+            const cardRect = rakhiCard.getBoundingClientRect();
+            
+            const candy = document.createElement('div');
+            candy.className = 'sweet-candy';
+            
+            const x = Math.random() * (cardRect.width - 25) + 12.5;
+            candy.style.left = `${x}px`;
+            candy.style.top = `-30px`;
+            candy.style.animationDuration = `${Math.random() * 5 + 3}s`;
+            candy.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            rakhiCard.appendChild(candy);
+            
+            setTimeout(() => {
+                if (candy.parentNode) {
+                    candy.remove();
+                }
+            }, 8000);
+        }
+
+        function createFlowerPetal() {
+            const cardRect = rakhiCard.getBoundingClientRect();
+            
+            const petal = document.createElement('div');
+            petal.className = 'flower-petal';
+            
+            const x = Math.random() * (cardRect.width - 25) + 12.5;
+            petal.style.left = `${x}px`;
+            petal.style.top = `-40px`;
+            petal.style.animationDuration = `${Math.random() * 6 + 4}s`;
+            petal.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            const colors = ['#fd79a8', '#e84393', '#ff7675', '#f78fb3'];
+            petal.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]}, #ffd32a)`;
+            
+            rakhiCard.appendChild(petal);
+            
+            setTimeout(() => {
+                if (petal.parentNode) {
+                    petal.remove();
+                }
+            }, 10000);
+        }
+
+        function createHeartBeat() {
+            const cardRect = rakhiCard.getBoundingClientRect();
+            
+            const heart = document.createElement('div');
+            heart.className = 'heart-beat';
+            heart.innerHTML = '❤️';
+            
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            const y = Math.random() * (cardRect.height - 30) + 15;
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+            heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+            heart.style.animationDelay = `${Math.random() * 2}s`;
+            
+            rakhiCard.appendChild(heart);
+            
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.remove();
+                }
+            }, 3000);
+        }
+
+        function createGiftBox() {
+            const cardRect = rakhiCard.getBoundingClientRect();
+            
+            const gift = document.createElement('div');
+            gift.className = 'gift-box';
+            gift.innerHTML = '🎁';
+            
+            const x = Math.random() * (cardRect.width - 30) + 15;
+            const y = Math.random() * (cardRect.height - 30) + 15;
+            gift.style.left = `${x}px`;
+            gift.style.top = `${y}px`;
+            gift.style.fontSize = `${Math.random() * 25 + 20}px`;
+            gift.style.animationDelay = `${Math.random() * 2}s`;
+            
+            rakhiCard.appendChild(gift);
+            
+            setTimeout(() => {
+                if (gift.parentNode) {
+                    gift.remove();
+                }
+            }, 4000);
+        }
+
+        function createLoveSparkle() {
+            const cardRect = rakhiCard.getBoundingClientRect();
+            
+            const sparkle = document.createElement('div');
+            sparkle.className = 'love-sparkle';
+            
+            const x = Math.random() * (cardRect.width - 10) + 5;
+            const y = Math.random() * (cardRect.height - 10) + 5;
+            sparkle.style.left = `${x}px`;
+            sparkle.style.top = `${y}px`;
+            
+            const colors = ['#ffd32a', '#fd79a8', '#e84393', '#d63031'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            sparkle.style.backgroundColor = color;
+            sparkle.style.boxShadow = `0 0 15px ${color}`;
+            sparkle.style.animationDelay = `${Math.random() * 2}s`;
+            
+            rakhiCard.appendChild(sparkle);
+            
+            setTimeout(() => {
+                if (sparkle.parentNode) {
+                    sparkle.remove();
+                }
+            }, 3000);
+        }
+
+        function createRibbonWave() {
+            const cardRect = rakhiCard.getBoundingClientRect();
+            
+            const ribbon = document.createElement('div');
+            ribbon.className = 'ribbon-wave';
+            
+            ribbon.style.left = `${cardRect.width / 2}px`;
+            ribbon.style.top = `${cardRect.height / 2}px`;
+            
+            rakhiCard.appendChild(ribbon);
+            
+            setTimeout(() => {
+                if (ribbon.parentNode) {
+                    ribbon.remove();
+                }
+            }, 2000);
+        }
+
+        function createCelebration() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createRakhiThread();
+                    createSweetCandy();
+                    createFlowerPetal();
+                    createHeartBeat();
+                    createGiftBox();
+                    createLoveSparkle();
+                    if (i % 5 === 0) createRibbonWave();
+                }, i * 200);
+            }
+            
+            document.querySelectorAll('.rakhi-icon').forEach(icon => {
+                const originalAnimation = icon.style.animation;
+                icon.style.animation = 'floatRakhi 1s ease-in-out infinite';
+                icon.style.filter = 'drop-shadow(0 0 20px rgba(255, 211, 42, 0.9)) brightness(1.4)';
+                
+                setTimeout(() => {
+                    icon.style.animation = originalAnimation || 'floatRakhi 6s ease-in-out infinite';
+                    icon.style.filter = 'drop-shadow(0 0 10px rgba(255, 211, 42, 0.7))';
+                }, 4000);
+            });
+            
+            rakhiCard.style.boxShadow = 'inset 0 0 60px rgba(255, 211, 42, 0.4), 0 0 50px rgba(253, 121, 168, 0.5)';
+            rakhiCard.style.transition = 'all 0.5s ease';
+            
+            setTimeout(() => {
+                rakhiCard.style.boxShadow = 'inset 0 0 30px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.3)';
+            }, 4000);
+        }
+
+        // Notification function
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.style.display = 'block';
+            notification.style.animation = 'slideIn 0.3s ease';
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 300);
+            }, 3000);
+        }
+
+        // Start animations after page loads
+        setTimeout(() => {
+            // Continuous animations
+            setInterval(createRakhiThread, 3000);
+            setInterval(createSweetCandy, 2500);
+            setInterval(createFlowerPetal, 3500);
+            setInterval(createHeartBeat, 2000);
+            setInterval(createGiftBox, 4000);
+            setInterval(createLoveSparkle, 1500);
+            setInterval(createRibbonWave, 6000);
+            
+            // Initial burst
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createRakhiThread();
+                    createSweetCandy();
+                    createFlowerPetal();
+                    createHeartBeat();
+                    createGiftBox();
+                }, i * 300);
+            }
+            
+            showNotification('🎀 Welcome to Raksha Bandhan Wishes Generator! Happy Rakhi!');
+        }, 1000);
+    </script>
+</body>
+</html>
