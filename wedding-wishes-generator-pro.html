@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Wishes Generator Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 30%, #f48fb1 70%, #f06292 100%);
+            color: #5d4037;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(93, 64, 55, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #d81b60;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .wedding-title {
+            color: #c2185b;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .wedding-title::before, .wedding-title::after {
+            content: '💒';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+        }
+        
+        .wedding-title::before {
+            right: -45px;
+        }
+        
+        .wedding-title::after {
+            left: -45px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ad1457;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(216, 27, 96, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(216, 27, 96, 0.2);
+        }
+        
+        .wedding-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #f8bbd9 0%, #f48fb1 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.15);
+            border: 5px solid #ec407a;
+        }
+        
+        .wedding-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.7;
+            animation: gentleFloat 4s ease-in-out infinite;
+        }
+        
+        .wedding-icon1 { top: 20px; left: 20px; color: #f8bbd9; animation-delay: 0s; }
+        .wedding-icon2 { top: 20px; right: 20px; color: #f48fb1; animation-delay: 1s; }
+        .wedding-icon3 { bottom: 20px; left: 20px; color: #ec407a; animation-delay: 2s; }
+        .wedding-icon4 { bottom: 20px; right: 20px; color: #d81b60; animation-delay: 3s; }
+        
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        .card-title {
+            font-size: 2.2rem;
+            color: #c2185b;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #5d4037;
+        }
+        
+        .card-sender {
+            font-size: 1.2rem;
+            color: #ad1457;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(236, 64, 122, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(236, 64, 122, 0.1) 0%, transparent 20%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #d81b60;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(216, 27, 96, 0.3);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(248, 187, 217, 0.3);
+            border: 1px solid rgba(216, 27, 96, 0.2);
+            border-radius: 10px;
+            color: #c2185b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(248, 187, 217, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #ec407a;
+            box-shadow: 0 0 10px rgba(236, 64, 122, 0.5);
+        }
+        
+        .color1 { background: linear-gradient(45deg, #f8bbd9, #f48fb1); }
+        .color2 { background: linear-gradient(45deg, #f06292, #ec407a); }
+        .color3 { background: linear-gradient(45deg, #e1bee7, #ce93d8); }
+        .color4 { background: linear-gradient(45deg, #bbdefb, #90caf9); }
+        .color5 { background: linear-gradient(45deg, #c8e6c9, #a5d6a7); }
+        .color6 { background: linear-gradient(45deg, #fff9c4, #fff59d); }
+        .color7 { background: linear-gradient(45deg, #ffccbc, #ffab91); }
+        .color8 { background: linear-gradient(45deg, #f5f5f5, #eeeeee); }
+        .color9 { background: linear-gradient(45deg, #d7ccc8, #bcaaa4); }
+        .color10 { background: linear-gradient(45deg, #cfd8dc, #b0bec5); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(216, 27, 96, 0.3);
+            border-radius: 10px;
+            color: #5d4037;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(93, 64, 55, 0.6);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #f48fb1, #ec407a);
+            color: white;
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #d81b60, #c2185b);
+            color: white;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(216, 27, 96, 0.2);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .rose-petal {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #f48fb1;
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(45deg);
+            pointer-events: none;
+            z-index: 100;
+            animation: petalFall linear infinite;
+            opacity: 0.7;
+        }
+        
+        .sparkle-wedding {
+            position: absolute;
+            color: #ffeb3b;
+            font-size: 1rem;
+            pointer-events: none;
+            z-index: 100;
+            animation: weddingSparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes weddingSparkle {
+            0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+        }
+        
+        .instruction {
+            background: rgba(248, 187, 217, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #ec407a;
+            font-size: 0.95rem;
+            color: #ad1457;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(248, 187, 217, 0.3);
+            border-radius: 10px;
+            color: #c2185b;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(248, 187, 217, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(216, 27, 96, 0.2);
+            color: #ad1457;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(236, 64, 122, 0.95);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-message {
+                font-size: 1.3rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="wedding-title">Wedding Wishes Generator Pro</span></h1>
+            <p class="subtitle">Create beautiful wedding cards to bless the newlyweds on their special day</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Wedding Card</h2>
+                <div class="wedding-card" id="weddingCard">
+                    <div class="wedding-icon wedding-icon1">💕</div>
+                    <div class="wedding-icon wedding-icon2">💍</div>
+                    <div class="wedding-icon wedding-icon3">👰</div>
+                    <div class="wedding-icon wedding-icon4">🤵</div>
+                    <div class="card-pattern"></div>
+                    <h3 class="card-title" id="cardTitle">Congratulations!</h3>
+                    <p class="card-message" id="cardMessage">Wishing you a lifetime of love, happiness, and togetherness. May your marriage be filled with all the right ingredients: a heap of love, a dash of humor, a touch of romance, and a spoonful of understanding.</p>
+                    <p class="card-sender" id="cardSender">With blessings, Your Name</p>
+                </div>
+                
+                <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://weddingwishes.com/card/<?php echo rand(1000,9999); ?>
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your Wedding card is ready! Customize it with different designs and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Wedding Blessings</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <!-- Auto wishes will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <!-- Card design buttons will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Custom Message</h3>
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom wedding blessing here..."></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., With love, Sarah & John)">
+                    <input type="text" class="custom-input" id="coupleNames" placeholder="Couple's names (e.g., Alex & Taylor)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send to Couple
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn telegram" id="telegramBtn">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#d81b60;"></i> for weddings | Spread love and blessings</p>
+        </footer>
+    </div>
+
+    <script>
+        // Wedding messages
+        const autoWishes = [
+            "Wishing you a lifetime of love, happiness, and togetherness. May your marriage be filled with all the right ingredients: a heap of love, a dash of humor, a touch of romance, and a spoonful of understanding.",
+            "Congratulations on your wedding! May the love you share today grow stronger as you grow old together. Wishing you both all the happiness in the world.",
+            "May your marriage be blessed with love, joy, and companionship for all the years of your life. Congratulations on beginning this beautiful journey together!",
+            "As you join your lives together today, may you always remember this joyful moment. May your love continue to blossom and grow with each passing year.",
+            "Wishing you both a wedding day filled with happy memories and a lifetime of shared love and laughter. Congratulations on your special day!",
+            "May the love that brought you together continue to grow throughout your marriage. Wishing you health, happiness, and prosperity in your life together.",
+            "Congratulations on finding your perfect match! Wishing you a marriage as beautiful as your wedding day and a love that grows stronger with each year.",
+            "May your journey together be filled with endless love, laughter, and happiness. Congratulations on your wedding and best wishes for a wonderful life together.",
+            "As you celebrate your love today, may you continue to celebrate it every day of your lives. Wishing you a lifetime of happiness and togetherness.",
+            "May your marriage be a never-ending story of love, friendship, and trust. Congratulations on your wedding day and best wishes for your future together."
+        ];
+
+        // Card designs with wedding colors
+        const cardDesigns = [
+            { name: "Romantic Pink", className: "color1" },
+            { name: "Deep Rose", className: "color2" },
+            { name: "Lavender Love", className: "color3" },
+            { name: "Sky Blue", className: "color4" },
+            { name: "Mint Green", className: "color5" },
+            { name: "Sunshine Yellow", className: "color6" },
+            { name: "Peach Blush", className: "color7" },
+            { name: "Classic White", className: "color8" },
+            { name: "Earthy Beige", className: "color9" },
+            { name: "Silver Gray", className: "color10" }
+        ];
+
+        // DOM elements
+        const weddingCard = document.getElementById('weddingCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const autoWishesContainer = document.getElementById('autoWishes');
+        const cardDesignsContainer = document.getElementById('cardDesigns');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+        const coupleNames = document.getElementById('coupleNames');
+        const siteLink = document.getElementById('siteLink');
+        
+        // Initialize auto wishes buttons
+        autoWishes.forEach((wish, index) => {
+            const wishButton = document.createElement('button');
+            wishButton.className = 'wish-btn';
+            wishButton.textContent = `Blessing ${index + 1}`;
+            wishButton.addEventListener('click', () => {
+                cardMessage.textContent = wish;
+                // Reset custom message input
+                customMessage.value = '';
+            });
+            autoWishesContainer.appendChild(wishButton);
+        });
+
+        // Initialize card design buttons
+        cardDesigns.forEach((design, index) => {
+            const designButton = document.createElement('button');
+            designButton.className = `design-btn ${design.className}`;
+            designButton.title = design.name;
+            if (index === 0) designButton.classList.add('active');
+            
+            designButton.addEventListener('click', () => {
+                // Remove active class from all design buttons
+                document.querySelectorAll('.design-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                designButton.classList.add('active');
+                
+                // Change card background
+                applyCardDesign(design.className);
+            });
+            
+            cardDesignsContainer.appendChild(designButton);
+        });
+
+        // Function to apply card design
+        function applyCardDesign(designClass) {
+            // Map design classes to gradient colors
+            const gradients = {
+                'color1': ['#f8bbd9', '#f48fb1'],
+                'color2': ['#f06292', '#ec407a'],
+                'color3': ['#e1bee7', '#ce93d8'],
+                'color4': ['#bbdefb', '#90caf9'],
+                'color5': ['#c8e6c9', '#a5d6a7'],
+                'color6': ['#fff9c4', '#fff59d'],
+                'color7': ['#ffccbc', '#ffab91'],
+                'color8': ['#f5f5f5', '#eeeeee'],
+                'color9': ['#d7ccc8', '#bcaaa4'],
+                'color10': ['#cfd8dc', '#b0bec5']
+            };
+            
+            const colors = gradients[designClass];
+            weddingCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+        }
+
+        // Custom message input event
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            }
+        });
+
+        // Sender name input event
+        senderName.addEventListener('input', () => {
+            if (senderName.value.trim() !== '') {
+                cardSender.textContent = `With blessings, ${senderName.value}`;
+            } else {
+                cardSender.textContent = 'With blessings, Your Name';
+            }
+        });
+
+        // Couple names input event
+        coupleNames.addEventListener('input', () => {
+            if (coupleNames.value.trim() !== '') {
+                cardTitle.textContent = `Congratulations ${coupleNames.value}!`;
+            } else {
+                cardTitle.textContent = 'Congratulations!';
+            }
+        });
+
+        // Edit button functionality
+        document.getElementById('editBtn').addEventListener('click', () => {
+            // Highlight the custom message field
+            customMessage.focus();
+            customMessage.style.border = '2px solid #ec407a';
+            customMessage.style.boxShadow = '0 0 10px rgba(236, 64, 122, 0.3)';
+            
+            // Remove highlight after 2 seconds
+            setTimeout(() => {
+                customMessage.style.border = '1px solid rgba(216, 27, 96, 0.3)';
+                customMessage.style.boxShadow = 'none';
+            }, 2000);
+            
+            // Show notification
+            showNotification('You can now edit the card message, sender name, and couple names');
+        });
+
+        // Send to couple button functionality
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            let brideName = prompt("Enter the bride's name:");
+            let groomName = prompt("Enter the groom's name:");
+            const weddingDate = prompt("When is the wedding? (e.g., Today, June 15th, Next Saturday):");
+            
+            if (brideName && groomName) {
+                const originalSender = cardSender.textContent.replace('With blessings, ', '');
+                const originalTitle = cardTitle.textContent;
+                const coupleName = `${brideName} & ${groomName}`;
+                
+                let personalizedMessage = `Dear ${coupleName},\n\n`;
+                
+                if (weddingDate) {
+                    personalizedMessage += `On your wedding day${weddingDate.toLowerCase() !== 'today' ? ` (${weddingDate})` : ''}, `;
+                }
+                
+                personalizedMessage += cardMessage.textContent + `\n\n${cardSender.textContent}`;
+                
+                // Update card for preview
+                const originalMessage = cardMessage.textContent;
+                cardMessage.textContent = personalizedMessage;
+                cardSender.textContent = `To: ${coupleName} | From: ${originalSender === 'Your Name' ? 'Well-Wisher' : originalSender}`;
+                cardTitle.textContent = `Congratulations ${coupleName}!`;
+                coupleNames.value = coupleName;
+                
+                // Show success message
+                showNotification(`Wedding card customized for ${coupleName}! Now you can share it.`);
+                
+                // Create special wedding celebration effect
+                createWeddingCelebration();
+                
+                // Revert after 10 seconds for preview
+                setTimeout(() => {
+                    cardMessage.textContent = originalMessage;
+                    cardSender.textContent = `With blessings, ${originalSender === 'Your Name' ? 'Your Name' : originalSender}`;
+                    cardTitle.textContent = originalTitle;
+                }, 10000);
+            }
+        });
+
+        // Share buttons functionality
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `💒 *${cardTitle.textContent}* 💒\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreate your own Wedding card: ${window.location.href}`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const quote = encodeURIComponent(`💒 ${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}...`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`💒 ${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}...`);
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('To share on Instagram: 1. Take a screenshot of your card 2. Open Instagram 3. Post it as a story or feed with #Wedding #Congratulations');
+        });
+
+        document.getElementById('telegramBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`💒 ${cardTitle.textContent}\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\n${window.location.href}`);
+            window.open(`https://t.me/share/url?url=${text}`, '_blank');
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            const subject = encodeURIComponent(cardTitle.textContent);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Wedding Wishes Generator: ${window.location.href}`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // Copy link functionality
+        document.querySelector('.copy-link')?.addEventListener('click', () => {
+            const cardData = {
+                title: cardTitle.textContent,
+                message: cardMessage.textContent,
+                sender: cardSender.textContent,
+                design: document.querySelector('.design-btn.active').className.match(/color\d+/)[0]
+            };
+            
+            const encodedData = encodeURIComponent(JSON.stringify(cardData));
+            const shareableLink = `${window.location.origin}${window.location.pathname}?card=${encodedData}`;
+            
+            navigator.clipboard.writeText(shareableLink)
+                .then(() => showNotification('💒 Card link copied to clipboard! Share it to send wedding blessings.'))
+                .catch(err => {
+                    console.error('Could not copy text: ', err);
+                    showNotification('Failed to copy link. Please try again.');
+                });
+        });
+
+        // Rose petal effect
+        function createRosePetal() {
+            const petal = document.createElement('div');
+            petal.className = 'rose-petal';
+            
+            // Random position
+            petal.style.left = `${Math.random() * 100}vw`;
+            petal.style.top = '-10px';
+            
+            // Random size
+            const size = Math.random() * 15 + 10;
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size}px`;
+            
+            // Random color
+            const colors = ['#f48fb1', '#ec407a', '#d81b60', '#f8bbd9'];
+            petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            document.body.appendChild(petal);
+            
+            // Random animation
+            const duration = Math.random() * 8 + 4;
+            petal.style.animationDuration = `${duration}s`;
+            
+            // Remove petal after animation
+            setTimeout(() => {
+                petal.remove();
+            }, duration * 1000);
+        }
+
+        // Wedding sparkle effect
+        function createWeddingSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle-wedding';
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = `${Math.random() * 100}vw`;
+            sparkle.style.top = `${Math.random() * 100}vh`;
+            sparkle.style.fontSize = `${Math.random() * 12 + 8}px`;
+            sparkle.style.animationDuration = `${Math.random() * 1.5 + 0.5}s`;
+            
+            document.body.appendChild(sparkle);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 4000);
+        }
+
+        // Wedding celebration effect (for when sending to couple)
+        function createWeddingCelebration() {
+            // Create lots of rose petals and sparkles
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    createRosePetal();
+                    if (i % 4 === 0) createWeddingSparkle();
+                }, i * 60);
+            }
+            
+            // Make wedding icons dance
+            document.querySelectorAll('.wedding-icon').forEach(icon => {
+                icon.style.animation = 'gentleFloat 0.8s ease-in-out infinite';
+                icon.style.textShadow = '0 0 15px rgba(236, 64, 122, 0.5)';
+            });
+            
+            // Add heartbeat animation to card
+            weddingCard.style.animation = 'heartbeat 1s ease-in-out';
+            
+            // Add heartbeat animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes heartbeat {
+                    0% { transform: scale(1); }
+                    25% { transform: scale(1.02); }
+                    50% { transform: scale(1); }
+                    75% { transform: scale(1.02); }
+                    100% { transform: scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Return to normal after 3 seconds
+            setTimeout(() => {
+                document.querySelectorAll('.wedding-icon').forEach(icon => {
+                    icon.style.animation = 'gentleFloat 4s ease-in-out infinite';
+                    icon.style.textShadow = 'none';
+                });
+                weddingCard.style.animation = 'none';
+            }, 3000);
+        }
+
+        // Create periodic effects
+        setInterval(createRosePetal, 500);
+        setInterval(createWeddingSparkle, 1000);
+        
+        // Create initial celebration
+        setTimeout(() => {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    createRosePetal();
+                    if (i % 5 === 0) createWeddingSparkle();
+                }, i * 100);
+            }
+        }, 1000);
+
+        // Notification function
+        function showNotification(message) {
+            // Remove existing notification
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create new notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Generate a unique link for the card
+        const cardId = Math.floor(Math.random() * 10000);
+        siteLink.textContent = `https://weddingwishes.com/card/${cardId}`;
+        siteLink.href = `https://weddingwishes.com/card/${cardId}`;
+        
+        // Check for card data in URL (for sharing)
+        function loadCardFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cardDataParam = urlParams.get('card');
+            
+            if (cardDataParam) {
+                try {
+                    const cardData = JSON.parse(decodeURIComponent(cardDataParam));
+                    
+                    // Apply card data
+                    cardTitle.textContent = cardData.title || cardTitle.textContent;
+                    cardMessage.textContent = cardData.message || cardMessage.textContent;
+                    cardSender.textContent = cardData.sender || cardSender.textContent;
+                    
+                    // Apply design if specified
+                    if (cardData.design) {
+                        const designButton = document.querySelector(`.${cardData.design}`);
+                        if (designButton) {
+                            designButton.click();
+                        }
+                    }
+                    
+                    showNotification('💒 Wedding card loaded successfully!');
+                } catch (e) {
+                    console.error('Error loading card data:', e);
+                }
+            }
+        }
+        
+        // Load card data from URL if present
+        loadCardFromURL();
+        
+        // Initialize with a random wish
+        const randomWishIndex = Math.floor(Math.random() * autoWishes.length);
+        cardMessage.textContent = autoWishes[randomWishIndex];
+        
+        // Show welcome notification
+        setTimeout(() => {
+            showNotification('💒 Welcome! Create a beautiful Wedding card to bless the newlyweds!');
+        }, 1500);
+    </script>
+</body>
+</html>
