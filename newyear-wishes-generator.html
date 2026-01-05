@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎆 Viral New Year Wishes Generator</title>
+    <link rel="stylesheet" href="newyear-wishes-styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎆 Viral New Year Wishes Generator</h1>
+            <p class="subtitle">Create Beautiful Wishes for 2026</p>
+        </header>
+
+        <div class="main-content">
+            <div class="tab-navigation">
+                <button class="tab-btn active" onclick="switchTab('event')">Event Wishes</button>
+                <button class="tab-btn" onclick="switchTab('whatsapp')">WhatsApp Wishes</button>
+            </div>
+
+            <div id="event-tab" class="tab-content active">
+                <div class="input-section">
+                    <h2>Event Wishes Generator</h2>
+                    <div class="form-group">
+                        <label for="recipient-name">Recipient Name:</label>
+                        <input type="text" id="recipient-name" placeholder="Enter name (optional)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="wish-type">Wish Type:</label>
+                        <select id="wish-type" onchange="updateWish()">
+                            <option value="general">General New Year</option>
+                            <option value="professional">Professional</option>
+                            <option value="family">Family & Friends</option>
+                            <option value="romantic">Romantic</option>
+                            <option value="motivational">Motivational</option>
+                        </select>
+                    </div>
+
+                    <button class="generate-btn" onclick="generateEventWish()">✨ Generate Event Wish</button>
+                </div>
+
+                <div class="output-section">
+                    <h3>Your Generated Wish:</h3>
+                    <div id="event-output" class="wish-output">
+                        <p>Click generate to create your personalized wish!</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="copyToClipboard('event-output')">📋 Copy</button>
+                        <button class="action-btn" onclick="downloadImage('event-output')">📥 Download</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="whatsapp-tab" class="tab-content">
+                <div class="input-section">
+                    <h2>WhatsApp Wishes Generator</h2>
+                    <div class="form-group">
+                        <label for="wa-recipient-name">Recipient Name:</label>
+                        <input type="text" id="wa-recipient-name" placeholder="Enter name (optional)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="wa-wish-type">Wish Style:</label>
+                        <select id="wa-wish-type">
+                            <option value="short">Short & Sweet</option>
+                            <option value="emoji">Emoji Rich</option>
+                            <option value="formal">Formal</option>
+                            <option value="funny">Funny & Casual</option>
+                            <option value="heartfelt">Heartfelt</option>
+                        </select>
+                    </div>
+
+                    <button class="generate-btn" onclick="generateWhatsAppWish()">💬 Generate WhatsApp Wish</button>
+                </div>
+
+                <div class="output-section">
+                    <h3>Your Generated Wish:</h3>
+                    <div id="whatsapp-output" class="wish-output whatsapp-style">
+                        <p>Click generate to create your personalized WhatsApp wish!</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="copyToClipboard('whatsapp-output')">📋 Copy</button>
+                        <button class="action-btn" onclick="shareWhatsApp()">📤 Share on WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>✨ Made with love for 2026 celebrations ✨</p>
+        </footer>
+    </div>
+
+    <script src="newyear-wishes-script.js"></script>
+</body>
+</html>
