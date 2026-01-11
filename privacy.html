@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Privacy Policy | ToolNest.live - Wishing Hub Generators</title>
+<meta name="description" content="Privacy Policy for ToolNest.live and Wishing Hub Generators. Learn how we protect your privacy and handle your data.">
+<meta name="keywords" content="privacy policy, data protection, GDPR, CCPA, privacy terms, toolnest privacy, wishing hub privacy">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://toolnest.live/privacy.html">
+
+<!-- Preconnect for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Font with font-display: swap for better performance -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+<!-- Font Awesome with preload -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"></noscript>
+
+<style>
+/* ===== GLOBAL STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: #000;
+    color: #00ff7f;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ===== SNOWFALL CANVAS ===== */
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* ===== NAVIGATION ===== */
+.main-nav {
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom: 2px solid #00ff7f;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 255, 127, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.nav-brand {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-brand i {
+    font-size: 1.8rem;
+    color: #00ff7f;
+    text-shadow: 0 0 8px #00ff7f;
+}
+
+.nav-brand h1 {
+    font-size: 1.5rem;
+    color: #00ff7f;
+    text-shadow: 0 0 12px #00ff7f;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links a {
+    color: #00ff7f;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+    display: inline-block;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: #00ff7f;
+    color: #000;
+    box-shadow: 0 0 20px #00ff7f;
+    border: 1px solid #00ff7f;
+    transform: translateY(-2px);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: 2px solid #00ff7f;
+    color: #00ff7f;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: #00ff7f;
+    color: #000;
+}
+
+/* ===== MAIN CONTENT WRAPPER ===== */
+main {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== PRIVACY HERO ===== */
+.privacy-hero {
+    text-align: center;
+    padding: 50px 20px;
+    background: radial-gradient(circle at center, rgba(0, 30, 15, 0.4) 0%, rgba(0, 0, 0, 0.8) 70%);
+    border-radius: 20px;
+    margin-bottom: 40px;
+    border: 2px solid #00ff7f;
+    box-shadow: 0 0 30px rgba(0, 255, 127, 0.2);
+}
+
+.privacy-hero h1 {
+    font-size: 3rem;
+    text-shadow: 0 0 35px #00ff7f;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #00ff7f, #00cc66, #00ff7f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+.privacy-hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #00ff7f;
+    opacity: 0.9;
+}
+
+.privacy-hero .last-updated {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #00ffaa;
+    background: rgba(0, 255, 127, 0.1);
+    padding: 10px 20px;
+    border-radius: 25px;
+    display: inline-block;
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 20px #00ff7f, 0 0 30px #00ff7f; }
+    100% { text-shadow: 0 0 30px #00ff7f, 0 0 40px #00ff7f, 0 0 50px #00ff7f; }
+}
+
+/* ===== PRIVACY CONTENT ===== */
+.privacy-content {
+    background: rgba(10, 20, 15, 0.2);
+    border: 1px solid rgba(0, 255, 127, 0.3);
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 40px;
+}
+
+.privacy-section {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 255, 127, 0.2);
+}
+
+.privacy-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.privacy-section h2 {
+    font-size: 1.8rem;
+    color: #00ffaa;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.privacy-section h2 i {
+    font-size: 1.5rem;
+}
+
+.privacy-section p {
+    color: #00ff7f;
+    margin-bottom: 15px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.privacy-section ul, .privacy-section ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.privacy-section li {
+    color: #00ff7f;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.privacy-section strong {
+    color: #00ffaa;
+    font-weight: 700;
+}
+
+/* ===== INFO BOXES ===== */
+.info-box {
+    background: rgba(0, 255, 127, 0.05);
+    border-left: 4px solid #00ff7f;
+    padding: 20px;
+    margin: 25px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.info-box.warning {
+    border-left-color: #ffaa00;
+    background: rgba(255, 170, 0, 0.05);
+}
+
+.info-box.success {
+    border-left-color: #00ff7f;
+    background: rgba(0, 255, 127, 0.1);
+}
+
+.info-box h4 {
+    color: #00ffaa;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.info-box p {
+    margin-bottom: 0;
+}
+
+/* ===== TABLE STYLES ===== */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background: rgba(10, 20, 15, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.data-table th {
+    background: rgba(0, 255, 127, 0.2);
+    color: #00ffaa;
+    padding: 15px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid #00ff7f;
+}
+
+.data-table td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 255, 127, 0.1);
+    color: #00ff7f;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tr:hover {
+    background: rgba(0, 255, 127, 0.05);
+}
+
+/* ===== CONTACT CARD ===== */
+.contact-card {
+    background: linear-gradient(135deg, rgba(0, 30, 15, 0.4), rgba(0, 60, 30, 0.2));
+    border: 2px solid #00ff7f;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    margin-top: 40px;
+    box-shadow: 0 0 30px rgba(0, 255, 127, 0.1);
+}
+
+.contact-card h3 {
+    font-size: 2rem;
+    color: #00ffaa;
+    margin-bottom: 20px;
+}
+
+.contact-card p {
+    margin-bottom: 20px;
+    color: #00ff7f;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #00ff7f;
+    font-size: 1.1rem;
+}
+
+.contact-item i {
+    color: #00ffaa;
+    font-size: 1.3rem;
+}
+
+/* ===== ACCORDION STYLES ===== */
+.accordion {
+    margin: 30px 0;
+}
+
+.accordion-item {
+    background: rgba(10, 20, 15, 0.3);
+    border: 1px solid rgba(0, 255, 127, 0.2);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    padding: 20px;
+    background: rgba(0, 255, 127, 0.05);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.accordion-header:hover {
+    background: rgba(0, 255, 127, 0.1);
+}
+
+.accordion-header h4 {
+    color: #00ffaa;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.accordion-icon {
+    color: #00ff7f;
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion-item.active .accordion-content {
+    padding: 20px;
+    max-height: 1000px;
+}
+
+/* ===== FOOTER ===== */
+.main-footer {
+    margin-top: auto;
+    background: #0a0a0a;
+    padding: 50px 20px 30px;
+    border-top: 2px solid #00ff7f;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: left;
+}
+
+.footer-section h3 {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    color: #00ffaa;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #00ff7f;
+}
+
+.footer-section p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #00ff7f;
+}
+
+.footer-section a {
+    color: #00ff7f;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+    padding: 3px 0;
+}
+
+.footer-section a:hover {
+    color: #00ffaa;
+    transform: translateX(5px);
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    border-top: 1px solid rgba(0, 255, 127, 0.2);
+    text-align: center;
+    color: #00ff7f;
+}
+
+.footer-bottom a {
+    color: #00ff7f;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.footer-bottom a:hover {
+    color: #00ffaa;
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        order: 2;
+    }
+    
+    .nav-container {
+        position: relative;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgba(0, 0, 0, 0.98);
+        padding: 20px;
+        border-top: 2px solid #00ff7f;
+        border-bottom: 2px solid #00ff7f;
+        gap: 10px;
+        z-index: 999;
+    }
+    
+    .nav-links.mobile-show {
+        display: flex;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        display: block;
+    }
+    
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+    
+    .privacy-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .privacy-content {
+        padding: 25px;
+    }
+    
+    .privacy-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .data-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .contact-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .privacy-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .privacy-hero p {
+        font-size: 1rem;
+    }
+    
+    .privacy-content {
+        padding: 20px;
+    }
+    
+    .privacy-section h2 {
+        font-size: 1.3rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .contact-card {
+        padding: 20px;
+    }
+    
+    .contact-card h3 {
+        font-size: 1.5rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SNOWFALL CANVAS -->
+<canvas id="snowCanvas"></canvas>
+
+<!-- NAVIGATION -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+            <i class="fas fa-wand-magic-sparkles"></i>
+            <h1>Wishing Hub Generators</h1>
+        </a>
+        
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact-us.html">Contact</a></li>
+            <li><a href="https://www.onlinewebtool.live" target="_blank" rel="noopener">Web Tools</a></li>
+            <li><a href="https://www.onlinetoolstack.site" target="_blank" rel="noopener">Tool Stack</a></li>
+            <li><a href="privacy.html" class="active">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+    <!-- PRIVACY HERO -->
+    <section class="privacy-hero">
+        <h1><i class="fas fa-shield-alt"></i> Privacy Policy</h1>
+        <p>Your privacy is our priority. Learn how ToolNest.live protects your data and respects your rights.</p>
+        <div class="last-updated">
+            <i class="fas fa-calendar-alt"></i> Last Updated: January 11, 2026
+        </div>
+    </section>
+
+    <!-- PRIVACY CONTENT -->
+    <div class="privacy-content">
+        
+        <div class="privacy-section">
+            <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+            <p>Welcome to ToolNest.live ("we," "our," or "us"). We operate the Wishing Hub Generators platform and related services. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <strong>toolnest.live</strong> and use our wishing generators and tools.</p>
+            <p>We respect your privacy and are committed to protecting your personal data. Please read this Privacy Policy carefully. By using our services, you agree to the collection and use of information in accordance with this policy.</p>
+            
+            <div class="info-box success">
+                <h4><i class="fas fa-check-circle"></i> Important Note</h4>
+                <p>We design our tools to be privacy-friendly. Most of our wishing generators work entirely in your browser without sending your data to our servers.</p>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2><i class="fas fa-database"></i> Information We Collect</h2>
+            <p>We collect different types of information for various purposes to provide and improve our services:</p>
+            
+            <h3>1. Personal Data</h3>
+            <p>While using our service, we may ask you to provide certain personally identifiable information that can be used to contact or identify you:</p>
+            <ul>
+                <li><strong>Contact Information:</strong> Email address (if you choose to subscribe or contact us)</li>
+                <li><strong>Usage Data:</strong> How you use our website and tools</li>
+                <li><strong>Technical Data:</strong> IP address, browser type, device information</li>
+            </ul>
+            
+            <h3>2. Non-Personal Data</h3>
+            <p>We collect non-personal information that does not directly identify you:</p>
+            <ul>
+                <li>Browser type and version</li>
+                <li>Time and date of your visit</li>
+                <li>Pages visited and time spent on pages</li>
+                <li>Referring website addresses</li>
+            </ul>
+            
+            <div class="info-box">
+                <h4><i class="fas fa-exclamation-triangle"></i> Important</h4>
+                <p>The wishes you generate using our tools typically remain in your browser and are not stored on our servers unless you explicitly choose to save or share them.</p>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2><i class="fas fa-cookie"></i> Cookies and Tracking Technologies</h2>
+            <p>We use cookies and similar tracking technologies to track activity on our service and hold certain information.</p>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Cookie Type</th>
+                        <th>Purpose</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Essential Cookies</strong></td>
+                        <td>Required for basic site functionality</td>
+                        <td>Session</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Analytics Cookies</strong></td>
+                        <td>Help us understand how visitors interact</td>
+                        <td>30 days</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Preference Cookies</strong></td>
+                        <td>Remember your settings and preferences</td>
+                        <td>1 year</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Advertising Cookies</strong></td>
+                        <td>Deliver relevant advertisements</td>
+                        <td>90 days</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our service.</p>
+        </div>
+        
+        <div class="privacy-section">
+            <h2><i class="fas fa-chart-line"></i> How We Use Your Information</h2>
+            <p>We use the collected data for various purposes:</p>
+            <ol>
+                <li><strong>To provide and maintain our service</strong> - Ensure proper functionality of our tools</li>
+                <li><strong>To notify you about changes</strong> - Inform you about updates to our service</li>
+                <li><strong>To provide customer support</strong> - Respond to your inquiries and requests</li>
+                <li><strong>To gather analysis or valuable information</strong> - Improve our services</li>
+                <li><strong>To monitor the usage of our service</strong> - Detect and prevent technical issues</li>
+                <li><strong>To detect, prevent and address technical issues</strong> - Maintain service security</li>
+            </ol>
+        </div>
+        
+        <div class="privacy-section">
+            <h2><i class="fas fa-share-alt"></i> Data Sharing and Disclosure</h2>
+            <p>We may share your information in the following situations:</p>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>With Service Providers</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We may employ third-party companies and individuals to facilitate our service, provide the service on our behalf, perform service-related services, or assist us in analyzing how our service is used.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>For Business Transfers</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>With Your Consent</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We may disclose your personal information for any other purpose with your explicit consent.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>For Legal Requirements</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We may disclose your information where required to do so by law or in response to valid requests by public authorities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="privacy-section">
+            <h2><i class="fas fa-lock"></i> Data Security</h2>
+            <p>The security of your data is important to us. We implement appropriate technical and organizational measures to protect your personal data against unauthorized or unlawful processing, accidental loss, destruction, or damage.</p>
+            
+            <div class="info-box success">
+                <h4><i class="fas fa-shield-alt"></i> Our Security Measures Include:</h4>
+                <ul>
+                    <li>Encryption of data in transit using SSL/TLS</li>
+                    <li>Regular security assessments and updates</li>
+                    <li>Access controls and authentication procedures</li>
+                    <li>Regular data backup procedures</li>
+                    <li>Secure hosting infrastructure</li>
+                </ul>
+            </div>
+            
+            <p>However, no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal data, we cannot guarantee its absolute security.</p>
+        </div>
+        
+        <div class="privacy-section">
+            <h2><i class="fas fa-globe-americas"></i> International Data Transfers</h2>
+            <p>Your information, including personal data, may be transferred to — and maintained on — computers located outside of your state, province, country, or other governmental jurisdiction where the data protection laws may differ from those of your jurisdiction.</p>
+            <p>If you are located outside and choose to provide information to us, please note that we transfer the data, including personal data, to and process it there.</p>
+            <p>Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer.</p>
+        </div>
+        
+        <div class="privacy-section">
+            <h2><i class="fas fa-user-shield"></i> Your Data Protection Rights</h2>
+            <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Right</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Right to Access</strong></td>
+                        <td>Request copies of your personal data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Right to Rectification</strong></td>
+                        <td>Request correction of inaccurate data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Right to Erasure</strong></td>
+                        <td>Request deletion of your personal data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Right to Restrict Processing</strong></td>
+                        <td>Request restriction of processing your data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Right to Data Portability</strong></td>
+                        <td>Request transfer of your data to another organization</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Right to Object</strong></td>
+                        <td>Object to our processing of your personal data</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>To exercise any of these rights, please contact us using the information provided below.</p>
+        </div>
+        
+        <div class="privacy-section">
+            <h2><i class="fas fa-child"></i> Children's Privacy</h2>
+            <p>Our service does not address anyone under the age of 13 ("Children"). We do not knowingly collect personally identifiable information from children under 13.</p>
+            <p>If you are a parent or guardian and you are aware that your child has provided us with personal data, please contact us. If we become aware that we have collected personal data from children without verification of parental consent, we take steps to remove that information from our servers.</p>
+        </div>
+        
+        <div class="privacy-section">
+            <h2><i class="fas fa-external-link-alt"></i> Third-Party Links</h2>
+            <p>Our service may contain links to other sites that are not operated by us. If you click on a third-party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.</p>
+            <p>We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</p>
+        </div>
+        
+        <div class="privacy-section">
+            <h2><i class="fas fa-edit"></i> Changes to This Privacy Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+            <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+            
+            <div class="info-box warning">
+                <h4><i class="fas fa-bell"></i> Notification of Changes</h4>
+                <p>We will notify users of any material changes to this Privacy Policy through a notice on our website or via email if you have provided your contact information.</p>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- CONTACT CARD -->
+    <div class="contact-card">
+        <h3><i class="fas fa-headset"></i> Contact Us</h3>
+        <p>If you have any questions about this Privacy Policy, please contact us:</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>Email: privacy@toolnest.live</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-globe"></i>
+                <span>Website: toolnest.live/contact</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <span>Response Time: 24-48 hours</span>
+            </div>
+        </div>
+        
+        <p style="margin-top: 20px;">We are committed to resolving any concerns about your privacy and our collection or use of your personal data.</p>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="main-footer">
+    <div class="footer-content">
+        
+        <div class="footer-section">
+            <h3>ToolNest.live</h3>
+            <p>Your privacy is our priority. We are committed to protecting your personal information and being transparent about our data practices.</p>
+            <p>Creating beautiful wishes, protecting your privacy.</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Legal</h3>
+            <a href="privacy.html" class="active">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="cookie-policy.html">Cookie Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="gdpr.html">GDPR Compliance</a>
+            <a href="ccpa.html">CCPA Rights</a>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Privacy Resources</h3>
+            <a href="#">Data Request Form</a>
+            <a href="#">Cookie Settings</a>
+            <a href="#">Unsubscribe</a>
+            <a href="#">Data Deletion Request</a>
+            <a href="#">Privacy FAQs</a>
+            <a href="#">Security Practices</a>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact-us.html">Contact</a>
+            <a href="https://www.onlinewebtool.live" target="_blank" rel="noopener">Online Web Tools</a>
+            <a href="https://www.onlinetoolstack.site" target="_blank" rel="noopener">Tool Stack Site</a>
+            <a href="sitemap.html">Sitemap</a>
+        </div>
+        
+    </div>
+    
+    <div class="footer-bottom">
+        © 2026 ToolNest.live | Wishing Hub Generators | Protecting Your Privacy Since 2023 — All Rights Reserved
+    </div>
+</footer>
+
+<script>
+// ===== MOBILE MENU TOGGLE =====
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const menuIcon = menuToggle.querySelector('i');
+    
+    // Toggle menu function
+    function toggleMenu() {
+        navLinks.classList.toggle('mobile-show');
+        
+        // Change icon
+        if (navLinks.classList.contains('mobile-show')) {
+            menuIcon.classList.remove('fa-bars');
+            menuIcon.classList.add('fa-times');
+        } else {
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        }
+    }
+    
+    // Add click event to toggle button
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMenu();
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            if (navLinks.classList.contains('mobile-show')) {
+                toggleMenu();
+            }
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('mobile-show')) {
+            toggleMenu();
+        }
+    });
+    
+    // Prevent clicks inside menu from closing it
+    navLinks.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+});
+
+// ===== SNOWFALL EFFECT =====
+const canvas = document.getElementById('snowCanvas');
+const ctx = canvas.getContext('2d');
+
+// Set canvas size
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Snowflake class
+class Snowflake {
+    constructor() {
+        this.reset();
+    }
+    
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height - canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedY = Math.random() * 1 + 0.5;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.opacity = Math.random() * 0.5 + 0.3;
+    }
+    
+    update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        
+        if (this.y > canvas.height) {
+            this.reset();
+            this.y = -10;
+        }
+        
+        if (this.x > canvas.width || this.x < 0) {
+            this.x = Math.random() * canvas.width;
+        }
+    }
+    
+    draw() {
+        ctx.fillStyle = `rgba(0, 255, 127, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// Create snowflakes
+const snowflakes = [];
+for (let i = 0; i < 60; i++) {
+    snowflakes.push(new Snowflake());
+}
+
+// Animation loop
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Update and draw snowflakes
+    snowflakes.forEach(snowflake => {
+        snowflake.update();
+        snowflake.draw();
+    });
+    
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+// ===== ACCORDION FUNCTIONALITY =====
+document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', function() {
+        const item = this.parentElement;
+        item.classList.toggle('active');
+    });
+});
+
+// ===== SCROLL ANIMATIONS =====
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe privacy sections for animation
+document.querySelectorAll('.privacy-section, .info-box, .contact-card').forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(20px)';
+    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(item);
+});
+
+// ===== COOKIE CONSENT (Basic) =====
+function checkCookieConsent() {
+    if (!localStorage.getItem('cookieConsent')) {
+        // You can add a cookie consent banner here if needed
+        console.log('Cookie consent not yet given');
+    }
+}
+
+// Check on page load
+document.addEventListener('DOMContentLoaded', checkCookieConsent);
+</script>
+
+</body>
+</html>
