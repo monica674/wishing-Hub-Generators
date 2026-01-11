@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Terms of Service | ToolNest.live - Wishing Hub Generators</title>
+<meta name="description" content="Terms and Conditions for ToolNest.live. Read our terms of service, user agreements, and legal policies for using our wishing generators.">
+<meta name="keywords" content="terms of service, terms and conditions, user agreement, legal terms, toolnest terms, wishing hub terms">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://toolnest.live/terms.html">
+
+<!-- Preconnect for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Font with font-display: swap for better performance -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+<!-- Font Awesome with preload -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"></noscript>
+
+<style>
+/* ===== GLOBAL STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: #000;
+    color: #00ff7f;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ===== SNOWFALL CANVAS ===== */
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* ===== NAVIGATION ===== */
+.main-nav {
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom: 2px solid #00ff7f;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 255, 127, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.nav-brand {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-brand i {
+    font-size: 1.8rem;
+    color: #00ff7f;
+    text-shadow: 0 0 8px #00ff7f;
+}
+
+.nav-brand h1 {
+    font-size: 1.5rem;
+    color: #00ff7f;
+    text-shadow: 0 0 12px #00ff7f;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links a {
+    color: #00ff7f;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+    display: inline-block;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: #00ff7f;
+    color: #000;
+    box-shadow: 0 0 20px #00ff7f;
+    border: 1px solid #00ff7f;
+    transform: translateY(-2px);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: 2px solid #00ff7f;
+    color: #00ff7f;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: #00ff7f;
+    color: #000;
+}
+
+/* ===== MAIN CONTENT WRAPPER ===== */
+main {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== TERMS HERO ===== */
+.terms-hero {
+    text-align: center;
+    padding: 50px 20px;
+    background: radial-gradient(circle at center, rgba(0, 30, 15, 0.4) 0%, rgba(0, 0, 0, 0.8) 70%);
+    border-radius: 20px;
+    margin-bottom: 40px;
+    border: 2px solid #00ff7f;
+    box-shadow: 0 0 30px rgba(0, 255, 127, 0.2);
+}
+
+.terms-hero h1 {
+    font-size: 3rem;
+    text-shadow: 0 0 35px #00ff7f;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #00ff7f, #00cc66, #00ff7f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+.terms-hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #00ff7f;
+    opacity: 0.9;
+}
+
+.terms-hero .last-updated {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #00ffaa;
+    background: rgba(0, 255, 127, 0.1);
+    padding: 10px 20px;
+    border-radius: 25px;
+    display: inline-block;
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 20px #00ff7f, 0 0 30px #00ff7f; }
+    100% { text-shadow: 0 0 30px #00ff7f, 0 0 40px #00ff7f, 0 0 50px #00ff7f; }
+}
+
+/* ===== TERMS CONTENT ===== */
+.terms-content {
+    background: rgba(10, 20, 15, 0.2);
+    border: 1px solid rgba(0, 255, 127, 0.3);
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 40px;
+}
+
+.terms-section {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 255, 127, 0.2);
+}
+
+.terms-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.terms-section h2 {
+    font-size: 1.8rem;
+    color: #00ffaa;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.terms-section h2 i {
+    font-size: 1.5rem;
+}
+
+.terms-section h3 {
+    font-size: 1.4rem;
+    color: #00ff7f;
+    margin: 25px 0 15px;
+    padding-left: 15px;
+    border-left: 3px solid #00ff7f;
+}
+
+.terms-section p {
+    color: #00ff7f;
+    margin-bottom: 15px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.terms-section ul, .terms-section ol {
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+
+.terms-section li {
+    color: #00ff7f;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.terms-section strong {
+    color: #00ffaa;
+    font-weight: 700;
+}
+
+/* ===== INFO BOXES ===== */
+.info-box {
+    background: rgba(0, 255, 127, 0.05);
+    border-left: 4px solid #00ff7f;
+    padding: 20px;
+    margin: 25px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.info-box.warning {
+    border-left-color: #ffaa00;
+    background: rgba(255, 170, 0, 0.05);
+}
+
+.info-box.important {
+    border-left-color: #ff5555;
+    background: rgba(255, 85, 85, 0.05);
+}
+
+.info-box h4 {
+    color: #00ffaa;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.info-box p {
+    margin-bottom: 0;
+}
+
+/* ===== TABLE STYLES ===== */
+.terms-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background: rgba(10, 20, 15, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.terms-table th {
+    background: rgba(0, 255, 127, 0.2);
+    color: #00ffaa;
+    padding: 15px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid #00ff7f;
+}
+
+.terms-table td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 255, 127, 0.1);
+    color: #00ff7f;
+}
+
+.terms-table tr:last-child td {
+    border-bottom: none;
+}
+
+.terms-table tr:hover {
+    background: rgba(0, 255, 127, 0.05);
+}
+
+/* ===== ACCORDION STYLES ===== */
+.accordion {
+    margin: 30px 0;
+}
+
+.accordion-item {
+    background: rgba(10, 20, 15, 0.3);
+    border: 1px solid rgba(0, 255, 127, 0.2);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    padding: 20px;
+    background: rgba(0, 255, 127, 0.05);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.accordion-header:hover {
+    background: rgba(0, 255, 127, 0.1);
+}
+
+.accordion-header h4 {
+    color: #00ffaa;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.accordion-icon {
+    color: #00ff7f;
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion-item.active .accordion-content {
+    padding: 20px;
+    max-height: 1000px;
+}
+
+/* ===== ACCEPTANCE BOX ===== */
+.acceptance-box {
+    background: linear-gradient(135deg, rgba(0, 30, 15, 0.4), rgba(0, 60, 30, 0.2));
+    border: 2px solid #00ff7f;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    margin-top: 40px;
+    box-shadow: 0 0 30px rgba(0, 255, 127, 0.1);
+}
+
+.acceptance-box h3 {
+    font-size: 2rem;
+    color: #00ffaa;
+    margin-bottom: 20px;
+}
+
+.acceptance-box p {
+    margin-bottom: 20px;
+    color: #00ff7f;
+}
+
+.acceptance-button {
+    background: linear-gradient(135deg, #00ff7f, #00cc66);
+    color: #000;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.acceptance-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 255, 127, 0.4);
+    background: linear-gradient(135deg, #00ffaa, #00ff7f);
+}
+
+/* ===== FOOTER ===== */
+.main-footer {
+    margin-top: auto;
+    background: #0a0a0a;
+    padding: 50px 20px 30px;
+    border-top: 2px solid #00ff7f;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: left;
+}
+
+.footer-section h3 {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    color: #00ffaa;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #00ff7f;
+}
+
+.footer-section p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #00ff7f;
+}
+
+.footer-section a {
+    color: #00ff7f;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+    padding: 3px 0;
+}
+
+.footer-section a:hover {
+    color: #00ffaa;
+    transform: translateX(5px);
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    border-top: 1px solid rgba(0, 255, 127, 0.2);
+    text-align: center;
+    color: #00ff7f;
+}
+
+.footer-bottom a {
+    color: #00ff7f;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.footer-bottom a:hover {
+    color: #00ffaa;
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        order: 2;
+    }
+    
+    .nav-container {
+        position: relative;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgba(0, 0, 0, 0.98);
+        padding: 20px;
+        border-top: 2px solid #00ff7f;
+        border-bottom: 2px solid #00ff7f;
+        gap: 10px;
+        z-index: 999;
+    }
+    
+    .nav-links.mobile-show {
+        display: flex;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        display: block;
+    }
+    
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+    
+    .terms-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .terms-content {
+        padding: 25px;
+    }
+    
+    .terms-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .terms-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .terms-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .terms-hero p {
+        font-size: 1rem;
+    }
+    
+    .terms-content {
+        padding: 20px;
+    }
+    
+    .terms-section h2 {
+        font-size: 1.3rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .acceptance-box {
+        padding: 20px;
+    }
+    
+    .acceptance-box h3 {
+        font-size: 1.5rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SNOWFALL CANVAS -->
+<canvas id="snowCanvas"></canvas>
+
+<!-- NAVIGATION -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+            <i class="fas fa-wand-magic-sparkles"></i>
+            <h1>Wishing Hub Generators</h1>
+        </a>
+        
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact-us.html">Contact</a></li>
+            <li><a href="https://www.onlinewebtool.live" target="_blank" rel="noopener">Web Tools</a></li>
+            <li><a href="https://www.onlinetoolstack.site" target="_blank" rel="noopener">Tool Stack</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html" class="active">Terms</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+    <!-- TERMS HERO -->
+    <section class="terms-hero">
+        <h1><i class="fas fa-balance-scale"></i> Terms of Service</h1>
+        <p>Please read these terms carefully before using ToolNest.live services. By accessing our platform, you agree to be bound by these terms.</p>
+        <div class="last-updated">
+            <i class="fas fa-calendar-alt"></i> Last Updated: January 11, 2026
+        </div>
+    </section>
+
+    <!-- TERMS CONTENT -->
+    <div class="terms-content">
+        
+        <div class="terms-section">
+            <h2><i class="fas fa-gavel"></i> 1. Acceptance of Terms</h2>
+            <p>By accessing and using ToolNest.live ("Website," "Service," "Platform," "we," "our," or "us"), you accept and agree to be bound by the terms and provision of this agreement. In addition, when using this Website's particular services, you shall be subject to any posted guidelines or rules applicable to such services.</p>
+            
+            <div class="info-box important">
+                <h4><i class="fas fa-exclamation-triangle"></i> Important Notice</h4>
+                <p>If you do not agree to these Terms of Service, please do not use our Website or services. Your continued use of the Website constitutes acceptance of these terms.</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2><i class="fas fa-user-check"></i> 2. User Eligibility</h2>
+            <p>By using this Website, you represent and warrant that:</p>
+            <ul>
+                <li>You are at least 13 years of age</li>
+                <li>You have the legal capacity to enter into binding contracts</li>
+                <li>All registration information you submit is truthful and accurate</li>
+                <li>You will maintain the accuracy of such information</li>
+                <li>Your use of the Website does not violate any applicable law or regulation</li>
+            </ul>
+            
+            <div class="info-box warning">
+                <h4><i class="fas fa-child"></i> Children Under 13</h4>
+                <p>Our services are not directed to children under 13. We do not knowingly collect personal information from children under 13. If you are a parent and believe your child has provided us with personal information, please contact us immediately.</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2><i class="fas fa-laptop-code"></i> 3. Service Description</h2>
+            <p>ToolNest.live provides online wishing generators and related tools ("Services"). Our Services include but are not limited to:</p>
+            
+            <table class="terms-table">
+                <thead>
+                    <tr>
+                        <th>Service Type</th>
+                        <th>Description</th>
+                        <th>Access</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Wishing Generators</strong></td>
+                        <td>Tools to create personalized wishes for various occasions</td>
+                        <td>Free</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Content Creation Tools</strong></td>
+                        <td>Additional tools for message customization and enhancement</td>
+                        <td>Free</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pro Features</strong></td>
+                        <td>Advanced customization options and premium templates</td>
+                        <td>Free/Paid</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Support Services</strong></td>
+                        <td>Customer support and technical assistance</td>
+                        <td>Free</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>We reserve the right to modify, suspend, or discontinue any part of our Services at any time without notice.</p>
+        </div>
+        
+        <div class="terms-section">
+            <h2><i class="fas fa-user-circle"></i> 4. User Accounts</h2>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Account Registration</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Some features may require account registration. When you register, you agree to provide accurate and complete information. You are responsible for maintaining the confidentiality of your account credentials.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Account Security</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>You are responsible for all activities that occur under your account. Notify us immediately of any unauthorized use or security breach. We are not liable for any loss or damage arising from your failure to protect your account.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Account Termination</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We reserve the right to terminate or suspend your account at our sole discretion, without notice, for conduct that we believe violates these Terms or is harmful to other users, us, or third parties, or for any other reason.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2><i class="fas fa-copyright"></i> 5. Intellectual Property Rights</h2>
+            <p>All content on this Website, including but not limited to text, graphics, logos, images, audio clips, digital downloads, data compilations, and software, is the property of ToolNest.live or its content suppliers and protected by international copyright laws.</p>
+            
+            <h3>What You Can Do:</h3>
+            <ul>
+                <li>Use our wishing generators for personal, non-commercial purposes</li>
+                <li>Share generated content with proper attribution to ToolNest.live</li>
+                <li>Link to our Website with appropriate credit</li>
+            </ul>
+            
+            <h3>What You Cannot Do:</h3>
+            <ul>
+                <li>Copy, modify, or distribute Website content without permission</li>
+                <li>Use our trademarks or logos without written consent</li>
+                <li>Reverse engineer or decompile our software</li>
+                <li>Use automated systems to access our Services</li>
+                <li>Resell or commercially exploit our Services without authorization</li>
+            </ul>
+            
+            <div class="info-box">
+                <h4><i class="fas fa-lightbulb"></i> User-Generated Content</h4>
+                <p>The wishes you generate using our tools are your intellectual property. However, by using our Services, you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, and display such content for the purpose of operating and improving our Services.</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2><i class="fas fa-exclamation-circle"></i> 6. Prohibited Activities</h2>
+            <p>You agree not to use the Website to:</p>
+            
+            <ol>
+                <li>Violate any laws, regulations, or third-party rights</li>
+                <li>Post or transmit harmful, threatening, abusive, harassing, defamatory, vulgar, obscene, or hateful content</li>
+                <li>Impersonate any person or entity or misrepresent your affiliation</li>
+                <li>Interfere with or disrupt the Website or servers</li>
+                <li>Attempt to gain unauthorized access to any part of the Website</li>
+                <li>Use automated systems or software to extract data</li>
+                <li>Transmit viruses, worms, or any other destructive code</li>
+                <li>Engage in any activity that could damage, disable, or impair our Services</li>
+            </ol>
+            
+            <div class="info-box warning">
+                <h4><i class="fas fa-ban"></i> Violation Consequences</h4>
+                <p>Violation of these prohibitions may result in immediate termination of your access to our Services and may subject you to civil and criminal penalties.</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2><i class="fas fa-shield-alt"></i> 7. Disclaimer of Warranties</h2>
+            <p>THE WEBSITE AND SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.</p>
+            
+            <h3>Specific Disclaimers:</h3>
+            <ul>
+                <li>We do not guarantee that our Services will be uninterrupted or error-free</li>
+                <li>We do not warrant the accuracy, completeness, or usefulness of generated content</li>
+                <li>We are not responsible for any damages resulting from the use of generated content</li>
+                <li>We do not guarantee that our Services will meet your requirements</li>
+                <li>We are not liable for any content generated by our tools that may be inappropriate or offensive</li>
+            </ul>
+        </div>
+        
+        <div class="terms-section">
+            <h2><i class="fas fa-handshake"></i> 8. Limitation of Liability</h2>
+            <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, TOOLNEST.LIVE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM:</p>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Your Use of Our Services</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Any use or inability to use our Services, including reliance on any information obtained through our Services.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Unauthorized Access</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Any unauthorized access to or use of our servers and/or any personal information stored therein.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Third-Party Conduct</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Any conduct or content of any third party on the Service, including without limitation, any defamatory, offensive, or illegal conduct.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Service Interruptions</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Any interruption or cessation of transmission to or from our Services.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p>Our total liability for any claims under these Terms, including for any implied warranties, is limited to the amount you paid us to use the Services (or, if we choose, to supplying you the Services again).</p>
+        </div>
+        
+        <div class="terms-section">
+            <h2><i class="fas fa-link"></i> 9. Third-Party Links and Services</h2>
+            <p>Our Website may contain links to third-party websites or services that are not owned or controlled by ToolNest.live. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services.</p>
+            
+            <h3>Important Points:</h3>
+            <ul>
+                <li>We do not endorse any third-party websites or services</li>
+                <li>You acknowledge and agree that we shall not be responsible or liable for any damage or loss caused by your use of any third-party websites or services</li>
+                <li>We strongly advise you to read the terms and conditions and privacy policies of any third-party websites or services that you visit</li>
+            </ul>
+        </div>
+        
+        <div class="terms-section">
+            <h2><i class="fas fa-edit"></i> 10. Modifications to Terms</h2>
+            <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+            
+            <div class="info-box">
+                <h4><i class="fas fa-bell"></i> Your Responsibility</h4>
+                <p>It is your responsibility to review these Terms periodically for changes. Your continued use of the Website following the posting of any changes to these Terms constitutes acceptance of those changes.</p>
+            </div>
+        </div>
+        
+        <div class="terms-section">
+            <h2><i class="fas fa-globe"></i> 11. Governing Law and Jurisdiction</h2>
+            <p>These Terms shall be governed and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law provisions.</p>
+            
+            <h3>Dispute Resolution:</h3>
+            <ul>
+                <li>Any dispute arising from these Terms shall be resolved through good faith negotiations</li>
+                <li>If negotiations fail, disputes shall be resolved through binding arbitration</li>
+                <li>Arbitration shall be conducted in accordance with [Arbitration Rules]</li>
+                <li>The arbitration shall take place in [City, Country]</li>
+                <li>The language of arbitration shall be English</li>
+            </ul>
+            
+            <p>You agree that any legal action or proceeding shall be brought exclusively in the competent courts of [Your Country/State].</p>
+        </div>
+        
+        <div class="terms-section">
+            <h2><i class="fas fa-envelope"></i> 12. Contact Information</h2>
+            <p>If you have any questions about these Terms, please contact us:</p>
+            
+            <table class="terms-table">
+                <thead>
+                    <tr>
+                        <th>Contact Method</th>
+                        <th>Details</th>
+                        <th>Response Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Email</strong></td>
+                        <td>legal@toolnest.live</td>
+                        <td>24-48 hours</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Website</strong></td>
+                        <td>toolnest.live/contact</td>
+                        <td>24-48 hours</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Physical Address</strong></td>
+                        <td>[Your Company Address]</td>
+                        <td>N/A</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+    
+    <!-- ACCEPTANCE BOX -->
+    <div class="acceptance-box">
+        <h3><i class="fas fa-check-circle"></i> Acceptance Confirmation</h3>
+        <p>By continuing to use ToolNest.live services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</p>
+        
+        <button class="acceptance-button" id="acceptButton">
+            <i class="fas fa-thumbs-up"></i> I Accept These Terms
+        </button>
+        
+        <p style="margin-top: 20px; font-size: 0.9rem; color: #00ffaa;">
+            <i class="fas fa-info-circle"></i> Clicking "I Accept These Terms" is not required but acknowledges your understanding of our terms.
+        </p>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="main-footer">
+    <div class="footer-content">
+        
+        <div class="footer-section">
+            <h3>ToolNest.live</h3>
+            <p>Creating beautiful wishes with clear terms and conditions. We believe in transparency and protecting both our users and our platform.</p>
+            <p>Part of a growing ecosystem of free, high-quality web tools.</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Legal Documents</h3>
+            <a href="terms.html" class="active">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="cookie-policy.html">Cookie Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="gdpr.html">GDPR Compliance</a>
+            <a href="ccpa.html">CCPA Rights</a>
+        </div>
+        
+        <div class="footer-section">
+            <h3>User Rights</h3>
+            <a href="#">Intellectual Property</a>
+            <a href="#">Content Guidelines</a>
+            <a href="#">Acceptable Use</a>
+            <a href="#">Account Management</a>
+            <a href="#">Dispute Resolution</a>
+            <a href="#">Termination Rights</a>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact-us.html">Contact</a>
+            <a href="https://www.onlinewebtool.live" target="_blank" rel="noopener">Online Web Tools</a>
+            <a href="https://www.onlinetoolstack.site" target="_blank" rel="noopener">Tool Stack Site</a>
+            <a href="sitemap.html">Sitemap</a>
+        </div>
+        
+    </div>
+    
+    <div class="footer-bottom">
+        © 2026 ToolNest.live | Wishing Hub Generators | Terms Last Updated: January 11, 2026 — All Rights Reserved
+    </div>
+</footer>
+
+<script>
+// ===== MOBILE MENU TOGGLE =====
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const menuIcon = menuToggle.querySelector('i');
+    
+    // Toggle menu function
+    function toggleMenu() {
+        navLinks.classList.toggle('mobile-show');
+        
+        // Change icon
+        if (navLinks.classList.contains('mobile-show')) {
+            menuIcon.classList.remove('fa-bars');
+            menuIcon.classList.add('fa-times');
+        } else {
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        }
+    }
+    
+    // Add click event to toggle button
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMenu();
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            if (navLinks.classList.contains('mobile-show')) {
+                toggleMenu();
+            }
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('mobile-show')) {
+            toggleMenu();
+        }
+    });
+    
+    // Prevent clicks inside menu from closing it
+    navLinks.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+});
+
+// ===== SNOWFALL EFFECT =====
+const canvas = document.getElementById('snowCanvas');
+const ctx = canvas.getContext('2d');
+
+// Set canvas size
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Snowflake class
+class Snowflake {
+    constructor() {
+        this.reset();
+    }
+    
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height - canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedY = Math.random() * 1 + 0.5;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.opacity = Math.random() * 0.5 + 0.3;
+    }
+    
+    update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        
+        if (this.y > canvas.height) {
+            this.reset();
+            this.y = -10;
+        }
+        
+        if (this.x > canvas.width || this.x < 0) {
+            this.x = Math.random() * canvas.width;
+        }
+    }
+    
+    draw() {
+        ctx.fillStyle = `rgba(0, 255, 127, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// Create snowflakes
+const snowflakes = [];
+for (let i = 0; i < 60; i++) {
+    snowflakes.push(new Snowflake());
+}
+
+// Animation loop
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Update and draw snowflakes
+    snowflakes.forEach(snowflake => {
+        snowflake.update();
+        snowflake.draw();
+    });
+    
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+// ===== ACCORDION FUNCTIONALITY =====
+document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', function() {
+        const item = this.parentElement;
+        item.classList.toggle('active');
+    });
+});
+
+// ===== ACCEPTANCE BUTTON =====
+document.getElementById('acceptButton').addEventListener('click', function() {
+    const button = this;
+    const originalText = button.innerHTML;
+    
+    // Animate button
+    button.innerHTML = '<i class="fas fa-check"></i> Terms Accepted!';
+    button.style.background = 'linear-gradient(135deg, #00cc66, #00994d)';
+    button.style.transform = 'scale(0.95)';
+    
+    // Store acceptance in localStorage
+    localStorage.setItem('termsAccepted', 'true');
+    localStorage.setItem('termsAcceptedDate', new Date().toISOString());
+    
+    // Show confirmation
+    setTimeout(() => {
+        const confirmation = document.createElement('div');
+        confirmation.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 255, 127, 0.1);
+            border: 2px solid #00ff7f;
+            border-radius: 10px;
+            padding: 15px 20px;
+            color: #00ff7f;
+            z-index: 10000;
+            animation: slideIn 0.5s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 127, 0.3);
+        `;
+        confirmation.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-check-circle" style="color: #00ff7f; font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Terms Accepted</strong><br>
+                    <small>Your acceptance has been recorded.</small>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(confirmation);
+        
+        // Remove confirmation after 3 seconds
+        setTimeout(() => {
+            confirmation.style.animation = 'slideOut 0.5s ease';
+            setTimeout(() => confirmation.remove(), 500);
+        }, 3000);
+    }, 300);
+    
+    // Reset button after 2 seconds
+    setTimeout(() => {
+        button.innerHTML = originalText;
+        button.style.background = 'linear-gradient(135deg, #00ff7f, #00cc66)';
+        button.style.transform = '';
+    }, 2000);
+});
+
+// Check if terms were previously accepted
+if (localStorage.getItem('termsAccepted') === 'true') {
+    const acceptDate = localStorage.getItem('termsAcceptedDate');
+    console.log(`Terms accepted on: ${new Date(acceptDate).toLocaleDateString()}`);
+}
+
+// ===== SCROLL ANIMATIONS =====
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe terms sections for animation
+document.querySelectorAll('.terms-section, .info-box, .acceptance-box').forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(20px)';
+    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(item);
+});
+
+// ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId !== '#') {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    });
+});
+
+// Add CSS for confirmation animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>
