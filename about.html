@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About ToolNest.live - Our Journey | Wishing Hub Generators</title>
+<meta name="description" content="Discover the journey of ToolNest.live - from a simple idea to becoming your trusted source for free online wishing generators and web tools.">
+<meta name="keywords" content="ToolNest journey, about us, wishing generators story, free tools history, our mission">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://toolnest.live/about.html">
+
+<!-- Preconnect for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Font with font-display: swap for better performance -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+<!-- Font Awesome with preload -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"></noscript>
+
+<style>
+/* ===== GLOBAL STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: #000;
+    color: #00ff7f;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ===== SNOWFALL CANVAS ===== */
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* ===== NAVIGATION ===== */
+.main-nav {
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom: 2px solid #00ff7f;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 255, 127, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.nav-brand {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-brand i {
+    font-size: 1.8rem;
+    color: #00ff7f;
+    text-shadow: 0 0 8px #00ff7f;
+}
+
+.nav-brand h1 {
+    font-size: 1.5rem;
+    color: #00ff7f;
+    text-shadow: 0 0 12px #00ff7f;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links a {
+    color: #00ff7f;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+    display: inline-block;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: #00ff7f;
+    color: #000;
+    box-shadow: 0 0 20px #00ff7f;
+    border: 1px solid #00ff7f;
+    transform: translateY(-2px);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: 2px solid #00ff7f;
+    color: #00ff7f;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: #00ff7f;
+    color: #000;
+}
+
+/* ===== MAIN CONTENT WRAPPER ===== */
+main {
+    flex: 1;
+    padding: 40px 20px;
+}
+
+/* ===== ABOUT HERO ===== */
+.about-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: radial-gradient(circle at center, rgba(0, 30, 15, 0.4) 0%, rgba(0, 0, 0, 0.8) 70%);
+    border-radius: 20px;
+    margin-bottom: 50px;
+    border: 2px solid #00ff7f;
+    box-shadow: 0 0 30px rgba(0, 255, 127, 0.2);
+}
+
+.about-hero h1 {
+    font-size: 3rem;
+    text-shadow: 0 0 35px #00ff7f;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #00ff7f, #00cc66, #00ff7f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #00ff7f;
+    opacity: 0.9;
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 20px #00ff7f, 0 0 30px #00ff7f; }
+    100% { text-shadow: 0 0 30px #00ff7f, 0 0 40px #00ff7f, 0 0 50px #00ff7f; }
+}
+
+/* ===== JOURNEY TIMELINE ===== */
+.journey-container {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+}
+
+.journey-container h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #00ffaa;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.journey-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: #00ff7f;
+}
+
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #00ff7f, transparent);
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+    position: relative;
+    width: 100%;
+}
+
+.timeline-content {
+    background: rgba(10, 20, 15, 0.3);
+    border: 2px solid #00ff7f;
+    border-radius: 15px;
+    padding: 25px;
+    width: 45%;
+    box-shadow: 0 5px 20px rgba(0, 255, 127, 0.1);
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 255, 127, 0.2);
+    background: rgba(0, 255, 127, 0.1);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-right: 55%;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: 55%;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background: #000;
+    border: 3px solid #00ff7f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00ff7f;
+    font-size: 1.2rem;
+    box-shadow: 0 0 20px #00ff7f;
+    z-index: 2;
+}
+
+.timeline-year {
+    font-size: 1.5rem;
+    color: #00ffaa;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.timeline-title {
+    font-size: 1.4rem;
+    color: #00ff7f;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.3);
+}
+
+.timeline-description {
+    color: #00ff7f;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* ===== MISSION VISION SECTION ===== */
+.mission-vision {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+}
+
+.mission-card, .vision-card, .values-card {
+    background: rgba(10, 20, 15, 0.3);
+    border: 2px solid #00ff7f;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.mission-card:hover, .vision-card:hover, .values-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 255, 127, 0.15);
+    background: rgba(0, 255, 127, 0.1);
+}
+
+.mission-card i, .vision-card i, .values-card i {
+    font-size: 3rem;
+    color: #00ff7f;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px #00ff7f;
+}
+
+.mission-card h3, .vision-card h3, .values-card h3 {
+    font-size: 1.8rem;
+    color: #00ffaa;
+    margin-bottom: 20px;
+}
+
+.mission-card p, .vision-card p, .values-card p {
+    color: #00ff7f;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* ===== STATS SECTION ===== */
+.stats-section {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.stats-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #00ffaa;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.stat-item {
+    background: rgba(10, 20, 15, 0.3);
+    border: 2px solid #00ff7f;
+    border-radius: 15px;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 127, 0.3);
+    background: rgba(0, 255, 127, 0.1);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00ff7f;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px #00ff7f;
+}
+
+.stat-label {
+    font-size: 1.2rem;
+    color: #00ffaa;
+}
+
+/* ===== TEAM SECTION ===== */
+.team-section {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.team-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #00ffaa;
+}
+
+.team-description {
+    font-size: 1.1rem;
+    color: #00ff7f;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.team-quote {
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #00ff7f;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    border-left: 4px solid #00ff7f;
+    background: rgba(0, 255, 127, 0.05);
+    border-radius: 0 10px 10px 0;
+}
+
+/* ===== FOOTER ===== */
+.main-footer {
+    margin-top: auto;
+    background: #0a0a0a;
+    padding: 50px 20px 30px;
+    border-top: 2px solid #00ff7f;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: left;
+}
+
+.footer-section h3 {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    color: #00ffaa;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #00ff7f;
+}
+
+.footer-section p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #00ff7f;
+}
+
+.footer-section a {
+    color: #00ff7f;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+    padding: 3px 0;
+}
+
+.footer-section a:hover {
+    color: #00ffaa;
+    transform: translateX(5px);
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    border-top: 1px solid rgba(0, 255, 127, 0.2);
+    text-align: center;
+    color: #00ff7f;
+}
+
+.footer-bottom a {
+    color: #00ff7f;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.footer-bottom a:hover {
+    color: #00ffaa;
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        order: 2;
+    }
+    
+    .nav-container {
+        position: relative;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgba(0, 0, 0, 0.98);
+        padding: 20px;
+        border-top: 2px solid #00ff7f;
+        border-bottom: 2px solid #00ff7f;
+        gap: 10px;
+        z-index: 999;
+    }
+    
+    .nav-links.mobile-show {
+        display: flex;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        display: block;
+    }
+    
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+    
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-content {
+        width: calc(100% - 80px);
+        margin-left: 80px !important;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        margin: 0 0 0 80px;
+    }
+    
+    .timeline-icon {
+        left: 30px;
+        transform: translateX(-50%);
+    }
+    
+    .journey-container h2,
+    .stats-section h2,
+    .team-section h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .about-hero p {
+        font-size: 1rem;
+    }
+    
+    .timeline-content {
+        padding: 20px;
+    }
+    
+    .timeline-title {
+        font-size: 1.2rem;
+    }
+    
+    .timeline-description {
+        font-size: 0.9rem;
+    }
+    
+    .mission-card, .vision-card, .values-card {
+        padding: 20px;
+    }
+    
+    .mission-card h3, .vision-card h3, .values-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SNOWFALL CANVAS -->
+<canvas id="snowCanvas"></canvas>
+
+<!-- NAVIGATION -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+            <i class="fas fa-wand-magic-sparkles"></i>
+            <h1>Wishing Hub Generators</h1>
+        </a>
+        
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact-us.html">Contact</a></li>
+            <li><a href="https://www.onlinewebtool.live" target="_blank" rel="noopener">Web Tools</a></li>
+            <li><a href="https://www.onlinetoolstack.site" target="_blank" rel="noopener">Tool Stack</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+    <!-- ABOUT HERO -->
+    <section class="about-hero">
+        <h1>Our Journey - ToolNest.live</h1>
+        <p>From a simple idea to becoming the trusted destination for millions seeking beautiful wishes and useful tools.</p>
+    </section>
+
+    <!-- JOURNEY TIMELINE -->
+    <section class="journey-container">
+        <h2>Our Timeline</h2>
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2022</div>
+                    <h3 class="timeline-title">The Seed Was Planted</h3>
+                    <p class="timeline-description">
+                        It all began with a simple observation - people struggled to create personalized wishes for special occasions. 
+                        We envisioned a platform where anyone could generate beautiful, heartfelt messages in seconds.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-year">Early 2023</div>
+                    <h3 class="timeline-title">First Prototype</h3>
+                    <p class="timeline-description">
+                        Developed our first birthday wishes generator. The positive feedback from early users confirmed we were 
+                        on the right path. We realized the potential to expand to various occasions and festivals.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-year">Mid 2023</div>
+                    <h3 class="timeline-title">ToolNest.live Launch</h3>
+                    <p class="timeline-description">
+                        Officially launched ToolNest.live with 15 wishing generators. The platform gained immediate traction, 
+                        reaching 10,000 users in the first month. We expanded to include festival wishes for Diwali, Christmas, 
+                        and Ramadan.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-year">Late 2023</div>
+                    <h3 class="timeline-title">Rapid Expansion</h3>
+                    <p class="timeline-description">
+                        Introduced advanced features like Pro versions, theme customization, and social media integration. 
+                        Our generator collection grew to 50+ tools. Partnered with OnlineWebTool.live and OnlineToolStack.site 
+                        to create a comprehensive tool ecosystem.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2024</div>
+                    <h3 class="timeline-title">Global Recognition</h3>
+                    <p class="timeline-description">
+                        Reached 1 million users worldwide. Featured in tech blogs and recognized for innovation in 
+                        digital communication tools. Expanded language support and added cultural-specific wishing generators.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2025-Present</div>
+                    <h3 class="timeline-title">Industry Leader</h3>
+                    <p class="timeline-description">
+                        Now serving 5+ million users monthly with 100+ specialized generators. Continuously innovating with 
+                        AI-powered suggestions, real-time collaboration features, and mobile app development. Our mission 
+                        remains unchanged: making beautiful communication accessible to everyone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION, VISION & VALUES -->
+    <section class="mission-vision">
+        <div class="mission-card">
+            <i class="fas fa-bullseye"></i>
+            <h3>Our Mission</h3>
+            <p>To empower people worldwide with tools that make communication more beautiful, personalized, and effortless. We believe every special moment deserves a perfect message.</p>
+        </div>
+        
+        <div class="vision-card">
+            <i class="fas fa-eye"></i>
+            <h3>Our Vision</h3>
+            <p>To become the world's most trusted platform for digital communication tools, bridging emotional connections across cultures and celebrations through technology.</p>
+        </div>
+        
+        <div class="values-card">
+            <i class="fas fa-heart"></i>
+            <h3>Core Values</h3>
+            <p>Innovation, Accessibility, Quality, User-First Approach, and Continuous Improvement. We're committed to providing free, high-quality tools without compromise.</p>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats-section">
+        <h2>By The Numbers</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">5M+</div>
+                <div class="stat-label">Monthly Users</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Wishing Generators</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Countries Served</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10M+</div>
+                <div class="stat-label">Wishes Generated</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section class="team-section">
+        <h2>Behind ToolNest.live</h2>
+        <p class="team-description">
+            ToolNest.live is powered by a passionate team of developers, designers, and content creators who believe in 
+            the power of heartfelt communication. Our diverse team spans across three continents, united by a common goal: 
+            to make every special moment more memorable.
+        </p>
+        
+        <p class="team-quote">
+            "We don't just build tools; we build bridges between hearts. Every generator we create is designed with 
+            one purpose in mind - to help you express what truly matters."
+        </p>
+        
+        <p class="team-description">
+            From our headquarters to remote team members, we work tirelessly to ensure every feature, every design element, 
+            and every line of code serves our users' needs. We're not just a company; we're a community of creators helping 
+            people connect in meaningful ways.
+        </p>
+    </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="main-footer">
+    <div class="footer-content">
+        
+        <div class="footer-section">
+            <h3>ToolNest.live</h3>
+            <p>Your trusted companion for beautiful communication. Creating tools that bring people closer, one wish at a time.</p>
+            <p>Part of a growing ecosystem of free, high-quality web tools.</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact-us.html">Contact Us</a>
+            <a href="https://www.onlinewebtool.live" target="_blank" rel="noopener">Online Web Tools</a>
+            <a href="https://www.onlinetoolstack.site" target="_blank" rel="noopener">Tool Stack Site</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Our Network</h3>
+            <a href="https://toolnest.live">ToolNest.live</a>
+            <a href="https://wishinghub.toolnest.live">Wishing Hub</a>
+            <a href="https://www.onlinewebtool.live" target="_blank" rel="noopener">Online Web Tool</a>
+            <a href="https://www.onlinetoolstack.site" target="_blank" rel="noopener">Tool Stack Site</a>
+            <a href="#">Developer Tools</a>
+            <a href="#">Content Tools</a>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+            <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="contact-us.html"><i class="fas fa-envelope"></i> Email Us</a>
+        </div>
+        
+    </div>
+    
+    <div class="footer-bottom">
+        © 2026 ToolNest.live | Wishing Hub Generators | Part of our growing tool ecosystem — All Rights Reserved
+    </div>
+</footer>
+
+<script>
+// ===== MOBILE MENU TOGGLE =====
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const menuIcon = menuToggle.querySelector('i');
+    
+    // Toggle menu function
+    function toggleMenu() {
+        navLinks.classList.toggle('mobile-show');
+        
+        // Change icon
+        if (navLinks.classList.contains('mobile-show')) {
+            menuIcon.classList.remove('fa-bars');
+            menuIcon.classList.add('fa-times');
+        } else {
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        }
+    }
+    
+    // Add click event to toggle button
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMenu();
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            if (navLinks.classList.contains('mobile-show')) {
+                toggleMenu();
+            }
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('mobile-show')) {
+            toggleMenu();
+        }
+    });
+    
+    // Prevent clicks inside menu from closing it
+    navLinks.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+});
+
+// ===== SNOWFALL EFFECT =====
+const canvas = document.getElementById('snowCanvas');
+const ctx = canvas.getContext('2d');
+
+// Set canvas size
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Snowflake class
+class Snowflake {
+    constructor() {
+        this.reset();
+    }
+    
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height - canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedY = Math.random() * 1 + 0.5;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.opacity = Math.random() * 0.5 + 0.3;
+    }
+    
+    update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        
+        if (this.y > canvas.height) {
+            this.reset();
+            this.y = -10;
+        }
+        
+        if (this.x > canvas.width || this.x < 0) {
+            this.x = Math.random() * canvas.width;
+        }
+    }
+    
+    draw() {
+        ctx.fillStyle = `rgba(0, 255, 127, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// Firework particle class
+class FireworkParticle {
+    constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 6;
+        this.speedY = (Math.random() - 0.5) * 6;
+        this.gravity = 0.1;
+        this.opacity = 1;
+        this.decay = Math.random() * 0.015 + 0.015;
+    }
+    
+    update() {
+        this.speedY += this.gravity;
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.opacity -= this.decay;
+    }
+    
+    draw() {
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    }
+}
+
+// Create snowflakes
+const snowflakes = [];
+for (let i = 0; i < 80; i++) {
+    snowflakes.push(new Snowflake());
+}
+
+// Fireworks array
+let fireworks = [];
+
+// Create firework explosion
+function createFirework(x, y) {
+    const colors = ['#00ff7f', '#00ffaa', '#00cc66', '#66ffcc', '#33ff99'];
+    const particleCount = 25;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        fireworks.push(new FireworkParticle(x, y, color));
+    }
+}
+
+// Random firework trigger
+function triggerRandomFirework() {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * (canvas.height * 0.5);
+    createFirework(x, y);
+}
+
+// Trigger fireworks periodically
+setInterval(triggerRandomFirework, 4000);
+
+// Animation loop
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Update and draw snowflakes
+    snowflakes.forEach(snowflake => {
+        snowflake.update();
+        snowflake.draw();
+    });
+    
+    // Update and draw fireworks
+    fireworks = fireworks.filter(particle => particle.opacity > 0);
+    fireworks.forEach(particle => {
+        particle.update();
+        particle.draw();
+    });
+    
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+// ===== TIMELINE ANIMATION =====
+const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe timeline items for animation
+document.querySelectorAll('.timeline-content').forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(20px)';
+    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(item);
+});
+
+// Observe mission/vision cards
+document.querySelectorAll('.mission-card, .vision-card, .values-card, .stat-item').forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(20px)';
+    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(item);
+});
+</script>
+
+</body>
+</html>
