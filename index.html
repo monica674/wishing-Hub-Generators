@@ -432,7 +432,7 @@ main {
         z-index: 999;
     }
     
-    .nav-links.active {
+    .nav-links.show {
         display: flex;
     }
     
@@ -533,7 +533,7 @@ main {
             <h1>Wishing Hub Generators</h1>
         </a>
         
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
             <i class="fas fa-bars"></i>
         </button>
         
@@ -562,10 +562,10 @@ main {
         </div>
         
         <div class="filters">
-            <button class="active" onclick="filterTools('all')">All Generators</button>
-            <button onclick="filterTools('birthday')">🎂 Birthday</button>
-            <button onclick="filterTools('festival')">🎊 Festival</button>
-            <button onclick="filterTools('event')">📅 Event</button>
+            <button class="active" data-filter="all">All Generators</button>
+            <button data-filter="birthday">🎂 Birthday</button>
+            <button data-filter="festival">🎊 Festival</button>
+            <button data-filter="event">📅 Event</button>
         </div>
     </section>
 
@@ -625,6 +625,42 @@ main {
 </footer>
 
 <script>
+// ===== MOBILE NAVIGATION MENU =====
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+// Toggle menu function
+function toggleMenu() {
+    navLinks.classList.toggle('show');
+    const icon = menuToggle.querySelector('i');
+    if (navLinks.classList.contains('show')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+}
+
+// Attach event listener to menu toggle button
+menuToggle.addEventListener('click', toggleMenu);
+
+// Close menu when clicking on a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        if (navLinks.classList.contains('show')) {
+            toggleMenu();
+        }
+    });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('show')) {
+        toggleMenu();
+    }
+});
+
 // ===== SNOWFALL AND FIREWORKS EFFECT =====
 const canvas = document.getElementById('snowCanvas');
 const ctx = canvas.getContext('2d');
@@ -797,6 +833,7 @@ const tools = [
 
 const toolList = document.getElementById("toolList");
 const searchInput = document.getElementById("search");
+const filterButtons = document.querySelectorAll('.filters button');
 
 // Render tools function
 function renderTools(toolsArray) {
@@ -837,7 +874,7 @@ function renderTools(toolsArray) {
     });
 }
 
-// Initialize - Wait for DOM and fonts to load
+// Initialize tools
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
         renderTools(tools);
@@ -858,7 +895,7 @@ searchInput.addEventListener("input", (e) => {
 
 // Filter by category
 function filterTools(category) {
-    document.querySelectorAll('.filters button').forEach(btn => {
+    filterButtons.forEach(btn => {
         btn.classList.remove('active');
     });
     event.target.classList.add('active');
@@ -873,28 +910,20 @@ function filterTools(category) {
     }
 }
 
-// Mobile menu toggle
-function toggleMenu() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');
-}
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    const nav = document.querySelector('.main-nav');
-    const navLinks = document.getElementById('navLinks');
-    
-    if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-    }
-});
-
-// Close mobile menu when link is clicked
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', (e) => {
-        // Don't close menu if it's an external link
-        if (!link.hasAttribute('target')) {
-            document.getElementById('navLinks').classList.remove('active');
+// Attach filter button events
+filterButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const filter = e.target.getAttribute('data-filter');
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        e.target.classList.add('active');
+        
+        if (filter === "all") {
+            renderTools(tools);
+            searchInput.value = "";
+        } else {
+            const filteredTools = tools.filter(tool => tool.cat === filter);
+            renderTools(filteredTools);
+            searchInput.value = "";
         }
     });
 });
