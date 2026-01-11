@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact Us | ToolNest.live - Wishing Hub Generators</title>
+<meta name="description" content="Contact ToolNest.live team. Get help with our wishing generators, report issues, suggest features, or ask questions. We're here to help!">
+<meta name="keywords" content="contact toolnest, support, help center, customer service, feedback, report bug, feature request">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://toolnest.live/contact-us.html">
+
+<!-- Preconnect for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Font with font-display: swap for better performance -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+<!-- Font Awesome with preload -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"></noscript>
+
+<style>
+/* ===== GLOBAL STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: #000;
+    color: #00ff7f;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ===== SNOWFALL CANVAS ===== */
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* ===== NAVIGATION ===== */
+.main-nav {
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom: 2px solid #00ff7f;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 255, 127, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.nav-brand {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-brand i {
+    font-size: 1.8rem;
+    color: #00ff7f;
+    text-shadow: 0 0 8px #00ff7f;
+}
+
+.nav-brand h1 {
+    font-size: 1.5rem;
+    color: #00ff7f;
+    text-shadow: 0 0 12px #00ff7f;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links a {
+    color: #00ff7f;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+    display: inline-block;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: #00ff7f;
+    color: #000;
+    box-shadow: 0 0 20px #00ff7f;
+    border: 1px solid #00ff7f;
+    transform: translateY(-2px);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: 2px solid #00ff7f;
+    color: #00ff7f;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: #00ff7f;
+    color: #000;
+}
+
+/* ===== MAIN CONTENT WRAPPER ===== */
+main {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== CONTACT HERO ===== */
+.contact-hero {
+    text-align: center;
+    padding: 50px 20px;
+    background: radial-gradient(circle at center, rgba(0, 30, 15, 0.4) 0%, rgba(0, 0, 0, 0.8) 70%);
+    border-radius: 20px;
+    margin-bottom: 50px;
+    border: 2px solid #00ff7f;
+    box-shadow: 0 0 30px rgba(0, 255, 127, 0.2);
+}
+
+.contact-hero h1 {
+    font-size: 3rem;
+    text-shadow: 0 0 35px #00ff7f;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #00ff7f, #00cc66, #00ff7f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+.contact-hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #00ff7f;
+    opacity: 0.9;
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 20px #00ff7f, 0 0 30px #00ff7f; }
+    100% { text-shadow: 0 0 30px #00ff7f, 0 0 40px #00ff7f, 0 0 50px #00ff7f; }
+}
+
+/* ===== CONTACT GRID ===== */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.contact-card {
+    background: rgba(10, 20, 15, 0.3);
+    border: 2px solid #00ff7f;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 255, 127, 0.15);
+    background: rgba(0, 255, 127, 0.1);
+}
+
+.contact-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(0, 255, 127, 0.1);
+    border: 2px solid #00ff7f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #00ff7f;
+    box-shadow: 0 0 20px rgba(0, 255, 127, 0.3);
+}
+
+.contact-card h3 {
+    font-size: 1.5rem;
+    color: #00ffaa;
+    margin-bottom: 15px;
+}
+
+.contact-card p {
+    color: #00ff7f;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.contact-info {
+    color: #00ff7f;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+.contact-info a {
+    color: #00ffaa;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.contact-info a:hover {
+    color: #00ff7f;
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+/* ===== CONTACT FORM ===== */
+.contact-form-container {
+    background: rgba(10, 20, 15, 0.3);
+    border: 2px solid #00ff7f;
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 30px rgba(0, 255, 127, 0.1);
+}
+
+.contact-form-container h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #00ffaa;
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    display: grid;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: #00ffaa;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(0, 255, 127, 0.3);
+    border-radius: 10px;
+    color: #00ff7f;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #00ff7f;
+    box-shadow: 0 0 20px rgba(0, 255, 127, 0.3);
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.required {
+    color: #ff5555;
+}
+
+/* ===== RADIO BUTTONS ===== */
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00ff7f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.radio-custom::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #00ff7f;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom::after {
+    opacity: 1;
+}
+
+.radio-option span {
+    color: #00ff7f;
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.submit-btn {
+    background: linear-gradient(135deg, #00ff7f, #00cc66);
+    color: #000;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 255, 127, 0.4);
+    background: linear-gradient(135deg, #00ffaa, #00ff7f);
+}
+
+.submit-btn:active {
+    transform: translateY(-1px);
+}
+
+/* ===== FAQ SECTION ===== */
+.faq-section {
+    margin-bottom: 50px;
+}
+
+.faq-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #00ffaa;
+    margin-bottom: 40px;
+}
+
+.faq-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.faq-item {
+    background: rgba(10, 20, 15, 0.3);
+    border: 1px solid rgba(0, 255, 127, 0.2);
+    border-radius: 10px;
+    padding: 25px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.faq-item:hover {
+    background: rgba(0, 255, 127, 0.05);
+    border-color: #00ff7f;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #00ffaa;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.faq-answer {
+    color: #00ff7f;
+    margin-top: 15px;
+    line-height: 1.6;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+}
+
+.faq-toggle {
+    color: #00ff7f;
+    transition: transform 0.3s;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(180deg);
+}
+
+/* ===== RESPONSE TIME CARD ===== */
+.response-card {
+    background: linear-gradient(135deg, rgba(0, 30, 15, 0.6), rgba(0, 60, 30, 0.3));
+    border: 2px solid #00ff7f;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    margin-top: 40px;
+    box-shadow: 0 0 40px rgba(0, 255, 127, 0.2);
+}
+
+.response-card h3 {
+    font-size: 2rem;
+    color: #00ffaa;
+    margin-bottom: 20px;
+}
+
+.response-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.response-stat {
+    text-align: center;
+}
+
+.response-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00ff7f;
+    text-shadow: 0 0 20px #00ff7f;
+}
+
+.response-label {
+    color: #00ffaa;
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+
+/* ===== SUCCESS MESSAGE ===== */
+.success-message {
+    background: rgba(0, 255, 127, 0.1);
+    border: 2px solid #00ff7f;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+    align-items: center;
+    gap: 15px;
+    color: #00ff7f;
+}
+
+.success-message.show {
+    display: flex;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== FOOTER ===== */
+.main-footer {
+    margin-top: auto;
+    background: #0a0a0a;
+    padding: 50px 20px 30px;
+    border-top: 2px solid #00ff7f;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: left;
+}
+
+.footer-section h3 {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    color: #00ffaa;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #00ff7f;
+}
+
+.footer-section p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #00ff7f;
+}
+
+.footer-section a {
+    color: #00ff7f;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+    padding: 3px 0;
+}
+
+.footer-section a:hover {
+    color: #00ffaa;
+    transform: translateX(5px);
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    border-top: 1px solid rgba(0, 255, 127, 0.2);
+    text-align: center;
+    color: #00ff7f;
+}
+
+.footer-bottom a {
+    color: #00ff7f;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.footer-bottom a:hover {
+    color: #00ffaa;
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        order: 2;
+    }
+    
+    .nav-container {
+        position: relative;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgba(0, 0, 0, 0.98);
+        padding: 20px;
+        border-top: 2px solid #00ff7f;
+        border-bottom: 2px solid #00ff7f;
+        gap: 10px;
+        z-index: 999;
+    }
+    
+    .nav-links.mobile-show {
+        display: flex;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        display: block;
+    }
+    
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+    
+    .contact-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .contact-form-container {
+        padding: 25px;
+    }
+    
+    .response-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .contact-hero p {
+        font-size: 1rem;
+    }
+    
+    .contact-card {
+        padding: 20px;
+    }
+    
+    .contact-form-container h2,
+    .faq-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .submit-btn {
+        padding: 15px 30px;
+        font-size: 1rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SNOWFALL CANVAS -->
+<canvas id="snowCanvas"></canvas>
+
+<!-- NAVIGATION -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="index.html" class="nav-brand">
+            <i class="fas fa-wand-magic-sparkles"></i>
+            <h1>Wishing Hub Generators</h1>
+        </a>
+        
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact-us.html" class="active">Contact</a></li>
+            <li><a href="https://www.onlinewebtool.live" target="_blank" rel="noopener">Web Tools</a></li>
+            <li><a href="https://www.onlinetoolstack.site" target="_blank" rel="noopener">Tool Stack</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+    <!-- CONTACT HERO -->
+    <section class="contact-hero">
+        <h1><i class="fas fa-comments"></i> Contact Us</h1>
+        <p>We're here to help! Reach out to us for support, feedback, or partnership inquiries. Your connection to beautiful wishes starts here.</p>
+    </section>
+
+    <!-- CONTACT GRID -->
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fas fa-headset"></i>
+            </div>
+            <h3>General Support</h3>
+            <p>Have questions about our tools? Need help with a generator? Our support team is ready to assist you.</p>
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i> <a href="mailto:support@toolnest.live">support@toolnest.live</a>
+            </div>
+        </div>
+        
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fas fa-bug"></i>
+            </div>
+            <h3>Report Issues</h3>
+            <p>Found a bug or technical issue? Let us know so we can fix it and improve your experience.</p>
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i> <a href="mailto:bugs@toolnest.live">bugs@toolnest.live</a>
+            </div>
+        </div>
+        
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>Suggest Features</h3>
+            <p>Have ideas for new wishing generators or features? We'd love to hear your suggestions.</p>
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i> <a href="mailto:ideas@toolnest.live">ideas@toolnest.live</a>
+            </div>
+        </div>
+        
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fas fa-handshake"></i>
+            </div>
+            <h3>Partnerships</h3>
+            <p>Interested in collaborating? Contact us for partnership, advertising, or sponsorship opportunities.</p>
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i> <a href="mailto:partners@toolnest.live">partners@toolnest.live</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT FORM -->
+    <div class="contact-form-container">
+        <h2><i class="fas fa-paper-plane"></i> Send Us a Message</h2>
+        <form id="contactForm" class="contact-form">
+            <div class="form-group">
+                <label for="name">Full Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Subject <span class="required">*</span></label>
+                <select id="subject" name="subject" required>
+                    <option value="">Select a category</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="support">Technical Support</option>
+                    <option value="bug">Report a Bug</option>
+                    <option value="feature">Feature Request</option>
+                    <option value="partnership">Partnership Inquiry</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Priority Level</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="priority" value="low" checked>
+                        <span class="radio-custom"></span>
+                        <span>Low Priority</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="priority" value="medium">
+                        <span class="radio-custom"></span>
+                        <span>Medium Priority</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="priority" value="high">
+                        <span class="radio-custom"></span>
+                        <span>High Priority</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Your Message <span class="required">*</span></label>
+                <textarea id="message" name="message" required placeholder="Please describe your inquiry in detail..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="attachment">Attachment (Optional)</label>
+                <input type="file" id="attachment" name="attachment" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                <small style="color: #00ffaa; margin-top: 5px;">Max file size: 5MB. Accepted formats: JPG, PNG, PDF, DOC</small>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            
+            <div id="successMessage" class="success-message">
+                <i class="fas fa-check-circle" style="color: #00ff7f; font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Message Sent Successfully!</strong>
+                    <p>Thank you for contacting us. We'll respond within 24 hours.</p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section">
+        <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How quickly will I receive a response?</span>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>We typically respond to all inquiries within <strong>24 hours</strong> on business days. For urgent technical issues, we prioritize responses and aim to reply within <strong>4-6 hours</strong> during our support hours (9 AM - 6 PM UTC).</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer phone support?</span>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Currently, we provide support exclusively via email and our contact form. This allows us to maintain detailed records of all inquiries and provide thorough, documented responses. However, we're exploring adding live chat support in the near future.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I request a custom wishing generator?</span>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We love creating custom generators for specific occasions or themes. Please use the "Feature Request" category in our contact form and provide as much detail as possible about your needs. We'll evaluate the feasibility and get back to you with options.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Are my generated wishes stored on your servers?</span>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Most of our generators work entirely in your browser for privacy. The wishes you create are typically not stored on our servers unless you explicitly choose to save or share them. For specific details, please refer to our <a href="privacy.html" style="color: #00ffaa;">Privacy Policy</a>.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you provide technical support for integrations?</span>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>We provide limited support for integrating our tools into other platforms. For basic integration questions, we're happy to help. For complex integrations or commercial use, we offer consultation services. Please contact us with your specific requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESPONSE TIME CARD -->
+    <div class="response-card">
+        <h3><i class="fas fa-clock"></i> Our Response Commitment</h3>
+        <p>We're committed to providing timely and helpful responses to all inquiries. Here's what you can expect:</p>
+        
+        <div class="response-stats">
+            <div class="response-stat">
+                <div class="response-number">24h</div>
+                <div class="response-label">General Response Time</div>
+            </div>
+            <div class="response-stat">
+                <div class="response-number">4-6h</div>
+                <div class="response-label">Urgent Issues</div>
+            </div>
+            <div class="response-stat">
+                <div class="response-number">99%</div>
+                <div class="response-label">Satisfaction Rate</div>
+            </div>
+            <div class="response-stat">
+                <div class="response-number">7 Days</div>
+                <div class="response-label">Support Hours Weekly</div>
+            </div>
+        </div>
+        
+        <p style="margin-top: 20px; font-size: 0.9rem; color: #00ffaa;">
+            <i class="fas fa-info-circle"></i> Support Hours: Monday - Friday, 9:00 AM - 6:00 PM UTC
+        </p>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="main-footer">
+    <div class="footer-content">
+        
+        <div class="footer-section">
+            <h3>ToolNest.live</h3>
+            <p>Your connection to beautiful wishes and helpful tools. We're here to make your special moments more memorable.</p>
+            <p>Part of a growing ecosystem of free, high-quality web tools.</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Contact Channels</h3>
+            <a href="mailto:support@toolnest.live"><i class="fas fa-envelope"></i> General Support</a>
+            <a href="mailto:bugs@toolnest.live"><i class="fas fa-bug"></i> Report Issues</a>
+            <a href="mailto:ideas@toolnest.live"><i class="fas fa-lightbulb"></i> Suggest Features</a>
+            <a href="mailto:partners@toolnest.live"><i class="fas fa-handshake"></i> Partnerships</a>
+            <a href="mailto:privacy@toolnest.live"><i class="fas fa-shield-alt"></i> Privacy Concerns</a>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact-us.html" class="active">Contact Us</a>
+            <a href="https://www.onlinewebtool.live" target="_blank" rel="noopener">Online Web Tools</a>
+            <a href="https://www.onlinetoolstack.site" target="_blank" rel="noopener">Tool Stack Site</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+            <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+        </div>
+        
+    </div>
+    
+    <div class="footer-bottom">
+        © 2026 ToolNest.live | Wishing Hub Generators | Always Here to Help — All Rights Reserved
+    </div>
+</footer>
+
+<script>
+// ===== MOBILE MENU TOGGLE =====
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const menuIcon = menuToggle.querySelector('i');
+    
+    // Toggle menu function
+    function toggleMenu() {
+        navLinks.classList.toggle('mobile-show');
+        
+        // Change icon
+        if (navLinks.classList.contains('mobile-show')) {
+            menuIcon.classList.remove('fa-bars');
+            menuIcon.classList.add('fa-times');
+        } else {
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        }
+    }
+    
+    // Add click event to toggle button
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMenu();
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            if (navLinks.classList.contains('mobile-show')) {
+                toggleMenu();
+            }
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('mobile-show')) {
+            toggleMenu();
+        }
+    });
+    
+    // Prevent clicks inside menu from closing it
+    navLinks.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+});
+
+// ===== SNOWFALL EFFECT =====
+const canvas = document.getElementById('snowCanvas');
+const ctx = canvas.getContext('2d');
+
+// Set canvas size
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Snowflake class
+class Snowflake {
+    constructor() {
+        this.reset();
+    }
+    
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height - canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedY = Math.random() * 1 + 0.5;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.opacity = Math.random() * 0.5 + 0.3;
+    }
+    
+    update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        
+        if (this.y > canvas.height) {
+            this.reset();
+            this.y = -10;
+        }
+        
+        if (this.x > canvas.width || this.x < 0) {
+            this.x = Math.random() * canvas.width;
+        }
+    }
+    
+    draw() {
+        ctx.fillStyle = `rgba(0, 255, 127, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// Create snowflakes
+const snowflakes = [];
+for (let i = 0; i < 80; i++) {
+    snowflakes.push(new Snowflake());
+}
+
+// Animation loop
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Update and draw snowflakes
+    snowflakes.forEach(snowflake => {
+        snowflake.update();
+        snowflake.draw();
+    });
+    
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+// ===== FAQ TOGGLE FUNCTIONALITY =====
+document.querySelectorAll('.faq-item').forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', function() {
+        // Close other open FAQs
+        document.querySelectorAll('.faq-item').forEach(otherItem => {
+            if (otherItem !== item && otherItem.classList.contains('active')) {
+                otherItem.classList.remove('active');
+            }
+        });
+        
+        // Toggle current FAQ
+        item.classList.toggle('active');
+    });
+});
+
+// ===== CONTACT FORM HANDLING =====
+const contactForm = document.getElementById('contactForm');
+const successMessage = document.getElementById('successMessage');
+
+contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Basic validation
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value.trim();
+    
+    if (!name || !email || !subject || !message) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+    
+    // File validation
+    const fileInput = document.getElementById('attachment');
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const maxSize = 5 * 1024 * 1024; // 5MB
+        const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+        
+        if (file.size > maxSize) {
+            alert('File size exceeds 5MB limit.');
+            return;
+        }
+        
+        if (!allowedTypes.includes(file.type)) {
+            alert('Please upload only JPG, PNG, PDF, or DOC files.');
+            return;
+        }
+    }
+    
+    // Simulate form submission (in a real implementation, this would be an AJAX call)
+    console.log('Form submitted with data:', {
+        name,
+        email,
+        subject,
+        priority: document.querySelector('input[name="priority"]:checked').value,
+        message,
+        hasAttachment: fileInput.files.length > 0
+    });
+    
+    // Show success message
+    successMessage.classList.add('show');
+    
+    // Reset form after 3 seconds
+    setTimeout(() => {
+        contactForm.reset();
+        successMessage.classList.remove('show');
+        
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 3000);
+    
+    // Scroll to success message
+    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+
+// ===== ANIMATE ELEMENTS ON SCROLL =====
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe elements for animation
+document.querySelectorAll('.contact-card, .contact-form-container, .faq-item, .response-card').forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(20px)';
+    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(item);
+});
+
+// ===== FILE INPUT STYLING =====
+const fileInput = document.getElementById('attachment');
+fileInput.addEventListener('change', function() {
+    const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+    
+    // Create or update file name display
+    let fileNameDisplay = this.nextElementSibling;
+    if (!fileNameDisplay || !fileNameDisplay.classList.contains('file-name')) {
+        fileNameDisplay = document.createElement('div');
+        fileNameDisplay.className = 'file-name';
+        fileNameDisplay.style.color = '#00ffaa';
+        fileNameDisplay.style.marginTop = '5px';
+        fileNameDisplay.style.fontSize = '0.9rem';
+        this.parentNode.insertBefore(fileNameDisplay, this.nextSibling);
+    }
+    
+    fileNameDisplay.textContent = `Selected: ${fileName}`;
+});
+</script>
+
+</body>
+</html>
