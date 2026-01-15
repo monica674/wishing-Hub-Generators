@@ -1,1537 +1,1680 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eid Wishes Generator Pro | Festival Greetings & Cards</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --neon-green: #00FF11;
-            --dark-green: #00CC0E;
-            --black: #000000;
-            --dark-gray: #111111;
-            --medium-gray: #222222;
-            --light-gray: #333333;
-            --text-light: #EEEEEE;
-            --text-gray: #AAAAAA;
-            --gold: #FFD700;
-            --silver: #C0C0C0;
-            --accent: #8B0000;
-        }
-
-        body {
-            background-color: var(--black);
-            color: var(--text-light);
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            min-height: 100vh;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 255, 17, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(0, 255, 17, 0.08) 0%, transparent 20%);
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 25px;
-        }
-
-        header {
-            text-align: center;
-            padding: 40px 0 30px;
-            margin-bottom: 40px;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(17, 17, 17, 0.9) 100%);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 255, 17, 0.15);
-            border: 2px solid var(--neon-green);
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--neon-green), var(--gold), var(--neon-green));
-            z-index: 2;
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        header h1 {
-            font-family: 'Amiri', serif;
-            font-size: 3.8rem;
-            color: var(--neon-green);
-            text-shadow: 0 0 15px rgba(0, 255, 17, 0.5);
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .arabic-text {
-            font-family: 'Amiri', serif;
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-            direction: rtl;
-        }
-
-        header p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto;
-            color: var(--text-gray);
-            font-weight: 300;
-        }
-
-        .header-decoration {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 25px;
-        }
-
-        .header-decoration i {
-            color: var(--neon-green);
-            font-size: 2.2rem;
-            text-shadow: 0 0 20px rgba(0, 255, 17, 0.7);
-            animation: pulse-glow 2s infinite alternate;
-        }
-
-        @keyframes pulse-glow {
-            0% { transform: scale(1); opacity: 0.7; text-shadow: 0 0 10px rgba(0, 255, 17, 0.5); }
-            100% { transform: scale(1.1); opacity: 1; text-shadow: 0 0 25px rgba(0, 255, 17, 0.9); }
-        }
-
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        @media (max-width: 1100px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .generator-section, .preview-section {
-            background: rgba(17, 17, 17, 0.9);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0, 255, 17, 0.1);
-            border: 2px solid var(--neon-green);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .generator-section::before, .preview-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, var(--neon-green), var(--gold), var(--neon-green));
-        }
-
-        .section-title {
-            color: var(--neon-green);
-            font-size: 2rem;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--neon-green);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .section-title i {
-            color: var(--gold);
-        }
-
-        .eid-type-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .eid-type {
-            background: rgba(34, 34, 34, 0.8);
-            border: 2px solid var(--neon-green);
-            border-radius: 15px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .eid-type:hover {
-            background: rgba(0, 255, 17, 0.1);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 255, 17, 0.2);
-            border-color: var(--gold);
-        }
-
-        .eid-type.active {
-            background: rgba(0, 255, 17, 0.15);
-            border-color: var(--gold);
-            box-shadow: 0 8px 25px rgba(0, 255, 17, 0.3);
-        }
-
-        .eid-type i {
-            font-size: 2.5rem;
-            color: var(--neon-green);
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .eid-type.active i {
-            color: var(--gold);
-        }
-
-        .eid-type h3 {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            position: relative;
-            z-index: 1;
-        }
-
-        .eid-type .arabic-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--neon-green);
-            color: var(--black);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            font-family: 'Amiri', serif;
-        }
-
-        .input-group {
-            margin-bottom: 25px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--neon-green);
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .input-group input, .input-group select, .input-group textarea {
-            width: 100%;
-            padding: 16px 20px;
-            background: rgba(34, 34, 34, 0.8);
-            border: 2px solid var(--neon-green);
-            border-radius: 12px;
-            color: var(--text-light);
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
-            background: rgba(51, 51, 51, 0.8);
-        }
-
-        .language-switch {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            background: rgba(34, 34, 34, 0.8);
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid var(--light-gray);
-        }
-
-        .lang-btn {
-            flex: 1;
-            padding: 12px;
-            background: rgba(51, 51, 51, 0.8);
-            border: 2px solid var(--light-gray);
-            border-radius: 8px;
-            color: var(--text-gray);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .lang-btn.active {
-            background: rgba(0, 255, 17, 0.15);
-            border-color: var(--neon-green);
-            color: var(--neon-green);
-            box-shadow: 0 0 15px rgba(0, 255, 17, 0.2);
-        }
-
-        .button-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .btn {
-            padding: 17px 28px;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex: 1;
-            min-width: 180px;
-        }
-
-        .btn-generate {
-            background: linear-gradient(135deg, var(--neon-green) 0%, var(--dark-green) 100%);
-            color: var(--black);
-            box-shadow: 0 6px 18px rgba(0, 255, 17, 0.3);
-        }
-
-        .btn-generate:hover {
-            background: linear-gradient(135deg, var(--dark-green) 0%, var(--neon-green) 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 22px rgba(0, 255, 17, 0.4);
-        }
-
-        .btn-copy {
-            background: rgba(34, 34, 34, 0.8);
-            color: var(--neon-green);
-            border: 2px solid var(--neon-green);
-        }
-
-        .btn-copy:hover {
-            background: var(--neon-green);
-            color: var(--black);
-        }
-
-        .btn-whatsapp {
-            background: rgba(34, 34, 34, 0.8);
-            color: #25D366;
-            border: 2px solid #25D366;
-        }
-
-        .btn-whatsapp:hover {
-            background: #25D366;
-            color: white;
-        }
-
-        .btn-sms {
-            background: rgba(34, 34, 34, 0.8);
-            color: var(--gold);
-            border: 2px solid var(--gold);
-        }
-
-        .btn-sms:hover {
-            background: var(--gold);
-            color: var(--black);
-        }
-
-        .btn-reset {
-            background: rgba(34, 34, 34, 0.8);
-            color: var(--accent);
-            border: 2px solid var(--accent);
-        }
-
-        .btn-reset:hover {
-            background: var(--accent);
-            color: white;
-        }
-
-        .preview-box {
-            background: rgba(34, 34, 34, 0.8);
-            border-radius: 15px;
-            padding: 35px;
-            min-height: 400px;
-            border: 2px solid var(--neon-green);
-            margin-bottom: 30px;
-            position: relative;
-            overflow: auto;
-            direction: rtl;
-            text-align: right;
-        }
-
-        .wish-preview {
-            font-size: 1.3rem;
-            line-height: 1.9;
-            padding: 25px 0;
-            color: var(--text-light);
-            font-family: 'Amiri', serif;
-        }
-
-        .wish-preview.english {
-            direction: ltr;
-            text-align: left;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .signature {
-            margin-top: 40px;
-            text-align: center;
-            color: var(--gold);
-            font-weight: 800;
-            font-size: 1.5rem;
-            font-style: italic;
-            border-top: 2px solid var(--neon-green);
-            padding-top: 25px;
-            direction: ltr;
-        }
-
-        .decoration {
-            position: absolute;
-            font-size: 2rem;
-            color: var(--neon-green);
-            z-index: 1;
-            opacity: 0.7;
-        }
-
-        .decoration.top-left {
-            top: 25px;
-            left: 25px;
-        }
-
-        .decoration.top-right {
-            top: 25px;
-            right: 25px;
-        }
-
-        .decoration.bottom-left {
-            bottom: 25px;
-            left: 25px;
-        }
-
-        .decoration.bottom-right {
-            bottom: 25px;
-            right: 25px;
-        }
-
-        .features-section {
-            background: rgba(17, 17, 17, 0.9);
-            border-radius: 20px;
-            padding: 40px;
-            margin-top: 40px;
-            border: 2px solid var(--neon-green);
-            box-shadow: 0 10px 30px rgba(0, 255, 17, 0.1);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .features-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, var(--neon-green), var(--gold), var(--neon-green));
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .feature-card {
-            background: rgba(34, 34, 34, 0.8);
-            border-radius: 15px;
-            padding: 25px;
-            border: 2px solid var(--neon-green);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 255, 17, 0.15);
-            border-color: var(--gold);
-        }
-
-        .feature-card i {
-            font-size: 3rem;
-            color: var(--neon-green);
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            color: var(--neon-green);
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
-
-        .feature-card p {
-            color: var(--text-gray);
-            line-height: 1.7;
-        }
-
-        .stats-panel {
-            display: flex;
-            justify-content: space-around;
-            background: rgba(34, 34, 34, 0.8);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 30px 0;
-            border: 2px solid var(--neon-green);
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 15px;
-        }
-
-        .stat-value {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--neon-green);
-            line-height: 1;
-            text-shadow: 0 0 10px rgba(0, 255, 17, 0.5);
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: var(--text-gray);
-            margin-top: 10px;
-            font-weight: 600;
-        }
-
-        .card-section {
-            background: rgba(17, 17, 17, 0.9);
-            border-radius: 20px;
-            padding: 40px;
-            margin-top: 40px;
-            border: 2px solid var(--neon-green);
-            box-shadow: 0 10px 30px rgba(0, 255, 17, 0.1);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .card-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, var(--neon-green), var(--gold), var(--neon-green));
-        }
-
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-top: 30px;
-        }
-
-        .card-preview {
-            flex: 1;
-            min-width: 300px;
-            background: rgba(34, 34, 34, 0.8);
-            border-radius: 15px;
-            padding: 25px;
-            border: 2px solid var(--neon-green);
-            text-align: center;
-        }
-
-        .card-canvas {
-            background: rgba(51, 51, 51, 0.8);
-            border-radius: 10px;
-            border: 2px solid var(--neon-green);
-            margin-bottom: 25px;
-            width: 100%;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .card-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .btn-card {
-            padding: 14px 25px;
-            background: linear-gradient(135deg, var(--neon-green) 0%, var(--dark-green) 100%);
-            color: var(--black);
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-card:hover {
-            background: linear-gradient(135deg, var(--dark-green) 0%, var(--neon-green) 100%);
-            transform: translateY(-3px);
-        }
-
-        .btn-download {
-            background: rgba(34, 34, 34, 0.8);
-            color: var(--neon-green);
-            border: 2px solid var(--neon-green);
-        }
-
-        .btn-download:hover {
-            background: var(--neon-green);
-            color: var(--black);
-        }
-
-        .dua-section {
-            background: rgba(17, 17, 17, 0.9);
-            border-radius: 20px;
-            padding: 40px;
-            margin-top: 40px;
-            border: 2px solid var(--neon-green);
-            box-shadow: 0 10px 30px rgba(0, 255, 17, 0.1);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .dua-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, var(--neon-green), var(--gold), var(--neon-green));
-        }
-
-        .dua-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .dua-card {
-            background: rgba(34, 34, 34, 0.8);
-            border-radius: 15px;
-            padding: 25px;
-            border: 2px solid var(--neon-green);
-            transition: all 0.3s ease;
-        }
-
-        .dua-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 255, 17, 0.2);
-        }
-
-        .dua-arabic {
-            font-family: 'Amiri', serif;
-            font-size: 1.8rem;
-            color: var(--gold);
-            text-align: right;
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
-
-        .dua-translation {
-            color: var(--text-light);
-            font-style: italic;
-            margin-bottom: 15px;
-            border-right: 3px solid var(--neon-green);
-            padding-right: 15px;
-        }
-
-        .dua-meaning {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            margin-top: 60px;
-            border-top: 2px solid var(--neon-green);
-            color: var(--text-gray);
-            font-size: 1rem;
-        }
-
-        footer a {
-            color: var(--neon-green);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-            text-shadow: 0 0 10px rgba(0, 255, 17, 0.5);
-        }
-
-        .message {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            padding: 20px 30px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--neon-green) 0%, var(--dark-green) 100%);
-            color: var(--black);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.5s ease;
-            border-left: 6px solid var(--gold);
-            font-weight: 700;
-            max-width: 400px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .message.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .message.error {
-            background: linear-gradient(135deg, #FF3333 0%, #CC0000 100%);
-            color: white;
-        }
-
-        .message.success {
-            background: linear-gradient(135deg, var(--neon-green) 0%, var(--dark-green) 100%);
-        }
-
-        .tag {
-            display: inline-block;
-            background: var(--neon-green);
-            color: var(--black);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-
-        .arabic-tag {
-            font-family: 'Amiri', serif;
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .arabic-text {
-                font-size: 1.8rem;
-            }
-            
-            .main-content {
-                gap: 30px;
-            }
-            
-            .generator-section, .preview-section, .features-section, .card-section, .dua-section {
-                padding: 25px;
-            }
-            
-            .eid-type-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .button-group {
-                flex-direction: column;
-            }
-            
-            .btn {
-                min-width: 100%;
-            }
-            
-            .features-grid, .dua-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .card-container {
-                flex-direction: column;
-            }
-        }
-
-        .crescent-moon {
-            color: var(--gold);
-            animation: rotate-moon 20s linear infinite;
-        }
-
-        @keyframes rotate-moon {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .neon-glow {
-            text-shadow: 0 0 10px rgba(0, 255, 17, 0.7);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eid Wishes Generator | Toolnest Pro</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=El+Messiri:wght@400;700&family=Poppins:wght@300;400;600&family=Great+Vibes&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Arabic Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* RESET & BASE */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(135deg, #0a2810, #1a472a, #0f3d1e);
+      color: white;
+      font-family: 'El Messiri', sans-serif;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    /* HIDE/SHOW SECTIONS */
+    .section { display: none; max-width: 1100px; margin: 0 auto; }
+    .section.active { display: block; }
+
+    /* HEADER */
+    header {
+      margin: 20px auto 40px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 25px;
+      border: 2px solid rgba(0, 255, 0, 0.3);
+      box-shadow: 0 10px 40px rgba(0, 255, 0, 0.15);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '🕌';
+      position: absolute;
+      font-size: 120px;
+      opacity: 0.1;
+      top: 10px;
+      right: 20px;
+      transform: rotate(15deg);
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      background: linear-gradient(90deg, #00FF00, #FFD700, #00FFFF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+      margin-bottom: 15px;
+      letter-spacing: 2px;
+    }
+
+    .tagline {
+      color: #FFD700;
+      font-size: 1.4rem;
+      font-weight: 300;
+      font-family: 'Amiri', serif;
+      letter-spacing: 1px;
+    }
+
+    /* DESIGN SELECTION */
+    .design-selection {
+      margin: 30px auto;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .design-selection h3 {
+      color: #00FF00;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      font-family: 'Amiri', serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .design-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .design-option {
+      flex: 1;
+      min-width: 180px;
+      max-width: 200px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .design-option:hover {
+      transform: translateY(-10px) scale(1.05);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .design-option.selected {
+      border-color: #00FF00;
+      background: rgba(0, 255, 0, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
+    }
+
+    .design-preview {
+      width: 100%;
+      height: 120px;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+
+    /* Design Preview Colors and Patterns */
+    .design-1 .design-preview { 
+      background: linear-gradient(135deg, #006400, #008000);
+      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    .design-1 .design-preview::before { content: '🕌'; }
+
+    .design-2 .design-preview { 
+      background: linear-gradient(135deg, #0c2461, #1e3799);
+      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    .design-2 .design-preview::before { content: '🌙'; }
+
+    .design-3 .design-preview { 
+      background: linear-gradient(135deg, #8B0000, #B22222);
+      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    .design-3 .design-preview::before { content: '🏮'; }
+
+    .design-4 .design-preview { 
+      background: linear-gradient(135deg, #2c3e50, #4a69bd);
+      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    .design-4 .design-preview::before { content: '📿'; }
+
+    .design-5 .design-preview { 
+      background: linear-gradient(135deg, #4a0000, #800000);
+      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    .design-5 .design-preview::before { content: '🌴'; }
+
+    .design-name {
+      font-weight: 600;
+      color: #FFD700;
+      font-size: 1.1rem;
+      font-family: 'Amiri', serif;
+    }
+
+    /* EID TYPE SELECTION */
+    .eid-type-selection {
+      margin: 25px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+    }
+
+    .eid-type-selection h3 {
+      color: #00FF00;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      font-family: 'Amiri', serif;
+    }
+
+    .eid-type-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .eid-type-option {
+      flex: 1;
+      min-width: 150px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eid-type-option:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    .eid-type-option.selected {
+      background: linear-gradient(45deg, #006400, #00FF00);
+      border-color: #FFD700;
+      box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+    }
+
+    .eid-type-icon {
+      font-size: 2rem;
+    }
+
+    .eid-type-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    /* GENERATOR CONTROLS */
+    .controls {
+      background: rgba(255, 255, 255, 0.08);
+      margin: 0 auto 30px;
+      padding: 30px;
+      border-radius: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      align-items: flex-end;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .input-group {
+      flex: 1;
+      min-width: 250px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 10px;
+      color: #00FF00;
+      font-weight: 600;
+      font-size: 1.1rem;
+      font-family: 'Amiri', serif;
+    }
+
+    input, select, textarea, button {
+      width: 100%;
+      padding: 16px;
+      border-radius: 15px;
+      border: none;
+      font-size: 1.1rem;
+      font-family: 'El Messiri', sans-serif;
+      transition: all 0.3s;
+    }
+
+    input, select, textarea {
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      border: 2px solid rgba(0, 255, 0, 0.3);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.5);
+      border-color: #00FF00;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .action-btn {
+      background: linear-gradient(45deg, #25D366, #128C7E);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s;
+      margin: 20px auto 0;
+      max-width: 400px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      font-size: 1.3rem;
+      border-radius: 20px;
+      padding: 20px 40px;
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+      letter-spacing: 1px;
+      border: none;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+    }
+
+    /* WISH SELECTION */
+    .wish-selection {
+      margin: 30px auto;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 25px;
+      padding: 30px;
+      text-align: left;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .wish-selection h3 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #00FF00;
+      font-size: 2rem;
+      font-family: 'Amiri', serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .wish-item {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 15px;
+      padding: 20px 25px;
+      margin: 15px 0;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wish-item:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateX(10px);
+      border-color: rgba(0, 255, 0, 0.3);
+    }
+
+    .wish-item.selected {
+      background: rgba(0, 255, 0, 0.15);
+      border-color: #00FF00;
+      box-shadow: 0 0 25px rgba(0, 255, 0, 0.25);
+    }
+
+    .wish-item::before {
+      content: '"';
+      position: absolute;
+      font-size: 60px;
+      color: #00FF00;
+      opacity: 0.2;
+      top: -10px;
+      left: 10px;
+      font-family: 'Amiri', serif;
+    }
+
+    /* ========== CARD VIEW ========== */
+    .card-container {
+      height: 550px;
+      margin: 0 auto 30px;
+      perspective: 1500px;
+      position: relative;
+      max-width: 1000px;
+    }
+
+    .eid-card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s cubic-bezier(0.2, 0.9, 0.2, 1);
+      border-radius: 30px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card-open .eid-card {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-inside {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 30px;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* CARD DESIGN VARIATIONS */
+    .design-1-front {
+      background: linear-gradient(135deg, #006400, #008000, #006400);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+    }
+
+    .design-2-front {
+      background: linear-gradient(135deg, #0c2461, #1e3799, #0c2461);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+    }
+
+    .design-3-front {
+      background: linear-gradient(135deg, #8B0000, #B22222, #8B0000);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+    }
+
+    .design-4-front {
+      background: linear-gradient(135deg, #2c3e50, #4a69bd, #2c3e50);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+    }
+
+    .design-5-front {
+      background: linear-gradient(135deg, #4a0000, #800000, #4a0000);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+    }
+
+    /* Front Card Content */
+    .card-front::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2300ff00' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.3;
+    }
+
+    .eid-title {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 4rem;
+      color: #FFD700;
+      margin-bottom: 30px;
+      text-align: center;
+      text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+      z-index: 5;
+      letter-spacing: 3px;
+      direction: rtl;
+    }
+
+    .eid-type-badge {
+      background: linear-gradient(45deg, #FFD700, #00FF00);
+      color: #333;
+      padding: 10px 30px;
+      border-radius: 50px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 5;
+      font-family: 'Amiri', serif;
+    }
+
+    .card-message {
+      font-size: 1.7rem;
+      line-height: 1.8;
+      text-align: center;
+      margin: 0 30px;
+      min-height: 120px;
+      color: white;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+      padding: 25px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      z-index: 5;
+      max-width: 850px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      font-family: 'El Messiri', sans-serif;
+    }
+
+    .sender-name {
+      margin-top: 40px;
+      font-style: italic;
+      color: #FFD700;
+      font-size: 1.6rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 15px 35px;
+      border-radius: 50px;
+      z-index: 5;
+      font-family: 'Great Vibes', cursive;
+      letter-spacing: 2px;
+    }
+
+    /* Card Inside */
+    .card-inside {
+      transform: rotateY(180deg);
+      z-index: 1;
+      overflow: hidden;
+      position: relative;
+      padding: 0;
+      background: linear-gradient(135deg, #0a2810, #1a472a);
+    }
+
+    /* Flip Button */
+    .flip-btn {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      color: white;
+      border: none;
+      cursor: pointer;
+      z-index: 50;
+      font-size: 1.5rem;
+      transition: all 0.4s;
+      backdrop-filter: blur(10px);
+      border: 3px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .flip-btn:hover {
+      transform: scale(1.15) rotate(180deg);
+      background: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+    }
+
+    /* SOCIAL MEDIA SHARING */
+    .social-sharing {
+      margin: 35px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .social-sharing h3 {
+      color: #FFD700;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      font-family: 'Amiri', serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 25px auto;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      text-decoration: none;
+      transition: all 0.4s;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .social-btn:hover {
+      transform: translateY(-10px) scale(1.15);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Social Media Colors */
+    .whatsapp { background: linear-gradient(45deg, #25D366, #128C7E); }
+    .facebook { background: linear-gradient(45deg, #3b5998, #8b9dc3); }
+    .twitter { background: linear-gradient(45deg, #1DA1F2, #0d8bd9); }
+    .instagram { background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); }
+    .telegram { background: linear-gradient(45deg, #0088cc, #26A5E4); }
+    .copy-link { background: linear-gradient(45deg, #6c757d, #495057); }
+
+    /* Create New Button */
+    .create-new-btn {
+      background: linear-gradient(45deg, #25D366, #128C7E);
+      color: white;
+      border: none;
+      padding: 20px 40px;
+      border-radius: 20px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 25px auto 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.4s;
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+      letter-spacing: 1px;
+    }
+
+    .create-new-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+    }
+
+    /* Website Link */
+    .website-link {
+      margin: 30px 0 0;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      font-size: 1.1rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .website-link a {
+      color: #00FF00;
+      text-decoration: none;
+      font-weight: 600;
+      word-break: break-all;
+      transition: all 0.3s;
+      font-family: 'Amiri', serif;
+    }
+
+    .website-link a:hover {
+      text-decoration: underline;
+      color: #FFD700;
+    }
+
+    /* ========= INSIDE THEMES ========= */
+    .inside-slideshow {
+      position: absolute;
+      inset: 0;
+      border-radius: 30px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .inside-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .inside-slide.active {
+      opacity: 1;
+    }
+
+    .slide-chip {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid rgba(0, 255, 0, 0.3);
+      border-radius: 50px;
+      font-size: 1.2rem;
+      color: #FFD700;
+      backdrop-filter: blur(15px);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+      z-index: 10;
+      max-width: 90%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: 'Amiri', serif;
+      letter-spacing: 1px;
+    }
+
+    /* Inside Content */
+    .inside-content {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 100%;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Inside Slide Themes */
+    /* Slide 1: Mosque Scene */
+    .slide-1 {
+      background: linear-gradient(to bottom, #000428, #004e92);
+    }
+    .slide-1 .mosque-scene {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .mosque-building {
+      position: absolute;
+      bottom: 40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 150px;
+      background: linear-gradient(to bottom, #F5F5DC, #E6D8AD);
+      border-radius: 15px 15px 0 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Slide 2: Crescent & Stars */
+    .slide-2 {
+      background: linear-gradient(135deg, #0c2461, #1e3799);
+    }
+    .crescent-large {
+      font-size: 120px;
+      color: #FFD700;
+      margin-bottom: 30px;
+      animation: crescentGlow 4s infinite;
+      text-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+    }
+
+    /* Slide 3: Lanterns */
+    .slide-3 {
+      background: linear-gradient(135deg, #8B0000, #B22222);
+    }
+    .lantern-group {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+    .lantern-large {
+      font-size: 80px;
+      animation: lanternSwing 3s infinite;
+    }
+
+    /* Slide 4: Prayer Theme */
+    .slide-4 {
+      background: linear-gradient(135deg, #2c3e50, #4a69bd);
+    }
+    .prayer-theme {
+      font-size: 100px;
+      margin-bottom: 30px;
+      animation: prayerPulse 3s infinite;
+    }
+
+    /* Slide 5: Dates Theme */
+    .slide-5 {
+      background: linear-gradient(135deg, #4a0000, #800000);
+    }
+    .dates-theme {
+      font-size: 90px;
+      margin-bottom: 30px;
+      animation: datesBounce 3s infinite;
+    }
+
+    /* Animations */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes crescentGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    @keyframes lanternSwing {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    @keyframes prayerPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    @keyframes datesBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Floating Islamic Stars Background */
+    .floating-stars-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .star-bg {
+      position: absolute;
+      color: #00FF00;
+      font-size: 30px;
+      opacity: 0.15;
+      animation: floatStarsBg 25s infinite linear;
+    }
+
+    @keyframes floatStarsBg {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.2; }
+      90% { opacity: 0.2; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 50px;
+      padding: 30px;
+      color: #FFD700;
+      font-size: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      border-top: 2px solid rgba(0, 255, 0, 0.2);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      color: #FFD700;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-links a:hover {
+      color: #00FF00;
+      transform: translateY(-3px);
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      h1 { font-size: 3.5rem; }
+      .card-container { height: 500px; }
+      .eid-title { font-size: 3.5rem; }
+    }
+
+    @media (max-width: 992px) {
+      h1 { font-size: 3rem; }
+      .card-container { height: 450px; }
+      .eid-title { font-size: 3rem; }
+      .card-message { font-size: 1.5rem; }
+      .eid-type-badge { font-size: 1.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .card-container { height: 400px; }
+      .eid-title { font-size: 2.5rem; }
+      .card-message { font-size: 1.3rem; padding: 20px; }
+      .controls { flex-direction: column; }
+      .design-option { min-width: 150px; }
+      .social-buttons { gap: 20px; }
+      .social-btn { width: 60px; height: 60px; font-size: 1.8rem; }
+      .card-front, .card-inside { padding: 30px; }
+      .eid-type-options { flex-direction: column; }
+      .eid-type-option { min-width: 100%; }
+    }
+
+    @media (max-width: 576px) {
+      h1 { font-size: 2.2rem; }
+      .card-container { height: 350px; }
+      .eid-title { font-size: 2.2rem; }
+      .card-message { font-size: 1.1rem; padding: 15px; }
+      .eid-type-badge { font-size: 1.2rem; padding: 8px 20px; }
+      .design-options { flex-direction: column; align-items: center; }
+      .design-option { max-width: 100%; }
+      .social-buttons { gap: 15px; }
+      .social-btn { width: 55px; height: 55px; font-size: 1.6rem; }
+      .flip-btn { width: 60px; height: 60px; font-size: 1.3rem; }
+    }
+
+    @media (max-width: 480px) {
+      .card-container { height: 320px; }
+      .eid-title { font-size: 2rem; }
+      .card-message { font-size: 1rem; }
+      .sender-name { font-size: 1.3rem; padding: 10px 25px; }
+      .action-btn { font-size: 1.1rem; padding: 16px 30px; }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <h1><i class="fas fa-star-and-crescent crescent-moon"></i> Eid Wishes Generator Pro</h1>
-                <div class="arabic-text">مولد تهنئة عيد مبارك</div>
-                <p>Create beautiful Eid Mubarak wishes in Arabic and English with traditional duas & festive cards</p>
-                <div class="header-decoration">
-                    <i class="fas fa-mosque"></i>
-                    <i class="fas fa-star-and-crescent"></i>
-                    <i class="fas fa-hands-praying"></i>
-                    <i class="fas fa-gift"></i>
-                    <i class="fas fa-moon"></i>
-                </div>
-            </div>
-        </header>
+  <!-- Floating Stars Background -->
+  <div class="floating-stars-bg" id="floatingStarsBg"></div>
 
-        <div class="main-content">
-            <section class="generator-section">
-                <h2 class="section-title"><i class="fas fa-cogs"></i> Customize Your Eid Wish</h2>
-                
-                <div class="input-group">
-                    <label for="recipientName"><i class="fas fa-user"></i> Recipient's Name</label>
-                    <input type="text" id="recipientName" placeholder="Enter recipient's name" value="Family & Friends">
-                </div>
-                
-                <div class="eid-type-container">
-                    <div class="eid-type active" data-type="eid-al-fitr">
-                        <i class="fas fa-sun"></i>
-                        <h3>Eid al-Fitr</h3>
-                        <div class="arabic-badge">عيد الفطر</div>
-                    </div>
-                    <div class="eid-type" data-type="eid-al-adha">
-                        <i class="fas fa-hands-praying"></i>
-                        <h3>Eid al-Adha</h3>
-                        <div class="arabic-badge">عيد الأضحى</div>
-                    </div>
-                    <div class="eid-type" data-type="general">
-                        <i class="fas fa-hands"></i>
-                        <h3>General Eid</h3>
-                        <div class="arabic-badge">عيد مبارك</div>
-                    </div>
-                    <div class="eid-type" data-type="corporate">
-                        <i class="fas fa-building"></i>
-                        <h3>Corporate/Business</h3>
-                        <div class="arabic-badge">تهنئة رسمية</div>
-                    </div>
-                </div>
-                
-                <div class="language-switch">
-                    <div class="lang-btn active" data-lang="english">English</div>
-                    <div class="lang-btn" data-lang="arabic">العربية</div>
-                    <div class="lang-btn" data-lang="bilingual">Both</div>
-                </div>
-                
-                <div class="input-group">
-                    <label for="tone"><i class="fas fa-volume-up"></i> Message Tone</label>
-                    <select id="tone">
-                        <option value="traditional">Traditional & Formal</option>
-                        <option value="heartfelt">Heartfelt & Emotional</option>
-                        <option value="modern">Modern & Casual</option>
-                        <option value="religious">Religious & Spiritual</option>
-                        <option value="poetic">Poetic & Artistic</option>
-                    </select>
-                </div>
-                
-                <div class="input-group">
-                    <label for="sender"><i class="fas fa-signature"></i> Your Name/From</label>
-                    <input type="text" id="sender" placeholder="Enter your name" value="Your Muslim Brother/Sister">
-                </div>
+  <!-- ========== GENERATOR SECTION ========== -->
+  <div class="section active" id="generatorSection">
+    <header>
+      <h1>🌙 Eid Wishes Generator</h1>
+      <p class="tagline">Create Beautiful Eid Cards & Share Blessings</p>
+    </header>
 
-                <div class="stats-panel">
-                    <div class="stat-item">
-                        <div class="stat-value" id="wishCount">1</div>
-                        <div class="stat-label">Wishes Generated</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="charCount">247</div>
-                        <div class="stat-label">Characters</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="arabicCount">3</div>
-                        <div class="stat-label">Arabic Phrases</div>
-                    </div>
-                </div>
-
-                <div class="button-group">
-                    <button class="btn btn-generate" id="generateBtn">
-                        <i class="fas fa-magic"></i> Generate Wish
-                    </button>
-                    <button class="btn btn-copy" id="copyBtn">
-                        <i class="far fa-copy"></i> Copy
-                    </button>
-                    <button class="btn btn-whatsapp" id="whatsappBtn">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </button>
-                    <button class="btn btn-sms" id="smsBtn">
-                        <i class="fas fa-sms"></i> SMS
-                    </button>
-                    <button class="btn btn-reset" id="resetBtn">
-                        <i class="fas fa-redo"></i> Reset
-                    </button>
-                </div>
-            </section>
-
-            <section class="preview-section">
-                <h2 class="section-title"><i class="far fa-eye"></i> Wish Preview <span class="tag neon-glow">LIVE</span></h2>
-                
-                <div class="preview-box">
-                    <div class="decoration top-left"><i class="fas fa-star"></i></div>
-                    <div class="decoration top-right"><i class="fas fa-moon"></i></div>
-                    
-                    <div class="wish-preview english" id="wishPreview">
-                        <p>عيد مبارك!</p>
-                        <p>Eid Mubarak to you and your family! May Allah accept your good deeds, forgive your transgressions, and ease the suffering of all people around the globe.</p>
-                        <p>May this Eid bring joy, happiness, and peace to your heart and home. Wishing you a blessed Eid filled with countless blessings!</p>
-                        <div class="signature">تقبل الله منا ومنكم</div>
-                    </div>
-                    
-                    <div class="decoration bottom-left"><i class="fas fa-hands-praying"></i></div>
-                    <div class="decoration bottom-right"><i class="fas fa-dove"></i></div>
-                </div>
-                
-                <p style="text-align: center; color: var(--neon-green); font-size: 1rem; margin-top: 20px; font-weight: 600;">
-                    <i class="fas fa-lightbulb"></i> Tip: Switch between languages for different cultural expressions!
-                </p>
-            </section>
+    <div class="design-selection">
+      <h3><i class="fas fa-palette"></i> Choose Card Design</h3>
+      <div class="design-options">
+        <div class="design-option design-1 selected" onclick="selectDesign(1)">
+          <div class="design-preview"></div>
+          <div class="design-name">Green Mosque</div>
         </div>
-
-        <section class="features-section">
-            <h2 class="section-title"><i class="fas fa-star"></i> Premium Features <span class="tag neon-glow">PRO</span></h2>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-language"></i>
-                    <h3>Bilingual Generator</h3>
-                    <p>Generate wishes in Arabic, English, or both languages combined. Perfect for multicultural communications.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-book-quran"></i>
-                    <h3>Quranic Verses</h3>
-                    <p>Include authentic Quranic verses and Hadith in your wishes. References provided for authenticity.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-moon"></i>
-                    <h3>Moon Sighting Updates</h3>
-                    <p>Get real-time Eid moon sighting announcements and accurate prayer time calculations.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-gift"></i>
-                    <h3>Eidi/Gift Ideas</h3>
-                    <p>Traditional and modern gift suggestions for family, friends, and children with cultural significance.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Eid Recipes</h3>
-                    <p>Traditional Eid dishes and sweets recipes from different Muslim cultures around the world.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-history"></i>
-                    <h3>Wish History</h3>
-                    <p>Save and organize your previously generated wishes. Export as beautiful PDF keepsakes.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="dua-section">
-            <h2 class="section-title"><i class="fas fa-hands-praying"></i> Eid Duas & Prayers <span class="tag arabic-tag">دعاء</span></h2>
-            
-            <div class="dua-container">
-                <div class="dua-card">
-                    <div class="dua-arabic">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ</div>
-                    <div class="dua-translation">"May Allah accept [good deeds] from us and from you."</div>
-                    <div class="dua-meaning">Traditional Eid greeting exchanged between Muslims.</div>
-                </div>
-                
-                <div class="dua-card">
-                    <div class="dua-arabic">أَعَادَهُ اللَّهُ عَلَيْكُمْ بِالخَيْرِ وَالبَرَكَةِ</div>
-                    <div class="dua-translation">"May Allah bring it back to you with goodness and blessing."</div>
-                    <div class="dua-meaning">Response to Eid Mubarak greetings.</div>
-                </div>
-                
-                <div class="dua-card">
-                    <div class="dua-arabic">كُلُّ عَامٍ وَأَنْتُمْ بِخَيْرٍ</div>
-                    <div class="dua-translation">"May every year find you in good health."</div>
-                    <div class="dua-meaning">Common Eid greeting wishing continual wellbeing.</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="card-section">
-            <h2 class="section-title"><i class="fas fa-image"></i> Eid Card Designer <span class="tag neon-glow">NEW</span></h2>
-            
-            <div class="card-container">
-                <div class="card-preview">
-                    <div class="card-canvas" id="cardCanvas">
-                        <div style="text-align: center; padding: 20px; width: 100%;">
-                            <div style="font-size: 3rem; color: var(--gold); margin-bottom: 20px;">🌙</div>
-                            <h2 style="color: var(--neon-green); font-size: 2rem; margin-bottom: 15px; font-family: 'Amiri', serif;">عيد مبارك</h2>
-                            <p style="font-size: 1.5rem; color: white; margin-bottom: 10px;">Eid Mubarak!</p>
-                            <p style="font-size: 1.2rem; color: var(--text-gray); margin-top: 20px;">To: Family & Friends</p>
-                        </div>
-                    </div>
-                    <div class="card-buttons">
-                        <button class="btn-card" id="generateCardBtn">
-                            <i class="fas fa-paintbrush"></i> Generate Card
-                        </button>
-                        <button class="btn-card btn-download" id="downloadCardBtn">
-                            <i class="fas fa-download"></i> Download Card
-                        </button>
-                    </div>
-                </div>
-                
-                <div style="flex: 2; min-width: 300px;">
-                    <p style="margin-bottom: 25px; color: var(--text-light); line-height: 1.7; font-size: 1.1rem;">
-                        Design beautiful Eid greeting cards with Islamic patterns, Arabic calligraphy, and personalized messages. Perfect for sharing with family and friends.
-                    </p>
-                    
-                    <div class="input-group" style="margin-bottom: 20px;">
-                        <label for="cardText"><i class="fas fa-font"></i> Card Message</label>
-                        <input type="text" id="cardText" placeholder="Enter message for your card" value="Eid Mubarak!">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="cardTemplate"><i class="fas fa-palette"></i> Card Design</label>
-                        <select id="cardTemplate">
-                            <option value="mosque">Mosque & Moon</option>
-                            <option value="crescent">Crescent & Stars</option>
-                            <option value="arabesque">Islamic Geometric</option>
-                            <option value="modern">Modern Minimal</option>
-                            <option value="traditional">Traditional Calligraphy</option>
-                        </select>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="cardColor"><i class="fas fa-fill-drip"></i> Accent Color</label>
-                        <input type="color" id="cardColor" value="#00FF11" style="height: 50px; width: 100%; padding: 5px; background: var(--dark-gray); border: 2px solid var(--neon-green); border-radius: 8px;">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p>Eid Wishes Generator Pro &copy; 2023 | Designed with <i class="fas fa-heart" style="color: var(--neon-green);"></i> for the Muslim Ummah</p>
-            <p>Black & Neon Green Theme | <a href="javascript:void(0)" id="shareBtn">Share this generator</a> | <a href="javascript:void(0)" id="printBtn">Print Card</a></p>
-            <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-gray);">
-                <i class="fas fa-star-and-crescent"></i> Bilingual Wishes | <i class="fas fa-book-quran"></i> Quranic Verses | <i class="fas fa-image"></i> Card Designer
-            </p>
-        </footer>
+        <div class="design-option design-2" onclick="selectDesign(2)">
+          <div class="design-preview"></div>
+          <div class="design-name">Night Crescent</div>
+        </div>
+        <div class="design-option design-3" onclick="selectDesign(3)">
+          <div class="design-preview"></div>
+          <div class="design-name">Red Lanterns</div>
+        </div>
+        <div class="design-option design-4" onclick="selectDesign(4)">
+          <div class="design-preview"></div>
+          <div class="design-name">Blue Prayer</div>
+        </div>
+        <div class="design-option design-5" onclick="selectDesign(5)">
+          <div class="design-preview"></div>
+          <div class="design-name">Maroon Dates</div>
+        </div>
+      </div>
     </div>
 
-    <div class="message" id="copyMessage">🌙 Eid Mubarak! Wish copied!</div>
+    <div class="eid-type-selection">
+      <h3><i class="fas fa-star-and-crescent"></i> Select Eid Type</h3>
+      <div class="eid-type-options">
+        <div class="eid-type-option selected" onclick="selectEidType('eid-mubarak')">
+          <div class="eid-type-icon">🌙</div>
+          <div class="eid-type-name">Eid Mubarak</div>
+          <div class="eid-type-desc">General Eid Wishes</div>
+        </div>
+        <div class="eid-type-option" onclick="selectEidType('eid-al-fitr')">
+          <div class="eid-type-icon">🕌</div>
+          <div class="eid-type-name">Eid al-Fitr</div>
+          <div class="eid-type-desc">End of Ramadan</div>
+        </div>
+        <div class="eid-type-option" onclick="selectEidType('eid-al-adha')">
+          <div class="eid-type-icon">🐏</div>
+          <div class="eid-type-name">Eid al-Adha</div>
+          <div class="eid-type-desc">Festival of Sacrifice</div>
+        </div>
+      </div>
+    </div>
 
-    <script>
-        // DOM elements
-        const recipientNameInput = document.getElementById('recipientName');
-        const eidTypes = document.querySelectorAll('.eid-type');
-        const langButtons = document.querySelectorAll('.lang-btn');
-        const toneSelect = document.getElementById('tone');
-        const senderInput = document.getElementById('sender');
-        const generateBtn = document.getElementById('generateBtn');
-        const copyBtn = document.getElementById('copyBtn');
-        const whatsappBtn = document.getElementById('whatsappBtn');
-        const smsBtn = document.getElementById('smsBtn');
-        const resetBtn = document.getElementById('resetBtn');
-        const wishPreview = document.getElementById('wishPreview');
-        const copyMessage = document.getElementById('copyMessage');
-        const shareBtn = document.getElementById('shareBtn');
-        const printBtn = document.getElementById('printBtn');
-        const wishCount = document.getElementById('wishCount');
-        const charCount = document.getElementById('charCount');
-        const arabicCount = document.getElementById('arabicCount');
+    <div class="controls">
+      <div class="input-group">
+        <label><i class="fas fa-user-friends"></i> Recipient's Name</label>
+        <input type="text" id="recipientName" placeholder="Who to send Eid wishes to?">
+      </div>
+
+      <div class="input-group">
+        <label><i class="fas fa-user-edit"></i> Your Name (Sender)</label>
+        <input type="text" id="senderName" placeholder="Your name" value="Your Muslim Friend">
+      </div>
+
+      <div class="input-group">
+        <label><i class="fas fa-language"></i> Language</label>
+        <select id="langSelect">
+          <option value="en">English</option>
+          <option value="ar">Arabic</option>
+          <option value="ur">Urdu</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="wish-selection">
+      <h3><i class="fas fa-quote-right"></i> Select Eid Wish</h3>
+      <div id="wishList"></div>
+    </div>
+
+    <button class="action-btn" onclick="generateAndShowCard()">
+      <i class="fas fa-star-and-crescent"></i> Generate Eid Card
+    </button>
+  </div>
+
+  <!-- ========== CARD VIEW SECTION ========== -->
+  <div class="section" id="cardViewSection">
+    <div class="card-container" id="cardContainer">
+      <div class="eid-card">
+
+        <!-- Front of Card -->
+        <div class="card-front design-1-front" id="cardFront">
+          <h2 class="eid-title" id="cardTitle">عيد مبارك</h2>
+          <div class="eid-type-badge" id="eidTypeBadge">Eid Mubarak</div>
+          <p class="card-message" id="cardMessage">Loading Eid wishes...</p>
+          <p class="sender-name" id="cardSender"></p>
+        </div>
+
+        <!-- Inside of Card -->
+        <div class="card-inside">
+          <div class="inside-slideshow" id="insideSlideshow" aria-hidden="true">
+            <div class="inside-slide slide-1 active">
+              <div class="slide-chip">🕌 Mosque Scene Theme</div>
+            </div>
+
+            <div class="inside-slide slide-2">
+              <div class="slide-chip">🌙 Crescent & Stars Theme</div>
+            </div>
+
+            <div class="inside-slide slide-3">
+              <div class="slide-chip">🏮 Ramadan Lanterns Theme</div>
+            </div>
+
+            <div class="inside-slide slide-4">
+              <div class="slide-chip">📿 Prayer & Peace Theme</div>
+            </div>
+
+            <div class="inside-slide slide-5">
+              <div class="slide-chip">🌴 Dates & Blessings Theme</div>
+            </div>
+          </div>
+
+          <div class="inside-content">
+            <h2 class="eid-title" id="insideTitle">عيد مبارك</h2>
+            <div class="eid-type-badge" id="insideEidTypeBadge">Eid Mubarak</div>
+            <p class="card-message" id="cardInsideMessage">May Allah accept your good deeds and grant you happiness!</p>
+            <p class="sender-name" style="margin-top: 40px;">From: <span id="cardInsideSender"></span></p>
+          </div>
+        </div>
+      </div>
+
+      <button class="flip-btn" onclick="flipCard()" title="Flip Card">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+    </div>
+
+    <div class="social-sharing">
+      <h3><i class="fas fa-share-alt"></i> Share Eid Card</h3>
+      <div class="social-buttons">
+        <button class="social-btn whatsapp" onclick="shareOnWhatsApp()" title="Share on WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </button>
+        <button class="social-btn facebook" onclick="shareOnFacebook()" title="Share on Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </button>
+        <button class="social-btn twitter" onclick="shareOnTwitter()" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </button>
+        <button class="social-btn instagram" onclick="shareOnInstagram()" title="Share on Instagram">
+          <i class="fab fa-instagram"></i>
+        </button>
+        <button class="social-btn telegram" onclick="shareOnTelegram()" title="Share on Telegram">
+          <i class="fab fa-telegram"></i>
+        </button>
+        <button class="social-btn copy-link" onclick="copyCardLink()" title="Copy Link">
+          <i class="fas fa-copy"></i>
+        </button>
+      </div>
+    </div>
+
+    <button class="create-new-btn" onclick="goToGenerator()">
+      <i class="fas fa-plus-circle"></i> Create New Eid Card
+    </button>
+
+    <div class="website-link">
+      <p>Create your own beautiful Eid cards at:
+        <a href="https://toolnest.live/eid-wishes-generator-pro.html" target="_blank">https://toolnest.live/eid-wishes-generator-pro.html</a>
+      </p>
+      <p style="margin-top: 15px; font-size: 1rem; color: #FFD700;">
+        Share Eid blessings and joy with beautiful digital cards for family and friends
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Toolnest - Eid Wishes Generator Pro | Spread Eid blessings and joy with beautiful Islamic cards</p>
+    <div class="social-links">
+      <a href="https://facebook.com/toolnest" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="https://twitter.com/toolnest" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+      <a href="https://instagram.com/toolnest" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://youtube.com/toolnest" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="https://toolnest.live" target="_blank"><i class="fas fa-globe"></i> Website</a>
+    </div>
+  </footer>
+
+  <script>
+    // ========== EID WISHES DATA ==========
+    const wishes = {
+      en: {
+        'eid-mubarak': [
+          "Eid Mubarak {name}! May Allah's blessings shine upon you and your family. May this Eid bring you joy, happiness, and peace. 🌙",
+          "Wishing you and your family a blessed Eid, {name}! May Allah accept your good deeds, forgive your sins, and ease your struggles. 🕌",
+          "As you celebrate Eid, {name}, may Allah bless you with happiness and grace your home with warmth and peace. Eid Mubarak! ✨",
+          "Eid Mubarak {name}! May this special day bring peace, happiness, and prosperity to everyone. May Allah bless you today and always. 🌟",
+          "On this blessed occasion of Eid, {name}, I pray that Allah showers His blessings upon you and your family. Eid Mubarak! 🙏",
+          "{name}, may the magic of this Eid bring lots of happiness in your life and may you celebrate it with all your close friends and family. Eid Mubarak! 💕"
+        ],
+        'eid-al-fitr': [
+          "Eid al-Fitr Mubarak {name}! After a month of fasting and prayers, may Allah accept your efforts and bless you with happiness and prosperity. 🌙",
+          "Wishing you a joyful Eid al-Fitr, {name}! May Allah reward you for all your good deeds and grant you and your family happiness and peace. 🕌",
+          "Eid al-Fitr Mubarak {name}! As Ramadan comes to an end, may Allah accept your fasts and prayers. May you have a blessed celebration. ✨",
+          "On this Eid al-Fitr, {name}, may Allah shower His blessings upon you and your loved ones. May your home be filled with happiness and peace. 🌟",
+          "Eid al-Fitr Mubarak {name}! May this Eid bring you closer to Allah and fill your life with happiness, peace, and prosperity. 🙏",
+          "{name}, as we celebrate Eid al-Fitr, may Allah accept our prayers and forgive our sins. Wishing you and your family a blessed Eid! 💕"
+        ],
+        'eid-al-adha': [
+          "Eid al-Adha Mubarak {name}! May Allah accept your sacrifices and good deeds. May He bless you with happiness, peace, and prosperity. 🐏",
+          "Wishing you a blessed Eid al-Adha, {name}! May Allah bless you and your family with happiness, good health, and success. 🌙",
+          "Eid al-Adha Mubarak {name}! On this holy occasion, may Allah accept your prayers and sacrifices. May He grant you strength and faith. 🕌",
+          "As you celebrate Eid al-Adha, {name}, may Allah bless you with His mercy and grace. May your sacrifices be accepted and rewarded. ✨",
+          "Eid al-Adha Mubarak {name}! May the spirit of sacrifice bring you closer to Allah and fill your life with peace and happiness. 🌟",
+          "{name}, on this blessed Eid al-Adha, may Allah accept your good deeds, forgive your sins, and answer your prayers. Eid Mubarak! 🙏"
+        ]
+      },
+      ar: {
+        'eid-mubarak': [
+          "عيد مبارك {name}! تقبل الله منا ومنكم صالح الأعمال. كل عام وأنتم بخير. 🌙",
+          "أطيب التهاني بمناسبة عيد الفطر المبارك {name}. تقبل الله طاعتكم وبعدكم عن المعاصي. 🕌",
+          "{name}، كل عام وأنت بخير. جعل الله هذا العيد فرحة في قلبك وقلب أحبابك. ✨",
+          "عيد مبارك {name}! تقبل الله منا ومنكم صالح الأعمال وكل عام وأنتم بألف خير. 🌟",
+          "{name}، أدام الله عليكم نعمة الأمن والإيمان وجعلكم من عتقائه من النار. عيد مبارك! 🙏",
+          "كل عام وأنت بخير {name}. تقبل الله منا ومنكم وجعل أيامكم كلها أعياد. 💕"
+        ],
+        'eid-al-fitr': [
+          "كل عام وأنتم بخير {name}. تقبل الله منا ومنكم صيامنا وقيامنا وصالح الأعمال. 🌙",
+          "عيد فطر سعيد {name}! تقبل الله منا ومنكم وجعلنا من العائدين الفائزين. 🕌",
+          "{name}، كل عام وأنت بخير. جعل الله عيدكم مباركًا وفرحتكم دائمة. ✨",
+          "عيد فطر مبارك {name}! تقبل الله طاعتكم وغفر ذنوبكم ورفع درجاتكم. 🌟",
+          "{name}، عيدكم مبارك وتقبل الله منا ومنكم صالح الأعمال. 🙏",
+          "كل عام وأنت بخير {name}. جعل الله هذا العيد فرحة في قلبك وقلب من تحب. 💕"
+        ],
+        'eid-al-adha': [
+          "عيد أضحى مبارك {name}! تقبل الله منا ومنكم وكل عام وأنتم بخير. 🐏",
+          "كل عام وأنتم بخير {name}. تقبل الله منا ومنكم صالح الأعمال. 🌙",
+          "{name}، عيد أضحى مبارك. تقبل الله منا ومنكم وجعلنا من الذاكرين الشاكرين. 🕌",
+          "عيد مبارك {name}! تقبل الله منا ومنكم وجعل أيامكم كلها أعياد. ✨",
+          "{name}، كل عام وأنت بخير. جعل الله هذا العيد فرحة في قلبك. 🌟",
+          "عيد أضحى مبارك {name}! تقبل الله منا ومنكم وبلغنا رمضان وأعيادًا قادمة. 🙏"
+        ]
+      },
+      ur: {
+        'eid-mubarak': [
+          "آپ کو اور آپ کے گھر والوں کو عید مبارک {name}! اللہ آپ کو خوشیوں سے نوازے۔ 🌙",
+          "عید کی دُعا ہے {name} کہ اللہ آپ کے گھر میں خوشیاں بھر دے اور آپ کو ہمیشہ خوش رکھے۔ 🕌",
+          "{name}، آپ کو اور آپ کے اہل خانہ کو عید مبارک! اللہ آپ کی عید کو خوشیوں سے بھر دے۔ ✨",
+          "عید مبارک {name}! اللہ آپ کو اور آپ کے گھر والوں کو ہمیشہ خوش رکھے۔ 🌟",
+          "{name}، عید کے اس مبارک موقع پر اللہ آپ کو اور آپ کے پیاروں کو سلامت رکھے۔ 🙏",
+          "آپ کو اور آپ کے گھر والوں کو عید کی بہت بہت مبارکباد {name}! 💕"
+        ],
+        'eid-al-fitr': [
+          "عید الفطر مبارک {name}! اللہ آپ کے روزے اور عبادات قبول فرمائے۔ 🌙",
+          "{name}، آپ کو اور آپ کے گھر والوں کو عید الفطر مبارک! اللہ آپ کو خوشیاں عطا فرمائے۔ 🕌",
+          "عید الفطر کی دُعا ہے {name} کہ اللہ آپ کے گھر میں رحمت اور برکت نازل فرمائے۔ ✨",
+          "عید مبارک {name}! اللہ آپ کو اور آپ کے پیاروں کو ہمیشہ خوش رکھے۔ 🌟",
+          "{name}، عید کے اس مبارک موقع پر اللہ آپ کے گھر میں خوشیاں بھر دے۔ 🙏",
+          "آپ کو اور آپ کے گھر والوں کو عید الفطر کی بہت بہت مبارکباد {name}! 💕"
+        ],
+        'eid-al-adha': [
+          "عید الاضحیٰ مبارک {name}! اللہ آپ کی قربانی قبول فرمائے۔ 🐏",
+          "{name}، آپ کو اور آپ کے گھر والوں کو عید الاضحیٰ مبارک! اللہ آپ کو خوشیاں عطا فرمائے۔ 🌙",
+          "عید الاضحیٰ کی دُعا ہے {name} کہ اللہ آپ کے گھر میں رحمت اور برکت نازل فرمائے۔ 🕌",
+          "عید مبارک {name}! اللہ آپ کو اور آپ کے پیاروں کو ہمیشہ خوش رکھے۔ ✨",
+          "{name}، عید کے اس مبارک موقع پر اللہ آپ کے گھر میں خوشیاں بھر دے۔ 🌟",
+          "آپ کو اور آپ کے گھر والوں کو عید الاضحیٰ کی بہت بہت مبارکباد {name}! 🙏"
+        ]
+      }
+    };
+
+    // ========== EID TYPE NAMES ==========
+    const eidTypeNames = {
+      'eid-mubarak': {
+        en: 'Eid Mubarak',
+        ar: 'عيد مبارك',
+        ur: 'عید مبارک'
+      },
+      'eid-al-fitr': {
+        en: 'Eid al-Fitr',
+        ar: 'عيد الفطر',
+        ur: 'عید الفطر'
+      },
+      'eid-al-adha': {
+        en: 'Eid al-Adha',
+        ar: 'عيد الأضحى',
+        ur: 'عید الاضحیٰ'
+      }
+    };
+
+    // ========== GLOBAL VARIABLES ==========
+    let selectedWishIndex = 0;
+    let currentLang = "en";
+    let currentRecipient = "";
+    let currentSender = "";
+    let insideSlideIndex = 0;
+    let insideTimer = null;
+    let currentDesign = 1;
+    let currentEidType = 'eid-mubarak';
+
+    // ========== URL PARAMS ==========
+    function getUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        view: params.get('view'),
+        wish: params.get('wish'),
+        to: params.get('to'),
+        from: params.get('from'),
+        lang: params.get('lang') || 'en',
+        design: params.get('design') || '1',
+        eid: params.get('eid') || 'eid-mubarak'
+      };
+    }
+
+    function baseToolUrl() {
+      return window.location.origin + window.location.pathname;
+    }
+
+    function generateShareUrl(recipientName, senderName, lang, wishIndex, design, eidType) {
+      const baseUrl = baseToolUrl();
+      return `${baseUrl}?view=card&wish=${wishIndex}&to=${encodeURIComponent(recipientName)}&from=${encodeURIComponent(senderName)}&lang=${encodeURIComponent(lang)}&design=${design}&eid=${eidType}`;
+    }
+
+    // ========== INITIALIZATION ==========
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = getUrlParams();
+
+      if (params.view === "card" && params.wish !== null && params.to) {
+        // Shared card view
+        currentDesign = parseInt(params.design) || 1;
+        currentEidType = params.eid || 'eid-mubarak';
+        displaySharedCard(params);
+        showSection('cardView');
+        document.title = `Eid Card for ${decodeURIComponent(params.to)}`;
+      } else {
+        // Generator view
+        showSection('generator');
+        loadWishes();
+        startFloatingStars();
+      }
+    });
+
+    // ========== SECTIONS ==========
+    function showSection(sectionName) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(sectionName + 'Section').classList.add('active');
+      if (sectionName === 'generator') document.title = "Eid Wishes Generator | Toolnest Pro";
+    }
+
+    function goToGenerator() {
+      window.history.pushState({}, document.title, window.location.pathname);
+      stopInsideSlideshow();
+      closeCardIfOpen();
+      showSection('generator');
+      loadWishes();
+    }
+
+    function closeCardIfOpen() {
+      document.getElementById('cardContainer').classList.remove('card-open');
+    }
+
+    // ========== DESIGN SELECTION ==========
+    function selectDesign(designNumber) {
+      currentDesign = designNumber;
+      document.querySelectorAll('.design-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      document.querySelector(`.design-${designNumber}`).classList.add('selected');
+    }
+
+    // ========== EID TYPE SELECTION ==========
+    function selectEidType(eidType) {
+      currentEidType = eidType;
+      document.querySelectorAll('.eid-type-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      event.currentTarget.classList.add('selected');
+      loadWishes();
+    }
+
+    // ========== WISHES ==========
+    function loadWishes() {
+      const wishList = document.getElementById('wishList');
+      const lang = document.getElementById('langSelect').value;
+      currentLang = lang;
+
+      wishList.innerHTML = '';
+      const eidWishes = wishes[lang][currentEidType];
+      eidWishes.forEach((wish, index) => {
+        const wishItem = document.createElement('div');
+        wishItem.className = 'wish-item' + (index === selectedWishIndex ? ' selected' : '');
+        const sampleWish = wish.replace('{name}', 'Friend');
+        wishItem.innerHTML = `<strong>Wish ${index + 1}:</strong> ${sampleWish}`;
+        wishItem.onclick = () => selectWish(index);
+        wishList.appendChild(wishItem);
+      });
+    }
+
+    function selectWish(index) {
+      selectedWishIndex = index;
+      document.querySelectorAll('.wish-item').forEach((item, i) => {
+        item.classList.toggle('selected', i === index);
+      });
+    }
+
+    document.getElementById('langSelect').addEventListener('change', () => {
+      selectedWishIndex = 0;
+      loadWishes();
+    });
+
+    // ========== GENERATE CARD ==========
+    function generateAndShowCard() {
+      const recipientName = document.getElementById('recipientName').value.trim();
+      const senderName = document.getElementById('senderName').value.trim();
+      const lang = document.getElementById('langSelect').value;
+
+      if (!recipientName) return alert("Please enter the recipient's name!");
+      if (!senderName) return alert("Please enter your name as sender!");
+
+      currentRecipient = recipientName;
+      currentSender = senderName;
+      currentLang = lang;
+
+      displayCard(recipientName, senderName, lang, selectedWishIndex);
+      showSection('cardView');
+    }
+
+    function displayCard(recipientName, senderName, lang, wishIndex) {
+      const eidName = eidTypeNames[currentEidType][lang];
+      const eidWishes = wishes[lang][currentEidType];
+      const wishText = (eidWishes && eidWishes[wishIndex] ? eidWishes[wishIndex] : wishes.en[currentEidType][0])
+        .replace('{name}', recipientName);
+
+      const titleText = eidTypeNames[currentEidType].ar || 'عيد مبارك';
+
+      // Update card front design
+      const cardFront = document.getElementById('cardFront');
+      cardFront.className = 'card-front';
+      cardFront.classList.add(`design-${currentDesign}-front`);
+
+      document.getElementById('cardTitle').textContent = titleText;
+      document.getElementById('eidTypeBadge').textContent = eidName;
+      document.getElementById('cardMessage').textContent = wishText;
+      document.getElementById('cardSender').textContent = `From: ${senderName}`;
+
+      document.getElementById('insideTitle').textContent = titleText;
+      document.getElementById('insideEidTypeBadge').textContent = eidName;
+      document.getElementById('cardInsideMessage').textContent = wishText;
+      document.getElementById('cardInsideSender').textContent = senderName;
+
+      prepareSlidesOnce();
+      showInsideSlide(0);
+      stopInsideSlideshow();
+      closeCardIfOpen();
+    }
+
+    function displaySharedCard(params) {
+      const recipientName = decodeURIComponent(params.to || 'Friend');
+      const senderName = decodeURIComponent(params.from || 'Your Muslim Friend');
+      const lang = (params.lang || 'en');
+      const wishIndex = Math.max(0, parseInt(params.wish || "0", 10));
+      const design = parseInt(params.design) || 1;
+      const eidType = params.eid || 'eid-mubarak';
+
+      currentRecipient = recipientName;
+      currentSender = senderName;
+      currentLang = lang;
+      selectedWishIndex = wishIndex;
+      currentDesign = design;
+      currentEidType = eidType;
+
+      displayCard(recipientName, senderName, lang, wishIndex);
+    }
+
+    // ========== FLIP + SLIDESHOW ==========
+    function flipCard() {
+      const container = document.getElementById('cardContainer');
+      container.classList.toggle('card-open');
+
+      const isOpen = container.classList.contains('card-open');
+      if (isOpen) startInsideSlideshow();
+      else stopInsideSlideshow();
+    }
+
+    function getSlides() {
+      return Array.from(document.querySelectorAll('#insideSlideshow .inside-slide'));
+    }
+
+    function showInsideSlide(index) {
+      const slides = getSlides();
+      if (!slides.length) return;
+
+      insideSlideIndex = (index + slides.length) % slides.length;
+      slides.forEach((s, i) => s.classList.toggle('active', i === insideSlideIndex));
+    }
+
+    function startInsideSlideshow() {
+      stopInsideSlideshow();
+      showInsideSlide(0);
+      insideTimer = setInterval(() => showInsideSlide(insideSlideIndex + 1), 3500);
+    }
+
+    function stopInsideSlideshow() {
+      if (insideTimer) clearInterval(insideTimer);
+      insideTimer = null;
+    }
+
+    // Build slide elements
+    let slidesPrepared = false;
+    function prepareSlidesOnce() {
+      if (slidesPrepared) return;
+      slidesPrepared = true;
+
+      const slides = getSlides();
+      if (slides.length < 5) return;
+
+      // Slide 1: Mosque Scene
+      const mosqueScene = document.createElement('div');
+      mosqueScene.className = 'mosque-scene';
+      slides[0].appendChild(mosqueScene);
+
+      // Create mosque building
+      const mosqueBuilding = document.createElement('div');
+      mosqueBuilding.className = 'mosque-building';
+      mosqueScene.appendChild(mosqueBuilding);
+
+      // Add mosque dome
+      const mosqueDome = document.createElement('div');
+      mosqueDome.style.position = 'absolute';
+      mosqueDome.style.top = '-40px';
+      mosqueDome.style.left = '50%';
+      mosqueDome.style.transform = 'translateX(-50%)';
+      mosqueDome.style.width = '60px';
+      mosqueDome.style.height = '40px';
+      mosqueDome.style.background = 'radial-gradient(ellipse at center, #FFD700, #DAA520)';
+      mosqueDome.style.borderRadius = '50%';
+      mosqueBuilding.appendChild(mosqueDome);
+
+      // Add mosque minarets
+      for (let i = 0; i < 2; i++) {
+        const minaret = document.createElement('div');
+        minaret.style.position = 'absolute';
+        minaret.style.bottom = '0';
+        minaret.style.left = i === 0 ? '20px' : 'calc(100% - 50px)';
+        minaret.style.width = '15px';
+        minaret.style.height = '80px';
+        minaret.style.background = 'linear-gradient(to top, #F5F5DC, #E6D8AD)';
+        minaret.style.borderRadius = '5px 5px 0 0';
+        mosqueBuilding.appendChild(minaret);
+      }
+
+      // Slide 2: Crescent & Stars
+      const crescentLarge = document.createElement('div');
+      crescentLarge.className = 'crescent-large';
+      crescentLarge.innerHTML = '🌙';
+      slides[1].appendChild(crescentLarge);
+
+      // Add stars
+      for (let i = 0; i < 8; i++) {
+        const star = document.createElement('div');
+        star.style.position = 'absolute';
+        star.style.left = `${10 + (i * 12)}%`;
+        star.style.top = `${20 + (i * 8)}%`;
+        star.style.fontSize = '30px';
+        star.style.color = '#FFD700';
+        star.style.opacity = '0.7';
+        star.style.animation = `twinkle ${2 + Math.random() * 3}s infinite`;
+        star.innerHTML = '★';
+        slides[1].appendChild(star);
+      }
+
+      // Slide 3: Lanterns
+      const lanternGroup = document.createElement('div');
+      lanternGroup.className = 'lantern-group';
+      slides[2].appendChild(lanternGroup);
+
+      // Create lanterns
+      for (let i = 0; i < 4; i++) {
+        const lantern = document.createElement('div');
+        lantern.className = 'lantern-large';
+        lantern.innerHTML = '🏮';
+        lantern.style.animationDelay = `${i * 0.5}s`;
+        lanternGroup.appendChild(lantern);
+      }
+
+      // Slide 4: Prayer Theme
+      const prayerTheme = document.createElement('div');
+      prayerTheme.className = 'prayer-theme';
+      prayerTheme.innerHTML = '🤲';
+      slides[3].appendChild(prayerTheme);
+
+      // Add Islamic patterns
+      for (let i = 0; i < 4; i++) {
+        const pattern = document.createElement('div');
+        pattern.style.position = 'absolute';
+        pattern.style.fontSize = '40px';
+        pattern.style.color = '#FFD700';
+        pattern.style.opacity = '0.3';
+        pattern.style.transform = `rotate(${i * 45}deg)`;
+        pattern.style.top = `${20 + (i * 20)}%`;
+        pattern.style.left = `${10 + (i * 25)}%`;
+        pattern.innerHTML = 'ﷲ';
+        slides[3].appendChild(pattern);
+      }
+
+      // Slide 5: Dates Theme
+      const datesTheme = document.createElement('div');
+      datesTheme.className = 'dates-theme';
+      datesTheme.innerHTML = '🌴📿';
+      slides[4].appendChild(datesTheme);
+
+      // Add dates
+      for (let i = 0; i < 6; i++) {
+        const date = document.createElement('div');
+        date.style.position = 'absolute';
+        date.style.fontSize = '40px';
+        date.style.color = '#8B0000';
+        date.style.top = `${30 + Math.random() * 50}%`;
+        date.style.left = `${10 + (i * 15)}%`;
+        date.style.animation = `datesBounce ${3 + Math.random() * 2}s infinite`;
+        date.style.animationDelay = `${i * 0.3}s`;
+        date.innerHTML = '🍯';
+        slides[4].appendChild(date);
+      }
+    }
+
+    // ========== SHARE FUNCTIONS ==========
+    function shareOnWhatsApp() {
+      if (!currentRecipient || !currentSender) return;
+
+      const shareUrl = generateShareUrl(currentRecipient, currentSender, currentLang, selectedWishIndex, currentDesign, currentEidType);
+      const eidName = eidTypeNames[currentEidType][currentLang];
+      const eidWishes = wishes[currentLang][currentEidType];
+      const wishText = (eidWishes && eidWishes[selectedWishIndex] ? eidWishes[selectedWishIndex] : wishes.en[currentEidType][0])
+        .replace('{name}', currentRecipient);
+
+      const message =
+`🌙 ${eidName} for ${currentRecipient} 🌙
+
+${wishText}
+
+From: ${currentSender}
+
+Open this beautiful Eid card (flip for amazing Islamic themes):
+${shareUrl}
+
+Create your own at: https://toolnest.live/eid-wishes-generator-pro.html`;
+
+      window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    function shareOnFacebook() {
+      const shareUrl = generateShareUrl(currentRecipient, currentSender, currentLang, selectedWishIndex, currentDesign, currentEidType);
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
+    }
+
+    function shareOnTwitter() {
+      const shareUrl = generateShareUrl(currentRecipient, currentSender, currentLang, selectedWishIndex, currentDesign, currentEidType);
+      const text = `Check out this beautiful ${eidTypeNames[currentEidType][currentLang]} card for ${currentRecipient}! ${shareUrl}`;
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function shareOnInstagram() {
+      alert("To share on Instagram:\n1. Take a screenshot of the Eid card\n2. Open Instagram and create a new post\n3. Share the Eid blessings with your followers!");
+    }
+
+    function shareOnTelegram() {
+      const shareUrl = generateShareUrl(currentRecipient, currentSender, currentLang, selectedWishIndex, currentDesign, currentEidType);
+      const text = `Beautiful ${eidTypeNames[currentEidType][currentLang]} card for ${currentRecipient}! ${shareUrl}`;
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function copyCardLink() {
+      if (!currentRecipient || !currentSender) return;
+
+      const shareUrl = generateShareUrl(currentRecipient, currentSender, currentLang, selectedWishIndex, currentDesign, currentEidType);
+      navigator.clipboard.writeText(shareUrl)
+        .then(() => alert("Eid card link copied to clipboard! 📋\n\nShare this link with family and friends."))
+        .catch(() => alert("Copy failed. Please copy the link manually:\n" + shareUrl));
+    }
+
+    // ========== FLOATING STARS BACKGROUND ==========
+    function startFloatingStars() {
+      createFloatingStars(40);
+    }
+
+    function createFloatingStars(count = 40) {
+      const container = document.getElementById('floatingStarsBg');
+      container.innerHTML = '';
+
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.className = 'star-bg';
         
-        // Card elements
-        const cardCanvas = document.getElementById('cardCanvas');
-        const cardTextInput = document.getElementById('cardText');
-        const cardTemplateSelect = document.getElementById('cardTemplate');
-        const cardColorInput = document.getElementById('cardColor');
-        const generateCardBtn = document.getElementById('generateCardBtn');
-        const downloadCardBtn = document.getElementById('downloadCardBtn');
+        const starType = Math.random() > 0.5 ? '★' : '✦';
+        star.innerHTML = starType;
+
+        const startX = Math.random() * window.innerWidth;
+        const size = Math.random() * 30 + 20;
+        const delay = Math.random() * 25;
+        const duration = Math.random() * 15 + 25;
+
+        star.style.left = `${startX}px`;
+        star.style.fontSize = `${size}px`;
+        star.style.animationDelay = `${delay}s`;
+        star.style.animationDuration = `${duration}s`;
+        star.style.color = Math.random() > 0.7 ? '#FFD700' : '#00FF00';
+
+        container.appendChild(star);
+      }
+    }
+
+    // Add some interactive Islamic patterns on click
+    document.addEventListener('click', (e) => {
+      if (Math.random() > 0.6) { // 40% chance on click
+        const pattern = document.createElement('div');
+        pattern.style.position = 'fixed';
+        pattern.style.left = `${e.clientX}px`;
+        pattern.style.top = `${e.clientY}px`;
+        pattern.style.fontSize = '50px';
+        pattern.style.color = '#00FF00';
+        pattern.style.opacity = '0.8';
+        pattern.style.pointerEvents = 'none';
+        pattern.style.zIndex = '1000';
+        pattern.style.transition = 'all 1.5s';
+        pattern.style.transform = 'scale(0)';
         
-        // App state
-        let selectedType = 'eid-al-fitr';
-        let selectedLang = 'english';
-        let wishCounter = 1;
-        let arabicPhrases = 3;
+        const patterns = ['🕌', '🌙', '🤲', '✨', '📿'];
+        pattern.innerHTML = patterns[Math.floor(Math.random() * patterns.length)];
         
-        // Common Arabic Eid phrases
-        const arabicPhrasesList = [
-            { phrase: "عيد مبارك", meaning: "Blessed Eid" },
-            { phrase: "تقبل الله منا ومنكم", meaning: "May Allah accept [good deeds] from us and from you" },
-            { phrase: "كل عام وأنتم بخير", meaning: "May every year find you in good health" },
-            { phrase: "عيد سعيد", meaning: "Happy Eid" },
-            { phrase: "أعاده الله عليكم بالخير والبركة", meaning: "May Allah bring it back to you with goodness and blessing" },
-            { phrase: "تبارك الله عليكم", meaning: "May Allah bless you" },
-            { phrase: "جعلكم الله من العائدين والفائزين", meaning: "May Allah make you among those who return [to Him] and are successful" }
-        ];
-        
-        // Eid wishes templates
-        const eidWishes = {
-            'eid-al-fitr': {
-                english: {
-                    traditional: [
-                        "Eid Mubarak! May Allah accept your good deeds, forgive your transgressions, and ease the suffering of all people around the globe. Eid Mubarak to you and your family!",
-                        "Wishing you a blessed Eid al-Fitr! May this special day bring peace, happiness, and prosperity to everyone. May Allah bless you with happiness and open all the doors of success now and always.",
-                        "As you offer your Eid prayers, may Allah bless you with happiness and grace your home with warmth and peace. Eid Mubarak to you and your loved ones!"
-                    ],
-                    heartfelt: [
-                        "Eid Mubarak to you and your family! After a month of fasting, prayers, and devotion, may Allah shower His blessings upon you and grant you peace, prosperity, and happiness.",
-                        "On this blessed occasion of Eid al-Fitr, I pray that Allah's blessings be with you today and always. May your life be filled with happiness, your heart with love, and your soul with spirituality.",
-                        "Eid Mubarak! May the divine blessings of Allah bring you hope, faith, and joy on Eid al-Fitr and forever. Thank you for being part of my life and journey."
-                    ],
-                    modern: [
-                        "Happy Eid! Hope you have an amazing time celebrating with family and friends. May your Eid be filled with joy, laughter, and all your favorite foods!",
-                        "Eid Mubarak! Wishing you a day filled with happiness, love, and all the sweet treats you can handle. Enjoy this special time with your loved ones!",
-                        "Sending you warm Eid greetings! May your celebrations be wonderful and your day be bright. Have a fantastic Eid filled with joy and blessings!"
-                    ]
-                },
-                arabic: [
-                    "كل عام وأنتم بخير، تقبل الله منا ومنكم صالح الأعمال. عيد فطر سعيد مبارك عليكم وعلى جميع المسلمين.",
-                    "بمناسبة عيد الفطر المبارك، أتقدم بأحر التهاني وأطيب الأماني، سائلين المولى عز وجل أن يعيده علينا وعليكم بالخير واليمن والبركات.",
-                    "عيد مبارك، تقبل الله طاعتكم، وكل عام وأنتم إلى الله أقرب. أسأل الله أن يجعله عيد خير وبركة وسعادة عليكم وعلى الأمة الإسلامية."
-                ]
-            },
-            'eid-al-adha': {
-                english: {
-                    traditional: [
-                        "Eid al-Adha Mubarak! May Allah bless you with happiness, grace, and prosperity. May this special occasion bring joy and peace to your heart and home.",
-                        "On the occasion of Eid al-Adha, may Allah accept your sacrifices and good deeds. May He bless you and your family with happiness, peace, and prosperity.",
-                        "Eid al-Adha Mubarak! May the blessings of Allah fill your life with happiness, peace, and prosperity. May Allah accept your sacrifices and grant your prayers."
-                    ],
-                    religious: [
-                        "Eid al-Adha Mubarak! As we remember the sacrifice of Prophet Ibrahim (AS), may Allah grant us the strength to submit to His will completely. May your sacrifices be accepted and your prayers answered.",
-                        "On this blessed day of Eid al-Adha, may Allah accept your good deeds, forgive your sins, and grant you a place in Jannah. May the spirit of sacrifice guide you in your life.",
-                        "Eid al-Adha Mubarak! May the lessons of sacrifice, faith, and submission to Allah's will guide us throughout our lives. May Allah bless you and your family abundantly."
-                    ]
-                },
-                arabic: [
-                    "عيد أضحى مبارك، تقبل الله منا ومنكم، وجعلنا وإياكم من المقبولين. كل عام وأنتم بخير.",
-                    "بمناسبة عيد الأضحى المبارك، أتقدم لكم بأصدق التهاني وأطيب الأماني، سائلين المولى عز وجل أن يتقبل منا ومنكم صالح الأعمال.",
-                    "كل عام وأنتم بخير، عيد أضحى مبارك سعيد. تقبل الله طاعاتكم وضحاياكم، وجعلكم من عباد الله الصالحين."
-                ]
-            }
-        };
-        
-        // Generic bilingual templates
-        const bilingualTemplates = [
-            {
-                arabic: "عيد مبارك! تقبل الله منا ومنكم صالح الأعمال",
-                english: "Eid Mubarak! May Allah accept our good deeds"
-            },
-            {
-                arabic: "كل عام وأنتم بخير، عيد سعيد مبارك",
-                english: "Happy Blessed Eid! May every year find you in good health"
-            },
-            {
-                arabic: "أعاده الله عليكم بالخير والبركة والسعادة",
-                english: "May Allah bring it back to you with goodness, blessings, and happiness"
-            }
-        ];
+        document.body.appendChild(pattern);
 
-        // Initialize the app
-        function init() {
-            // Set active Eid type
-            eidTypes.forEach(type => {
-                type.addEventListener('click', () => {
-                    eidTypes.forEach(t => t.classList.remove('active'));
-                    type.classList.add('active');
-                    selectedType = type.dataset.type;
-                    generateWish();
-                });
-            });
+        setTimeout(() => {
+          pattern.style.transform = 'scale(1) translateY(-100px) rotate(360deg)';
+          pattern.style.opacity = '0';
+        }, 10);
 
-            // Set active language
-            langButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    langButtons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    selectedLang = btn.dataset.lang;
-                    updatePreviewLanguage();
-                    generateWish();
-                });
-            });
+        setTimeout(() => {
+          if (pattern.parentNode) pattern.parentNode.removeChild(pattern);
+        }, 1600);
+      }
+    });
 
-            // Generate wish button
-            generateBtn.addEventListener('click', generateWish);
-            
-            // Copy to clipboard button
-            copyBtn.addEventListener('click', copyToClipboard);
-            
-            // WhatsApp button
-            whatsappBtn.addEventListener('click', shareOnWhatsApp);
-            
-            // SMS button
-            smsBtn.addEventListener('click', shareViaSMS);
-            
-            // Reset button
-            resetBtn.addEventListener('click', resetForm);
-            
-            // Share button
-            shareBtn.addEventListener('click', shareGenerator);
-            
-            // Print button
-            printBtn.addEventListener('click', printCard);
-            
-            // Card buttons
-            generateCardBtn.addEventListener('click', generateCard);
-            downloadCardBtn.addEventListener('click', downloadCard);
-            
-            // Auto-generate when inputs change
-            recipientNameInput.addEventListener('input', generateWish);
-            toneSelect.addEventListener('change', generateWish);
-            senderInput.addEventListener('input', generateWish);
-            cardTextInput.addEventListener('input', generateCard);
-            cardTemplateSelect.addEventListener('change', generateCard);
-            cardColorInput.addEventListener('input', generateCard);
-            
-            // Generate initial wish and card
-            generateWish();
-            generateCard();
-        }
-
-        // Generate a wish based on current selections
-        function generateWish() {
-            const recipient = recipientNameInput.value.trim() || "Family & Friends";
-            const tone = toneSelect.value;
-            const sender = senderInput.value.trim() || "Your Muslim Brother/Sister";
-            
-            // Get appropriate template
-            let englishWish = "";
-            let arabicWish = "";
-            
-            // Get English wish
-            const typeWishes = eidWishes[selectedType];
-            if (typeWishes && typeWishes.english && typeWishes.english[tone]) {
-                const englishTemplates = typeWishes.english[tone];
-                englishWish = englishTemplates[Math.floor(Math.random() * englishTemplates.length)];
-            } else {
-                // Default English wish
-                englishWish = `Eid Mubarak to ${recipient}! May this blessed occasion bring you joy, peace, and countless blessings from Allah.`;
-            }
-            
-            // Get Arabic wish
-            if (typeWishes && typeWishes.arabic) {
-                arabicWish = typeWishes.arabic[Math.floor(Math.random() * typeWishes.arabic.length)];
-            } else {
-                // Get random Arabic phrase
-                const randomPhrase = arabicPhrasesList[Math.floor(Math.random() * arabicPhrasesList.length)];
-                arabicWish = randomPhrase.phrase;
-            }
-            
-            // Get additional Arabic phrase for bilingual
-            const additionalArabic = arabicPhrasesList[Math.floor(Math.random() * arabicPhrasesList.length)];
-            
-            // Build HTML based on selected language
-            let html = '';
-            
-            switch(selectedLang) {
-                case 'english':
-                    html = `
-                        <p>${arabicPhrasesList[0].phrase}!</p>
-                        <p>${englishWish}</p>
-                        <p>May this Eid bring joy, happiness, and peace to your heart and home. Wishing you a blessed Eid filled with countless blessings!</p>
-                        <div class="signature">${sender}</div>
-                    `;
-                    arabicPhrases = 1;
-                    break;
-                    
-                case 'arabic':
-                    html = `
-                        <p>${arabicWish}</p>
-                        <p>${additionalArabic.phrase}</p>
-                        <p>${arabicPhrasesList[2].phrase}</p>
-                        <div class="signature">${sender}</div>
-                    `;
-                    arabicPhrases = 3;
-                    break;
-                    
-                case 'bilingual':
-                    html = `
-                        <p><strong>${arabicWish}</strong></p>
-                        <p>${englishWish}</p>
-                        <p><strong>${additionalArabic.phrase}</strong> (${additionalArabic.meaning})</p>
-                        <div class="signature">${sender}</div>
-                    `;
-                    arabicPhrases = 2;
-                    break;
-            }
-            
-            // Update preview
-            wishPreview.innerHTML = html;
-            updatePreviewLanguage();
-            
-            // Update counters
-            wishCounter++;
-            wishCount.textContent = wishCounter;
-            
-            // Update character count
-            const text = wishPreview.innerText;
-            charCount.textContent = text.length;
-            
-            // Update Arabic phrases count
-            arabicCount.textContent = arabicPhrases;
-        }
-
-        // Update preview language styling
-        function updatePreviewLanguage() {
-            // Remove all language classes
-            wishPreview.classList.remove('english', 'arabic');
-            
-            if (selectedLang === 'arabic') {
-                wishPreview.classList.add('arabic');
-                wishPreview.style.direction = 'rtl';
-                wishPreview.style.textAlign = 'right';
-            } else {
-                wishPreview.classList.add('english');
-                wishPreview.style.direction = 'ltr';
-                wishPreview.style.textAlign = 'left';
-            }
-        }
-
-        // Copy generated wish to clipboard
-        function copyToClipboard() {
-            const textToCopy = wishPreview.innerText;
-            
-            navigator.clipboard.writeText(textToCopy)
-                .then(() => {
-                    showMessage("🌙 Eid Mubarak! Wish copied to clipboard!", "success");
-                })
-                .catch(err => {
-                    console.error('Failed to copy text: ', err);
-                    showMessage("❌ Failed to copy. Please try again.", "error");
-                });
-        }
-
-        // Share on WhatsApp
-        function shareOnWhatsApp() {
-            const text = wishPreview.innerText;
-            const encodedText = encodeURIComponent(text);
-            const whatsappUrl = `https://wa.me/?text=${encodedText}`;
-            
-            window.open(whatsappUrl, '_blank');
-            showMessage("📱 Opening WhatsApp...", "success");
-        }
-
-        // Share via SMS
-        function shareViaSMS() {
-            const text = wishPreview.innerText;
-            const smsUrl = `sms:?body=${encodeURIComponent(text)}`;
-            
-            window.location.href = smsUrl;
-            showMessage("💬 Opening SMS...", "success");
-        }
-
-        // Reset form
-        function resetForm() {
-            recipientNameInput.value = "Family & Friends";
-            eidTypes.forEach(t => t.classList.remove('active'));
-            document.querySelector('.eid-type[data-type="eid-al-fitr"]').classList.add('active');
-            selectedType = 'eid-al-fitr';
-            langButtons.forEach(b => b.classList.remove('active'));
-            document.querySelector('.lang-btn[data-lang="english"]').classList.add('active');
-            selectedLang = 'english';
-            toneSelect.value = "traditional";
-            senderInput.value = "Your Muslim Brother/Sister";
-            cardTextInput.value = "Eid Mubarak!";
-            cardTemplateSelect.value = "mosque";
-            cardColorInput.value = "#00FF11";
-            
-            generateWish();
-            generateCard();
-            showMessage("🔄 Form reset to default values!", "success");
-        }
-
-        // Share generator
-        function shareGenerator() {
-            const shareText = "Check out this amazing Eid Wishes Generator Pro! Create beautiful bilingual Eid greetings with Arabic and English messages.";
-            const shareUrl = window.location.href;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Eid Wishes Generator Pro',
-                    text: shareText,
-                    url: shareUrl
-                });
-            } else {
-                navigator.clipboard.writeText(shareUrl);
-                showMessage("🔗 Link copied! Share it with friends!", "success");
-            }
-        }
-
-        // Print card
-        function printCard() {
-            const printWindow = window.open('', '', 'width=800,height=600');
-            const cardContent = document.getElementById('cardCanvas').innerHTML;
-            const recipient = recipientNameInput.value.trim() || "Family & Friends";
-            
-            printWindow.document.write(`
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Eid Card</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; padding: 50px; background: #000; color: #00FF11; }
-                        h1 { color: #FFD700; text-align: center; border-bottom: 3px solid #00FF11; padding-bottom: 15px; font-family: 'Amiri', serif; }
-                        .card-content { font-size: 18px; line-height: 1.8; margin: 40px 0; text-align: center; }
-                        .recipient-name { font-size: 24px; font-weight: bold; color: #00FF11; margin: 20px 0; }
-                        @media print { 
-                            body { padding: 20px; } 
-                            h1 { font-size: 28px; }
-                        }
-                    </style>
-                </head>
-                <body>
-                    <h1>🌙 Eid Greeting Card 🌙</h1>
-                    <div class="card-content">
-                        <div class="recipient-name">To: ${recipient}</div>
-                        ${cardContent}
-                    </div>
-                </body>
-                </html>
-            `);
-            
-            printWindow.document.close();
-            printWindow.focus();
-            setTimeout(() => {
-                printWindow.print();
-                printWindow.close();
-            }, 250);
-            
-            showMessage("🖨️ Opening print dialog...", "success");
-        }
-
-        // Generate card
-        function generateCard() {
-            const canvas = cardCanvas;
-            const text = cardTextInput.value || "Eid Mubarak!";
-            const template = cardTemplateSelect.value;
-            const color = cardColorInput.value;
-            const recipient = recipientNameInput.value.trim() || "Family & Friends";
-            
-            // Clear canvas
-            canvas.innerHTML = '';
-            
-            // Create card based on template
-            let cardHTML = '';
-            const arabicGreeting = "عيد مبارك";
-            
-            switch(template) {
-                case 'mosque':
-                    cardHTML = `
-                        <div style="background: linear-gradient(135deg, #111111 0%, #222222 100%); border-radius: 15px; padding: 30px; border: 5px solid ${color}; text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden;">
-                            <div style="position: absolute; top: 20px; right: 20px; font-size: 2rem; color: #FFD700;">🕌</div>
-                            <div style="position: absolute; bottom: 20px; left: 20px; font-size: 2rem; color: ${color};">🌙</div>
-                            <h2 style="color: ${color}; font-size: 2.5rem; margin-bottom: 15px; font-family: 'Amiri', serif;">${arabicGreeting}</h2>
-                            <p style="font-size: 1.8rem; color: #FFD700; margin-bottom: 10px;">${text}</p>
-                            <p style="font-size: 1.3rem; color: #AAAAAA; margin-top: 20px;">To: ${recipient}</p>
-                            <div style="margin-top: 30px; font-size: 1.2rem; color: #666;">
-                                May Allah's blessings be with you
-                            </div>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'crescent':
-                    cardHTML = `
-                        <div style="background: linear-gradient(135deg, #000000 0%, #111111 100%); border-radius: 15px; padding: 30px; border: 5px solid ${color}; text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden;">
-                            <div style="font-size: 4rem; color: #FFD700; margin-bottom: 20px;">🌙⭐</div>
-                            <h2 style="color: ${color}; font-size: 2.2rem; margin-bottom: 15px; text-shadow: 0 0 10px ${color}40;">${arabicGreeting}</h2>
-                            <p style="font-size: 1.6rem; color: #FFFFFF; margin-bottom: 10px; font-style: italic;">"${text}"</p>
-                            <p style="font-size: 1.4rem; color: ${color}; margin-top: 20px; font-weight: bold;">${recipient}</p>
-                            <div style="margin-top: 30px; font-size: 1.2rem; color: #888;">
-                                Blessed Eid Greetings
-                            </div>
-                        </div>
-                    `;
-                    break;
-                    
-                default: // mosque
-                    cardHTML = `
-                        <div style="background: linear-gradient(135deg, #111111 0%, #222222 100%); border-radius: 15px; padding: 30px; border: 5px solid ${color}; text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden;">
-                            <div style="position: absolute; top: 20px; right: 20px; font-size: 2rem; color: #FFD700;">🕌</div>
-                            <div style="position: absolute; bottom: 20px; left: 20px; font-size: 2rem; color: ${color};">🌙</div>
-                            <h2 style="color: ${color}; font-size: 2.5rem; margin-bottom: 15px; font-family: 'Amiri', serif;">${arabicGreeting}</h2>
-                            <p style="font-size: 1.8rem; color: #FFD700; margin-bottom: 10px;">${text}</p>
-                            <p style="font-size: 1.3rem; color: #AAAAAA; margin-top: 20px;">To: ${recipient}</p>
-                            <div style="margin-top: 30px; font-size: 1.2rem; color: #666;">
-                                May Allah's blessings be with you
-                            </div>
-                        </div>
-                    `;
-            }
-            
-            canvas.innerHTML = cardHTML;
-        }
-
-        // Download card
-        function downloadCard() {
-            // In a real implementation, you would use html2canvas or similar library
-            showMessage("📥 To download card, use the Print option and save as PDF", "success");
-        }
-
-        // Show message
-        function showMessage(text, type = "success") {
-            copyMessage.textContent = text;
-            copyMessage.className = "message";
-            
-            if (type === "error") {
-                copyMessage.classList.add("error");
-            } else if (type === "success") {
-                copyMessage.classList.add("success");
-            }
-            
-            copyMessage.classList.add("show");
-            
-            setTimeout(() => {
-                copyMessage.classList.remove("show");
-            }, 3000);
-        }
-
-        // Initialize when page loads
-        window.addEventListener('DOMContentLoaded', init);
-    </script>
+    // Twinkle animation for stars
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes twinkle {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
 </body>
 </html>
