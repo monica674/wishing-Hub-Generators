@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
 Disallow: /private/
 
 Sitemap: https://toolnest.live/sitemap.xml
