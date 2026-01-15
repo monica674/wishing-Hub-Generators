@@ -3,137 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Birthday Card 🎂 | Personalized Celebrations</title>
+    <title>Interactive Birthday Card | Toolnest</title>
+    
+    <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
+    
     <style>
-        /* ===== BASE STYLES ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Orbitron', sans-serif;
-        }
+        /* RESET */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            background: linear-gradient(135deg, #0a0819, #1a1638, #0a0819);
-            color: #fff;
+            background: linear-gradient(135deg, #0a0819, #1a1638);
+            color: white;
+            font-family: 'Orbitron', sans-serif;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 20px;
+            text-align: center;
             overflow-x: hidden;
         }
         
-        .container {
-            max-width: 900px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-        
+        /* HEADER */
         header {
-            margin-bottom: 30px;
+            margin: 20px auto 30px;
+            max-width: 800px;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0,0,0,0.5);
             border-radius: 20px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,215,0,0.3);
         }
         
         h1 {
-            font-size: 3.5rem;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+            font-family: 'Pacifico', cursive;
+            font-size: 2.8rem;
             color: #FFD700;
-            background: linear-gradient(to right, #FFD700, #FF8C00, #FF4500);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            text-shadow: 0 0 20px rgba(255,215,0,0.7);
+            margin-bottom: 10px;
         }
         
         .tagline {
+            color: #a0a0ff;
             font-size: 1.2rem;
-            color: #e0e0ff;
-            margin-bottom: 10px;
         }
         
-        /* ===== PERSONALIZATION CONTROLS ===== */
-        .personalization {
-            background: rgba(255, 255, 255, 0.1);
+        /* CONTROLS */
+        .controls {
+            background: rgba(255,255,255,0.1);
+            max-width: 600px;
+            margin: 0 auto 30px;
             padding: 20px;
             border-radius: 15px;
-            margin-bottom: 30px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 15px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 215, 0, 0.3);
+            justify-content: center;
+            align-items: flex-end;
         }
         
         .input-group {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            flex: 1;
             min-width: 200px;
+            text-align: left;
         }
         
         .input-group label {
-            margin-bottom: 8px;
+            display: block;
+            margin-bottom: 5px;
             color: #FFD700;
             font-weight: bold;
         }
         
-        input, select {
+        input, select, button {
             width: 100%;
             padding: 12px;
             border-radius: 10px;
             border: none;
             font-size: 16px;
-            background: rgba(255, 255, 255, 0.9);
         }
         
-        .personalize-btn {
+        input, select {
+            background: white;
+            color: #333;
+        }
+        
+        button {
             background: linear-gradient(45deg, #ff0080, #ff8c00);
             color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
-            align-self: flex-end;
-            height: 44px;
+            transition: transform 0.3s;
         }
         
-        .personalize-btn:hover {
+        button:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(255, 0, 128, 0.7);
         }
         
-        /* ===== CARD CONTAINER ===== */
+        /* CARD CONTAINER */
         .card-container {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            margin: 0 auto 40px;
+            max-width: 700px;
+            height: 400px;
+            margin: 0 auto 30px;
             perspective: 1000px;
+            position: relative;
         }
         
         .birthday-card {
-            position: relative;
             width: 100%;
             height: 100%;
+            position: relative;
             transform-style: preserve-3d;
             transition: transform 0.8s;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             overflow: hidden;
-            border: 3px solid rgba(255, 215, 0, 0.5);
+        }
+        
+        .card-open .birthday-card {
+            transform: rotateY(180deg);
         }
         
         .card-front, .card-inside {
@@ -150,375 +136,282 @@
         }
         
         .card-front {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
             background-size: cover;
-            background-position: center;
             z-index: 2;
         }
         
         .card-inside {
-            background: rgba(10, 8, 25, 0.95);
+            background: rgba(10,8,25,0.95);
             transform: rotateY(180deg);
             z-index: 1;
             overflow-y: auto;
-            border: 3px solid rgba(255, 215, 0, 0.3);
-        }
-        
-        .card-open .birthday-card {
-            transform: rotateY(180deg);
         }
         
         .card-title {
-            font-size: 2.8rem;
             font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
             color: #FFD700;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
             margin-bottom: 20px;
+            text-align: center;
         }
         
         .card-message {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             line-height: 1.6;
             text-align: center;
-            color: #ffffff;
-            padding: 0 20px;
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin: 0 20px;
+            min-height: 80px;
         }
         
-        .signature {
-            font-style: italic;
-            font-size: 1.8rem;
-            margin-top: 30px;
-            color: #FFD700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-        }
-        
-        /* ===== CARD CONTROLS ===== */
-        .card-controls {
+        /* BUTTONS */
+        .action-buttons {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
             flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
+            gap: 15px;
             justify-content: center;
-            gap: 8px;
+            margin: 20px auto;
+            max-width: 700px;
         }
         
-        .btn-card {
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
-            color: white;
-            min-width: 160px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .btn-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            border-color: rgba(255, 215, 0, 0.7);
-        }
-        
-        .change-wish-btn {
+        .action-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px 20px;
             background: linear-gradient(45deg, #00b09b, #96c93d);
             color: white;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            margin-top: 10px;
-        }
-        
-        .btn-color {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
             cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        }
-        
-        .btn-color:hover, .btn-color.active {
-            transform: scale(1.2);
-            border-color: white;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         
         .color-options {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin: 20px 0 30px;
+            margin: 20px auto;
             flex-wrap: wrap;
         }
         
-        /* ===== SHARING CONTROLS ===== */
-        .social-sharing {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        
-        .social-btn {
-            width: 60px;
-            height: 60px;
+        .color-btn {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
         
-        .social-btn:hover {
-            transform: translateY(-8px) scale(1.1);
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+        .color-btn:hover, .color-btn.active {
+            transform: scale(1.2);
+            border-color: white;
         }
         
-        .website-link {
-            margin: 30px 0;
-            padding: 20px 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            border-left: 5px solid #FFD700;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-        }
-        
-        .website-link a {
-            color: #FFD700;
-            font-size: 1.2rem;
-            text-decoration: none;
-            font-weight: 600;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        .website-link a:hover {
-            text-decoration: underline;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-        }
-        
-        /* ===== SNOWFLAKE FIREWORKS ===== */
-        .snowflakes-container {
+        /* SNOWFLAKES */
+        .snowflakes {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
+            z-index: -1;
         }
         
         .snowflake {
             position: absolute;
             background: white;
             border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.8;
+            opacity: 0.7;
             box-shadow: 0 0 10px white;
         }
         
+        /* SHARING */
+        .sharing {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px auto;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* FOOTER */
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .website-link {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        
+        .website-link a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .website-link a:hover {
+            text-decoration: underline;
+        }
+        
+        /* FLIP BUTTON */
         .flip-btn {
             position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid rgba(255, 215, 0, 0.5);
-            width: 60px;
-            height: 60px;
+            bottom: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            font-size: 1.5rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
             cursor: pointer;
             z-index: 10;
-            transition: all 0.3s;
-            backdrop-filter: blur(5px);
+            font-size: 1.2rem;
         }
         
-        .flip-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(180deg) scale(1.1);
-            border-color: rgba(255, 215, 0, 0.9);
-        }
-        
-        /* ===== RESPONSIVE DESIGN ===== */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .card-container {
-                height: 400px;
-            }
-            
-            .card-title {
-                font-size: 2.2rem;
-            }
-            
-            .card-message {
-                font-size: 1.4rem;
-            }
-            
-            .btn-card {
-                min-width: 140px;
-                padding: 10px 20px;
-            }
-            
-            .personalization {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .input-group {
-                width: 100%;
-            }
+            h1 { font-size: 2rem; }
+            .card-container { height: 350px; }
+            .card-title { font-size: 2rem; }
+            .card-message { font-size: 1.2rem; }
+            .controls { flex-direction: column; }
         }
         
         @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .card-container {
-                height: 350px;
-            }
-            
-            .card-controls {
-                gap: 10px;
-            }
-            
-            .btn-card {
-                min-width: 120px;
-                font-size: 0.9rem;
-            }
+            h1 { font-size: 1.5rem; }
+            .card-container { height: 300px; }
+            .card-title { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
     <!-- Snowflakes Container -->
-    <div class="snowflakes-container" id="snowflakes"></div>
+    <div class="snowflakes" id="snowflakes"></div>
     
-    <div class="container">
-        <header class="fade-in">
-            <h1>🎉 Interactive Birthday Card 🎂</h1>
-            <p class="tagline">Create a personalized birthday celebration with beautiful cards & gentle snow effects</p>
-        </header>
-        
-        <!-- Personalization Section -->
-        <div class="personalization">
-            <div class="input-group">
-                <label for="nameInput">🎂 Recipient's Name:</label>
-                <input id="nameInput" placeholder="Enter name (e.g., Alex)">
-            </div>
-            
-            <div class="input-group">
-                <label for="lang">🌍 Language:</label>
-                <select id="lang">
-                    <option value="en">English</option>
-                    <option value="ur">Urdu</option>
-                    <option value="hi">Hindi</option>
-                </select>
-            </div>
-            
-            <button class="personalize-btn" onclick="personalizeCard()">
-                <i class="fas fa-magic"></i> Personalize Card
-            </button>
+    <!-- Header -->
+    <header>
+        <h1>🎂 Interactive Birthday Card</h1>
+        <p class="tagline">Create personalized birthday wishes with beautiful animations</p>
+    </header>
+    
+    <!-- Controls -->
+    <div class="controls">
+        <div class="input-group">
+            <label>🎉 Recipient's Name</label>
+            <input type="text" id="nameInput" placeholder="Enter name here...">
         </div>
         
-        <!-- Main Card Container -->
-        <div class="card-container">
-            <div class="birthday-card" id="birthdayCard">
-                <div class="card-front" id="cardFront">
-                    <h2 class="card-title" id="cardTitle">Happy Birthday!</h2>
-                    <p class="card-message" id="cardMessage">Click "Personalize Card" to create your special message!</p>
-                </div>
-                <div class="card-inside">
-                    <p class="card-message">On your special day, I wish you all the happiness, success, and love in the world. May all your dreams come true and may this new chapter of your life bring you endless joy and wonderful memories. You deserve the very best today and always!</p>
-                    <p class="card-message">May this birthday be the start of a year filled with good health, much happiness, and many successes. Enjoy your special day to the fullest!</p>
-                    <p class="signature">With warmest wishes,<br>Your Friend</p>
-                </div>
-            </div>
-            
-            <button class="flip-btn" id="flipBtn">
-                <i class="fas fa-sync-alt"></i>
-            </button>
+        <div class="input-group">
+            <label>🌍 Language</label>
+            <select id="langSelect">
+                <option value="en">English</option>
+                <option value="ur">Urdu</option>
+                <option value="hi">Hindi</option>
+            </select>
         </div>
         
-        <!-- Change Wish Button -->
-        <button class="btn change-wish-btn" onclick="changeWish()">
+        <button onclick="personalizeCard()">
+            <i class="fas fa-magic"></i> Personalize Card
+        </button>
+    </div>
+    
+    <!-- Card Container -->
+    <div class="card-container" id="cardContainer">
+        <div class="birthday-card">
+            <div class="card-front" id="cardFront">
+                <h2 class="card-title" id="cardTitle">Happy Birthday!</h2>
+                <p class="card-message" id="cardMessage">Enter a name and click "Personalize Card" to begin</p>
+            </div>
+            <div class="card-inside">
+                <h2 class="card-title">Warm Wishes</h2>
+                <p class="card-message">May your special day be filled with joy, laughter, and wonderful memories. Wishing you all the happiness in the world!</p>
+                <p class="card-message" style="margin-top: 20px; font-style: italic; color: #FFD700;">With love,<br>Your Well-Wisher</p>
+            </div>
+        </div>
+        <button class="flip-btn" onclick="flipCard()">
+            <i class="fas fa-sync-alt"></i>
+        </button>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="action-btn" onclick="changeWish()">
             <i class="fas fa-random"></i> Change Wish
         </button>
-        
-        <!-- Card Design Controls -->
-        <div class="card-controls">
-            <button class="btn btn-card" id="card1">
-                <i class="fas fa-star"></i> Classic Birthday
-            </button>
-            <button class="btn btn-card" id="card2">
-                <i class="fas fa-heart"></i> Heartfelt Wishes
-            </button>
-            <button class="btn btn-card" id="card3">
-                <i class="fas fa-cake-candles"></i> Party Celebration
-            </button>
-            <button class="btn btn-card" id="card4">
-                <i class="fas fa-gift"></i> Special Gift
-            </button>
-            <button class="btn btn-card" id="card5">
-                <i class="fas fa-champagne-glasses"></i> Cheers to You
-            </button>
-        </div>
-        
-        <!-- Color Options -->
-        <h3>Choose Card Color Theme</h3>
-        <div class="color-options">
-            <div class="btn-color color-1 active" data-color="linear-gradient(135deg, #6a11cb, #2575fc)" style="background: linear-gradient(135deg, #6a11cb, #2575fc);"></div>
-            <div class="btn-color color-2" data-color="linear-gradient(135deg, #ff416c, #ff4b2b)" style="background: linear-gradient(135deg, #ff416c, #ff4b2b);"></div>
-            <div class="btn-color color-3" data-color="linear-gradient(135deg, #11998e, #38ef7d)" style="background: linear-gradient(135deg, #11998e, #38ef7d);"></div>
-            <div class="btn-color color-4" data-color="linear-gradient(135deg, #f46b45, #eea849)" style="background: linear-gradient(135deg, #f46b45, #eea849);"></div>
-            <div class="btn-color color-5" data-color="linear-gradient(135deg, #8e2de2, #4a00e0)" style="background: linear-gradient(135deg, #8e2de2, #4a00e0);"></div>
-        </div>
-        
-        <!-- Sharing Options -->
-        <h3>Share This Birthday Card</h3>
-        <div class="social-sharing">
-            <a href="#" class="social-btn" id="whatsapp" style="background: #25D366;">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="social-btn" id="facebook" style="background: #3b5998;">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="social-btn" id="twitter" style="background: #1da1f2;">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-btn" id="copy" style="background: #6c757d;">
-                <i class="fas fa-copy"></i>
-            </a>
-        </div>
-        
-        <!-- Your Website Link -->
-        <div class="website-link">
-            <p>Create your own personalized birthday card at <a href="https://toolnest.live/birthday-wishes-generator.html" target="_blank">https://toolnest.live/birthday-wishes-generator.html</a></p>
-        </div>
+        <button class="action-btn" onclick="createSnowflakes(20)">
+            <i class="fas fa-snowflake"></i> More Snow
+        </button>
     </div>
+    
+    <!-- Color Options -->
+    <h3>Card Colors</h3>
+    <div class="color-options">
+        <div class="color-btn active" style="background: linear-gradient(135deg, #6a11cb, #2575fc);" onclick="changeColor('6a11cb', '2575fc')"></div>
+        <div class="color-btn" style="background: linear-gradient(135deg, #ff416c, #ff4b2b);" onclick="changeColor('ff416c', 'ff4b2b')"></div>
+        <div class="color-btn" style="background: linear-gradient(135deg, #11998e, #38ef7d);" onclick="changeColor('11998e', '38ef7d')"></div>
+        <div class="color-btn" style="background: linear-gradient(135deg, #f46b45, #eea849);" onclick="changeColor('f46b45', 'eea849')"></div>
+        <div class="color-btn" style="background: linear-gradient(135deg, #8e2de2, #4a00e0);" onclick="changeColor('8e2de2', '4a00e0')"></div>
+    </div>
+    
+    <!-- Sharing -->
+    <h3>Share This Card</h3>
+    <div class="sharing">
+        <a href="#" class="share-btn" style="background: #25D366;" onclick="shareWhatsApp(event)">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="#" class="share-btn" style="background: #3b5998;" onclick="shareFacebook(event)">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="share-btn" style="background: #1da1f2;" onclick="shareTwitter(event)">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="share-btn" style="background: #6c757d;" onclick="copyToClipboard(event)">
+            <i class="fas fa-copy"></i>
+        </a>
+    </div>
+    
+    <!-- Website Link -->
+    <div class="website-link">
+        <p>Create your own birthday card at: <a href="https://toolnest.live/birthday-wishes-generator.html" target="_blank">https://toolnest.live/birthday-wishes-generator.html</a></p>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        © 2024 Toolnest - Birthday Wishes Generator
+    </footer>
 
     <script>
-        // ===== EXTENDED WISH DATA (10 wishes per language) =====
+        // ========== WISHES DATA ==========
         const wishes = {
             en: [
                 "Happy Birthday {name}! May your life glow brighter than fireworks 🎆",
@@ -558,305 +451,212 @@
             ]
         };
         
-        // ===== CARD DESIGN DATA =====
+        // ========== CARD DESIGNS ==========
         const cardDesigns = [
-            {
-                title: "Happy Birthday!",
-                bg: "linear-gradient(135deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9))",
-                icon: "fas fa-star"
-            },
-            {
-                title: "Heartfelt Wishes",
-                bg: "linear-gradient(135deg, rgba(255, 65, 108, 0.9), rgba(255, 75, 43, 0.9))",
-                icon: "fas fa-heart"
-            },
-            {
-                title: "Party Celebration",
-                bg: "linear-gradient(135deg, rgba(17, 153, 142, 0.9), rgba(56, 239, 125, 0.9))",
-                icon: "fas fa-cake-candles"
-            },
-            {
-                title: "Special Gift",
-                bg: "linear-gradient(135deg, rgba(244, 107, 69, 0.9), rgba(238, 168, 73, 0.9))",
-                icon: "fas fa-gift"
-            },
-            {
-                title: "Cheers to You!",
-                bg: "linear-gradient(135deg, rgba(142, 45, 226, 0.9), rgba(74, 0, 224, 0.9))",
-                icon: "fas fa-champagne-glasses"
-            }
+            { title: "Happy Birthday!", color1: "#6a11cb", color2: "#2575fc" },
+            { title: "Heartfelt Wishes", color1: "#ff416c", color2: "#ff4b2b" },
+            { title: "Party Celebration", color1: "#11998e", color2: "#38ef7d" },
+            { title: "Special Gift", color1: "#f46b45", color2: "#eea849" },
+            { title: "Cheers to You!", color1: "#8e2de2", color2: "#4a00e0" }
         ];
-
-        // ===== DOM ELEMENTS =====
-        const birthdayCard = document.getElementById('birthdayCard');
-        const cardFront = document.getElementById('cardFront');
-        const cardTitle = document.getElementById('cardTitle');
-        const cardMessage = document.getElementById('cardMessage');
-        const flipBtn = document.getElementById('flipBtn');
-        const colorButtons = document.querySelectorAll('.btn-color');
-        const cardButtons = document.querySelectorAll('.btn-card');
-        const nameInput = document.getElementById('nameInput');
-        const langSelect = document.getElementById('lang');
         
-        // Social buttons
-        const whatsappBtn = document.getElementById('whatsapp');
-        const facebookBtn = document.getElementById('facebook');
-        const twitterBtn = document.getElementById('twitter');
-        const copyBtn = document.getElementById('copy');
-        
-        // ===== INITIALIZATION =====
-        let currentCardDesignIndex = 0;
-        let currentWishIndex = { en: 0, ur: 0, hi: 0 };
+        // ========== VARIABLES ==========
         let currentName = "";
+        let currentLang = "en";
+        let currentWishIndex = { en: 0, ur: 0, hi: 0 };
+        let currentDesignIndex = 0;
         
-        // Initialize with first card design
-        updateCardDesign(currentCardDesignIndex);
+        // ========== FUNCTIONS ==========
         
-        // ===== CARD PERSONALIZATION =====
+        // Personalize the card
         function personalizeCard() {
+            const nameInput = document.getElementById('nameInput');
+            const langSelect = document.getElementById('langSelect');
+            
             currentName = nameInput.value.trim() || "Friend";
-            const lang = langSelect.value;
+            currentLang = langSelect.value;
             
-            // Get the current wish for this language
-            const wishIndex = currentWishIndex[lang];
-            const wishText = wishes[lang][wishIndex].replace("{name}", currentName);
-            
-            // Update the card message
-            cardMessage.textContent = wishText;
-            
-            // Update card design based on wish index
-            currentCardDesignIndex = wishIndex % cardDesigns.length;
-            updateCardDesign(currentCardDesignIndex);
-            
-            // Create gentle snow effect
+            updateCard();
             createSnowflakes(15);
         }
         
-        // ===== CHANGE WISH FUNCTION =====
+        // Change to next wish
         function changeWish() {
             if (!currentName) {
-                alert("Please enter a name and click 'Personalize Card' first!");
+                alert("Please enter a name first!");
                 return;
             }
             
-            const lang = langSelect.value;
+            // Increment wish index
+            currentWishIndex[currentLang] = (currentWishIndex[currentLang] + 1) % wishes[currentLang].length;
             
-            // Move to next wish
-            currentWishIndex[lang] = (currentWishIndex[lang] + 1) % wishes[lang].length;
-            const wishIndex = currentWishIndex[lang];
-            const wishText = wishes[lang][wishIndex].replace("{name}", currentName);
+            // Change design every 2 wishes
+            if (currentWishIndex[currentLang] % 2 === 0) {
+                currentDesignIndex = (currentDesignIndex + 1) % cardDesigns.length;
+                applyCardDesign();
+            }
             
-            // Update the card message
-            cardMessage.textContent = wishText;
-            
-            // Update card design based on new wish index
-            currentCardDesignIndex = wishIndex % cardDesigns.length;
-            updateCardDesign(currentCardDesignIndex);
-            
-            // Create gentle snow effect
+            updateCard();
             createSnowflakes(10);
         }
         
-        // ===== CARD DESIGN FUNCTIONS =====
-        cardButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                currentCardDesignIndex = index;
-                updateCardDesign(index);
+        // Update card content
+        function updateCard() {
+            const wishIndex = currentWishIndex[currentLang];
+            const wishText = wishes[currentLang][wishIndex].replace("{name}", currentName);
+            
+            document.getElementById('cardTitle').textContent = cardDesigns[currentDesignIndex].title;
+            document.getElementById('cardMessage').textContent = wishText;
+        }
+        
+        // Apply card design
+        function applyCardDesign() {
+            const design = cardDesigns[currentDesignIndex];
+            const cardFront = document.getElementById('cardFront');
+            cardFront.style.background = `linear-gradient(135deg, ${design.color1}, ${design.color2})`;
+        }
+        
+        // Change card color
+        function changeColor(color1, color2) {
+            const cardFront = document.getElementById('cardFront');
+            cardFront.style.background = `linear-gradient(135deg, #${color1}, #${color2})`;
+            
+            // Update active color button
+            document.querySelectorAll('.color-btn').forEach(btn => {
+                btn.classList.remove('active');
             });
-        });
-        
-        function updateCardDesign(index) {
-            const design = cardDesigns[index];
-            
-            cardTitle.textContent = design.title;
-            
-            // Get current color
-            const activeColor = document.querySelector('.btn-color.active').getAttribute('data-color');
-            cardFront.style.background = `${activeColor}, url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=2070&auto=format&fit=crop')`;
-            cardFront.style.backgroundSize = 'cover';
-            cardFront.style.backgroundBlendMode = 'overlay';
-            
-            // Update active card button
-            cardButtons.forEach(btn => btn.style.opacity = '0.7');
-            cardButtons[index].style.opacity = '1';
+            event.target.classList.add('active');
         }
         
-        // ===== COLOR SELECTION =====
-        colorButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all color buttons
-                colorButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                // Get the color from data attribute
-                const color = button.getAttribute('data-color');
-                
-                // Apply the color to the card front
-                cardFront.style.background = `${color}, url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=2070&auto=format&fit=crop')`;
-                cardFront.style.backgroundSize = 'cover';
-                cardFront.style.backgroundBlendMode = 'overlay';
-            });
-        });
-        
-        // ===== CARD FLIP FUNCTIONALITY =====
-        flipBtn.addEventListener('click', () => {
-            birthdayCard.parentElement.classList.toggle('card-open');
-            
-            // Change icon based on state
-            const icon = flipBtn.querySelector('i');
-            if (birthdayCard.parentElement.classList.contains('card-open')) {
-                icon.className = 'fas fa-eye';
-            } else {
-                icon.className = 'fas fa-sync-alt';
-            }
-        });
-        
-        // ===== SOCIAL SHARING =====
-        whatsappBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            shareWhatsApp();
-        });
-        
-        facebookBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            shareFacebook();
-        });
-        
-        twitterBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            shareTwitter();
-        });
-        
-        copyBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            copyToClipboard();
-        });
-        
-        function shareWhatsApp() {
-            const name = currentName || "Friend";
-            const message = cardMessage.textContent || "Happy Birthday!";
-            const shareUrl = "https://toolnest.live/birthday-wishes-generator.html";
-            const fullMessage = `🎂 Birthday Wish for ${name} 🎂\n\n${message}\n\nCreate your own personalized birthday card: ${shareUrl}`;
-            
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(fullMessage)}`, "_blank");
+        // Flip card
+        function flipCard() {
+            document.getElementById('cardContainer').classList.toggle('card-open');
         }
         
-        function shareFacebook() {
-            const shareUrl = encodeURIComponent("https://toolnest.live/birthday-wishes-generator.html");
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, "_blank");
-        }
+        // ========== SNOWFLAKES ==========
+        let snowflakesArray = [];
         
-        function shareTwitter() {
-            const message = encodeURIComponent("Check out this amazing interactive birthday card creator!");
-            const shareUrl = encodeURIComponent("https://toolnest.live/birthday-wishes-generator.html");
-            window.open(`https://twitter.com/intent/tweet?text=${message}&url=${shareUrl}`, "_blank");
-        }
-        
-        function copyToClipboard() {
-            const name = currentName || "Friend";
-            const message = cardMessage.textContent || "Happy Birthday!";
-            const shareUrl = "https://toolnest.live/birthday-wishes-generator.html";
-            const fullMessage = `🎂 Birthday Wish for ${name} 🎂\n\n${message}\n\nCreate your own personalized birthday card: ${shareUrl}`;
+        function createSnowflakes(count = 10) {
+            const container = document.getElementById('snowflakes');
             
-            navigator.clipboard.writeText(fullMessage)
-                .then(() => {
-                    alert("Birthday message copied to clipboard!");
-                })
-                .catch(() => {
-                    alert("Failed to copy to clipboard. Please try again.");
-                });
-        }
-        
-        // ===== GENTLE SNOWFLAKES EFFECT =====
-        const snowflakesContainer = document.getElementById('snowflakes');
-        let snowflakes = [];
-        
-        class Snowflake {
-            constructor() {
-                this.x = Math.random() * window.innerWidth;
-                this.y = Math.random() * -100;
-                this.size = Math.random() * 5 + 2;
-                this.speed = Math.random() * 2 + 1;
-                this.wind = Math.random() * 1 - 0.5;
-                this.opacity = Math.random() * 0.7 + 0.3;
-                this.color = `rgba(255, 255, 255, ${this.opacity})`;
-                this.element = null;
-                this.create();
-            }
-            
-            create() {
-                this.element = document.createElement('div');
-                this.element.className = 'snowflake';
-                this.element.style.width = `${this.size}px`;
-                this.element.style.height = `${this.size}px`;
-                this.element.style.left = `${this.x}px`;
-                this.element.style.top = `${this.y}px`;
-                this.element.style.backgroundColor = this.color;
-                this.element.style.boxShadow = `0 0 ${this.size}px ${this.color}`;
-                snowflakesContainer.appendChild(this.element);
-            }
-            
-            update() {
-                this.y += this.speed;
-                this.x += this.wind;
-                
-                // If snowflake goes off screen, reset it
-                if (this.y > window.innerHeight) {
-                    this.y = Math.random() * -50;
-                    this.x = Math.random() * window.innerWidth;
-                }
-                
-                if (this.x > window.innerWidth) {
-                    this.x = 0;
-                } else if (this.x < 0) {
-                    this.x = window.innerWidth;
-                }
-                
-                if (this.element) {
-                    this.element.style.left = `${this.x}px`;
-                    this.element.style.top = `${this.y}px`;
-                }
-            }
-            
-            remove() {
-                if (this.element && this.element.parentNode) {
-                    this.element.parentNode.removeChild(this.element);
-                }
-            }
-        }
-        
-        function createSnowflakes(count = 50) {
             for (let i = 0; i < count; i++) {
-                setTimeout(() => {
-                    snowflakes.push(new Snowflake());
-                }, i * 50);
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                
+                // Random properties
+                const size = Math.random() * 5 + 2;
+                const startX = Math.random() * window.innerWidth;
+                const speed = Math.random() * 2 + 1;
+                const opacity = Math.random() * 0.5 + 0.3;
+                
+                snowflake.style.width = `${size}px`;
+                snowflake.style.height = `${size}px`;
+                snowflake.style.left = `${startX}px`;
+                snowflake.style.top = `-10px`;
+                snowflake.style.opacity = opacity;
+                snowflake.style.backgroundColor = `rgba(255, 255, 255, ${opacity})`;
+                
+                container.appendChild(snowflake);
+                
+                // Store for animation
+                snowflakesArray.push({
+                    element: snowflake,
+                    x: startX,
+                    y: -10,
+                    speed: speed,
+                    wind: Math.random() * 1 - 0.5
+                });
             }
         }
         
-        function createSnowfall() {
-            snowflakes.forEach(snowflake => snowflake.update());
+        // Animate snowflakes
+        function animateSnowflakes() {
+            snowflakesArray.forEach((flake, index) => {
+                flake.y += flake.speed;
+                flake.x += flake.wind;
+                
+                // Reset if off screen
+                if (flake.y > window.innerHeight) {
+                    flake.y = -10;
+                    flake.x = Math.random() * window.innerWidth;
+                }
+                
+                if (flake.x > window.innerWidth) flake.x = 0;
+                if (flake.x < 0) flake.x = window.innerWidth;
+                
+                flake.element.style.left = `${flake.x}px`;
+                flake.element.style.top = `${flake.y}px`;
+            });
             
-            // Remove old snowflakes if too many
-            if (snowflakes.length > 150) {
-                const toRemove = snowflakes.splice(0, 50);
-                toRemove.forEach(snowflake => snowflake.remove());
+            // Limit number of snowflakes
+            if (snowflakesArray.length > 200) {
+                const toRemove = snowflakesArray.splice(0, 50);
+                toRemove.forEach(flake => {
+                    if (flake.element.parentNode) {
+                        flake.element.parentNode.removeChild(flake.element);
+                    }
+                });
             }
             
-            // Occasionally add new snowflakes
-            if (Math.random() < 0.1) {
-                snowflakes.push(new Snowflake());
-            }
-            
-            requestAnimationFrame(createSnowfall);
+            requestAnimationFrame(animateSnowflakes);
         }
         
-        // Start the snowfall
-        createSnowflakes(50);
-        createSnowfall();
+        // ========== SHARING ==========
+        function shareWhatsApp(e) {
+            e.preventDefault();
+            if (!currentName) {
+                alert("Please personalize the card first!");
+                return;
+            }
+            
+            const message = document.getElementById('cardMessage').textContent;
+            const url = "https://toolnest.live/birthday-wishes-generator.html";
+            const shareText = `🎂 Birthday Wish for ${currentName} 🎂\n\n${message}\n\nCreate your own card: ${url}`;
+            
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
+        }
         
-        // Function to create extra snowflakes on demand
-        window.createSnowflakes = createSnowflakes;
+        function shareFacebook(e) {
+            e.preventDefault();
+            const url = encodeURIComponent("https://toolnest.live/birthday-wishes-generator.html");
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        }
+        
+        function shareTwitter(e) {
+            e.preventDefault();
+            const text = encodeURIComponent("Check out this interactive birthday card creator!");
+            const url = encodeURIComponent("https://toolnest.live/birthday-wishes-generator.html");
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        }
+        
+        function copyToClipboard(e) {
+            e.preventDefault();
+            if (!currentName) {
+                alert("Please personalize the card first!");
+                return;
+            }
+            
+            const message = document.getElementById('cardMessage').textContent;
+            const url = "https://toolnest.live/birthday-wishes-generator.html";
+            const text = `🎂 Birthday Wish for ${currentName} 🎂\n\n${message}\n\nCreate your own card: ${url}`;
+            
+            navigator.clipboard.writeText(text)
+                .then(() => alert("Message copied to clipboard!"))
+                .catch(() => alert("Failed to copy. Please try again."));
+        }
+        
+        // ========== INITIALIZATION ==========
+        window.addEventListener('DOMContentLoaded', () => {
+            // Start snowflake animation
+            createSnowflakes(30);
+            animateSnowflakes();
+            
+            // Add initial snow every few seconds
+            setInterval(() => createSnowflakes(5), 3000);
+            
+            // Initialize first card design
+            applyCardDesign();
+        });
     </script>
 </body>
 </html>
