@@ -1,286 +1,1088 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Wishes Generator 🎂 | Personalized Birthday Messages</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
-<style>
-/* Reset & base */
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:#000;color:#00ff7f;font-family:'Orbitron',sans-serif;text-align:center;overflow-x:hidden;}
-h1{font-family:'Pacifico',cursive;text-shadow:0 0 25px #00ff7f;margin:30px 0;}
-.container{
-    max-width:820px;
-    width:95%;
-    margin:20px auto;
-    padding:20px;
-    border:2px solid #00ff7f;
-    border-radius:20px;
-    box-shadow:0 0 40px #00ff7f66;
-}
-input,select{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border-radius:10px;
-    border:none;
-    font-size:16px;
-}
-
-/* Buttons */
-button{
-    width:100%;
-    max-width:250px;
-    padding:12px 25px;
-    margin:10px auto;
-    display:block;
-    border:none;
-    border-radius:25px;
-    font-weight:700;
-    cursor:pointer;
-    transition:transform 0.2s;
-}
-button:hover{transform:scale(1.08);}
-.generate-btn{background:#00ff7f;color:#000;}
-.copy-btn{background:#ffcc00;color:#000;}
-.song-btn{background:#ff33cc;color:#fff;}
-.poster-btn{background:#00ccff;color:#000;}
-.whatsapp-btn{
-    background:#25D366;
-    color:#fff;
-    font-weight:700;
-    animation:pulse 1.8s infinite;
-    box-shadow:0 0 20px #25D366;
-    border:none;
-    padding:12px 18px;
-    border-radius:12px;
-    cursor:pointer;
-    position:fixed;
-    bottom:15px;
-    right:15px;
-    z-index:9999;
-    font-size:14px;
-}
-@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
-
-/* Wish box */
-#wishBox{
-    margin-top:20px;
-    padding:20px;
-    border:1px dashed #00ff7f;
-    border-radius:10px;
-    min-height:90px;
-    font-size:1.2rem;
-    word-wrap:break-word;
-}
-
-/* Poster canvas */
-canvas#poster{
-    width:100% !important;
-    height:auto !important;
-    max-width:600px;
-    border:2px solid #00ff7f;
-    border-radius:12px;
-    margin-top:20px;
-}
-
-/* Fireworks */
-canvas#fireworks{position:fixed;inset:0;z-index:-1;}
-footer{margin:40px 0;font-size:.85rem;opacity:.7;}
-
-/* Mobile tweaks */
-@media screen and (max-width:500px){
-    h1{font-size:1.5rem;}
-    #wishBox{font-size:1rem;padding:15px;}
-    button{font-size:14px;padding:10px;}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Birthday Card 🎂 | Personalized Celebrations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0819, #1a1638, #0a0819);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        header {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+            color: #FFD700;
+            background: linear-gradient(to right, #FFD700, #FF8C00, #FF4500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #e0e0ff;
+            margin-bottom: 10px;
+        }
+        
+        /* ===== PERSONALIZATION CONTROLS ===== */
+        .personalization {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 200px;
+        }
+        
+        .input-group label {
+            margin-bottom: 8px;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .personalize-btn {
+            background: linear-gradient(45deg, #ff0080, #ff8c00);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            align-self: flex-end;
+            height: 44px;
+        }
+        
+        .personalize-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 0, 128, 0.7);
+        }
+        
+        /* ===== CARD CONTAINER ===== */
+        .card-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            margin: 0 auto 40px;
+            perspective: 1000px;
+        }
+        
+        .birthday-card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+            border: 3px solid rgba(255, 215, 0, 0.5);
+        }
+        
+        .card-front, .card-inside {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .card-front {
+            background-size: cover;
+            background-position: center;
+            z-index: 2;
+        }
+        
+        .card-inside {
+            background: rgba(10, 8, 25, 0.95);
+            transform: rotateY(180deg);
+            z-index: 1;
+            overflow-y: auto;
+            border: 3px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .card-open .birthday-card {
+            transform: rotateY(180deg);
+        }
+        
+        .card-title {
+            font-size: 2.8rem;
+            font-family: 'Great Vibes', cursive;
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+            margin-bottom: 20px;
+        }
+        
+        .card-message {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            text-align: center;
+            color: #ffffff;
+            padding: 0 20px;
+        }
+        
+        .signature {
+            font-style: italic;
+            font-size: 1.8rem;
+            margin-top: 30px;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+        
+        /* ===== CARD CONTROLS ===== */
+        .card-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-card {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            min-width: 160px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 215, 0, 0.7);
+        }
+        
+        .btn-color {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn-color:hover, .btn-color.active {
+            transform: scale(1.2);
+            border-color: white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+        }
+        
+        .color-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0 30px;
+            flex-wrap: wrap;
+        }
+        
+        /* ===== SHARING CONTROLS ===== */
+        .social-sharing {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        .website-link {
+            margin: 30px 0;
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border-left: 5px solid #FFD700;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .website-link a {
+            color: #FFD700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .website-link a:hover {
+            text-decoration: underline;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+        
+        /* ===== FIREWORKS ===== */
+        .fireworks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .firework-particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .firework-explosion {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .firework-tail {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .flip-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        
+        .flip-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(180deg) scale(1.1);
+            border-color: rgba(255, 215, 0, 0.9);
+        }
+        
+        .fireworks-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .fireworks-control h4 {
+            color: #FFD700;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .fireworks-control-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn-fireworks {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #ff0080, #ff8c00);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .btn-fireworks:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 0, 128, 0.7);
+        }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .card-container {
+                height: 400px;
+            }
+            
+            .card-title {
+                font-size: 2.2rem;
+            }
+            
+            .card-message {
+                font-size: 1.4rem;
+            }
+            
+            .btn-card {
+                min-width: 140px;
+                padding: 10px 20px;
+            }
+            
+            .fireworks-control {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+            
+            .personalization {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .input-group {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card-container {
+                height: 350px;
+            }
+            
+            .card-controls {
+                gap: 10px;
+            }
+            
+            .btn-card {
+                min-width: 120px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Multiple fireworks containers for different effects -->
+    <div class="fireworks-container" id="fireworks1"></div>
+    <div class="fireworks-container" id="fireworks2"></div>
+    <div class="fireworks-container" id="fireworks3"></div>
+    
+    <!-- Fireworks control panel -->
+    <div class="fireworks-control fade-in">
+        <h4>🎆 Fireworks Controls</h4>
+        <div class="fireworks-control-buttons">
+            <button class="btn-fireworks" id="moreFireworks">More Fireworks!</button>
+            <button class="btn-fireworks" id="bigExplosion">Big Explosion</button>
+            <button class="btn-fireworks" id="colorBlast">Color Blast</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header class="fade-in">
+            <h1>🎉 Interactive Birthday Card 🎂</h1>
+            <p class="tagline">Create a personalized birthday celebration with beautiful cards & spectacular fireworks</p>
+        </header>
+        
+        <!-- Personalization Section -->
+        <div class="personalization">
+            <div class="input-group">
+                <label for="nameInput">🎂 Recipient's Name:</label>
+                <input id="nameInput" placeholder="Enter name (e.g., Alex)">
+            </div>
+            
+            <div class="input-group">
+                <label for="lang">🌍 Language:</label>
+                <select id="lang">
+                    <option value="en">English</option>
+                    <option value="ur">Urdu</option>
+                    <option value="hi">Hindi</option>
+                </select>
+            </div>
+            
+            <button class="personalize-btn" onclick="personalizeCard()">
+                <i class="fas fa-magic"></i> Personalize Card
+            </button>
+        </div>
+        
+        <!-- Main Card Container -->
+        <div class="card-container">
+            <div class="birthday-card" id="birthdayCard">
+                <div class="card-front" id="cardFront">
+                    <h2 class="card-title" id="cardTitle">Happy Birthday!</h2>
+                    <p class="card-message" id="cardMessage">Click "Personalize Card" to create your special message!</p>
+                </div>
+                <div class="card-inside">
+                    <p class="card-message">On your special day, I wish you all the happiness, success, and love in the world. May all your dreams come true and may this new chapter of your life bring you endless joy and wonderful memories. You deserve the very best today and always!</p>
+                    <p class="card-message">May this birthday be the start of a year filled with good health, much happiness, and many successes. Enjoy your special day to the fullest!</p>
+                    <p class="signature">With warmest wishes,<br>Your Friend</p>
+                </div>
+            </div>
+            
+            <button class="flip-btn" id="flipBtn">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+        </div>
+        
+        <!-- Card Design Controls -->
+        <div class="card-controls">
+            <button class="btn btn-card" id="card1">
+                <i class="fas fa-star"></i> Classic Birthday
+            </button>
+            <button class="btn btn-card" id="card2">
+                <i class="fas fa-heart"></i> Heartfelt Wishes
+            </button>
+            <button class="btn btn-card" id="card3">
+                <i class="fas fa-cake-candles"></i> Party Celebration
+            </button>
+            <button class="btn btn-card" id="card4">
+                <i class="fas fa-gift"></i> Special Gift
+            </button>
+            <button class="btn btn-card" id="card5">
+                <i class="fas fa-champagne-glasses"></i> Cheers to You
+            </button>
+        </div>
+        
+        <!-- Color Options -->
+        <h3>Choose Card Color Theme</h3>
+        <div class="color-options">
+            <div class="btn-color color-1 active" data-color="linear-gradient(135deg, #6a11cb, #2575fc)" style="background: linear-gradient(135deg, #6a11cb, #2575fc);"></div>
+            <div class="btn-color color-2" data-color="linear-gradient(135deg, #ff416c, #ff4b2b)" style="background: linear-gradient(135deg, #ff416c, #ff4b2b);"></div>
+            <div class="btn-color color-3" data-color="linear-gradient(135deg, #11998e, #38ef7d)" style="background: linear-gradient(135deg, #11998e, #38ef7d);"></div>
+            <div class="btn-color color-4" data-color="linear-gradient(135deg, #f46b45, #eea849)" style="background: linear-gradient(135deg, #f46b45, #eea849);"></div>
+            <div class="btn-color color-5" data-color="linear-gradient(135deg, #8e2de2, #4a00e0)" style="background: linear-gradient(135deg, #8e2de2, #4a00e0);"></div>
+        </div>
+        
+        <!-- Sharing Options -->
+        <h3>Share This Birthday Card</h3>
+        <div class="social-sharing">
+            <a href="#" class="social-btn" id="whatsapp" style="background: #25D366;">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="social-btn" id="facebook" style="background: #3b5998;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-btn" id="twitter" style="background: #1da1f2;">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-btn" id="copy" style="background: #6c757d;">
+                <i class="fas fa-copy"></i>
+            </a>
+        </div>
+        
+        <!-- Your Website Link -->
+        <div class="website-link">
+            <p>Create your own personalized birthday card at <a href="https://toolnest.live/birthday-wishes-generator.html" target="_blank">https://toolnest.live/birthday-wishes-generator.html</a></p>
+        </div>
+    </div>
 
-<canvas id="fireworks"></canvas>
+    <script>
+        // ===== WISH DATA (From your original generator) =====
+        const wishes = {
+            en: [
+                "Happy Birthday {name}! May your life glow brighter than fireworks 🎆",
+                "Wishing you endless happiness and success, {name}! 🎂",
+                "Another year, another blessing. Happy Birthday {name}! 💚",
+                "May your birthday be filled with joy and laughter, {name}! 🎉",
+                "Cheers to a beautiful year ahead, {name}! 🥳"
+            ],
+            ur: [
+                "سالگرہ مبارک {name}! آپ کی زندگی خوشیوں سے بھری رہے 🎉",
+                "{name}! آپ کو کامیابی اور خوشیاں نصیب ہوں 🎂",
+                "{name}! یہ دن آپ کے لئے خاص ہو 💚",
+                "سالگرہ کی ڈھیروں خوشیاں {name}! 🎊",
+                "{name}! ہمیشہ مسکراتے رہیں 😊"
+            ],
+            hi: [
+                "जन्मदिन मुबारक {name}! आपकी ज़िंदगी खुशियों से भरी रहे 🎉",
+                "{name}! आपको सफलता और खुशियाँ मिलें 🎂",
+                "{name}! आपका दिन खास और शानदार हो 💚",
+                "ढेर सारी शुभकामनाएँ {name}! 🎊",
+                "{name}! हमेशा मुस्कुराते रहें 😊"
+            ]
+        };
+        
+        // ===== CARD DESIGN DATA =====
+        const cardDesigns = [
+            {
+                title: "Happy Birthday!",
+                bg: "linear-gradient(135deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9))",
+                icon: "fas fa-star"
+            },
+            {
+                title: "Heartfelt Wishes",
+                bg: "linear-gradient(135deg, rgba(255, 65, 108, 0.9), rgba(255, 75, 43, 0.9))",
+                icon: "fas fa-heart"
+            },
+            {
+                title: "Party Celebration",
+                bg: "linear-gradient(135deg, rgba(17, 153, 142, 0.9), rgba(56, 239, 125, 0.9))",
+                icon: "fas fa-cake-candles"
+            },
+            {
+                title: "Special Gift",
+                bg: "linear-gradient(135deg, rgba(244, 107, 69, 0.9), rgba(238, 168, 73, 0.9))",
+                icon: "fas fa-gift"
+            },
+            {
+                title: "Cheers to You!",
+                bg: "linear-gradient(135deg, rgba(142, 45, 226, 0.9), rgba(74, 0, 224, 0.9))",
+                icon: "fas fa-champagne-glasses"
+            }
+        ];
 
-<h1>🎉 Birthday Wishes Generator 🎂</h1>
-<p>Create personalized birthday wishes with music, fireworks & posters</p>
+        // ===== DOM ELEMENTS =====
+        const birthdayCard = document.getElementById('birthdayCard');
+        const cardFront = document.getElementById('cardFront');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const flipBtn = document.getElementById('flipBtn');
+        const colorButtons = document.querySelectorAll('.btn-color');
+        const cardButtons = document.querySelectorAll('.btn-card');
+        const nameInput = document.getElementById('nameInput');
+        const langSelect = document.getElementById('lang');
+        
+        // Fireworks containers
+        const fireworks1 = document.getElementById('fireworks1');
+        const fireworks2 = document.getElementById('fireworks2');
+        const fireworks3 = document.getElementById('fireworks3');
+        
+        // Fireworks control buttons
+        const moreFireworksBtn = document.getElementById('moreFireworks');
+        const bigExplosionBtn = document.getElementById('bigExplosion');
+        const colorBlastBtn = document.getElementById('colorBlast');
+        
+        // Social buttons
+        const whatsappBtn = document.getElementById('whatsapp');
+        const facebookBtn = document.getElementById('facebook');
+        const twitterBtn = document.getElementById('twitter');
+        const copyBtn = document.getElementById('copy');
+        
+        // ===== INITIALIZATION =====
+        let currentCardIndex = 0;
+        let currentWishIndex = { en: 0, ur: 0, hi: 0 };
+        
+        // Initialize with first card design
+        updateCardDesign(currentCardIndex);
+        
+        // ===== CARD PERSONALIZATION =====
+        function personalizeCard() {
+            const name = nameInput.value.trim() || "Friend";
+            const lang = langSelect.value;
+            
+            // Get the current wish for this language
+            const wishIndex = currentWishIndex[lang];
+            const wishText = wishes[lang][wishIndex].replace("{name}", name);
+            
+            // Update the card message
+            cardMessage.textContent = wishText;
+            
+            // Move to next wish for next time
+            currentWishIndex[lang] = (wishIndex + 1) % wishes[lang].length;
+            
+            // Trigger a small fireworks celebration
+            createFireworkBurst(3);
+        }
+        
+        // ===== CARD DESIGN FUNCTIONS =====
+        cardButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                updateCardDesign(index);
+                currentCardIndex = index;
+            });
+        });
+        
+        function updateCardDesign(index) {
+            const design = cardDesigns[index];
+            
+            cardTitle.textContent = design.title;
+            
+            // Get current color
+            const activeColor = document.querySelector('.btn-color.active').getAttribute('data-color');
+            cardFront.style.background = `${activeColor}, url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=2070&auto=format&fit=crop')`;
+            cardFront.style.backgroundSize = 'cover';
+            cardFront.style.backgroundBlendMode = 'overlay';
+            
+            // Update active card button
+            cardButtons.forEach(btn => btn.style.opacity = '0.7');
+            cardButtons[index].style.opacity = '1';
+        }
+        
+        // ===== COLOR SELECTION =====
+        colorButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all color buttons
+                colorButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Get the color from data attribute
+                const color = button.getAttribute('data-color');
+                
+                // Apply the color to the card front
+                cardFront.style.background = `${color}, url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=2070&auto=format&fit=crop')`;
+                cardFront.style.backgroundSize = 'cover';
+                cardFront.style.backgroundBlendMode = 'overlay';
+            });
+        });
+        
+        // ===== CARD FLIP FUNCTIONALITY =====
+        flipBtn.addEventListener('click', () => {
+            birthdayCard.parentElement.classList.toggle('card-open');
+            
+            // Change icon based on state
+            const icon = flipBtn.querySelector('i');
+            if (birthdayCard.parentElement.classList.contains('card-open')) {
+                icon.className = 'fas fa-eye';
+            } else {
+                icon.className = 'fas fa-sync-alt';
+            }
+        });
+        
+        // ===== SOCIAL SHARING =====
+        whatsappBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            shareWhatsApp();
+        });
+        
+        facebookBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            shareFacebook();
+        });
+        
+        twitterBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            shareTwitter();
+        });
+        
+        copyBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            copyToClipboard();
+        });
+        
+        function shareWhatsApp() {
+            const name = nameInput.value.trim() || "Friend";
+            const message = cardMessage.textContent || "Happy Birthday!";
+            const shareUrl = "https://toolnest.live/birthday-wishes-generator.html";
+            const fullMessage = `🎂 Birthday Wish for ${name} 🎂\n\n${message}\n\nCreate your own personalized birthday card: ${shareUrl}`;
+            
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(fullMessage)}`, "_blank");
+        }
+        
+        function shareFacebook() {
+            const shareUrl = encodeURIComponent("https://toolnest.live/birthday-wishes-generator.html");
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, "_blank");
+        }
+        
+        function shareTwitter() {
+            const message = encodeURIComponent("Check out this amazing interactive birthday card creator!");
+            const shareUrl = encodeURIComponent("https://toolnest.live/birthday-wishes-generator.html");
+            window.open(`https://twitter.com/intent/tweet?text=${message}&url=${shareUrl}`, "_blank");
+        }
+        
+        function copyToClipboard() {
+            const name = nameInput.value.trim() || "Friend";
+            const message = cardMessage.textContent || "Happy Birthday!";
+            const shareUrl = "https://toolnest.live/birthday-wishes-generator.html";
+            const fullMessage = `🎂 Birthday Wish for ${name} 🎂\n\n${message}\n\nCreate your own personalized birthday card: ${shareUrl}`;
+            
+            navigator.clipboard.writeText(fullMessage)
+                .then(() => {
+                    alert("Birthday message copied to clipboard!");
+                })
+                .catch(() => {
+                    alert("Failed to copy to clipboard. Please try again.");
+                });
+        }
+        
+        // ===== ENHANCED FIREWORKS SYSTEM =====
+        class FireworkParticle {
+            constructor(x, y, color, velocityX, velocityY, size, life) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.velocityX = velocityX;
+                this.velocityY = velocityY;
+                this.size = size;
+                this.life = life;
+                this.maxLife = life;
+                this.gravity = 0.05;
+                this.fade = 0.02;
+                this.element = null;
+            }
+            
+            createElement(container) {
+                this.element = document.createElement('div');
+                this.element.className = 'firework-particle';
+                this.element.style.width = `${this.size}px`;
+                this.element.style.height = `${this.size}px`;
+                this.element.style.backgroundColor = this.color;
+                this.element.style.left = `${this.x}px`;
+                this.element.style.top = `${this.y}px`;
+                this.element.style.boxShadow = `0 0 ${this.size*2}px ${this.color}`;
+                container.appendChild(this.element);
+            }
+            
+            update() {
+                this.x += this.velocityX;
+                this.y += this.velocityY;
+                this.velocityY += this.gravity;
+                this.life -= this.fade;
+                
+                if (this.element) {
+                    this.element.style.left = `${this.x}px`;
+                    this.element.style.top = `${this.y}px`;
+                    this.element.style.opacity = this.life / this.maxLife;
+                }
+                
+                return this.life > 0;
+            }
+            
+            remove() {
+                if (this.element && this.element.parentNode) {
+                    this.element.parentNode.removeChild(this.element);
+                }
+            }
+        }
 
-<div class="container">
-    <input id="nameInput" placeholder="Enter Name">
-    <select id="lang">
-        <option value="en">English</option>
-        <option value="ur">Urdu</option>
-        <option value="hi">Hindi</option>
-    </select>
+        class FireworkExplosion {
+            constructor(x, y, type = 'circle') {
+                this.x = x;
+                this.y = y;
+                this.type = type;
+                this.particles = [];
+                this.container = Math.random() > 0.5 ? fireworks1 : fireworks2;
+                this.createExplosion();
+            }
+            
+            createExplosion() {
+                const particleCount = 50 + Math.random() * 100 * 3;
+                const colors = ['#FF0000', '#FF4500', '#FFD700', '#00FF00', '#00FFFF', '#0000FF', '#8A2BE2', '#FF00FF'];
+                
+                if (this.type === 'circle') {
+                    this.createCircleExplosion(particleCount, colors);
+                } else if (this.type === 'colorBlast') {
+                    this.createColorBlast(particleCount, colors);
+                }
+            }
+            
+            createCircleExplosion(particleCount, colors) {
+                for (let i = 0; i < particleCount; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = 1 + Math.random() * 3;
+                    const velocityX = Math.cos(angle) * speed;
+                    const velocityY = Math.sin(angle) * speed;
+                    const size = 2 + Math.random() * 6;
+                    const life = 0.5 + Math.random() * 1.5;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    const particle = new FireworkParticle(
+                        this.x, this.y, color, velocityX, velocityY, size, life
+                    );
+                    particle.createElement(this.container);
+                    this.particles.push(particle);
+                }
+            }
+            
+            createColorBlast(particleCount, colors) {
+                const colorGroups = 5;
+                for (let g = 0; g < colorGroups; g++) {
+                    const groupColor = colors[g % colors.length];
+                    for (let i = 0; i < particleCount / colorGroups; i++) {
+                        const angle = Math.random() * Math.PI * 2;
+                        const speed = 1.5 + Math.random() * 3;
+                        const velocityX = Math.cos(angle) * speed;
+                        const velocityY = Math.sin(angle) * speed;
+                        const size = 3 + Math.random() * 7;
+                        const life = 0.7 + Math.random() * 1.3;
+                        
+                        const particle = new FireworkParticle(
+                            this.x, this.y, groupColor, velocityX, velocityY, size, life
+                        );
+                        particle.createElement(this.container);
+                        this.particles.push(particle);
+                    }
+                }
+            }
+            
+            update() {
+                this.particles = this.particles.filter(particle => {
+                    const alive = particle.update();
+                    if (!alive) particle.remove();
+                    return alive;
+                });
+                
+                return this.particles.length > 0;
+            }
+        }
 
-    <button class="generate-btn" onclick="generateWish()">Generate Wish</button>
-    <button class="copy-btn" onclick="copyWish()">Copy</button>
-    <button class="song-btn" onclick="playSong()">🎵 Song</button>
+        class FireworkRocket {
+            constructor(startX, startY, targetX, targetY) {
+                this.x = startX;
+                this.y = startY;
+                this.targetX = targetX;
+                this.targetY = targetY;
+                this.speed = 2 + Math.random() * 2;
+                this.color = ['#FF0000', '#FF4500', '#FFD700', '#00FF00', '#00FFFF'][Math.floor(Math.random() * 5)];
+                this.size = 3;
+                this.tail = [];
+                this.maxTailLength = 15;
+                this.container = fireworks3;
+                this.element = null;
+                this.hasExploded = false;
+                
+                const dx = targetX - startX;
+                const dy = targetY - startY;
+                const distance = Math.sqrt(dx*dx + dy*dy);
+                this.velocityX = (dx / distance) * this.speed;
+                this.velocityY = (dy / distance) * this.speed;
+                
+                this.createElement();
+            }
+            
+            createElement() {
+                this.element = document.createElement('div');
+                this.element.className = 'firework-particle';
+                this.element.style.width = `${this.size}px`;
+                this.element.style.height = `${this.size}px`;
+                this.element.style.backgroundColor = this.color;
+                this.element.style.left = `${this.x}px`;
+                this.element.style.top = `${this.y}px`;
+                this.element.style.boxShadow = `0 0 ${this.size*3}px ${this.color}`;
+                this.container.appendChild(this.element);
+            }
+            
+            update() {
+                this.x += this.velocityX;
+                this.y += this.velocityY;
+                
+                this.tail.push({x: this.x, y: this.y});
+                if (this.tail.length > this.maxTailLength) {
+                    this.tail.shift();
+                }
+                
+                if (this.element) {
+                    this.element.style.left = `${this.x}px`;
+                    this.element.style.top = `${this.y}px`;
+                }
+                
+                this.createTailParticles();
+                
+                const dx = this.targetX - this.x;
+                const dy = this.targetY - this.y;
+                const distance = Math.sqrt(dx*dx + dy*dy);
+                
+                if (distance < 10 && !this.hasExploded) {
+                    this.explode();
+                    return false;
+                }
+                
+                return true;
+            }
+            
+            createTailParticles() {
+                if (Math.random() > 0.7) {
+                    const tailParticle = document.createElement('div');
+                    tailParticle.className = 'firework-tail';
+                    tailParticle.style.width = `${this.size-1}px`;
+                    tailParticle.style.height = `${this.size-1}px`;
+                    tailParticle.style.backgroundColor = this.color;
+                    tailParticle.style.left = `${this.x}px`;
+                    tailParticle.style.top = `${this.y}px`;
+                    tailParticle.style.opacity = '0.7';
+                    tailParticle.style.boxShadow = `0 0 ${this.size*2}px ${this.color}`;
+                    fireworks3.appendChild(tailParticle);
+                    
+                    tailParticle.animate([
+                        { opacity: 0.7, transform: 'scale(1)' },
+                        { opacity: 0, transform: 'scale(0.5)' }
+                    ], {
+                        duration: 500,
+                        easing: 'ease-out'
+                    });
+                    
+                    setTimeout(() => {
+                        if (tailParticle.parentNode) {
+                            tailParticle.parentNode.removeChild(tailParticle);
+                        }
+                    }, 500);
+                }
+            }
+            
+            explode() {
+                this.hasExploded = true;
+                
+                if (this.element && this.element.parentNode) {
+                    this.element.parentNode.removeChild(this.element);
+                }
+                
+                explosions.push(new FireworkExplosion(this.x, this.y, 'circle'));
+                
+                return false;
+            }
+        }
 
-    <div id="wishBox"></div>
+        // Arrays to hold active fireworks
+        let rockets = [];
+        let explosions = [];
 
-    <h3>🎨 Birthday Poster</h3>
-    <button class="poster-btn" onclick="generatePoster()">Generate Poster</button>
-    <button class="poster-btn" onclick="downloadPoster()">Download Poster</button>
-    <canvas id="poster" width="600" height="420"></canvas>
-</div>
+        function createRandomFirework() {
+            const startX = Math.random() * window.innerWidth;
+            const startY = window.innerHeight;
+            const targetX = startX + (Math.random() * 200 - 100);
+            const targetY = Math.random() * window.innerHeight * 0.7;
+            
+            rockets.push(new FireworkRocket(startX, startY, targetX, targetY));
+        }
 
-<footer>© 2026 Birthday Wishes Generator</footer>
-<button class="whatsapp-btn" onclick="shareWhatsApp()">📱 Share on WhatsApp</button>
+        function createFireworkBurst(count = 5) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => createRandomFirework(), i * 100);
+            }
+        }
 
-<audio id="song" preload="auto">
-    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_8e8b5b71b7.mp3" type="audio/mpeg">
-</audio>
+        function createBigExplosion() {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight * 0.7;
+            
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    explosions.push(new FireworkExplosion(x + (Math.random()*100-50), y + (Math.random()*100-50), 'circle'));
+                }, i * 150);
+            }
+        }
 
-<script>
-// ===== WISH DATA =====
-const wishes={
-en:[
-"Happy Birthday {name}! May your life glow brighter than fireworks 🎆",
-"Wishing you endless happiness and success, {name}! 🎂",
-"Another year, another blessing. Happy Birthday {name}! 💚",
-"May your birthday be filled with joy and laughter, {name}! 🎉",
-"Cheers to a beautiful year ahead, {name}! 🥳"
-],
-ur:[
-"سالگرہ مبارک {name}! آپ کی زندگی خوشیوں سے بھری رہے 🎉",
-"{name}! آپ کو کامیابی اور خوشیاں نصیب ہوں 🎂",
-"{name}! یہ دن آپ کے لئے خاص ہو 💚",
-"سالگرہ کی ڈھیروں خوشیاں {name}! 🎊",
-"{name}! ہمیشہ مسکراتے رہیں 😊"
-],
-hi:[
-"जन्मदिन मुबारक {name}! आपकी ज़िंदगी खुशियों से भरी रहे 🎉",
-"{name}! आपको सफलता और खुशियाँ मिलें 🎂",
-"{name}! आपका दिन खास और शानदार हो 💚",
-"ढेर सारी शुभकामनाएँ {name}! 🎊",
-"{name}! हमेशा मुस्कुराते रहें 😊"
-]
-};
-let index={en:0,ur:0,hi:0};
+        function createColorBlastExplosion() {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight * 0.7;
+            
+            explosions.push(new FireworkExplosion(x, y, 'colorBlast'));
+        }
 
-// ===== FUNCTIONS =====
-function generateWish(){
-    const name=document.getElementById("nameInput").value||"Dear";
-    const lang=document.getElementById("lang").value;
-    const msg=wishes[lang][index[lang]].replace("{name}",name);
-    document.getElementById("wishBox").innerText=msg;
-    index[lang]=(index[lang]+1)%wishes[lang].length;
-    generatePoster(); // auto-update poster preview
-}
+        function animateFireworks() {
+            rockets = rockets.filter(rocket => rocket.update());
+            explosions = explosions.filter(explosion => explosion.update());
+            
+            if (Math.random() < 0.05 * 3) {
+                createRandomFirework();
+            }
+            
+            requestAnimationFrame(animateFireworks);
+        }
 
-function copyWish(){
-    if(!wishBox.innerText){alert("Generate a wish first!"); return;}
-    navigator.clipboard.writeText(wishBox.innerText);
-    alert("Copied!");
-}
+        function initFireworks() {
+            createFireworkBurst(10);
+            animateFireworks();
+            
+            setInterval(() => {
+                createFireworkBurst(2 + Math.floor(Math.random() * 3));
+            }, 1500);
+        }
 
-function playSong(){
-    document.getElementById("song").play().catch(()=>alert("Tap again to play music"));
-}
+        // Event listeners for fireworks controls
+        moreFireworksBtn.addEventListener('click', () => {
+            createFireworkBurst(10);
+        });
 
-// ===== WHATSAPP SHARE =====
-function shareWhatsApp(){
-    const wishText = wishBox.innerText.trim();
-    if(!wishText){alert("Generate a wish first!"); return;}
-    const name = document.getElementById("nameInput").value || "Dear";
+        bigExplosionBtn.addEventListener('click', createBigExplosion);
+        colorBlastBtn.addEventListener('click', createColorBlastExplosion);
 
-    const fullMessage = `${wishText}\n\nFrom: ${name}\n\nShare your own Birthday card: https://monica674.github.io/wishing-Hub-Generators/birthday-wishes-generator.html`; 
-    // <-- Replace this URL with your actual GitHub Pages URL
-
-    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(fullMessage)}`,"_blank");
-}
-
-// ===== POSTER =====
-const p=document.getElementById("poster");
-const ctx=p.getContext("2d");
-
-function generatePoster(){
-    // Background gradient
-    const gradient=ctx.createLinearGradient(0,0,p.width,p.height);
-    gradient.addColorStop(0,"#ff6a00");
-    gradient.addColorStop(0.5,"#ff2f92");
-    gradient.addColorStop(1,"#00c6ff");
-    ctx.fillStyle=gradient;
-    ctx.fillRect(0,0,p.width,p.height);
-
-    // Confetti
-    for(let i=0;i<120;i++){
-        ctx.fillStyle=`hsl(${Math.random()*360},100%,60%)`;
-        ctx.beginPath();
-        ctx.arc(Math.random()*p.width,Math.random()*p.height,2,0,Math.PI*2);
-        ctx.fill();
-    }
-
-    // Neon border
-    ctx.strokeStyle="#ffffff";
-    ctx.lineWidth=4;
-    ctx.shadowColor="#ffffff";
-    ctx.shadowBlur=20;
-    ctx.strokeRect(12,12,p.width-24,p.height-24);
-    ctx.shadowBlur=0;
-
-    // Title
-    ctx.font="42px 'Great Vibes'";
-    ctx.fillStyle="#fff700";
-    ctx.textAlign="center";
-    ctx.shadowColor="#ff9800";
-    ctx.shadowBlur=15;
-    ctx.fillText("🎉 HAPPY BIRTHDAY 🎂",p.width/2,70);
-    ctx.shadowBlur=0;
-
-    // Centered wish text
-    const text = wishBox.innerText || "Make a Wish!";
-    const lines = wrapTextToLines(ctx,text,p.width-100);
-    const totalHeight = lines.length * 32;
-    let startY = (p.height - totalHeight)/2 + 50;
-
-    ctx.font="24px 'Trebuchet MS'";
-    ctx.fillStyle="#00ff7f";
-    ctx.textAlign="center";
-    lines.forEach((line,i)=>{
-        ctx.fillText(line,p.width/2,startY + i*32);
-    });
-
-    // Footer
-    ctx.font="14px Arial";
-    ctx.fillStyle="#ffffffcc";
-    ctx.textAlign="center";
-    ctx.fillText("🎁 Birthday Wishes Generator",p.width/2,p.height-30);
-}
-
-// Helper to wrap text
-function wrapTextToLines(ctx,text,maxWidth){
-    const words=text.split(" ");
-    let line="";
-    let lines=[];
-    for(let i=0;i<words.length;i++){
-        let test=line+words[i]+" ";
-        if(ctx.measureText(test).width>maxWidth){
-            lines.push(line.trim());
-            line=words[i]+" ";
-        } else line=test;
-    }
-    lines.push(line.trim());
-    return lines;
-}
-
-// ===== DOWNLOAD POSTER =====
-function downloadPoster(){
-    const a=document.createElement("a");
-    a.download="birthday-poster.png";
-    a.href=p.toDataURL("image/png");
-    a.click();
-}
-
-// ===== FIREWORKS =====
-const c=document.getElementById("fireworks");
-const fx=c.getContext("2d");
-c.width=innerWidth;c.height=innerHeight;
-let sparks=[];
-function Spark(){this.x=Math.random()*c.width;this.y=Math.random()*c.height/2;this.r=0;this.a=1}
-Spark.prototype.draw=function(){fx.beginPath();fx.arc(this.x,this.y,this.r,0,Math.PI*2);fx.fillStyle=`rgba(0,255,127,${this.a})`;fx.fill();}
-Spark.prototype.update=function(){this.r+=2;this.a-=0.03}
-(function animate(){fx.clearRect(0,0,c.width,c.height);if(Math.random()<0.05)sparks.push(new Spark());sparks.forEach((s,i)=>{s.draw();s.update();if(s.a<=0)sparks.splice(i,1)});requestAnimationFrame(animate);})();
-</script>
+        // Start the fireworks!
+        initFireworks();
+    </script>
 </body>
 </html>
