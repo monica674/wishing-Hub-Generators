@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Card Creator | Toolnest</title>
+    <title>Birthday Card | Toolnest</title>
     
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,47 +23,20 @@
             overflow-x: hidden;
         }
         
-        /* VIEW SWITCHER */
-        .view-switcher {
-            margin: 10px auto 20px;
-            max-width: 400px;
-            display: flex;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50px;
-            padding: 5px;
-        }
-        
-        .view-btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            background: transparent;
-            color: #aaa;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .view-btn.active {
-            background: linear-gradient(45deg, #ff0080, #ff8c00);
-            color: white;
-            box-shadow: 0 5px 15px rgba(255,0,128,0.3);
-        }
-        
-        /* HIDE/SHOW VIEWS */
-        .view {
+        /* HIDE/SHOW SECTIONS */
+        .section {
             display: none;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .view.active {
+        .section.active {
             display: block;
         }
         
         /* HEADER */
         header {
             margin: 20px auto 30px;
-            max-width: 800px;
             padding: 20px;
             background: rgba(0,0,0,0.5);
             border-radius: 20px;
@@ -83,10 +56,9 @@
             font-size: 1.2rem;
         }
         
-        /* GENERATOR VIEW */
+        /* ========== GENERATOR SECTION ========== */
         .controls {
             background: rgba(255,255,255,0.1);
-            max-width: 600px;
             margin: 0 auto 30px;
             padding: 20px;
             border-radius: 15px;
@@ -138,7 +110,6 @@
         
         /* WISH SELECTION */
         .wish-selection {
-            max-width: 600px;
             margin: 20px auto;
             background: rgba(255,255,255,0.05);
             border-radius: 15px;
@@ -167,9 +138,8 @@
             box-shadow: 0 0 15px rgba(255,215,0,0.3);
         }
         
-        /* CARD CONTAINER (BOTH VIEWS) */
+        /* ========== CARD SECTION ========== */
         .card-container {
-            max-width: 700px;
             height: 400px;
             margin: 0 auto 30px;
             perspective: 1000px;
@@ -263,27 +233,24 @@
             border-color: white;
         }
         
-        /* SNOWFLAKES */
-        .snowflakes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .snowflake {
+        /* FLIP BUTTON */
+        .flip-btn {
             position: absolute;
-            background: white;
+            bottom: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            opacity: 0.7;
-            box-shadow: 0 0 10px white;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.2rem;
         }
         
-        /* SHARING */
-        .sharing {
+        /* SHARING BUTTONS */
+        .sharing-buttons {
             display: flex;
             justify-content: center;
             gap: 15px;
@@ -302,22 +269,14 @@
             font-size: 1.5rem;
             text-decoration: none;
             transition: transform 0.3s;
+            cursor: pointer;
         }
         
         .share-btn:hover {
             transform: translateY(-5px);
         }
         
-        /* RECEIVER VIEW */
-        .receiver-actions {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-        }
-        
-        .create-your-own {
+        .create-new-btn {
             background: linear-gradient(45deg, #00b09b, #96c93d);
             color: white;
             border: none;
@@ -326,10 +285,29 @@
             font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
-            margin: 10px;
+            margin: 20px auto;
             display: inline-flex;
             align-items: center;
             gap: 10px;
+        }
+        
+        /* SNOWFLAKES */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .snowflake {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.7;
+            box-shadow: 0 0 10px white;
         }
         
         /* FOOTER */
@@ -357,22 +335,6 @@
             text-decoration: underline;
         }
         
-        /* FLIP BUTTON */
-        .flip-btn {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: none;
-            cursor: pointer;
-            z-index: 10;
-            font-size: 1.2rem;
-        }
-        
         /* RESPONSIVE */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
@@ -393,24 +355,14 @@
     <!-- Snowflakes Container -->
     <div class="snowflakes" id="snowflakes"></div>
     
-    <!-- View Switcher (Only shown when not viewing a shared card) -->
-    <div class="view-switcher" id="viewSwitcher">
-        <button class="view-btn active" onclick="switchView('generator')">
-            <i class="fas fa-magic"></i> Create Card
-        </button>
-        <button class="view-btn" onclick="switchView('receiver')">
-            <i class="fas fa-eye"></i> View Card
-        </button>
-    </div>
-    
-    <!-- Header -->
-    <header>
-        <h1 id="pageTitle">🎂 Birthday Card Creator</h1>
-        <p class="tagline" id="pageSubtitle">Create beautiful personalized birthday cards</p>
-    </header>
-    
-    <!-- ========== GENERATOR VIEW ========== -->
-    <div class="view active" id="generatorView">
+    <!-- ========== GENERATOR SECTION (Hidden when viewing card) ========== -->
+    <div class="section active" id="generatorSection">
+        <!-- Header -->
+        <header>
+            <h1>🎂 Create Birthday Card</h1>
+            <p class="tagline">Create a personalized birthday card to share with friends</p>
+        </header>
+        
         <!-- Controls -->
         <div class="controls">
             <div class="input-group">
@@ -439,96 +391,72 @@
             <div id="wishList"></div>
         </div>
         
-        <!-- Action Buttons -->
-        <div style="max-width: 600px; margin: 20px auto;">
-            <button class="action-btn" onclick="updateCardPreview()">
-                <i class="fas fa-eye"></i> Preview Card
-            </button>
-            <button class="action-btn" onclick="shareCard()" style="background: linear-gradient(45deg, #25D366, #128C7E);">
-                <i class="fab fa-whatsapp"></i> Share on WhatsApp
-            </button>
-        </div>
-        
-        <!-- Card Preview -->
-        <h3><i class="fas fa-card"></i> Card Preview</h3>
-        <div class="card-container" id="previewCardContainer">
-            <div class="birthday-card">
-                <div class="card-front" id="previewCardFront">
-                    <h2 class="card-title" id="previewCardTitle">Happy Birthday!</h2>
-                    <p class="card-message" id="previewCardMessage">Select a wish to see preview</p>
-                    <p class="sender-name" id="previewSenderName"></p>
-                </div>
-                <div class="card-inside">
-                    <h2 class="card-title">Warm Wishes</h2>
-                    <p class="card-message">May your special day be filled with joy, laughter, and wonderful memories. Wishing you all the happiness in the world!</p>
-                    <p class="sender-name" style="margin-top: 30px;">From: <span id="previewInsideSender"></span></p>
-                </div>
-            </div>
-            <button class="flip-btn" onclick="flipCard('preview')">
-                <i class="fas fa-sync-alt"></i>
-            </button>
-        </div>
-        
         <!-- Color Options -->
-        <h3><i class="fas fa-palette"></i> Card Colors</h3>
+        <h3><i class="fas fa-palette"></i> Card Color</h3>
         <div class="color-options">
-            <div class="color-btn active" style="background: linear-gradient(135deg, #6a11cb, #2575fc);" onclick="changeColor('6a11cb', '2575fc')"></div>
-            <div class="color-btn" style="background: linear-gradient(135deg, #ff416c, #ff4b2b);" onclick="changeColor('ff416c', 'ff4b2b')"></div>
-            <div class="color-btn" style="background: linear-gradient(135deg, #11998e, #38ef7d);" onclick="changeColor('11998e', '38ef7d')"></div>
-            <div class="color-btn" style="background: linear-gradient(135deg, #f46b45, #eea849);" onclick="changeColor('f46b45', 'eea849')"></div>
-            <div class="color-btn" style="background: linear-gradient(135deg, #8e2de2, #4a00e0);" onclick="changeColor('8e2de2', '4a00e0')"></div>
+            <div class="color-btn active" style="background: linear-gradient(135deg, #6a11cb, #2575fc);" onclick="selectColor('6a11cb', '2575fc')"></div>
+            <div class="color-btn" style="background: linear-gradient(135deg, #ff416c, #ff4b2b);" onclick="selectColor('ff416c', 'ff4b2b')"></div>
+            <div class="color-btn" style="background: linear-gradient(135deg, #11998e, #38ef7d);" onclick="selectColor('11998e', '38ef7d')"></div>
+            <div class="color-btn" style="background: linear-gradient(135deg, #f46b45, #eea849);" onclick="selectColor('f46b45', 'eea849')"></div>
+            <div class="color-btn" style="background: linear-gradient(135deg, #8e2de2, #4a00e0);" onclick="selectColor('8e2de2', '4a00e0')"></div>
         </div>
+        
+        <!-- Generate Button -->
+        <button class="action-btn" onclick="generateAndShowCard()" style="background: linear-gradient(45deg, #25D366, #128C7E); max-width: 300px; margin: 20px auto;">
+            <i class="fas fa-share-alt"></i> Generate & Share Card
+        </button>
     </div>
     
-    <!-- ========== RECEIVER VIEW ========== -->
-    <div class="view" id="receiverView">
-        <!-- Shared Card Display -->
-        <h3><i class="fas fa-birthday-cake"></i> Birthday Card For You</h3>
-        <div class="card-container" id="sharedCardContainer">
+    <!-- ========== CARD VIEW SECTION ========== -->
+    <div class="section" id="cardViewSection">
+        <!-- Card Container -->
+        <div class="card-container" id="cardContainer">
             <div class="birthday-card">
-                <div class="card-front" id="sharedCardFront">
-                    <h2 class="card-title" id="sharedCardTitle">Happy Birthday!</h2>
-                    <p class="card-message" id="sharedCardMessage">Loading birthday wishes...</p>
-                    <p class="sender-name" id="sharedSenderName"></p>
+                <div class="card-front" id="cardFront">
+                    <h2 class="card-title" id="cardTitle">Happy Birthday!</h2>
+                    <p class="card-message" id="cardMessage">Loading birthday wishes...</p>
+                    <p class="sender-name" id="cardSender"></p>
                 </div>
                 <div class="card-inside">
                     <h2 class="card-title">Warm Wishes</h2>
-                    <p class="card-message" id="sharedInsideMessage">May your special day be filled with joy and happiness!</p>
-                    <p class="sender-name" style="margin-top: 30px;">From: <span id="sharedInsideSender"></span></p>
+                    <p class="card-message" id="cardInsideMessage">May your special day be filled with joy and happiness!</p>
+                    <p class="sender-name" style="margin-top: 30px;">From: <span id="cardInsideSender"></span></p>
                 </div>
             </div>
-            <button class="flip-btn" onclick="flipCard('shared')">
+            <button class="flip-btn" onclick="flipCard()">
                 <i class="fas fa-sync-alt"></i>
             </button>
         </div>
         
-        <!-- Receiver Actions -->
-        <div class="receiver-actions">
-            <h3><i class="fas fa-share"></i> Like This Card?</h3>
-            <p>Create your own personalized birthday card for someone special!</p>
-            <button class="create-your-own" onclick="switchToGenerator()">
-                <i class="fas fa-magic"></i> Create Your Own Card
-            </button>
-            
-            <div class="sharing" style="margin-top: 20px;">
-                <a href="#" class="share-btn" style="background: #25D366;" onclick="shareWhatsApp()">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="#" class="share-btn" style="background: #3b5998;" onclick="shareFacebook()">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" class="share-btn" style="background: #1da1f2;" onclick="shareTwitter()">
-                    <i class="fab fa-twitter"></i>
-                </a>
+        <!-- Share Buttons -->
+        <div class="sharing-buttons">
+            <div class="share-btn" style="background: #25D366;" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="share-btn" style="background: #3b5998;" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook-f"></i>
+            </div>
+            <div class="share-btn" style="background: #1da1f2;" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i>
+            </div>
+            <div class="share-btn" style="background: #6c757d;" onclick="copyCardLink()">
+                <i class="fas fa-copy"></i>
             </div>
         </div>
+        
+        <!-- Create New Card Button -->
+        <button class="create-new-btn" onclick="goToGenerator()">
+            <i class="fas fa-plus-circle"></i> Create Your Own Card
+        </button>
+        
+        <!-- Website Link -->
+        <div class="website-link">
+            <p>Create your own birthday card at: <a href="https://toolnest.live/birthday-wishes-generator.html" onclick="goToGenerator(); return false;">https://toolnest.live/birthday-wishes-generator.html</a></p>
+        </div>
     </div>
-    
+
     <!-- Footer -->
     <footer>
-        <div class="website-link">
-            <p>Create your own birthday card at: <a href="https://toolnest.live/birthday-wishes-generator.html" target="_blank">https://toolnest.live/birthday-wishes-generator.html</a></p>
-        </div>
         <p>© 2024 Toolnest - Birthday Wishes Generator</p>
     </footer>
 
@@ -576,16 +504,18 @@
         // ========== GLOBAL VARIABLES ==========
         let selectedWishIndex = 0;
         let currentLang = "en";
-        let cardColor1 = "6a11cb";
-        let cardColor2 = "2575fc";
+        let currentColor1 = "6a11cb";
+        let currentColor2 = "2575fc";
+        let currentReceiver = "";
+        let currentSender = "";
         
-        // ========== URL PARAMETERS ==========
+        // ========== URL PARAMETER HANDLING ==========
         function getUrlParams() {
             const params = new URLSearchParams(window.location.search);
             return {
                 wish: params.get('wish'),
-                receiver: params.get('to'),
-                sender: params.get('from'),
+                to: params.get('to'),
+                from: params.get('from'),
                 lang: params.get('lang') || 'en',
                 color1: params.get('color1') || '6a11cb',
                 color2: params.get('color2') || '2575fc'
@@ -596,25 +526,49 @@
         window.addEventListener('DOMContentLoaded', () => {
             const params = getUrlParams();
             
-            // Check if URL has shared card parameters
-            if (params.wish && params.receiver) {
-                // This is a shared card - show receiver view
-                showSharedCard(params);
-                document.getElementById('viewSwitcher').style.display = 'none';
-                switchView('receiver');
+            // Check if URL has card parameters
+            if (params.wish !== null && params.to !== null) {
+                // This is a shared card - show card view
+                displaySharedCard(params);
+                showSection('cardView');
                 
                 // Update page title for shared card
-                document.getElementById('pageTitle').textContent = `🎂 Birthday Card for ${params.receiver}`;
-                document.getElementById('pageSubtitle').textContent = `A special message from ${params.sender || 'Someone'}`;
+                document.title = `Birthday Card for ${decodeURIComponent(params.to)}`;
             } else {
-                // This is the generator - load wishes
+                // This is the generator - show generator
+                showSection('generator');
                 loadWishes();
-                startSnowflakes();
                 
                 // Set default sender name
                 document.getElementById('senderName').value = "Your Friend";
             }
+            
+            // Start snowflakes
+            startSnowflakes();
         });
+        
+        // ========== SECTION MANAGEMENT ==========
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show requested section
+            document.getElementById(sectionName + 'Section').classList.add('active');
+            
+            // Update header based on section
+            if (sectionName === 'generator') {
+                document.title = "Create Birthday Card | Toolnest";
+            }
+        }
+        
+        function goToGenerator() {
+            // Clear URL parameters to show fresh generator
+            window.history.pushState({}, document.title, window.location.pathname);
+            showSection('generator');
+            loadWishes();
+        }
         
         // ========== WISH MANAGEMENT ==========
         function loadWishes() {
@@ -630,8 +584,6 @@
                 wishItem.onclick = () => selectWish(index);
                 wishList.appendChild(wishItem);
             });
-            
-            updateCardPreview();
         }
         
         function selectWish(index) {
@@ -641,80 +593,21 @@
             document.querySelectorAll('.wish-item').forEach((item, i) => {
                 item.classList.toggle('selected', i === index);
             });
-            
-            updateCardPreview();
         }
         
-        // ========== CARD FUNCTIONS ==========
-        function updateCardPreview() {
-            const receiverName = document.getElementById('receiverName').value || "Friend";
-            const senderName = document.getElementById('senderName').value || "Your Friend";
-            const lang = document.getElementById('langSelect').value;
-            
-            const wishText = wishes[lang][selectedWishIndex].replace('{name}', receiverName);
-            
-            // Update preview card
-            document.getElementById('previewCardMessage').textContent = wishText;
-            document.getElementById('previewSenderName').textContent = `From: ${senderName}`;
-            document.getElementById('previewInsideSender').textContent = senderName;
-            
-            // Apply color
-            document.getElementById('previewCardFront').style.background = 
-                `linear-gradient(135deg, #${cardColor1}, #${cardColor2})`;
-        }
-        
-        function changeColor(color1, color2) {
-            cardColor1 = color1;
-            cardColor2 = color2;
+        function selectColor(color1, color2) {
+            currentColor1 = color1;
+            currentColor2 = color2;
             
             // Update active color button
             document.querySelectorAll('.color-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
-            
-            // Update card color
-            document.getElementById('previewCardFront').style.background = 
-                `linear-gradient(135deg, #${color1}, #${color2})`;
         }
         
-        function flipCard(type) {
-            const container = document.getElementById(type + 'CardContainer');
-            container.classList.toggle('card-open');
-        }
-        
-        // ========== SHARED CARD VIEW ==========
-        function showSharedCard(params) {
-            const receiverName = decodeURIComponent(params.receiver);
-            const senderName = decodeURIComponent(params.sender || 'Someone');
-            const wishIndex = parseInt(params.wish) || 0;
-            const lang = params.lang || 'en';
-            
-            // Decode the wish text
-            let wishText;
-            if (wishIndex >= 0 && wishIndex < wishes[lang].length) {
-                wishText = wishes[lang][wishIndex].replace('{name}', receiverName);
-            } else {
-                wishText = `Happy Birthday ${receiverName}! 🎂`;
-            }
-            
-            // Update shared card
-            document.getElementById('sharedCardTitle').textContent = "Happy Birthday!";
-            document.getElementById('sharedCardMessage').textContent = wishText;
-            document.getElementById('sharedSenderName').textContent = `From: ${senderName}`;
-            document.getElementById('sharedInsideMessage').textContent = wishText;
-            document.getElementById('sharedInsideSender').textContent = senderName;
-            
-            // Apply color from URL
-            document.getElementById('sharedCardFront').style.background = 
-                `linear-gradient(135deg, #${params.color1}, #${params.color2})`;
-            
-            // Start snowflakes
-            startSnowflakes();
-        }
-        
-        // ========== SHARING FUNCTIONS ==========
-        function shareCard() {
+        // ========== CARD GENERATION ==========
+        function generateAndShowCard() {
             const receiverName = document.getElementById('receiverName').value.trim();
             const senderName = document.getElementById('senderName').value.trim();
             const lang = document.getElementById('langSelect').value;
@@ -729,68 +622,100 @@
                 return;
             }
             
-            // Create share URL with parameters
+            // Store current data
+            currentReceiver = receiverName;
+            currentSender = senderName;
+            currentLang = lang;
+            
+            // Generate the card
+            displayCard(receiverName, senderName, lang, selectedWishIndex);
+            
+            // Switch to card view
+            showSection('cardView');
+        }
+        
+        function displayCard(receiverName, senderName, lang, wishIndex) {
+            const wishText = wishes[lang][wishIndex].replace('{name}', receiverName);
+            
+            // Update card display
+            document.getElementById('cardTitle').textContent = "Happy Birthday!";
+            document.getElementById('cardMessage').textContent = wishText;
+            document.getElementById('cardSender').textContent = `From: ${senderName}`;
+            document.getElementById('cardInsideMessage').textContent = wishText;
+            document.getElementById('cardInsideSender').textContent = senderName;
+            
+            // Apply color
+            document.getElementById('cardFront').style.background = 
+                `linear-gradient(135deg, #${currentColor1}, #${currentColor2})`;
+        }
+        
+        function displaySharedCard(params) {
+            const receiverName = decodeURIComponent(params.to || 'Friend');
+            const senderName = decodeURIComponent(params.from || 'Someone');
+            const lang = params.lang || 'en';
+            const wishIndex = parseInt(params.wish) || 0;
+            const color1 = params.color1 || '6a11cb';
+            const color2 = params.color2 || '2575fc';
+            
+            // Store current data
+            currentReceiver = receiverName;
+            currentSender = senderName;
+            currentLang = lang;
+            selectedWishIndex = wishIndex;
+            currentColor1 = color1;
+            currentColor2 = color2;
+            
+            // Display the card
+            displayCard(receiverName, senderName, lang, wishIndex);
+            
+            // Apply specific color from URL
+            document.getElementById('cardFront').style.background = 
+                `linear-gradient(135deg, #${color1}, #${color2})`;
+        }
+        
+        // ========== SHARING FUNCTIONS ==========
+        function generateShareUrl(receiverName, senderName, lang, wishIndex) {
             const baseUrl = "https://toolnest.live/birthday-wishes-generator.html";
-            const shareUrl = `${baseUrl}?wish=${selectedWishIndex}&to=${encodeURIComponent(receiverName)}&from=${encodeURIComponent(senderName)}&lang=${lang}&color1=${cardColor1}&color2=${cardColor2}`;
-            
-            // Create WhatsApp message
-            const message = `🎂 Birthday Card for ${receiverName} 🎂\n\n${wishes[lang][selectedWishIndex].replace('{name}', receiverName)}\n\nFrom: ${senderName}\n\nView your card: ${shareUrl}`;
-            
-            // Open WhatsApp
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
+            return `${baseUrl}?wish=${wishIndex}&to=${encodeURIComponent(receiverName)}&from=${encodeURIComponent(senderName)}&lang=${lang}&color1=${currentColor1}&color2=${currentColor2}`;
         }
         
-        function shareWhatsApp() {
-            const params = getUrlParams();
-            if (!params.receiver) return;
-            
-            const shareUrl = window.location.href;
-            const message = `🎂 I received a beautiful birthday card! 🎂\n\nView it here: ${shareUrl}\n\nCreate your own at: https://toolnest.live/birthday-wishes-generator.html`;
-            
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
-        }
-        
-        function shareFacebook() {
-            const shareUrl = encodeURIComponent(window.location.href);
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, '_blank');
-        }
-        
-        function shareTwitter() {
-            const text = encodeURIComponent("Check out this beautiful birthday card I received!");
-            const url = encodeURIComponent(window.location.href);
-            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
-        }
-        
-        // ========== VIEW MANAGEMENT ==========
-        function switchView(viewName) {
-            // Update buttons
-            document.querySelectorAll('.view-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Show selected view
-            document.querySelectorAll('.view').forEach(view => {
-                view.classList.remove('active');
-            });
-            document.getElementById(viewName + 'View').classList.add('active');
-            
-            if (viewName === 'generator') {
-                loadWishes();
+        function shareOnWhatsApp() {
+            if (!currentReceiver) {
+                // If we're in generator view, generate first
+                if (document.getElementById('generatorSection').classList.contains('active')) {
+                    generateAndShowCard();
+                    return;
+                }
             }
+            
+            const shareUrl = generateShareUrl(currentReceiver, currentSender, currentLang, selectedWishIndex);
+            const message = `🎂 Birthday Card for ${currentReceiver} 🎂\n\n${wishes[currentLang][selectedWishIndex].replace('{name}', currentReceiver)}\n\nFrom: ${currentSender}\n\nView your card: ${shareUrl}`;
+            
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
         }
         
-        function switchToGenerator() {
-            // Switch to generator view
-            document.getElementById('viewSwitcher').style.display = 'flex';
-            switchView('generator');
+        function shareOnFacebook() {
+            const shareUrl = generateShareUrl(currentReceiver, currentSender, currentLang, selectedWishIndex);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
+        }
+        
+        function shareOnTwitter() {
+            const shareUrl = generateShareUrl(currentReceiver, currentSender, currentLang, selectedWishIndex);
+            const text = `Check out this birthday card for ${currentReceiver}!`;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+        }
+        
+        function copyCardLink() {
+            const shareUrl = generateShareUrl(currentReceiver, currentSender, currentLang, selectedWishIndex);
             
-            // Reset page title
-            document.getElementById('pageTitle').textContent = "🎂 Birthday Card Creator";
-            document.getElementById('pageSubtitle').textContent = "Create beautiful personalized birthday cards";
-            
-            // Clear URL parameters
-            window.history.pushState({}, document.title, window.location.pathname);
+            navigator.clipboard.writeText(shareUrl)
+                .then(() => alert("Card link copied to clipboard! Paste it anywhere to share."))
+                .catch(() => alert("Failed to copy link. Please try again."));
+        }
+        
+        // ========== CARD INTERACTION ==========
+        function flipCard() {
+            document.getElementById('cardContainer').classList.toggle('card-open');
         }
         
         // ========== SNOWFLAKES ==========
@@ -865,8 +790,6 @@
         
         // ========== EVENT LISTENERS ==========
         document.getElementById('langSelect').addEventListener('change', loadWishes);
-        document.getElementById('receiverName').addEventListener('input', updateCardPreview);
-        document.getElementById('senderName').addEventListener('input', updateCardPreview);
     </script>
 </body>
 </html>
