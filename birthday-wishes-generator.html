@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Birthday Card | Toolnest</title>
+  <meta name="description" content="Free Birthday Card Maker. Create personalized, flippable animated birthday cards with wishes in English, Urdu & Hindi. Share via WhatsApp instantly. No sign-up.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolnest.live/birthday-wishes-generator.html">
 
   <!-- Optional: Font Awesome (icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -99,7 +102,7 @@
     }
     .action-btn:hover { transform: scale(1.03); }
 
-    /* WISH SELECTION */
+    /* WISH SELECTION - FIXED: h2 instead of h3 */
     .wish-selection {
       margin: 18px auto;
       background: rgba(255,255,255,0.05);
@@ -108,10 +111,11 @@
       text-align: left;
     }
 
-    .wish-selection h3 {
+    .wish-selection h2 {
       text-align: center;
       margin-bottom: 10px;
       color: #FFD700;
+      font-size: 1.3rem;
     }
 
     .wish-item {
@@ -601,6 +605,29 @@
       <p class="tagline">Personalize → Flip Surprise → Share Link (WhatsApp)</p>
     </header>
 
+    <!-- ===== IMPORTANT SEO CONTENT ADDED ===== -->
+    <section style="max-width: 800px; margin: 30px auto; padding: 25px; background: rgba(255,255,255,0.05); border-radius: 15px; color: #ddd; text-align: left;">
+      <h2 style="color: #FFD700; margin-top: 0;">Free Online Birthday Card Maker</h2>
+      <p>Create beautiful, animated birthday cards in seconds with our free generator. Personalize with names, choose from multiple heartfelt wishes in English, Urdu, and Hindi, and share a unique link via WhatsApp or other platforms.</p>
+      
+      <h3 style="color: #a0a0ff; margin-top: 20px;">How to Use This Birthday Wishes Generator:</h3>
+      <ol style="padding-left: 20px; line-height: 1.7;">
+        <li><strong>Enter Names</strong>: Add the recipient's name and your name as the sender.</li>
+        <li><strong>Select a Language & Wish</strong>: Choose from pre-written, thoughtful birthday messages.</li>
+        <li><strong>Generate & Share</strong>: Create your card to get a unique link to share directly on WhatsApp.</li>
+      </ol>
+      
+      <h3 style="color: #a0a0ff; margin-top: 20px;">Features of Your Digital Birthday Card:</h3>
+      <ul style="padding-left: 20px; line-height: 1.7;">
+        <li><strong>Interactive Flip Card</strong>: A digital card with a stunning front and a surprise inside with animated themes.</li>
+        <li><strong>5 Beautiful Inside Themes</strong>: Including a desert snowfall, balloons, a night sky, a flower garden, and more.</li>
+        <li><strong>No Login Required</strong>: Completely free and private. The card is generated in your browser.</li>
+        <li><strong>Direct WhatsApp Sharing</strong>: Sends a pre-filled message with a direct link to the personalized card.</li>
+      </ul>
+      
+      <p style="margin-top: 20px; font-style: italic;">Perfect for sending birthday wishes to family and friends when you want something more personal and creative than a plain text message.</p>
+    </section>
+
     <div class="controls">
       <div class="input-group">
         <label><i class="fas fa-user"></i> Recipient's Name</label>
@@ -623,7 +650,8 @@
     </div>
 
     <div class="wish-selection">
-      <h3><i class="fas fa-gift"></i> Select a Birthday Wish</h3>
+      <!-- FIXED: Changed from h3 to h2 to fix validation error -->
+      <h2><i class="fas fa-gift"></i> Select a Birthday Wish</h2>
       <div id="wishList"></div>
     </div>
 
@@ -731,6 +759,23 @@
         "{name}! हमेशा मुस्कुराते रहें 😊"
       ]
     };
+
+    // ========== NOSCRIPT CONTENT FOR SEO ==========
+    document.write(`
+      <noscript>
+        <div style="display: block; max-width: 900px; margin: 30px auto; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 10px;">
+          <h3 style="color: #FFD700;">Example Birthday Wishes (English):</h3>
+          <ol style="color: white;">
+            <li>Happy Birthday! May your life glow brighter than fireworks.</li>
+            <li>Wishing you endless happiness and success!</li>
+            <li>Another year, another blessing. Happy Birthday!</li>
+            <li>May your birthday be filled with joy and laughter!</li>
+            <li>Cheers to a beautiful year ahead!</li>
+          </ol>
+          <p><em>Enable JavaScript to personalize these wishes with names and create a custom card.</em></p>
+        </div>
+      </noscript>
+    `);
 
     // ========== GLOBAL ==========
     let selectedWishIndex = 0;
