@@ -612,6 +612,7 @@
             "To the world you may be one person, but to me you are the world. Happy Valentine's Day to my everything.",
             "I don't need a special day to remind me how much I love you. Every day with you feels like Valentine's Day."
         ];
+              const cardId = Math.floor(Math.random() * 9000) + 1000; // 1000 to 9999
 
         // Card designs with romantic colors
         const cardDesigns = [
@@ -637,6 +638,10 @@
         const customMessage = document.getElementById('customMessage');
         const senderName = document.getElementById('senderName');
         const siteLink = document.getElementById('siteLink');
+        const cardIdElement = document.getElementById('cardId');
+        cardIdElement.textContent = cardId;
+        siteLink.href = `https://valentinewishes.com/card/${cardId}`;
+        siteLink.innerHTML = `<i class="fas fa-link"></i> https://valentinewishes.com/card/${cardId}`;
         
         // Initialize auto wishes buttons
         autoWishes.forEach((wish, index) => {
