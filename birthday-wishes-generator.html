@@ -3,19 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birthday Card | Toolnest</title>
-  <meta name="description" content="Free Birthday Card Maker. Create personalized, flippable animated birthday cards with wishes in English, Urdu & Hindi. Share via WhatsApp instantly. No sign-up.">
+  <title>Birthday Card Maker | Free Online Birthday Wishes Generator</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Create beautiful, animated birthday cards with our free generator. Personalize with names, choose wishes in English, Urdu & Hindi, and share via WhatsApp instantly. No sign-up required.">
+  <meta name="keywords" content="birthday card maker, free birthday wishes, birthday card generator, online birthday card, share birthday card, WhatsApp birthday wishes">
   <meta name="robots" content="index, follow">
+  <meta name="author" content="Toolnest">
   <link rel="canonical" href="https://toolnest.live/birthday-wishes-generator.html">
-
-  <!-- Optional: Font Awesome (icons) -->
+  
+  <!-- Open Graph / Social Media Meta -->
+  <meta property="og:title" content="Free Online Birthday Card Maker | Toolnest">
+  <meta property="og:description" content="Create personalized, flippable animated birthday cards with wishes in English, Urdu & Hindi. Share via WhatsApp instantly.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolnest.live/birthday-wishes-generator.html">
+  
+  <!-- Fonts & Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Optional: Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
-
+  
   <style>
     /* RESET */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       background: linear-gradient(135deg, #0a0819, #1a1638);
@@ -48,7 +58,7 @@
       margin-bottom: 10px;
     }
 
-    .tagline { color: #a0a0ff; font-size: 1.1rem; }
+    .tagline { color: #a0a0ff; font-size: 1.1rem; margin-top: 10px; }
 
     /* GENERATOR CONTROLS */
     .controls {
@@ -99,10 +109,11 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
+      border: none;
     }
     .action-btn:hover { transform: scale(1.03); }
 
-    /* WISH SELECTION - FIXED: h2 instead of h3 */
+    /* WISH SELECTION */
     .wish-selection {
       margin: 18px auto;
       background: rgba(255,255,255,0.05);
@@ -137,6 +148,41 @@
       background: rgba(255,215,0,0.12);
       border-color: #FFD700;
       box-shadow: 0 0 15px rgba(255,215,0,0.25);
+    }
+
+    /* SEO CONTENT SECTION */
+    .seo-content {
+      max-width: 800px; 
+      margin: 30px auto; 
+      padding: 25px; 
+      background: rgba(255,255,255,0.05); 
+      border-radius: 15px; 
+      color: #ddd; 
+      text-align: left;
+    }
+    
+    .seo-content h2 { 
+      color: #FFD700; 
+      margin-top: 0; 
+      margin-bottom: 15px;
+      font-size: 1.6rem;
+    }
+    
+    .seo-content h3 { 
+      color: #a0a0ff; 
+      margin-top: 20px; 
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .seo-content p, .seo-content li { 
+      line-height: 1.6; 
+      margin-bottom: 10px;
+    }
+    
+    .seo-content ol, .seo-content ul { 
+      padding-left: 20px; 
+      margin-bottom: 15px;
     }
 
     /* ========== CARD VIEW ========== */
@@ -583,6 +629,8 @@
       .card-title { font-size: 2.2rem; }
       .card-message { font-size: 1.15rem; }
       .controls { flex-direction: column; }
+      .seo-content h2 { font-size: 1.4rem; }
+      .seo-content h3 { font-size: 1.1rem; }
     }
     @media (max-width: 480px) {
       h1 { font-size: 1.6rem; }
@@ -590,13 +638,14 @@
       .card-title { font-size: 1.95rem; }
       .card-message { font-size: 1.02rem; padding: 12px; }
       .banner { width: 240px; }
+      .seo-content { padding: 15px; }
     }
   </style>
 </head>
 
 <body>
   <!-- Background Snowflakes -->
-  <div class="snowflakes" id="snowflakes"></div>
+  <div class="snowflakes" id="snowflakes" aria-hidden="true"></div>
 
   <!-- ========== GENERATOR SECTION ========== -->
   <div class="section active" id="generatorSection">
@@ -605,20 +654,20 @@
       <p class="tagline">Personalize → Flip Surprise → Share Link (WhatsApp)</p>
     </header>
 
-    <!-- ===== IMPORTANT SEO CONTENT ADDED ===== -->
-    <section style="max-width: 800px; margin: 30px auto; padding: 25px; background: rgba(255,255,255,0.05); border-radius: 15px; color: #ddd; text-align: left;">
-      <h2 style="color: #FFD700; margin-top: 0;">Free Online Birthday Card Maker</h2>
+    <!-- ===== SEO CONTENT SECTION ===== -->
+    <section class="seo-content" aria-label="About this birthday card generator">
+      <h2>Free Online Birthday Card Maker</h2>
       <p>Create beautiful, animated birthday cards in seconds with our free generator. Personalize with names, choose from multiple heartfelt wishes in English, Urdu, and Hindi, and share a unique link via WhatsApp or other platforms.</p>
       
-      <h3 style="color: #a0a0ff; margin-top: 20px;">How to Use This Birthday Wishes Generator:</h3>
-      <ol style="padding-left: 20px; line-height: 1.7;">
+      <h3>How to Use This Birthday Wishes Generator:</h3>
+      <ol>
         <li><strong>Enter Names</strong>: Add the recipient's name and your name as the sender.</li>
         <li><strong>Select a Language & Wish</strong>: Choose from pre-written, thoughtful birthday messages.</li>
         <li><strong>Generate & Share</strong>: Create your card to get a unique link to share directly on WhatsApp.</li>
       </ol>
       
-      <h3 style="color: #a0a0ff; margin-top: 20px;">Features of Your Digital Birthday Card:</h3>
-      <ul style="padding-left: 20px; line-height: 1.7;">
+      <h3>Features of Your Digital Birthday Card:</h3>
+      <ul>
         <li><strong>Interactive Flip Card</strong>: A digital card with a stunning front and a surprise inside with animated themes.</li>
         <li><strong>5 Beautiful Inside Themes</strong>: Including a desert snowfall, balloons, a night sky, a flower garden, and more.</li>
         <li><strong>No Login Required</strong>: Completely free and private. The card is generated in your browser.</li>
@@ -630,18 +679,18 @@
 
     <div class="controls">
       <div class="input-group">
-        <label><i class="fas fa-user"></i> Recipient's Name</label>
-        <input type="text" id="receiverName" placeholder="Who's birthday?">
+        <label for="receiverName"><i class="fas fa-user"></i> Recipient's Name</label>
+        <input type="text" id="receiverName" placeholder="Who's birthday?" aria-label="Enter recipient's name">
       </div>
 
       <div class="input-group">
-        <label><i class="fas fa-user-edit"></i> Your Name (Sender)</label>
-        <input type="text" id="senderName" placeholder="Your name">
+        <label for="senderName"><i class="fas fa-user-edit"></i> Your Name (Sender)</label>
+        <input type="text" id="senderName" placeholder="Your name" aria-label="Enter your name as sender">
       </div>
 
       <div class="input-group">
-        <label><i class="fas fa-language"></i> Language</label>
-        <select id="langSelect">
+        <label for="langSelect"><i class="fas fa-language"></i> Language</label>
+        <select id="langSelect" aria-label="Select language for birthday wishes">
           <option value="en">English</option>
           <option value="ur">Urdu</option>
           <option value="hi">Hindi</option>
@@ -650,12 +699,11 @@
     </div>
 
     <div class="wish-selection">
-      <!-- FIXED: Changed from h3 to h2 to fix validation error -->
       <h2><i class="fas fa-gift"></i> Select a Birthday Wish</h2>
-      <div id="wishList"></div>
+      <div id="wishList" role="listbox" aria-label="List of birthday wishes"></div>
     </div>
 
-    <button class="action-btn" onclick="generateAndShowCard()">
+    <button class="action-btn" onclick="generateAndShowCard()" aria-label="Generate birthday card and share link">
       <i class="fab fa-whatsapp"></i> Generate Card + Share Link
     </button>
   </div>
@@ -674,7 +722,6 @@
 
         <!-- Inside of Card (Slideshow shows 5 themes one-by-one after flip) -->
         <div class="card-inside">
-
           <div class="inside-slideshow" id="insideSlideshow" aria-hidden="true">
             <div class="inside-slide slide-1 active">
               <div class="slide-chip">🏜️ Desert with Snowfall Theme</div>
@@ -705,36 +752,39 @@
         </div>
       </div>
 
-      <button class="flip-btn" onclick="flipCard()" title="Flip">
+      <button class="flip-btn" onclick="flipCard()" title="Flip card" aria-label="Flip birthday card">
         <i class="fas fa-sync-alt"></i>
       </button>
     </div>
 
     <div class="sharing-buttons">
-      <button class="share-btn" style="background:#25D366;" onclick="shareOnWhatsApp()" title="WhatsApp">
+      <button class="share-btn" style="background:#25D366;" onclick="shareOnWhatsApp()" title="Share on WhatsApp" aria-label="Share card on WhatsApp">
         <i class="fab fa-whatsapp"></i>
       </button>
-      <button class="share-btn" style="background:#6c757d;" onclick="copyCardLink()" title="Copy Link">
+      <button class="share-btn" style="background:#6c757d;" onclick="copyCardLink()" title="Copy Card Link" aria-label="Copy card link to clipboard">
         <i class="fas fa-copy"></i>
       </button>
     </div>
 
-    <button class="create-new-btn" onclick="goToGenerator()">
+    <button class="create-new-btn" onclick="goToGenerator()" aria-label="Create your own birthday card">
       <i class="fas fa-plus-circle"></i> Create Your Own Card
     </button>
 
     <div class="website-link">
       <p>Create your own birthday card at:
-        <a href="https://toolnest.live/birthday-wishes-generator.html">https://toolnest.live/birthday-wishes-generator.html</a>
+        <a href="https://toolnest.live/birthday-wishes-generator.html" rel="noopener">https://toolnest.live/birthday-wishes-generator.html</a>
       </p>
     </div>
   </div>
 
   <footer>
-    <p>© 2026 Toolnest - Birthday Wishes Generator</p>
+    <p>© <span id="currentYear">2026</span> Toolnest - Birthday Wishes Generator</p>
   </footer>
 
   <script>
+    // Current year for footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
     // ========== WISHES DATA ==========
     const wishes = {
       en: [
@@ -760,36 +810,19 @@
       ]
     };
 
-    // ========== NOSCRIPT CONTENT FOR SEO ==========
-    document.write(`
-      <noscript>
-        <div style="display: block; max-width: 900px; margin: 30px auto; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 10px;">
-          <h3 style="color: #FFD700;">Example Birthday Wishes (English):</h3>
-          <ol style="color: white;">
-            <li>Happy Birthday! May your life glow brighter than fireworks.</li>
-            <li>Wishing you endless happiness and success!</li>
-            <li>Another year, another blessing. Happy Birthday!</li>
-            <li>May your birthday be filled with joy and laughter!</li>
-            <li>Cheers to a beautiful year ahead!</li>
-          </ol>
-          <p><em>Enable JavaScript to personalize these wishes with names and create a custom card.</em></p>
-        </div>
-      </noscript>
-    `);
-
     // ========== GLOBAL ==========
     let selectedWishIndex = 0;
     let currentLang = "en";
     let currentReceiver = "";
     let currentSender = "";
-    let insideSlideIndex = 0;     // 0..4
+    let insideSlideIndex = 0;
     let insideTimer = null;
 
     // ========== URL PARAMS ==========
     function getUrlParams() {
       const params = new URLSearchParams(window.location.search);
       return {
-        view: params.get('view'),       // "card" when shared
+        view: params.get('view'),
         wish: params.get('wish'),
         to: params.get('to'),
         from: params.get('from'),
@@ -798,7 +831,6 @@
     }
 
     function baseToolUrl() {
-      // Keeps your domain correct even if mirrored/staging
       return window.location.origin + window.location.pathname;
     }
 
@@ -815,7 +847,7 @@
         // Shared card view
         displaySharedCard(params);
         showSection('cardView');
-        document.title = `Birthday Card for ${decodeURIComponent(params.to)}`;
+        document.title = `Birthday Card for ${decodeURIComponent(params.to)} | Toolnest`;
       } else {
         // Generator view
         showSection('generator');
@@ -824,7 +856,29 @@
       }
 
       startBackgroundSnowflakes();
+      
+      // Add noscript content for SEO
+      addNoscriptContent();
     });
+
+    // ========== NOSCRIPT CONTENT ==========
+    function addNoscriptContent() {
+      const noscriptDiv = document.createElement('noscript');
+      noscriptDiv.innerHTML = `
+        <div style="display: block; max-width: 900px; margin: 30px auto; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 10px;">
+          <h3 style="color: #FFD700;">Example Birthday Wishes (English):</h3>
+          <ol style="color: white;">
+            <li>Happy Birthday! May your life glow brighter than fireworks.</li>
+            <li>Wishing you endless happiness and success!</li>
+            <li>Another year, another blessing. Happy Birthday!</li>
+            <li>May your birthday be filled with joy and laughter!</li>
+            <li>Cheers to a beautiful year ahead!</li>
+          </ol>
+          <p><em>Enable JavaScript to personalize these wishes with names and create a custom card.</em></p>
+        </div>
+      `;
+      document.body.appendChild(noscriptDiv);
+    }
 
     // ========== SECTIONS ==========
     function showSection(sectionName) {
@@ -834,7 +888,6 @@
     }
 
     function goToGenerator() {
-      // clear params
       window.history.pushState({}, document.title, window.location.pathname);
       stopInsideSlideshow();
       closeCardIfOpen();
@@ -856,6 +909,8 @@
       wishes[lang].forEach((wish, index) => {
         const wishItem = document.createElement('div');
         wishItem.className = 'wish-item' + (index === selectedWishIndex ? ' selected' : '');
+        wishItem.setAttribute('role', 'option');
+        wishItem.setAttribute('aria-selected', index === selectedWishIndex ? 'true' : 'false');
         wishItem.innerHTML = `<strong>Wish ${index + 1}:</strong> ${wish.replace('{name}', 'Friend')}`;
         wishItem.onclick = () => selectWish(index);
         wishList.appendChild(wishItem);
@@ -866,6 +921,7 @@
       selectedWishIndex = index;
       document.querySelectorAll('.wish-item').forEach((item, i) => {
         item.classList.toggle('selected', i === index);
+        item.setAttribute('aria-selected', i === index ? 'true' : 'false');
       });
     }
 
@@ -880,8 +936,16 @@
       const senderName = document.getElementById('senderName').value.trim();
       const lang = document.getElementById('langSelect').value;
 
-      if (!receiverName) return alert("Please enter the recipient's name!");
-      if (!senderName) return alert("Please enter your name as sender!");
+      if (!receiverName) {
+        alert("Please enter the recipient's name!");
+        document.getElementById('receiverName').focus();
+        return;
+      }
+      if (!senderName) {
+        alert("Please enter your name as sender!");
+        document.getElementById('senderName').focus();
+        return;
+      }
 
       currentReceiver = receiverName;
       currentSender = senderName;
@@ -890,8 +954,8 @@
       displayCard(receiverName, senderName, lang, selectedWishIndex);
       showSection('cardView');
 
-      // Build share link & open WhatsApp (per your flow)
-      shareOnWhatsApp();
+      // Build share link & open WhatsApp
+      setTimeout(() => shareOnWhatsApp(), 500);
     }
 
     function displayCard(receiverName, senderName, lang, wishIndex) {
@@ -905,7 +969,6 @@
       document.getElementById('cardInsideMessage').textContent = wishText;
       document.getElementById('cardInsideSender').textContent = senderName;
 
-      // Reset slideshow visuals (fresh)
       prepareSlidesOnce();
       showInsideSlide(0);
       stopInsideSlideshow();
@@ -959,7 +1022,7 @@
       insideTimer = null;
     }
 
-    // Build slide “feature elements” once (snow dots, balloons, stars, flowers, etc.)
+    // Build slide elements
     let slidesPrepared = false;
     function prepareSlidesOnce(){
       if (slidesPrepared) return;
@@ -1076,7 +1139,7 @@ ${shareUrl}`;
 
       const shareUrl = generateShareUrl(currentReceiver, currentSender, currentLang, selectedWishIndex);
       navigator.clipboard.writeText(shareUrl)
-        .then(() => alert("Card link copied!"))
+        .then(() => alert("Card link copied to clipboard!"))
         .catch(() => alert("Copy failed. Please copy the link manually:\n" + shareUrl));
     }
 
