@@ -576,9 +576,9 @@
                     <p class="card-sender" id="cardSender">With love, Your Name</p>
                 </div>
                 
-                <a href="#" class="site-link" id="siteLink">
-                    <i class="fas fa-link"></i> https://babyshowerwishes.com/card/<?php echo rand(1000,9999); ?>
-                </a>
+                    <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://babyshowerwishes.com/card/<span id="cardId">1234</span>
+                  </a>
                 
                 <p class="instruction">
                     <i class="fas fa-info-circle"></i> Your Baby Shower card is ready! Customize it with different designs and messages, then share with one click.
@@ -678,6 +678,7 @@
             "Wishing you a magical baby shower and a lifetime of happiness with your little one. May your baby bring you endless smiles and cherished moments.",
             "Congratulations on your upcoming arrival! May your baby shower be wonderful and your transition to parenthood be smooth and joyful."
         ];
+             const cardId = Math.floor(Math.random() * 9000) + 1000; 
 
         // Card designs with baby colors
         const cardDesigns = [
@@ -708,6 +709,10 @@
         const girlBtn = document.getElementById('girlBtn');
         const surpriseBtn = document.getElementById('surpriseBtn');
         const siteLink = document.getElementById('siteLink');
+        const cardIdElement = document.getElementById('cardId');
+        cardIdElement.textContent = cardId;
+        siteLink.href = `https://babyshowerwishes.com/card/${cardId}`;
+        siteLink.innerHTML = `<i class="fas fa-link"></i> https://babyshowerwishes.com/card/${cardId}`;
         
         let babyGender = 'surprise';
         let babyIcons = ['👶', '🐣', '🍼', '🧸'];
