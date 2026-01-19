@@ -638,7 +638,7 @@
                 </div>
                 
                 <a href="#" class="site-link" id="siteLink">
-                    <i class="fas fa-link"></i> https://newbornwishes.com/card/<?php echo rand(1000,9999); ?>
+                    <i class="fas fa-link"></i> https://newbornwishes.com/card/
                 </a>
                 
                 <p class="instruction">
@@ -943,7 +943,6 @@
         function createFireworkInsideCard() {
             // Get card position and dimensions
             const cardRect = newbornCard.getBoundingClientRect();
-            const containerRect = document.querySelector('.card-container').getBoundingClientRect();
             
             // Random position inside the card
             const x = Math.random() * (cardRect.width - 20) + 10;
