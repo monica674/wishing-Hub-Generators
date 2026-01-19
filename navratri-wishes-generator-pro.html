@@ -614,10 +614,9 @@
                     <p class="card-sender" id="cardSender">Maa Durga ki kripa aap par bani rahe,</p>
                 </div>
                 
-                <a href="#" class="site-link" id="siteLink">
-                    <i class="fas fa-link"></i> https://navratriwishes.com/card/<?php echo rand(1000,9999); ?>
-                </a>
-                
+                     <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://navratriwishes.com/card/<span id="cardId">1234</span>
+                    </a>
                 <p class="instruction">
                     <i class="fas fa-info-circle"></i> Your Navratri card is ready! Customize it with different designs, Navratri days, and messages, then share with one click.
                 </p>
@@ -716,6 +715,7 @@
             "Maa Durga ki kripa aap par hamesha bani rahe. Aapke jeevan mein sukhad samriddhi, shanti, aur kushalta aaye. Navratri ki bahut bahut badhai!",
             "On this auspicious occasion of Navratri, may you be blessed with good health, wealth, and prosperity. May the divine energy of Maa Durga guide you!"
         ];
+             const cardId = Math.floor(Math.random() * 9000) + 1000;
 
         // Navratri day information
         const navratriDays = {
@@ -756,6 +756,11 @@
         const recipientName = document.getElementById('recipientName');
         const dayButtons = document.querySelectorAll('.day-btn');
         const siteLink = document.getElementById('siteLink');
+        const cardIdElement = document.getElementById('cardId');
+        cardIdElement.textContent = cardId;
+        siteLink.href = `https://babyshowerwishes.com/card/${cardId}`;
+        siteLink.innerHTML = `<i class="fas fa-link"></i> https://babyshowerwishes.com/card/${cardId}`;
+           
         
         let selectedDay = 'dayAll';
         let durgaIcons = ['🪔', '🕉️', '🔱', '🌸'];
