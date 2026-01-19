@@ -517,9 +517,9 @@
                     <p class="card-sender" id="cardSender">With blessings, Your Name</p>
                 </div>
                 
-                <a href="#" class="site-link" id="siteLink">
-                    <i class="fas fa-link"></i> https://weddingwishes.com/card/<?php echo rand(1000,9999); ?>
-                </a>
+                    <a href="#" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://weddingwishes.com/card/<span id="cardId">1234</span>
+                    </a>
                 
                 <p class="instruction">
                     <i class="fas fa-info-circle"></i> Your Wedding card is ready! Customize it with different designs and messages, then share with one click.
@@ -606,7 +606,7 @@
             "As you celebrate your love today, may you continue to celebrate it every day of your lives. Wishing you a lifetime of happiness and togetherness.",
             "May your marriage be a never-ending story of love, friendship, and trust. Congratulations on your wedding day and best wishes for your future together."
         ];
-
+             const cardId = Math.floor(Math.random() * 9000) + 1000; // 1000 to 9999
         // Card designs with wedding colors
         const cardDesigns = [
             { name: "Romantic Pink", className: "color1" },
@@ -632,6 +632,12 @@
         const senderName = document.getElementById('senderName');
         const coupleNames = document.getElementById('coupleNames');
         const siteLink = document.getElementById('siteLink');
+        const cardIdElement = document.getElementById('cardId');
+         cardIdElement.textContent = cardId;
+          siteLink.href = `https://weddingwishes.com/card/${cardId}`;
+          siteLink.innerHTML = `<i class="fas fa-link"></i> https://weddingwishes.com/card/${cardId}`;
+         
+         
         
         // Initialize auto wishes buttons
         autoWishes.forEach((wish, index) => {
